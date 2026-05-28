@@ -1,0 +1,187 @@
+/* ==========================================================================
+   Tailwind CSS v4
+   ========================================================================== */
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+/* ==========================================================================
+   Theme
+   ========================================================================== */
+@theme {
+    --font-sans:  'Inter', ui-sans-serif, system-ui, sans-serif;
+    --font-serif: 'Instrument Serif', ui-serif, Georgia, serif;
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+@layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        font-size: 16px;
+        line-height: 1.65;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    :focus-visible {
+        outline: 2px solid #2563eb;
+        outline-offset: 2px;
+        border-radius: 4px;
+    }
+
+    :focus:not(:focus-visible) {
+        outline: none;
+    }
+
+    h1, h2, h3, h4 {
+        font-family: var(--font-serif);
+    }
+
+    ::selection {
+        background-color: #dbeafe;
+        color: #1e3a5f;
+    }
+}
+
+/* ==========================================================================
+   Components
+   ========================================================================== */
+@layer components {
+
+    /* -----------------------------------------------------------------------
+       Reveal animation
+       ----------------------------------------------------------------------- */
+    .reveal {
+        opacity: 0;
+        transform: translateY(18px);
+        transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+
+    .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .reveal-delay-1 { transition-delay: 0.08s; }
+    .reveal-delay-2 { transition-delay: 0.16s; }
+    .reveal-delay-3 { transition-delay: 0.24s; }
+    .reveal-delay-4 { transition-delay: 0.32s; }
+
+    /* -----------------------------------------------------------------------
+       Hero studio card – subtle top gradient bar
+       ----------------------------------------------------------------------- */
+    .studio-card-accent {
+        background: linear-gradient(90deg, #0f172a 0%, #1e40af 50%, #0f172a 100%);
+    }
+
+    /* -----------------------------------------------------------------------
+       Service card – left border accent on hover
+       ----------------------------------------------------------------------- */
+    .service-card {
+        position: relative;
+        border-left: 2px solid transparent;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+    }
+
+    .service-card:hover {
+        border-left-color: #1d4ed8;
+        box-shadow: 0 4px 20px 0 rgba(15, 23, 42, 0.07);
+        transform: translateY(-1px);
+    }
+
+    /* -----------------------------------------------------------------------
+       Project card visual art areas
+       ----------------------------------------------------------------------- */
+    .project-art {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .project-art-studio {
+        background: linear-gradient(135deg, #0c1929 0%, #1e3a5f 45%, #0c1929 100%);
+    }
+
+    .project-art-darts {
+        background: linear-gradient(135deg, #1c0a0a 0%, #450a0a 40%, #1c0a0a 100%);
+    }
+
+    .project-art-cards {
+        background: linear-gradient(135deg, #042f2e 0%, #134e4a 40%, #0f172a 100%);
+    }
+
+    .project-art-strategy {
+        background: linear-gradient(135deg, #1c1000 0%, #451a03 40%, #1c1008 100%);
+    }
+
+    /* -----------------------------------------------------------------------
+       Dot pattern overlay for project art
+       ----------------------------------------------------------------------- */
+    .dot-pattern::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-image: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
+        background-size: 20px 20px;
+    }
+
+    /* -----------------------------------------------------------------------
+       Pricing card highlighted variant
+       ----------------------------------------------------------------------- */
+    .pricing-featured {
+        background: linear-gradient(160deg, #0f172a 0%, #1e3a5f 100%);
+    }
+
+    /* -----------------------------------------------------------------------
+       Form step transitions
+       ----------------------------------------------------------------------- */
+    .form-step {
+        transition: opacity 0.2s ease;
+    }
+
+    .form-step.hidden {
+        display: none;
+    }
+
+    /* -----------------------------------------------------------------------
+       Step line active
+       ----------------------------------------------------------------------- */
+    .step-line-active {
+        background-color: #0f172a;
+    }
+
+    /* -----------------------------------------------------------------------
+       Section divider gradient
+       ----------------------------------------------------------------------- */
+    .section-divider {
+        height: 1px;
+        background: linear-gradient(90deg, transparent, #e7e5e4 20%, #e7e5e4 80%, transparent);
+    }
+}
+
+/* ==========================================================================
+   Reduced motion
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
