@@ -65,6 +65,21 @@ return [
             'cta'         => 'Bespreek de vernieuwing',
         ],
         [
+            'slug'        => 'webshop',
+            'title'       => 'Webshop & online verkoop',
+            'short'       => 'Voor producten, bestellingen of eenvoudige online verkoop.',
+            'description' => 'Voor zelfstandigen en lokale bedrijven die producten online willen tonen of verkopen. Dat kan starten met een eenvoudige productcatalogus of uitgroeien naar een webshop met winkelmandje, betaalmogelijkheden en bestelopvolging. De functionaliteit hangt af van scope — ik bouw wat jij nodig hebt, niet meer en niet minder.',
+            'bullets'     => [
+                'Productcatalogus of eenvoudige webshop',
+                'Winkelmandje indien nodig',
+                'Online bestellingen en betaalmogelijkheden afhankelijk van scope',
+                'Duidelijke productpagina\'s',
+                'SEO-basis voor producten en categorieën inbegrepen',
+                'Onderhoudbaar gebouwd',
+            ],
+            'cta'         => 'Bespreek je webshop',
+        ],
+        [
             'slug'        => 'formulieren',
             'title'       => 'Contact- en offerteformulieren',
             'short'       => 'Voor duidelijke aanvragen met de juiste info vanaf het eerste contact.',
@@ -94,9 +109,9 @@ return [
         ],
         [
             'slug'        => 'webapplicatie',
-            'title'       => 'Apps, tools & webapplicaties',
-            'short'       => "Voor ideeën die verder gaan dan een standaard website.",
-            'description' => 'Heb je een idee voor een formulier-app, een klein dashboard, een intern tool, een klantportaal of een andere digitale oplossing? Ik denk mee over de structuur, de gebruikerservaring en de technische aanpak. Volledig op maat, veilig en onderhoudbaar.',
+            'title'       => 'Apps, tools & maatwerk',
+            'short'       => 'Voor digitale ideeën die verder gaan dan een standaard website of webshop.',
+            'description' => 'Heb je een idee voor een intern tool, een klein dashboard, een klantportaal of een specifieke digitale workflow? Ik denk mee over de structuur, de gebruikerservaring en de technische aanpak. Volledig op maat, veilig en onderhoudbaar gebouwd met Laravel.',
             'bullets'     => [
                 'Formulieren en opvolgsystemen op maat',
                 'Kleine dashboards of interne tools',

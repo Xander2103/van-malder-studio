@@ -14,6 +14,7 @@ return [
         'proves'       => 'Toont een solide Laravel-architectuur, veilige formulierverwerking, SEO-basis, componentenstructuur en professionele frontend — zonder onnodige complexiteit.',
         'technologies' => ['Laravel', 'Blade', 'Tailwind CSS', 'JavaScript', 'PHP', 'SEO', 'UX'],
         'status'       => 'Live',
+        'status_key'   => 'live',
         'art'          => 'studio',
     ],
 
@@ -29,6 +30,7 @@ return [
         'proves'       => 'Toont dat ik productdenken combineer met technische uitvoering: van gebruiksscenario tot afgewerkte mobiele ervaring.',
         'technologies' => ['JavaScript', 'HTML', 'CSS', 'Capacitor', 'Android', 'UI/UX'],
         'status'       => 'Live',
+        'status_key'   => 'live',
         'art'          => 'darts',
     ],
     [
@@ -42,6 +44,7 @@ return [
         'proves'       => 'Demonstreert complexe hardware-software-integratie, state management en gebruikersinteractie over meerdere platformen.',
         'technologies' => ['React', 'Laravel', 'ESP32', 'NFC/RFID', 'BLE', 'JavaScript', 'Hardware prototyping'],
         'status'       => 'Prototype',
+        'status_key'   => 'prototype',
         'art'          => 'cards',
     ],
 
@@ -55,8 +58,9 @@ return [
         'short'        => "Een Unreal Engine game rond gladiatorengevechten, progressie, combat, arena's en interactieve gameplay-systemen.",
         'description'  => "Chains of Glory is een Unreal Engine game rond gladiatorengevechten met progressie, combat-systemen, arena's en interactieve gameplay-mechanics. De game toont complexe game design, combat-logica en 3D-assetproductie.",
         'proves'       => 'Toont aandacht voor spelontwerp, complexe regelsystemen en het omzetten van abstracte ideeën naar een speelbare digitale ervaring.',
-        'technologies' => ['Unreal Engine', 'Blueprints', 'C++', 'Blender', 'Substance Painter', 'Game design'],
+        'technologies' => ['Unreal Engine', 'Blueprints', 'Blender', 'Substance Painter', 'Game design'],
         'status'       => 'In ontwikkeling',
+        'status_key'   => 'in-development',
         'art'          => 'strategy',
     ],
     [
@@ -68,8 +72,9 @@ return [
         'short'        => 'Een Unreal Engine project met focus op interactieve bar/minigame-systemen, gameplay-logica en speelse sociale interacties.',
         'description'  => 'TheBarGame is een Unreal Engine project met focus op interactieve bar/minigame-systemen, multiplayer/gameplay-logica en speelse sociale interacties. Het project verkent multiplayer-mechanismen en sociale gameplay in een lighthearted omgeving.',
         'proves'       => 'Toont ervaring met multiplayer-logica, sociale gameplay-mechanismen en interactieve omgevingen in Unreal Engine.',
-        'technologies' => ['Unreal Engine', 'Blueprints', 'C++', 'Blender', 'Substance Painter', 'Game design'],
+        'technologies' => ['Unreal Engine', 'Blueprints', 'Blender', 'Substance Painter', 'Game design'],
         'status'       => 'In ontwikkeling',
+        'status_key'   => 'in-development',
         'art'          => 'strategy',
     ],
 
