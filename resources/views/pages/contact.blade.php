@@ -245,6 +245,8 @@ $inquiryRoute = \Illuminate\Support\Facades\Route::has($loc . '.inquiries.store'
                                     'multilingual'            => 'need_multilingual',
                                     'post_launch_maintenance' => 'need_maintenance',
                                     'website_advice'          => 'need_advice',
+                                    'ai_summary_support'      => 'need_ai_summary',
+                                    'auto_followup'           => 'need_auto_followup',
                                 ] as $value => $transKey)
                                 <label class="flex items-center gap-2.5 px-3 py-2.5 bg-white border border-stone-200 rounded-lg cursor-pointer hover:border-slate-400 transition-colors duration-150 has-[:checked]:border-blue-500 has-[:checked]:bg-blue-50">
                                     <input

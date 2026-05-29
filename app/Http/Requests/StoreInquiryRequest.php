@@ -36,7 +36,7 @@ class StoreInquiryRequest extends FormRequest
             'needs.*'                => ['string', Rule::in([
                                             'seo_visibility', 'seo_landing_pages', 'custom_form',
                                             'products_online', 'multilingual', 'post_launch_maintenance',
-                                            'website_advice',
+                                            'website_advice', 'ai_summary_support', 'auto_followup',
                                         ])],
             'project_description'    => ['required', 'string', 'min:20', 'max:5000'],
             'gdpr_consent'           => ['accepted'],
