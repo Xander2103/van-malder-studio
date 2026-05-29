@@ -8,4 +8,13 @@ return [
     'email'        => 'hello@vanmalderstudio.be',
     'location'     => 'Druivenstreek / Vlaams-Brabant',
     'positioning'  => 'Moderne websites en digitale oplossingen voor zelfstandigen en lokale bedrijven.',
+
+    // Locales where content is fully translated and ready to index.
+    // Set de => true once German copy has been reviewed by a native speaker.
+    'translations_ready' => [
+        'nl' => true,
+        'fr' => true,
+        'en' => true,
+        'de' => false,
+    ],
 ];

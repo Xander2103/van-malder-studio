@@ -1,14 +1,14 @@
+@php
+    $_loc = app()->getLocale() ?: 'nl';
+    $_contactCanonical = \Illuminate\Support\Facades\Route::has($_loc . '.contact') ? route($_loc . '.contact') : route('contact');
+@endphp
 <x-layouts.app
-    title="Contact | Bespreek je website of digitaal project"
-    description="Neem contact op met Xander Van Malder voor een nieuwe website, webapplicatie, websitevernieuwing of digitaal project in de Druivenstreek of Vlaams-Brabant."
-    :canonical="route('contact')"
+    :title="__('site.seo.contact_title')"
+    :description="__('site.seo.contact_desc')"
+    :canonical="$_contactCanonical"
 >
 
 @php
-/*
- * Determine which step to open when there are validation errors.
- * Maps each form step to the field names it contains.
- */
 $stepFieldMap = [
     1 => ['project_type', 'existing_website_url'],
     2 => ['name', 'company_name', 'email', 'phone'],
@@ -28,6 +28,10 @@ if ($errors->any()) {
         }
     }
 }
+
+$loc = app()->getLocale() ?: 'nl';
+$privacyHref  = \Illuminate\Support\Facades\Route::has($loc . '.privacy')  ? route($loc . '.privacy')  : route('privacy');
+$inquiryRoute = \Illuminate\Support\Facades\Route::has($loc . '.inquiries.store') ? route($loc . '.inquiries.store') : route('inquiries.store');
 @endphp
 
     <section class="max-w-6xl mx-auto px-6 pt-16 pb-20">
@@ -37,32 +41,31 @@ if ($errors->any()) {
             <div class="lg:sticky lg:top-24">
                 <p class="inline-flex items-center gap-2 text-xs font-semibold text-amber-700 uppercase tracking-widest mb-4">
                     <span class="w-4 h-px bg-amber-600 inline-block" aria-hidden="true"></span>
-                    Contact
+                    {{ __('site.nav.contact') }}
                 </p>
-                <h1 class="font-serif text-3xl md:text-4xl font-medium text-slate-900 leading-tight">Laten we praten</h1>
-                <p class="mt-3 text-slate-500 leading-relaxed">Vertel me over je project of idee. Het invullen is vrijblijvend.</p>
+                <h1 class="font-serif text-3xl md:text-4xl font-medium text-slate-900 leading-tight">{{ __('site.contact.heading') }}</h1>
+                <p class="mt-3 text-slate-500 leading-relaxed">{{ __('site.contact.body') }}</p>
 
                 <div class="mt-8 space-y-5">
                     <div>
-                        <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">E-mail</p>
+                        <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">{{ __('site.contact.email_label') }}</p>
                         <a href="mailto:{{ config('studio.email') }}" class="text-sm text-blue-700 hover:text-blue-900 transition-colors duration-200">
                             {{ config('studio.email') }}
                         </a>
                     </div>
                     <div>
-                        <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Locatie</p>
+                        <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">{{ __('site.contact.location_label') }}</p>
                         <p class="text-sm text-slate-600">{{ config('studio.location') }}</p>
                     </div>
                     <div>
-                        <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Reactietijd</p>
-                        <p class="text-sm text-slate-600">Doorgaans binnen 1–2 werkdagen</p>
+                        <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">{{ __('site.contact.response_label') }}</p>
+                        <p class="text-sm text-slate-600">{{ __('site.contact.response_value') }}</p>
                     </div>
                 </div>
 
                 <div class="mt-8 p-5 bg-stone-100 rounded-xl border border-stone-200">
                     <p class="text-sm text-slate-500 leading-relaxed">
-                        Je gegevens worden enkel gebruikt om je aanvraag te behandelen en worden nooit doorgegeven aan derden.
-                        Zie de <a href="{{ route('privacy') }}" class="text-blue-700 hover:underline">privacyverklaring</a>.
+                        {!! __('site.contact.gdpr_note', ['link' => '<a href="' . e($privacyHref) . '" class="text-blue-700 hover:underline">' . e(__('site.contact.gdpr_link')) . '</a>']) !!}
                     </p>
                 </div>
             </div>
@@ -72,16 +75,14 @@ if ($errors->any()) {
 
                 @if(session('success'))
                 <div class="mb-8 rounded-xl bg-green-50 border border-green-200 p-6" role="alert" aria-live="polite">
-                    <h2 class="font-serif text-xl font-medium text-green-900">Bericht ontvangen</h2>
-                    <p class="mt-2 text-sm text-green-700 leading-relaxed">
-                        Bedankt voor je bericht. Ik neem zo snel mogelijk contact met je op, doorgaans binnen 1 à 2 werkdagen.
-                    </p>
+                    <h2 class="font-serif text-xl font-medium text-green-900">{{ __('site.contact.success_heading') }}</h2>
+                    <p class="mt-2 text-sm text-green-700 leading-relaxed">{{ __('site.contact.success_body') }}</p>
                 </div>
                 @endif
 
                 @if($errors->any())
                 <div class="mb-6 rounded-xl bg-red-50 border border-red-200 p-4" role="alert" aria-live="polite" id="error-summary">
-                    <p class="text-sm font-semibold text-red-800 mb-2">Controleer de onderstaande velden:</p>
+                    <p class="text-sm font-semibold text-red-800 mb-2">{{ __('site.contact.validation_choose') }}</p>
                     <ul class="list-disc list-inside space-y-1">
                         @foreach($errors->all() as $error)
                         <li class="text-sm text-red-700">{{ $error }}</li>
@@ -92,7 +93,7 @@ if ($errors->any()) {
 
                 @unless(session('success'))
                 <form
-                    action="{{ route('inquiries.store') }}"
+                    action="{{ $inquiryRoute }}"
                     method="POST"
                     novalidate
                     id="inquiry-form"
@@ -100,21 +101,21 @@ if ($errors->any()) {
                 >
                     @csrf
 
-                    {{-- Honeypot: hidden from real users, filled by bots --}}
+                    {{-- Honeypot --}}
                     <div class="hidden" aria-hidden="true">
                         <label for="website-field">Laat dit veld leeg</label>
                         <input type="text" id="website-field" name="website" tabindex="-1" autocomplete="off" value="">
                     </div>
 
                     {{-- Step indicator --}}
-                    <nav class="mb-8" aria-label="Formulierstappen">
+                    <nav class="mb-8" aria-label="{{ __('site.contact.step_project') }}">
                         <ol class="flex items-center gap-0" id="step-indicators" role="list">
                             @foreach([
-                                ['num' => 1, 'label' => 'Project'],
-                                ['num' => 2, 'label' => 'Gegevens'],
-                                ['num' => 3, 'label' => 'Details'],
-                                ['num' => 4, 'label' => 'Budget'],
-                                ['num' => 5, 'label' => 'Afronden'],
+                                ['num' => 1, 'label' => __('site.contact.step_project')],
+                                ['num' => 2, 'label' => __('site.contact.step_details')],
+                                ['num' => 3, 'label' => __('site.contact.step_info')],
+                                ['num' => 4, 'label' => __('site.contact.step_budget')],
+                                ['num' => 5, 'label' => __('site.contact.step_confirm')],
                             ] as $s)
                             <li class="flex items-center {{ !$loop->last ? 'flex-1' : '' }}">
                                 <div class="flex flex-col items-center">
@@ -137,105 +138,114 @@ if ($errors->any()) {
 
                     {{-- ── Step 1: Project type ── --}}
                     <fieldset data-step="1" class="form-step {{ $initialStep !== 1 ? 'hidden' : '' }} space-y-5">
-                        <legend class="font-serif text-xl font-medium text-slate-900 mb-6">Wat is je project?</legend>
+                        <legend class="font-serif text-xl font-medium text-slate-900 mb-6">{{ __('site.contact.step1_heading') }}</legend>
 
                         <x-form.select
-                            label="Type project"
+                            :label="__('site.contact.project_type_label')"
                             name="project_type"
                             :required="true"
-                            placeholder="Kies een optie"
+                            placeholder="—"
                             :options="[
-                                'new_website'  => 'Nieuwe website',
-                                'redesign'     => 'Website vernieuwen',
-                                'contact_form' => 'Contact- of offerteformulier',
-                                'seo_local'    => 'SEO / lokale vindbaarheid',
-                                'app_tool'     => 'App, tool of webapplicatie',
-                                'maintenance'  => 'Onderhoud / aanpassingen',
-                                'audit'        => 'Website audit / advies',
-                                'other'        => 'Iets anders',
+                                'new_website'  => __('site.contact.type_new_website'),
+                                'redesign'     => __('site.contact.type_redesign'),
+                                'webshop'      => __('site.contact.type_webshop'),
+                                'contact_form' => __('site.contact.type_contact_form'),
+                                'seo_local'    => __('site.contact.type_seo_local'),
+                                'app_tool'     => __('site.contact.type_app_tool'),
+                                'maintenance'  => __('site.contact.type_maintenance'),
+                                'audit'        => __('site.contact.type_audit'),
+                                'other'        => __('site.contact.type_other'),
                             ]"
                         />
 
                         <x-form.input
-                            label="Heb je al een website? (optioneel)"
+                            :label="__('site.contact.existing_url_label')"
                             name="existing_website_url"
                             type="url"
-                            placeholder="https://jouwwebsite.be"
+                            :placeholder="__('site.contact.placeholder_url')"
                         />
                     </fieldset>
 
                     {{-- ── Step 2: Contact details ── --}}
                     <fieldset data-step="2" class="form-step {{ $initialStep !== 2 ? 'hidden' : '' }} space-y-5">
-                        <legend class="font-serif text-xl font-medium text-slate-900 mb-6">Hoe kan ik je bereiken?</legend>
+                        <legend class="font-serif text-xl font-medium text-slate-900 mb-6">{{ __('site.contact.step2_heading') }}</legend>
 
-                        <x-form.input label="Naam" name="name" :required="true" autocomplete="name" placeholder="Je volledige naam" />
-                        <x-form.input label="Bedrijfs- of handelsnaam (optioneel)" name="company_name" autocomplete="organization" placeholder="Naam van je zaak" />
-                        <x-form.input label="E-mailadres" name="email" type="email" :required="true" autocomplete="email" placeholder="jouw@email.be" />
-                        <x-form.input label="Telefoonnummer (optioneel)" name="phone" type="tel" autocomplete="tel" placeholder="+32 ..." />
+                        <x-form.input :label="__('site.contact.name_label')" name="name" :required="true" autocomplete="name" :placeholder="__('site.contact.placeholder_name')" />
+                        <x-form.input :label="__('site.contact.company_label')" name="company_name" autocomplete="organization" :placeholder="__('site.contact.placeholder_company')" />
+                        <x-form.input :label="__('site.contact.email_field_label')" name="email" type="email" :required="true" autocomplete="email" :placeholder="__('site.contact.placeholder_email')" />
+                        <x-form.input :label="__('site.contact.phone_label')" name="phone" type="tel" autocomplete="tel" :placeholder="__('site.contact.placeholder_phone')" />
                     </fieldset>
 
                     {{-- ── Step 3: Project details ── --}}
                     <fieldset data-step="3" class="form-step {{ $initialStep !== 3 ? 'hidden' : '' }} space-y-6">
-                        <legend class="font-serif text-xl font-medium text-slate-900 mb-6">Vertel me meer over je project</legend>
+                        <legend class="font-serif text-xl font-medium text-slate-900 mb-6">{{ __('site.contact.step3_heading') }}</legend>
 
-                        {{-- Multilingual checkboxes --}}
+                        {{-- Multilingual checkboxes — values stay Dutch for DB consistency --}}
                         <div>
-                            <p class="block text-sm font-medium text-slate-700 mb-3">Meertaligheid <span class="text-slate-400 font-normal">(meerdere keuzes mogelijk)</span></p>
-                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2" role="group" aria-label="Taalwensen">
-                                @foreach(['Nederlands', 'Frans', 'Engels', 'Duits', 'Spaans', 'Andere taal', 'Nog niet zeker'] as $lang)
+                            <p class="block text-sm font-medium text-slate-700 mb-3">{{ __('site.contact.multilingual_label') }} <span class="text-slate-400 font-normal">{{ __('site.contact.multilingual_hint') }}</span></p>
+                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2" role="group" aria-label="{{ __('site.contact.multilingual_label') }}">
+                                @foreach([
+                                    'Nederlands'     => 'lang_nl',
+                                    'Frans'          => 'lang_fr',
+                                    'Engels'         => 'lang_en',
+                                    'Duits'          => 'lang_de',
+                                    'Spaans'         => 'lang_es',
+                                    'Andere taal'    => 'lang_other',
+                                    'Nog niet zeker' => 'lang_not_sure',
+                                ] as $value => $transKey)
                                 <label class="flex items-center gap-2.5 px-3 py-2.5 bg-white border border-stone-200 rounded-lg cursor-pointer hover:border-slate-400 transition-colors duration-150 has-[:checked]:border-blue-500 has-[:checked]:bg-blue-50">
                                     <input
                                         type="checkbox"
                                         name="multilingual_needs[]"
-                                        value="{{ $lang }}"
-                                        id="lang-{{ Str::slug($lang) }}"
-                                        {{ in_array($lang, (array) old('multilingual_needs', [])) ? 'checked' : '' }}
+                                        value="{{ $value }}"
+                                        id="lang-{{ Str::slug($value) }}"
+                                        {{ in_array($value, (array) old('multilingual_needs', [])) ? 'checked' : '' }}
                                         class="w-4 h-4 rounded border-stone-300 text-blue-600 focus:ring-blue-600 cursor-pointer"
-                                        @if($lang === 'Andere taal') data-triggers="other-lang-wrapper" @endif
+                                        @if($value === 'Andere taal') data-triggers="other-lang-wrapper" @endif
                                     >
-                                    <span class="text-sm text-slate-700 select-none">{{ $lang }}</span>
+                                    <span class="text-sm text-slate-700 select-none">{{ __('site.contact.' . $transKey) }}</span>
                                 </label>
                                 @endforeach
                             </div>
                             <x-form.error name="multilingual_needs" />
 
-                            {{-- "Andere taal" conditional text field --}}
                             <div
                                 id="other-lang-wrapper"
                                 class="{{ in_array('Andere taal', (array) old('multilingual_needs', [])) ? '' : 'hidden' }} mt-3"
                             >
                                 <x-form.input
-                                    label="Welke andere taal?"
+                                    :label="__('site.contact.other_lang_label')"
                                     name="other_language"
-                                    placeholder="bijv. Italiaans, Portugees …"
+                                    :placeholder="__('site.contact.other_lang_ph')"
                                 />
                             </div>
                         </div>
 
                         <x-form.select
-                            label="Contentbeheer"
+                            :label="__('site.contact.admin_label')"
                             name="content_admin_needs"
-                            placeholder="Nog niet zeker"
+                            placeholder="—"
                             :options="[
-                                'static'     => 'Ik wil gewoon een vaste website',
-                                'basic_edit' => 'Ik wil zelf teksten of foto\'s kunnen aanpassen',
-                                'admin'      => 'Ik wil een eenvoudige adminomgeving',
-                                'not_sure'   => 'Nog niet zeker',
+                                'static'     => __('site.contact.admin_static'),
+                                'basic_edit' => __('site.contact.admin_basic_edit'),
+                                'admin'      => __('site.contact.admin_admin'),
+                                'not_sure'   => __('site.contact.admin_not_sure'),
                             ]"
                         />
 
-                        {{-- Optional needs checkboxes --}}
+                        {{-- Needs checkboxes --}}
                         <div>
-                            <p class="block text-sm font-medium text-slate-700 mb-3">Wat is belangrijk voor jou? <span class="text-slate-400 font-normal">(optioneel, meerdere keuzes mogelijk)</span></p>
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2" role="group" aria-label="Extra wensen">
+                            <p class="block text-sm font-medium text-slate-700 mb-3">{{ __('site.contact.needs_label') }} <span class="text-slate-400 font-normal">{{ __('site.contact.needs_hint') }}</span></p>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2" role="group" aria-label="{{ __('site.contact.needs_label') }}">
                                 @foreach([
-                                    'seo_visibility'          => 'Ik wil beter gevonden worden via Google',
-                                    'seo_landing_pages'       => "Ik wil SEO-landingspagina's",
-                                    'custom_form'             => 'Ik wil een formulier op maat',
-                                    'multilingual'            => 'Ik wil meertaligheid',
-                                    'post_launch_maintenance' => 'Ik wil onderhoud na lancering',
-                                    'website_advice'          => 'Ik wil advies over mijn huidige website',
-                                ] as $value => $label)
+                                    'seo_visibility'          => 'need_seo',
+                                    'seo_landing_pages'       => 'need_landing_pages',
+                                    'custom_form'             => 'need_form',
+                                    'products_online'         => 'need_products',
+                                    'multilingual'            => 'need_multilingual',
+                                    'post_launch_maintenance' => 'need_maintenance',
+                                    'website_advice'          => 'need_advice',
+                                ] as $value => $transKey)
                                 <label class="flex items-center gap-2.5 px-3 py-2.5 bg-white border border-stone-200 rounded-lg cursor-pointer hover:border-slate-400 transition-colors duration-150 has-[:checked]:border-blue-500 has-[:checked]:bg-blue-50">
                                     <input
                                         type="checkbox"
@@ -244,7 +254,7 @@ if ($errors->any()) {
                                         {{ in_array($value, (array) old('needs', [])) ? 'checked' : '' }}
                                         class="w-4 h-4 rounded border-stone-300 text-blue-600 focus:ring-blue-600 cursor-pointer"
                                     >
-                                    <span class="text-sm text-slate-700 select-none">{{ $label }}</span>
+                                    <span class="text-sm text-slate-700 select-none">{{ __('site.contact.' . $transKey) }}</span>
                                 </label>
                                 @endforeach
                             </div>
@@ -252,63 +262,62 @@ if ($errors->any()) {
                         </div>
 
                         <x-form.textarea
-                            label="Beschrijving van je project"
+                            :label="__('site.contact.description_label')"
                             name="project_description"
                             :required="true"
                             :rows="6"
-                            placeholder="Vertel me wat je wil bouwen, voor wie het bedoeld is en wat het moet kunnen doen. Hoe meer detail, hoe beter ik kan inschatten wat het vereist."
+                            :placeholder="__('site.contact.description_ph')"
                         />
                     </fieldset>
 
                     {{-- ── Step 4: Budget & timing ── --}}
                     <fieldset data-step="4" class="form-step {{ $initialStep !== 4 ? 'hidden' : '' }} space-y-5">
-                        <legend class="font-serif text-xl font-medium text-slate-900 mb-6">Budget en timing</legend>
+                        <legend class="font-serif text-xl font-medium text-slate-900 mb-6">{{ __('site.contact.step4_heading') }}</legend>
 
                         <x-form.select
-                            label="Budgetindicatie"
+                            :label="__('site.contact.budget_label')"
                             name="budget_range"
-                            placeholder="Nog niet zeker"
+                            placeholder="—"
                             :options="[
-                                'not_sure'   => 'Nog niet zeker',
-                                '750_1250'   => '€750 – €1.250',
-                                '1250_2500'  => '€1.250 – €2.500',
-                                '2500_5000'  => '€2.500 – €5.000',
-                                '5000_plus'  => '€5.000+',
+                                'not_sure'   => __('site.contact.budget_not_sure'),
+                                '750_1250'   => __('site.contact.budget_750_1250'),
+                                '1250_2500'  => __('site.contact.budget_1250_2500'),
+                                '2500_5000'  => __('site.contact.budget_2500_5000'),
+                                '5000_plus'  => __('site.contact.budget_5000_plus'),
                             ]"
                         />
 
                         <x-form.select
-                            label="Gewenste timing"
+                            :label="__('site.contact.timeline_label')"
                             name="timeline"
-                            placeholder="Geen voorkeur"
+                            placeholder="—"
                             :options="[
-                                'no_rush'           => 'Geen haast',
-                                'within_1_month'    => 'Binnen 1 maand',
-                                'within_2_3_months' => 'Binnen 2–3 maanden',
-                                'asap'              => 'Zo snel mogelijk',
-                                'not_sure'          => 'Nog niet zeker',
+                                'no_rush'           => __('site.contact.timeline_no_rush'),
+                                'within_1_month'    => __('site.contact.timeline_1_month'),
+                                'within_2_3_months' => __('site.contact.timeline_2_3_months'),
+                                'asap'              => __('site.contact.timeline_asap'),
+                                'not_sure'          => __('site.contact.timeline_not_sure'),
                             ]"
                         />
                     </fieldset>
 
                     {{-- ── Step 5: Confirm & GDPR ── --}}
                     <fieldset data-step="5" class="form-step {{ $initialStep !== 5 ? 'hidden' : '' }} space-y-5">
-                        <legend class="font-serif text-xl font-medium text-slate-900 mb-6">Bevestig en verstuur</legend>
+                        <legend class="font-serif text-xl font-medium text-slate-900 mb-6">{{ __('site.contact.step5_heading') }}</legend>
 
-                        {{-- Summary card --}}
                         <div class="bg-stone-50 rounded-xl border border-stone-200 p-5">
-                            <h2 class="text-sm font-semibold text-slate-700 mb-3">Overzicht van je aanvraag</h2>
+                            <h2 class="text-sm font-semibold text-slate-700 mb-3">{{ __('site.contact.summary_heading') }}</h2>
                             <dl class="space-y-1.5 text-sm" id="summary">
                                 <div class="flex gap-2">
-                                    <dt class="text-slate-500 w-28 shrink-0">Projecttype:</dt>
+                                    <dt class="text-slate-500 w-28 shrink-0">{{ __('site.contact.summary_type') }}</dt>
                                     <dd id="summary-project-type" class="text-slate-800 font-medium">—</dd>
                                 </div>
                                 <div class="flex gap-2">
-                                    <dt class="text-slate-500 w-28 shrink-0">Naam:</dt>
+                                    <dt class="text-slate-500 w-28 shrink-0">{{ __('site.contact.summary_name') }}</dt>
                                     <dd id="summary-name" class="text-slate-800 font-medium">—</dd>
                                 </div>
                                 <div class="flex gap-2">
-                                    <dt class="text-slate-500 w-28 shrink-0">E-mail:</dt>
+                                    <dt class="text-slate-500 w-28 shrink-0">{{ __('site.contact.summary_email') }}</dt>
                                     <dd id="summary-email" class="text-slate-800 font-medium">—</dd>
                                 </div>
                             </dl>
@@ -327,9 +336,7 @@ if ($errors->any()) {
                                     class="mt-0.5 w-4 h-4 rounded border-stone-300 text-blue-600 focus:ring-blue-600 cursor-pointer {{ $errors->has('gdpr_consent') ? 'border-red-400' : '' }}"
                                 >
                                 <span class="text-sm text-slate-600 leading-relaxed">
-                                    Ik ga akkoord met de
-                                    <a href="{{ route('privacy') }}" target="_blank" class="text-blue-700 hover:underline">privacyverklaring</a>
-                                    en geef toestemming om mijn gegevens te gebruiken voor het behandelen van deze aanvraag.
+                                    {!! __('site.contact.gdpr_label', ['link' => '<a href="' . e($privacyHref) . '" target="_blank" class="text-blue-700 hover:underline">' . e(__('site.contact.gdpr_link')) . '</a>']) !!}
                                 </span>
                             </label>
                             <x-form.error name="gdpr_consent" />
@@ -342,26 +349,26 @@ if ($errors->any()) {
                             type="button"
                             id="btn-prev"
                             class="{{ $initialStep <= 1 ? 'invisible' : '' }} px-5 py-2.5 text-sm font-medium text-slate-600 border border-stone-200 rounded-lg hover:bg-stone-100 hover:text-slate-900 transition-colors duration-200 cursor-pointer"
-                            aria-label="Vorige stap"
+                            aria-label="{{ __('site.contact.btn_prev') }}"
                         >
-                            ← Vorige
+                            {{ __('site.contact.btn_prev') }}
                         </button>
                         <div class="ml-auto flex gap-3">
                             <button
                                 type="button"
                                 id="btn-next"
-                                class="{{ $initialStep >= 5 ? 'hidden' : '' }} px-6 py-2.5 text-sm font-semibold bg-slate-900 text-white rounded-lg hover:bg-blue-800 transition-colors duration-200 cursor-pointer"
-                                aria-label="Volgende stap"
+                                class="{{ $initialStep >= 5 ? 'hidden' : '' }} px-6 py-2.5 text-sm font-semibold bg-slate-900 text-white rounded-lg hover:bg-slate-800 transition-colors duration-200 cursor-pointer"
+                                aria-label="{{ __('site.contact.btn_next') }}"
                             >
-                                Volgende →
+                                {{ __('site.contact.btn_next') }}
                             </button>
                             <button
                                 type="submit"
                                 id="btn-submit"
                                 class="{{ $initialStep < 5 ? 'hidden' : '' }} px-6 py-2.5 text-sm font-semibold bg-blue-700 text-white rounded-lg hover:bg-blue-600 transition-colors duration-200 cursor-pointer"
-                                aria-label="Aanvraag versturen"
+                                aria-label="{{ __('site.contact.btn_submit') }}"
                             >
-                                Verstuur aanvraag
+                                {{ __('site.contact.btn_submit') }}
                             </button>
                         </div>
                     </div>

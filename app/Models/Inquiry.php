@@ -24,6 +24,7 @@ class Inquiry extends Model
         'source',
         'ip_hash',
         'user_agent',
+        'locale',
     ];
 
     protected $casts = [

@@ -21,7 +21,7 @@ class StoreInquiryRequest extends FormRequest
             'phone'                  => ['nullable', 'string', 'max:60'],
             'existing_website_url'   => ['nullable', 'url', 'max:255'],
             'project_type'           => ['required', Rule::in([
-                                            'new_website', 'redesign', 'contact_form', 'seo_local',
+                                            'new_website', 'redesign', 'webshop', 'contact_form', 'seo_local',
                                             'app_tool', 'maintenance', 'audit', 'other',
                                             // legacy values kept for backwards compat
                                             'web_application', 'app_idea',
@@ -32,10 +32,11 @@ class StoreInquiryRequest extends FormRequest
             'multilingual_needs.*'   => ['string', Rule::in(['Nederlands','Frans','Engels','Duits','Spaans','Andere taal','Nog niet zeker'])],
             'other_language'         => ['nullable', 'string', 'max:120'],
             'content_admin_needs'    => ['nullable', 'string', 'max:255'],
-            'needs'                  => ['nullable', 'array', 'max:6'],
+            'needs'                  => ['nullable', 'array', 'max:7'],
             'needs.*'                => ['string', Rule::in([
                                             'seo_visibility', 'seo_landing_pages', 'custom_form',
-                                            'multilingual', 'post_launch_maintenance', 'website_advice',
+                                            'products_online', 'multilingual', 'post_launch_maintenance',
+                                            'website_advice',
                                         ])],
             'project_description'    => ['required', 'string', 'min:20', 'max:5000'],
             'gdpr_consent'           => ['accepted'],
@@ -46,15 +47,15 @@ class StoreInquiryRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.required'                => 'Je naam is verplicht.',
-            'email.required'               => 'Je e-mailadres is verplicht.',
-            'email.email'                  => 'Voer een geldig e-mailadres in.',
-            'project_type.required'        => 'Kies een projecttype.',
-            'project_type.in'              => 'Ongeldig projecttype.',
-            'multilingual_needs.*.in'      => 'Ongeldige taaloptie geselecteerd.',
-            'project_description.required' => 'Beschrijf je project.',
-            'project_description.min'      => 'Beschrijf je project in minstens 20 tekens.',
-            'gdpr_consent.accepted'        => 'Je moet akkoord gaan met de privacyverklaring.',
+            'name.required'                => __('site.contact.validation.name_required'),
+            'email.required'               => __('site.contact.validation.email_required'),
+            'email.email'                  => __('site.contact.validation.email_email'),
+            'project_type.required'        => __('site.contact.validation.project_type_required'),
+            'project_type.in'              => __('site.contact.validation.project_type_in'),
+            'multilingual_needs.*.in'      => __('site.contact.validation.multilingual_in'),
+            'project_description.required' => __('site.contact.validation.description_required'),
+            'project_description.min'      => __('site.contact.validation.description_min'),
+            'gdpr_consent.accepted'        => __('site.contact.validation.gdpr_accepted'),
         ];
     }
 }

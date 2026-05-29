@@ -27,6 +27,7 @@ class InquiryService
             'source'               => $request->headers->get('referer'),
             'ip_hash'              => hash('sha256', $request->ip()),
             'user_agent'           => substr($request->userAgent() ?? '', 0, 255),
+            'locale'               => app()->getLocale() ?: 'nl',
         ]);
 
         // TODO: Send email notification to hello@vanmalderstudio.be once mail is configured.
