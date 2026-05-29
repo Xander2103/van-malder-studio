@@ -136,7 +136,7 @@
        Pricing card highlighted variant
        ----------------------------------------------------------------------- */
     .pricing-featured {
-        background: linear-gradient(160deg, #0f172a 0%, #1e3a5f 100%);
+        background: linear-gradient(160deg, #0f172a 0%, #1e293b 100%);
     }
 
     /* -----------------------------------------------------------------------
@@ -198,11 +198,24 @@
     .scroll-mockup {
         transform: perspective(700px) rotateX(10deg) scale(0.90);
         transform-origin: top center;
-        transition: transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
     .scroll-mockup.revealed {
         transform: perspective(700px) rotateX(0deg) scale(1);
+    }
+
+    .scroll-mockup.is-playing {
+        transform: perspective(900px) rotateX(5deg) scale(0.96);
+    }
+
+    /* Active section ring highlight inside scroll mockup */
+    .scroll-mockup-section {
+        transition: opacity 0.3s ease, outline-color 0.3s ease;
+    }
+    .scroll-mockup-section.ring-2 {
+        outline: 2px solid rgba(99, 130, 246, 0.55);
+        outline-offset: -1px;
     }
 
     /* -----------------------------------------------------------------------
@@ -221,7 +234,7 @@
        Studio Intro — full-screen woven light scene
        ----------------------------------------------------------------------- */
     .intro-scene {
-        background-color: #020617;
+        background-color: #050e1c;
         position: relative;
         overflow: hidden;
     }
@@ -256,29 +269,29 @@
     .intro-orb-1 {
         width: 65vw; height: 65vw; max-width: 700px; max-height: 700px;
         top: -25%; left: -15%;
-        background: radial-gradient(circle, rgba(30,58,138,0.20) 0%, transparent 65%);
+        background: radial-gradient(circle, rgba(30,64,175,0.30) 0%, transparent 65%);
         animation: orbDrift 22s ease-in-out infinite;
     }
 
     .intro-orb-2 {
         width: 55vw; height: 55vw; max-width: 600px; max-height: 600px;
         bottom: -20%; right: -10%;
-        background: radial-gradient(circle, rgba(15,23,42,0.25) 0%, transparent 65%);
+        background: radial-gradient(circle, rgba(15,30,64,0.28) 0%, transparent 65%);
         animation: orbDrift 28s ease-in-out infinite reverse 4s;
     }
 
     .intro-orb-3 {
         width: 40vw; height: 40vw; max-width: 450px; max-height: 450px;
         top: 35%; right: 15%;
-        background: radial-gradient(circle, rgba(30,64,175,0.12) 0%, transparent 65%);
+        background: radial-gradient(circle, rgba(40,80,190,0.22) 0%, transparent 65%);
         animation: orbDrift 18s ease-in-out infinite 8s;
     }
 
-    /* Vignette overlay */
+    /* Vignette overlay — slightly lighter than before */
     .intro-vignette {
         position: absolute;
         inset: 0;
-        background: radial-gradient(ellipse at center, transparent 30%, rgba(2,6,23,0.7) 100%);
+        background: radial-gradient(ellipse at center, transparent 28%, rgba(5,14,28,0.58) 100%);
         pointer-events: none;
     }
 

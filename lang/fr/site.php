@@ -434,10 +434,11 @@ return [
 
     // ── Footer ────────────────────────────────────────────────────────────────
     'footer' => [
-        'rights'       => 'Tous droits réservés.',
-        'contact_cta'  => 'Vous voulez collaborer ou avez une question ?',
-        'contact_btn'  => 'Envoyer un message',
-        'studio_label' => 'Studio',
+        'rights'        => 'Tous droits réservés.',
+        'contact_cta'   => 'Vous souhaitez collaborer ou avez une question ?',
+        'contact_btn'   => 'Envoyer un message',
+        'studio_label'  => 'Studio',
+        'privacy_label' => 'Politique de confidentialité',
     ],
 
     // ── Process ───────────────────────────────────────────────────────────────
@@ -478,6 +479,17 @@ return [
         'process_desc'    => 'Découvrez la méthode de Van Malder Studio : de la prise de contact et proposition au design, développement et lancement.',
         'privacy_title'   => 'Politique de confidentialité | Van Malder Studio',
         'privacy_desc'    => 'Politique de confidentialité de Van Malder Studio.',
+    ],
+
+    // ── Studio Intro ──────────────────────────────────────────────────────────
+    'studio_intro' => [
+        'skip'        => 'Passer l\'animation',
+        'back_link'   => 'Retour à la Showcase',
+        'eyebrow'     => 'Van Malder Studio · Web & Digital',
+        'tagline'     => 'Design, code et interaction réunis dans une courte showcase visuelle.',
+        'subline'     => 'Sites web, applications et solutions digitales pour indépendants et entreprises locales.',
+        'cta_website' => 'Aller au site',
+        'cta_contact' => 'Discuter de votre projet',
     ],
 
     // ── Landing pages (UI shell) ──────────────────────────────────────────────

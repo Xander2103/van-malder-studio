@@ -418,10 +418,11 @@ return [
     ],
 
     'footer' => [
-        'rights'       => 'All rights reserved.',
-        'contact_cta'  => 'Want to work together or have a question?',
-        'contact_btn'  => 'Send a message',
-        'studio_label' => 'Studio',
+        'rights'        => 'All rights reserved.',
+        'contact_cta'   => 'Want to work together or have a question?',
+        'contact_btn'   => 'Send a message',
+        'studio_label'  => 'Studio',
+        'privacy_label' => 'Privacy policy',
     ],
 
     'process' => [
@@ -460,6 +461,16 @@ return [
         'process_desc'    => 'Discover the Van Malder Studio process: from introduction and proposal to design, development and launch.',
         'privacy_title'   => 'Privacy Policy | Van Malder Studio',
         'privacy_desc'    => 'Privacy policy of Van Malder Studio.',
+    ],
+
+    'studio_intro' => [
+        'skip'        => 'Skip animation',
+        'back_link'   => 'Back to Showcase',
+        'eyebrow'     => 'Van Malder Studio · Web & Digital',
+        'tagline'     => 'Design, code and interaction brought together in a short visual showcase.',
+        'subline'     => 'Websites, apps and digital solutions for self-employed professionals and local businesses.',
+        'cta_website' => 'Go to website',
+        'cta_contact' => 'Discuss your project',
     ],
 
     'landing_pages' => [

@@ -86,6 +86,7 @@ import './bootstrap';
     const projectTypeLabels = {
         new_website:              'Nieuwe website',
         redesign:                 'Website vernieuwen',
+        webshop:                  'Webshop / online verkoop',
         contact_form:             'Contact- of offerteformulier',
         seo_local:                'SEO / lokale vindbaarheid',
         app_tool:                 'App, tool of webapplicatie',
@@ -211,7 +212,7 @@ import './bootstrap';
 
 // =============================================================================
 // Studio Intro — woven particle canvas
-// Increased particle/line contrast + brighter central glow.
+// Brighter particles + lines, visible mouse glow, stronger repulsion.
 // =============================================================================
 (function () {
     const canvas = document.getElementById('woven-canvas');
@@ -223,78 +224,102 @@ import './bootstrap';
     }
 
     const ctx      = canvas.getContext('2d');
+    const dpr      = Math.min(window.devicePixelRatio || 1, 2);
     const isMobile = window.innerWidth < 768;
-    const COUNT    = isMobile ? 60 : 180;
-    const MAX_DIST = isMobile ? 95 : 135;
-    const MOUSE_R  = 120;
+    const COUNT    = isMobile ? 65 : 190;
+    const MAX_DIST = isMobile ? 100 : 140;
+    const MOUSE_R  = 150;
 
-    let W = canvas.width  = window.innerWidth;
-    let H = canvas.height = window.innerHeight;
-    let mouse   = { x: W / 2, y: H / 2 };
+    let W = canvas.width  = window.innerWidth  * dpr;
+    let H = canvas.height = window.innerHeight * dpr;
+    canvas.style.width  = window.innerWidth  + 'px';
+    canvas.style.height = window.innerHeight + 'px';
+    ctx.scale(dpr, dpr);
+
+    let mouse   = { x: (W / dpr) / 2, y: (H / dpr) * 0.45 };
     let running = true;
 
     const pts = Array.from({ length: COUNT }, () => ({
-        x:  Math.random() * W,
-        y:  Math.random() * H,
-        vx: (Math.random() - 0.5) * 0.35,
-        vy: (Math.random() - 0.5) * 0.35,
-        r:  Math.random() * 1.6 + 0.6,
-        a:  Math.random() * 0.55 + 0.25,  // higher base alpha (was 0.35+0.15)
+        x:  Math.random() * (W / dpr),
+        y:  Math.random() * (H / dpr),
+        vx: (Math.random() - 0.5) * 0.38,
+        vy: (Math.random() - 0.5) * 0.38,
+        r:  Math.random() * 1.8 + 0.7,
+        a:  Math.random() * 0.60 + 0.38,   // brighter: 0.38–0.98 (was 0.25–0.80)
     }));
+
+    const RW = () => W / dpr;
+    const RH = () => H / dpr;
 
     function tick() {
         if (!running) return;
         requestAnimationFrame(tick);
 
-        ctx.clearRect(0, 0, W, H);
+        ctx.clearRect(0, 0, RW(), RH());
 
-        // Brighter central glow behind the headline area
-        const cx = W / 2, cy = H * 0.45;
-        const cg = ctx.createRadialGradient(cx, cy, 0, cx, cy, Math.min(W, H) * 0.38);
-        cg.addColorStop(0,   'rgba(30,64,175,0.10)');
-        cg.addColorStop(0.5, 'rgba(30,64,175,0.05)');
+        // Central glow behind headline
+        const cx = RW() / 2, cy = RH() * 0.44;
+        const cg = ctx.createRadialGradient(cx, cy, 0, cx, cy, Math.min(RW(), RH()) * 0.40);
+        cg.addColorStop(0,   'rgba(30,64,175,0.16)');
+        cg.addColorStop(0.45,'rgba(30,64,175,0.07)');
         cg.addColorStop(1,   'rgba(30,64,175,0)');
         ctx.fillStyle = cg;
-        ctx.fillRect(0, 0, W, H);
+        ctx.fillRect(0, 0, RW(), RH());
+
+        // Mouse glow
+        if (!isMobile) {
+            const mg = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, MOUSE_R * 1.4);
+            mg.addColorStop(0,   'rgba(99,130,210,0.12)');
+            mg.addColorStop(0.4, 'rgba(99,130,210,0.05)');
+            mg.addColorStop(1,   'rgba(99,130,210,0)');
+            ctx.fillStyle = mg;
+            ctx.fillRect(0, 0, RW(), RH());
+        }
 
         for (let i = 0; i < COUNT; i++) {
             const p  = pts[i];
             const dx = p.x - mouse.x;
             const dy = p.y - mouse.y;
             const d  = Math.sqrt(dx * dx + dy * dy);
+
+            // Stronger repulsion so mouse interaction is clearly visible
             if (d < MOUSE_R && d > 0) {
-                const f = (MOUSE_R - d) / MOUSE_R * 0.022;  // stronger repulsion (was 0.014)
+                const f = (MOUSE_R - d) / MOUSE_R * 0.036;
                 p.vx += (dx / d) * f;
                 p.vy += (dy / d) * f;
             }
 
-            p.vx *= 0.98;
-            p.vy *= 0.98;
+            p.vx *= 0.982;
+            p.vy *= 0.982;
             p.x  += p.vx;
             p.y  += p.vy;
 
-            if (p.x < 0) p.x = W; else if (p.x > W) p.x = 0;
-            if (p.y < 0) p.y = H; else if (p.y > H) p.y = 0;
+            if (p.x < 0) p.x = RW(); else if (p.x > RW()) p.x = 0;
+            if (p.y < 0) p.y = RH(); else if (p.y > RH()) p.y = 0;
+
+            // Particles near cursor get extra brightness
+            const distMouse = Math.sqrt((p.x - mouse.x) ** 2 + (p.y - mouse.y) ** 2);
+            const glow = Math.max(0, 1 - distMouse / MOUSE_R) * 0.35;
 
             ctx.beginPath();
             ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(148,163,184,${p.a})`;
+            ctx.fillStyle = `rgba(168,185,210,${Math.min(1, p.a + glow)})`;
             ctx.fill();
         }
 
-        // Constellation lines — increased alpha (was 0.14)
+        // Constellation lines — significantly brighter
         for (let i = 0; i < COUNT; i++) {
             for (let j = i + 1; j < COUNT; j++) {
                 const dx = pts[i].x - pts[j].x;
                 const dy = pts[i].y - pts[j].y;
                 const d  = Math.sqrt(dx * dx + dy * dy);
                 if (d < MAX_DIST) {
-                    const alpha = (1 - d / MAX_DIST) * 0.28;  // was 0.14
+                    const alpha = (1 - d / MAX_DIST) * 0.42;
                     ctx.beginPath();
                     ctx.moveTo(pts[i].x, pts[i].y);
                     ctx.lineTo(pts[j].x, pts[j].y);
-                    ctx.strokeStyle = `rgba(99,120,190,${alpha})`;
-                    ctx.lineWidth = 0.7;
+                    ctx.strokeStyle = `rgba(110,135,200,${alpha})`;
+                    ctx.lineWidth = 0.75;
                     ctx.stroke();
                 }
             }
@@ -308,8 +333,11 @@ import './bootstrap';
         if (e.touches.length) { mouse.x = e.touches[0].clientX; mouse.y = e.touches[0].clientY; }
     }, { passive: true });
     window.addEventListener('resize', () => {
-        W = canvas.width  = window.innerWidth;
-        H = canvas.height = window.innerHeight;
+        W = canvas.width  = window.innerWidth  * dpr;
+        H = canvas.height = window.innerHeight * dpr;
+        canvas.style.width  = window.innerWidth  + 'px';
+        canvas.style.height = window.innerHeight + 'px';
+        ctx.scale(dpr, dpr);
     });
     document.addEventListener('visibilitychange', () => {
         running = !document.hidden;
@@ -553,11 +581,15 @@ import './bootstrap';
     }
 
     function setStep(n) {
+        const total = stepButtons.length;
         stepButtons.forEach(btn => {
-            const num     = parseInt(btn.dataset.interactStep);
-            const active  = num <= n;
-            const current = num === n;
-            btn.setAttribute('aria-current', current ? 'step' : 'false');
+            const num    = parseInt(btn.dataset.interactStep);
+            const active = num === n;
+            if (active) {
+                btn.setAttribute('aria-current', 'step');
+            } else {
+                btn.removeAttribute('aria-current');
+            }
             btn.classList.toggle('bg-slate-900',   active);
             btn.classList.toggle('text-white',      active);
             btn.classList.toggle('bg-stone-200',   !active);
@@ -568,6 +600,7 @@ import './bootstrap';
             line.classList.toggle('bg-slate-900', num < n);
             line.classList.toggle('bg-stone-200', num >= n);
         });
+        if (progressBar && total > 0) progressBar.style.width = Math.round(n / total * 100) + '%';
     }
 
     stateButtons.forEach(btn => {
@@ -589,7 +622,7 @@ import './bootstrap';
 })();
 
 // =============================================================================
-// Showcase — scroll-preview section tabs
+// Showcase — scroll-preview section tabs + play sequence
 // Scoped to [data-showcase-card="scroll-preview"].
 // =============================================================================
 (function () {
@@ -600,6 +633,9 @@ import './bootstrap';
     const sections  = card.querySelectorAll('[data-section-content]');
     const caption   = card.querySelector('[data-section-caption]');
     const progress  = card.querySelector('[data-section-progress]');
+    const mockup    = card.querySelector('#scroll-mockup');
+    const playBtn   = card.querySelector('[data-scroll-play]');
+    const reduced   = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     const captions = {
         'first-impression': 'De bezoeker ziet meteen wie je bent en wat je aanbiedt.',
@@ -611,10 +647,10 @@ import './bootstrap';
 
     const progressValues = {
         'first-impression': 20,
-        'offer':    40,
-        'seo':      60,
-        'pricing':  80,
-        'contact':  100,
+        'offer': 40,
+        'seo':   60,
+        'pricing': 80,
+        'contact': 100,
     };
 
     function setSection(key) {
@@ -637,38 +673,95 @@ import './bootstrap';
             sec.classList.toggle('ring-blue-400', active);
         });
 
-        if (caption)  caption.textContent       = captions[key]       || '';
-        if (progress) progress.style.width       = (progressValues[key] || 20) + '%';
+        if (caption)  caption.textContent = captions[key]         || '';
+        if (progress) progress.style.width = (progressValues[key] || 20) + '%';
+    }
+
+    let isPlaying  = false;
+    let playTimer  = null;
+    const STAGES   = ['first-impression', 'offer', 'seo', 'pricing', 'contact'];
+    const DELAY_MS = reduced ? 600 : 1400;
+
+    function playSequence() {
+        if (isPlaying) return;
+        isPlaying = true;
+        clearTimeout(playTimer);
+        if (mockup && !reduced) mockup.classList.add('is-playing');
+        if (playBtn) { playBtn.disabled = true; playBtn.setAttribute('aria-busy', 'true'); }
+
+        let i = 0;
+        function step() {
+            if (i >= STAGES.length) {
+                isPlaying = false;
+                if (mockup) mockup.classList.remove('is-playing');
+                if (playBtn) { playBtn.disabled = false; playBtn.removeAttribute('aria-busy'); }
+                return;
+            }
+            setSection(STAGES[i]);
+            i++;
+            playTimer = setTimeout(step, DELAY_MS);
+        }
+        step();
     }
 
     tabs.forEach(tab => {
-        tab.addEventListener('click', () => setSection(tab.dataset.sectionTab));
+        tab.addEventListener('click', () => {
+            if (isPlaying) { clearTimeout(playTimer); isPlaying = false; if (mockup) mockup.classList.remove('is-playing'); if (playBtn) { playBtn.disabled = false; playBtn.removeAttribute('aria-busy'); } }
+            setSection(tab.dataset.sectionTab);
+        });
         tab.addEventListener('keydown', e => {
-            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setSection(tab.dataset.sectionTab); }
+            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); tab.click(); }
         });
     });
+
+    if (playBtn) {
+        playBtn.addEventListener('click', playSequence);
+        playBtn.addEventListener('keydown', e => {
+            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); playSequence(); }
+        });
+    }
 
     setSection('first-impression');
 })();
 
 // =============================================================================
-// Showcase — contactflow demo card
+// Showcase — smart request flow demo card (Slimme aanvraagflow)
 // Scoped to [data-showcase-card="contactflow"]. No backend interaction.
 // =============================================================================
 (function () {
     const card = document.querySelector('[data-showcase-card="contactflow"]');
     if (!card) return;
 
-    const optionBtns   = card.querySelectorAll('[data-cf-option]');
-    const summaryEl    = card.querySelector('[data-cf-summary]');
-    const successEl    = card.querySelector('[data-cf-success]');
-    const validationEl = card.querySelector('[data-cf-validation]');
+    const optionBtns    = card.querySelectorAll('[data-cf-option]');
+    const summaryEl     = card.querySelector('[data-cf-summary]');
+    const successEl     = card.querySelector('[data-cf-success]');
+    const resultTextEl  = card.querySelector('[data-cf-result-text]');
+    const validationEl  = card.querySelector('[data-cf-validation]');
+    const checklistEl   = card.querySelector('[data-cf-checklist]');
+    const checklistItems= card.querySelector('[data-cf-checklist-items]');
 
     const labels = {
         new_website:  'Nieuwe website',
         redesign:     'Website vernieuwen',
-        contact_form: 'Formulier op maat',
-        audit:        'Website audit',
+        catalogue:    'Productcatalogus',
+        smart_flow:   'Slimme aanvraagflow',
+        maintenance:  'Onderhoud',
+    };
+
+    const checklists = {
+        new_website:  ['doel van de website', 'bestaande website ja/nee', 'gewenste pagina\'s', 'talen', 'budget en timing'],
+        redesign:     ['huidige website', 'wat werkt niet goed', 'gewenste verbeteringen', 'mobiel gebruik', 'SEO of snelheid'],
+        catalogue:    ['type producten', 'aantal producten', 'online aanvragen of betalingen', 'categorieën', 'productfoto\'s en teksten'],
+        smart_flow:   ['soort aanvraag', 'stappen in het proces', 'opvolging nodig ja/nee', 'automatische bevestiging', 'eventueel AI-samenvatting'],
+        maintenance:  ['bestaande website', 'hosting/domein', 'gewenste opvolging', 'kleine aanpassingen', 'technische problemen'],
+    };
+
+    const results = {
+        new_website:  'De aanvraag komt gestructureerd binnen, zodat het eerste gesprek meteen concreter wordt.',
+        redesign:     'Met de juiste context vooraf bespaar je tijd en kan ik een beter voorstel maken.',
+        catalogue:    'Scope en budget worden sneller duidelijk — zonder lang heen-en-weer mailen.',
+        smart_flow:   'Aanvragen worden gestructureerd samengevat en klaargemaakt voor opvolging.',
+        maintenance:  'Technische context is meteen beschikbaar, waardoor ik sneller kan handelen.',
     };
 
     let selected = null;
@@ -685,16 +778,37 @@ import './bootstrap';
             btn.classList.toggle('border-stone-200', !active);
         });
 
-        if (summaryEl)    summaryEl.textContent = selected ? (labels[selected] || selected) : '—';
-        if (validationEl) validationEl.classList.toggle('hidden', selected !== null);
-        if (successEl)    successEl.classList.toggle('hidden',    selected === null);
+        if (summaryEl) summaryEl.textContent = selected ? (labels[selected] || selected) : '—';
+
+        const hasSelection = selected !== null;
+        if (validationEl) validationEl.classList.toggle('hidden', hasSelection);
+        if (successEl)    successEl.classList.toggle('hidden',    !hasSelection);
+        if (checklistEl)  checklistEl.classList.toggle('hidden',  !hasSelection);
+
+        if (hasSelection && checklistItems) {
+            const items = checklists[selected] || [];
+            checklistItems.textContent = '';
+            items.forEach(text => {
+                const li   = document.createElement('li');
+                li.className = 'flex items-center gap-1.5 text-xs text-slate-600';
+                const dot  = document.createElement('span');
+                dot.className = 'w-1 h-1 rounded-full bg-blue-500 shrink-0';
+                dot.setAttribute('aria-hidden', 'true');
+                const label = document.createElement('span');
+                label.textContent = text;
+                li.appendChild(dot);
+                li.appendChild(label);
+                checklistItems.appendChild(li);
+            });
+        }
+
+        if (hasSelection && resultTextEl) {
+            resultTextEl.textContent = results[selected] || '';
+        }
     }
 
     optionBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            selected = btn.dataset.cfOption;
-            update();
-        });
+        btn.addEventListener('click', () => { selected = btn.dataset.cfOption; update(); });
         btn.addEventListener('keydown', e => {
             if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selected = btn.dataset.cfOption; update(); }
         });

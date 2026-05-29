@@ -228,8 +228,18 @@
                         Een website moet niet alleen mooi zijn — ze moet bezoekers logisch begeleiden: van eerste indruk naar aanbod, vertrouwen en contact.
                     </p>
 
+                    {{-- Play button --}}
+                    <button data-scroll-play
+                            class="mt-4 self-start inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold bg-slate-900 text-white rounded-lg hover:bg-blue-800 transition-colors duration-200 cursor-pointer"
+                            aria-label="Speel scroll-preview af">
+                        <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M8 5v14l11-7z"/>
+                        </svg>
+                        Speel preview af
+                    </button>
+
                     {{-- Section tabs --}}
-                    <div class="mt-4 flex flex-wrap gap-1.5" role="group" aria-label="Website-secties">
+                    <div class="mt-3 flex flex-wrap gap-1.5" role="group" aria-label="Website-secties">
                         @foreach([
                             ['key' => 'first-impression', 'label' => 'Eerste indruk'],
                             ['key' => 'offer',            'label' => 'Aanbod'],
@@ -258,68 +268,77 @@
             </div>
 
             {{-- ─────────────────────────────────────────────────────────
-                 CARD 4: Contactflow & formulierervaring
+                 CARD 4: Slimme aanvraagflow demo
                  ───────────────────────────────────────────────────────── --}}
+            @php
+                $loc = app()->getLocale() ?: 'nl';
+                $cfContactHref = \Illuminate\Support\Facades\Route::has($loc . '.contact') ? route($loc . '.contact') : route('contact');
+            @endphp
             <div class="showcase-card bg-white rounded-xl border border-stone-200 overflow-hidden flex flex-col reveal reveal-delay-3"
                  data-showcase-card="contactflow">
 
-                {{-- Mini form preview --}}
-                <div class="h-52 bg-stone-50 border-b border-stone-100 p-5 flex flex-col gap-3" aria-hidden="true">
-                    <p class="text-xs font-semibold text-slate-600">Wat heb je nodig?</p>
+                {{-- Interactive demo area --}}
+                <div class="bg-stone-50 border-b border-stone-100 p-4 flex flex-col gap-2">
+                    <p class="text-xs font-semibold text-slate-600 mb-0.5">Wat heb je nodig?</p>
 
                     {{-- Option buttons --}}
-                    <div class="grid grid-cols-2 gap-1.5">
-                        <button data-cf-option="new_website"
-                                class="px-2.5 py-1.5 text-xs font-medium rounded-lg border cursor-pointer transition-all duration-150 text-left bg-slate-900 text-white border-slate-900"
-                                aria-pressed="false">
-                            Nieuwe website
-                        </button>
-                        <button data-cf-option="redesign"
+                    <div class="flex flex-wrap gap-1.5">
+                        @foreach([
+                            ['key' => 'new_website',  'label' => 'Nieuwe website'],
+                            ['key' => 'redesign',     'label' => 'Website vernieuwen'],
+                            ['key' => 'catalogue',    'label' => 'Productcatalogus'],
+                            ['key' => 'smart_flow',   'label' => 'Slimme aanvraagflow'],
+                            ['key' => 'maintenance',  'label' => 'Onderhoud'],
+                        ] as $opt)
+                        <button data-cf-option="{{ $opt['key'] }}"
                                 class="px-2.5 py-1.5 text-xs font-medium rounded-lg border cursor-pointer transition-all duration-150 text-left bg-white text-slate-600 border-stone-200"
                                 aria-pressed="false">
-                            Website vernieuwen
+                            {{ $opt['label'] }}
                         </button>
-                        <button data-cf-option="contact_form"
-                                class="px-2.5 py-1.5 text-xs font-medium rounded-lg border cursor-pointer transition-all duration-150 text-left bg-white text-slate-600 border-stone-200"
-                                aria-pressed="false">
-                            Formulier
-                        </button>
-                        <button data-cf-option="audit"
-                                class="px-2.5 py-1.5 text-xs font-medium rounded-lg border cursor-pointer transition-all duration-150 text-left bg-white text-slate-600 border-stone-200"
-                                aria-pressed="false">
-                            Website audit
-                        </button>
+                        @endforeach
                     </div>
 
-                    {{-- Summary --}}
-                    <div class="flex items-center gap-2 bg-white border border-stone-200 rounded-lg px-3 py-2">
-                        <span class="text-xs text-slate-400">Keuze:</span>
+                    {{-- Summary row --}}
+                    <div class="flex items-center gap-2 bg-white border border-stone-200 rounded-lg px-2.5 py-1.5">
+                        <span class="text-xs text-slate-400 shrink-0">Keuze:</span>
                         <span data-cf-summary class="text-xs font-semibold text-slate-700">—</span>
                     </div>
 
-                    {{-- Validation hint (shown when nothing selected yet) --}}
+                    {{-- Checklist (shown after selection) --}}
+                    <div data-cf-checklist class="hidden">
+                        <p class="text-[0.65rem] font-semibold text-slate-500 uppercase tracking-wider mb-1">Wat wordt gevraagd?</p>
+                        <ul data-cf-checklist-items class="space-y-0.5"></ul>
+                    </div>
+
+                    {{-- Validation hint --}}
                     <div data-cf-validation class="text-xs text-amber-700 bg-amber-50 border border-amber-200 rounded-lg px-2.5 py-1.5">
                         Kies een optie om verder te gaan.
                     </div>
 
-                    {{-- Success feedback (shown after selection) --}}
-                    <div data-cf-success class="hidden text-xs text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-lg px-2.5 py-1.5 flex items-center gap-1.5">
-                        <svg class="w-3.5 h-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
-                        </svg>
-                        Aanvraag klaar om te versturen.
+                    {{-- Result message --}}
+                    <div data-cf-success class="hidden text-xs text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-lg px-2.5 py-1.5">
+                        <div class="flex items-center gap-1.5 mb-0.5">
+                            <svg class="w-3.5 h-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span class="font-semibold">Resultaat:</span>
+                        </div>
+                        <span data-cf-result-text></span>
                     </div>
                 </div>
 
                 <div class="p-6 flex flex-col flex-1">
                     <span class="text-[0.65rem] font-semibold text-amber-700 uppercase tracking-widest mb-2">Contactflow</span>
-                    <h2 class="font-serif text-lg font-medium text-slate-900 leading-snug">Contactflow & formulierervaring</h2>
+                    <h2 class="font-serif text-lg font-medium text-slate-900 leading-snug">Slimme aanvraagflow</h2>
                     <p class="mt-2 text-sm text-slate-500 leading-relaxed flex-1">
-                        Een goed formulier voelt niet als een hindernis. Met duidelijke stappen, feedback en samenvatting wordt het makkelijker voor bezoekers om een aanvraag te versturen.
+                        Een goed formulier verzamelt niet alleen gegevens, maar helpt bezoekers de juiste informatie doorgeven.
                     </p>
-                    <a href="{{ route('contact') }}"
+                    <p class="mt-3 text-xs text-amber-700 bg-amber-50 border border-amber-100 rounded-lg px-3 py-2 leading-relaxed">
+                        AI-ondersteuning mogelijk: samenvatting of offertebasis voorbereiden. Jij keurt altijd goed.
+                    </p>
+                    <a href="{{ $cfContactHref }}"
                        class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-blue-700 hover:text-blue-900 transition-colors duration-200 group cursor-pointer">
-                        Bekijk contactformulier
+                        Bespreek je aanvraagflow
                         <svg class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
                         </svg>
@@ -327,46 +346,6 @@
                 </div>
             </div>
 
-        </div>
-    </section>
-
-    {{-- ── VM Studios proof (secondary) ── --}}
-    <section class="bg-stone-100 border-y border-stone-200" aria-labelledby="sc-projects-heading">
-        <div class="max-w-6xl mx-auto px-6 py-12">
-            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-7 reveal">
-                <div>
-                    <h2 id="sc-projects-heading" class="font-serif text-xl font-medium text-slate-900">VM Studios · eigen projecten</h2>
-                    <p class="text-sm text-slate-500 mt-1">Bewijs van technische diepgang over meerdere platforms en stacks.</p>
-                </div>
-                <a href="{{ route('about') }}#vm-studios"
-                   class="text-sm font-semibold text-blue-700 hover:text-blue-900 flex items-center gap-1.5 transition-colors duration-200 shrink-0 group">
-                    Details op Over mij
-                    <svg class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-                    </svg>
-                </a>
-            </div>
-            <div class="grid grid-cols-2 lg:grid-cols-5 gap-3 reveal">
-                @foreach($projects as $project)
-                @php
-                    $scBadge = match($project['status']) {
-                        'Live', 'Afgewerkt' => 'text-emerald-600 bg-emerald-50 border-emerald-100',
-                        'Prototype'         => 'text-amber-600 bg-amber-50 border-amber-100',
-                        default             => 'text-slate-400 bg-stone-100 border-stone-200',
-                    };
-                @endphp
-                <div class="bg-white border border-stone-200 rounded-xl p-4 hover:border-slate-300 hover:shadow-sm transition-all duration-200">
-                    <div class="text-[0.6rem] font-semibold text-slate-400 uppercase tracking-wider mb-1">{{ $project['category'] }}</div>
-                    <h3 class="text-sm font-semibold text-slate-900">{{ $project['title'] }}</h3>
-                    <span class="inline-block mt-1.5 text-[0.6rem] font-medium px-1.5 py-0.5 {{ $scBadge }} border rounded-full">{{ $project['status'] }}</span>
-                    <div class="mt-2 flex flex-wrap gap-1">
-                        @foreach(array_slice($project['technologies'], 0, 2) as $tech)
-                        <span class="text-[0.6rem] px-1.5 py-0.5 bg-stone-100 text-slate-500 rounded border border-stone-200">{{ $tech }}</span>
-                        @endforeach
-                    </div>
-                </div>
-                @endforeach
-            </div>
         </div>
     </section>
 

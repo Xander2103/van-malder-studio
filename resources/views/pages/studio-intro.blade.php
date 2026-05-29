@@ -42,7 +42,7 @@
     <canvas id="woven-canvas"
             class="fixed inset-0 pointer-events-none"
             aria-hidden="true"
-            style="z-index:1; opacity: 0.6;"></canvas>
+            style="z-index:1;"></canvas>
 
     {{-- ── Top bar: back link ── --}}
     <header class="fixed top-0 inset-x-0 z-30 p-6 flex justify-between items-center">
@@ -51,7 +51,7 @@
             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M7 16l-4-4m0 0l4-4m-4 4h18"/>
             </svg>
-            Showcase
+            {{ __('site.studio_intro.back_link') }}
         </a>
         <a href="{{ route('home') }}"
            class="intro-fade intro-fade-1 text-sm font-medium text-slate-500 hover:text-white transition-colors duration-200">
@@ -65,7 +65,7 @@
 
         {{-- Eyebrow --}}
         <p class="intro-fade intro-fade-2 text-[0.65rem] font-semibold text-slate-500 uppercase tracking-[0.25em] mb-6">
-            Van Malder Studio · Web &amp; Digital
+            {{ __('site.studio_intro.eyebrow') }}
         </p>
 
         {{-- Headline with staggered letter animation --}}
@@ -88,26 +88,26 @@
 
         {{-- Tagline --}}
         <p class="intro-fade intro-fade-3 mt-8 max-w-md text-base md:text-lg text-slate-400 leading-relaxed">
-            Design, code en interactie samengebracht in een korte visuele showcase.
+            {{ __('site.studio_intro.tagline') }}
         </p>
 
         {{-- Sub-line --}}
         <p class="intro-fade intro-fade-4 mt-3 text-sm text-slate-600">
-            Websites, apps en digitale oplossingen voor zelfstandigen en lokale bedrijven.
+            {{ __('site.studio_intro.subline') }}
         </p>
 
         {{-- CTAs --}}
         <div class="intro-fade intro-fade-5 mt-10 flex flex-wrap justify-center gap-4">
             <a href="{{ route('home') }}"
                class="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold bg-white text-slate-900 rounded-full hover:bg-stone-100 transition-colors duration-200 cursor-pointer shadow-sm">
-                Ga naar de website
+                {{ __('site.studio_intro.cta_website') }}
                 <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
                 </svg>
             </a>
             <a href="{{ route('contact') }}"
                class="inline-flex items-center px-6 py-3 text-sm font-semibold text-slate-300 border border-slate-700 rounded-full hover:border-slate-500 hover:text-white transition-colors duration-200 cursor-pointer backdrop-blur-sm">
-                Bespreek je project
+                {{ __('site.studio_intro.cta_contact') }}
             </a>
         </div>
 

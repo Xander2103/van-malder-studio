@@ -435,10 +435,11 @@ return [
 
     // ── Footer ────────────────────────────────────────────────────────────────
     'footer' => [
-        'rights'       => 'Alle Rechte vorbehalten.',
-        'contact_cta'  => 'Möchten Sie zusammenarbeiten oder haben Sie eine Frage?',
-        'contact_btn'  => 'Nachricht senden',
-        'studio_label' => 'Studio',
+        'rights'        => 'Alle Rechte vorbehalten.',
+        'contact_cta'   => 'Möchten Sie zusammenarbeiten oder haben Sie eine Frage?',
+        'contact_btn'   => 'Nachricht senden',
+        'studio_label'  => 'Studio',
+        'privacy_label' => 'Datenschutzerklärung',
     ],
 
     // ── Process ───────────────────────────────────────────────────────────────
@@ -482,6 +483,16 @@ return [
     ],
 
     // ── Landing pages (UI shell) ──────────────────────────────────────────────
+    'studio_intro' => [
+        'skip'        => 'Animation überspringen',
+        'back_link'   => 'Zurück zur Showcase',
+        'eyebrow'     => 'Van Malder Studio · Web & Digital',
+        'tagline'     => 'Design, Code und Interaktion in einer kurzen visuellen Showcase vereint.',
+        'subline'     => 'Websites, Apps und digitale Lösungen für Selbstständige und lokale Unternehmen.',
+        'cta_website' => 'Zur Website',
+        'cta_contact' => 'Projekt besprechen',
+    ],
+
     'landing_pages' => [
         'who_for_heading' => 'Was ist inbegriffen?',
         'faq_heading'     => 'Häufig gestellte Fragen',

@@ -443,10 +443,11 @@ return [
 
     // ── Footer ────────────────────────────────────────────────────────────────
     'footer' => [
-        'rights'       => 'Alle rechten voorbehouden.',
-        'contact_cta'  => 'Wil je samenwerken of heb je een vraag?',
-        'contact_btn'  => 'Stuur een bericht',
-        'studio_label' => 'Studio',
+        'rights'        => 'Alle rechten voorbehouden.',
+        'contact_cta'   => 'Wil je samenwerken of heb je een vraag?',
+        'contact_btn'   => 'Stuur een bericht',
+        'studio_label'  => 'Studio',
+        'privacy_label' => 'Privacyverklaring',
     ],
 
     // ── Process ───────────────────────────────────────────────────────────────
@@ -487,6 +488,17 @@ return [
         'process_desc'    => 'Ontdek de werkwijze van Van Malder Studio: van kennismaking en voorstel tot ontwerp, ontwikkeling en lancering.',
         'privacy_title'   => 'Privacyverklaring | Van Malder Studio',
         'privacy_desc'    => 'Privacyverklaring van Van Malder Studio.',
+    ],
+
+    // ── Studio Intro ──────────────────────────────────────────────────────────
+    'studio_intro' => [
+        'skip'        => 'Sla animatie over',
+        'back_link'   => 'Terug naar Showcase',
+        'eyebrow'     => 'Van Malder Studio · Web & Digital',
+        'tagline'     => 'Design, code en interactie samengebracht in een korte visuele showcase.',
+        'subline'     => 'Websites, apps en digitale oplossingen voor zelfstandigen en lokale bedrijven.',
+        'cta_website' => 'Ga naar de website',
+        'cta_contact' => 'Bespreek je project',
     ],
 
     // ── Landing pages (UI shell) ──────────────────────────────────────────────
