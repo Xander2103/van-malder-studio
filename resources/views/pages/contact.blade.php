@@ -12,7 +12,7 @@
 $stepFieldMap = [
     1 => ['project_type', 'existing_website_url'],
     2 => ['name', 'company_name', 'email', 'phone'],
-    3 => ['multilingual_needs', 'other_language', 'content_admin_needs', 'project_description'],
+    3 => ['multilingual_needs', 'other_language', 'content_admin_needs', 'needs', 'project_description'],
     4 => ['budget_range', 'timeline'],
     5 => ['gdpr_consent'],
 ];
@@ -145,12 +145,14 @@ if ($errors->any()) {
                             :required="true"
                             placeholder="Kies een optie"
                             :options="[
-                                'new_website'     => 'Nieuwe website',
-                                'redesign'        => 'Bestaande website vernieuwen',
-                                'web_application' => 'Webapplicatie / dashboard',
-                                'app_idea'        => 'App idee',
-                                'maintenance'     => 'Onderhoud / aanpassingen',
-                                'other'           => 'Iets anders',
+                                'new_website'  => 'Nieuwe website',
+                                'redesign'     => 'Website vernieuwen',
+                                'contact_form' => 'Contact- of offerteformulier',
+                                'seo_local'    => 'SEO / lokale vindbaarheid',
+                                'app_tool'     => 'App, tool of webapplicatie',
+                                'maintenance'  => 'Onderhoud / aanpassingen',
+                                'audit'        => 'Website audit / advies',
+                                'other'        => 'Iets anders',
                             ]"
                         />
 
@@ -221,6 +223,33 @@ if ($errors->any()) {
                                 'not_sure'   => 'Nog niet zeker',
                             ]"
                         />
+
+                        {{-- Optional needs checkboxes --}}
+                        <div>
+                            <p class="block text-sm font-medium text-slate-700 mb-3">Wat is belangrijk voor jou? <span class="text-slate-400 font-normal">(optioneel, meerdere keuzes mogelijk)</span></p>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2" role="group" aria-label="Extra wensen">
+                                @foreach([
+                                    'seo_visibility'          => 'Ik wil beter gevonden worden via Google',
+                                    'seo_landing_pages'       => "Ik wil SEO-landingspagina's",
+                                    'custom_form'             => 'Ik wil een formulier op maat',
+                                    'multilingual'            => 'Ik wil meertaligheid',
+                                    'post_launch_maintenance' => 'Ik wil onderhoud na lancering',
+                                    'website_advice'          => 'Ik wil advies over mijn huidige website',
+                                ] as $value => $label)
+                                <label class="flex items-center gap-2.5 px-3 py-2.5 bg-white border border-stone-200 rounded-lg cursor-pointer hover:border-slate-400 transition-colors duration-150 has-[:checked]:border-blue-500 has-[:checked]:bg-blue-50">
+                                    <input
+                                        type="checkbox"
+                                        name="needs[]"
+                                        value="{{ $value }}"
+                                        {{ in_array($value, (array) old('needs', [])) ? 'checked' : '' }}
+                                        class="w-4 h-4 rounded border-stone-300 text-blue-600 focus:ring-blue-600 cursor-pointer"
+                                    >
+                                    <span class="text-sm text-slate-700 select-none">{{ $label }}</span>
+                                </label>
+                                @endforeach
+                            </div>
+                            <x-form.error name="needs" />
+                        </div>
 
                         <x-form.textarea
                             label="Beschrijving van je project"

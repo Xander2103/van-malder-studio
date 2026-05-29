@@ -164,6 +164,175 @@
         height: 1px;
         background: linear-gradient(90deg, transparent, #e7e5e4 20%, #e7e5e4 80%, transparent);
     }
+
+    /* -----------------------------------------------------------------------
+       Hero background canvas wrapper
+       ----------------------------------------------------------------------- */
+    .hero-canvas-section {
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* -----------------------------------------------------------------------
+       Bento offer grid
+       ----------------------------------------------------------------------- */
+    .bento-card {
+        position: relative;
+        transition: box-shadow 0.2s ease, transform 0.2s ease;
+    }
+
+    .bento-card:hover {
+        box-shadow: 0 4px 20px rgba(15, 23, 42, 0.07);
+        transform: translateY(-1px);
+    }
+
+    /* -----------------------------------------------------------------------
+       Comparison block
+       ----------------------------------------------------------------------- */
+    .compare-neg { background: #fef2f2; border-color: #fecaca; }
+    .compare-pos { background: #f0fdf4; border-color: #bbf7d0; }
+
+    /* -----------------------------------------------------------------------
+       Scroll preview mockup
+       ----------------------------------------------------------------------- */
+    .scroll-mockup {
+        transform: perspective(700px) rotateX(10deg) scale(0.90);
+        transform-origin: top center;
+        transition: transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .scroll-mockup.revealed {
+        transform: perspective(700px) rotateX(0deg) scale(1);
+    }
+
+    /* -----------------------------------------------------------------------
+       Showcase micro-interaction demo buttons
+       ----------------------------------------------------------------------- */
+    .interact-state-btn {
+        transition: background-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .interact-state-btn[aria-pressed="true"] {
+        background-color: #0f172a;
+        color: #ffffff;
+    }
+
+    /* -----------------------------------------------------------------------
+       Studio Intro — full-screen woven light scene
+       ----------------------------------------------------------------------- */
+    .intro-scene {
+        background-color: #020617;
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Fine dot grid layers — two overlapping sizes, animated drift */
+    .intro-dots-sm {
+        position: absolute;
+        inset: 0;
+        background-image: radial-gradient(circle, rgba(148,163,184,0.11) 1px, transparent 1px);
+        background-size: 28px 28px;
+        animation: wovenDrift 35s ease-in-out infinite;
+        will-change: transform;
+    }
+
+    .intro-dots-lg {
+        position: absolute;
+        inset: 0;
+        background-image: radial-gradient(circle, rgba(100,116,139,0.07) 1px, transparent 1px);
+        background-size: 64px 64px;
+        animation: wovenDrift 50s ease-in-out infinite reverse;
+        will-change: transform;
+    }
+
+    /* Ambient glow orbs */
+    .intro-orb {
+        position: absolute;
+        border-radius: 50%;
+        pointer-events: none;
+        will-change: transform, opacity;
+    }
+
+    .intro-orb-1 {
+        width: 65vw; height: 65vw; max-width: 700px; max-height: 700px;
+        top: -25%; left: -15%;
+        background: radial-gradient(circle, rgba(30,58,138,0.20) 0%, transparent 65%);
+        animation: orbDrift 22s ease-in-out infinite;
+    }
+
+    .intro-orb-2 {
+        width: 55vw; height: 55vw; max-width: 600px; max-height: 600px;
+        bottom: -20%; right: -10%;
+        background: radial-gradient(circle, rgba(15,23,42,0.25) 0%, transparent 65%);
+        animation: orbDrift 28s ease-in-out infinite reverse 4s;
+    }
+
+    .intro-orb-3 {
+        width: 40vw; height: 40vw; max-width: 450px; max-height: 450px;
+        top: 35%; right: 15%;
+        background: radial-gradient(circle, rgba(30,64,175,0.12) 0%, transparent 65%);
+        animation: orbDrift 18s ease-in-out infinite 8s;
+    }
+
+    /* Vignette overlay */
+    .intro-vignette {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(ellipse at center, transparent 30%, rgba(2,6,23,0.7) 100%);
+        pointer-events: none;
+    }
+
+    /* Content fade-up — staggered with CSS */
+    .intro-fade { opacity: 0; animation: introFadeUp 1s ease both; }
+    .intro-fade-1 { animation-delay: 0.2s; }
+    .intro-fade-2 { animation-delay: 0.45s; }
+    .intro-fade-3 { animation-delay: 0.7s; }
+    .intro-fade-4 { animation-delay: 0.95s; }
+    .intro-fade-5 { animation-delay: 1.2s; }
+
+    /* Showcase feature cards */
+    .showcase-card {
+        position: relative;
+        border-left: 2px solid transparent;
+        transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+        cursor: pointer;
+    }
+    .showcase-card:hover {
+        border-left-color: #ca8a04;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 24px rgba(15,23,42,0.10);
+    }
+
+    /* Mini woven hint inside the studio-intro showcase card */
+    .card-woven-hint {
+        background-image:
+            radial-gradient(circle, rgba(100,116,139,0.18) 1px, transparent 1px),
+            radial-gradient(circle, rgba(148,163,184,0.10) 1px, transparent 1px);
+        background-size: 20px 20px, 40px 40px;
+        background-position: 0 0, 10px 10px;
+        animation: wovenDrift 25s ease-in-out infinite;
+    }
+}
+
+/* ==========================================================================
+   Keyframes — woven light
+   ========================================================================== */
+@keyframes wovenDrift {
+    0%, 100% { transform: translate(0, 0); }
+    25%       { transform: translate(7px, 5px); }
+    50%       { transform: translate(3px, 11px); }
+    75%       { transform: translate(-5px, 7px); }
+}
+
+@keyframes orbDrift {
+    0%, 100% { transform: translate(0, 0) scale(1); opacity: 1; }
+    40%       { transform: translate(30px, 20px) scale(1.06); opacity: 0.85; }
+    70%       { transform: translate(-15px, 35px) scale(0.96); opacity: 0.95; }
+}
+
+@keyframes introFadeUp {
+    from { opacity: 0; transform: translateY(22px); }
+    to   { opacity: 1; transform: translateY(0); }
 }
 
 /* ==========================================================================

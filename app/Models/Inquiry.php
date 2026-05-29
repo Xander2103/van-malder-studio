@@ -18,6 +18,7 @@ class Inquiry extends Model
         'multilingual_needs',
         'other_language',
         'content_admin_needs',
+        'needs',
         'project_description',
         'gdpr_consent',
         'source',
@@ -26,7 +27,8 @@ class Inquiry extends Model
     ];
 
     protected $casts = [
-        'gdpr_consent'      => 'boolean',
+        'gdpr_consent'       => 'boolean',
         'multilingual_needs' => 'array',
+        'needs'              => 'array',
     ];
 }

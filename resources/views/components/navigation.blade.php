@@ -1,10 +1,10 @@
 @php
     $links = [
-        ['route' => 'services',       'label' => 'Diensten'],
-        ['route' => 'projects.index', 'label' => 'Projecten'],
-        ['route' => 'process',        'label' => 'Werkwijze'],
-        ['route' => 'pricing',        'label' => 'Prijzen'],
-        ['route' => 'about',          'label' => 'Over mij'],
+        ['route' => 'services',  'label' => 'Diensten'],
+        ['route' => 'showcase',  'label' => 'Showcase'],
+        ['route' => 'process',   'label' => 'Werkwijze'],
+        ['route' => 'pricing',   'label' => 'Prijzen'],
+        ['route' => 'about',     'label' => 'Over mij'],
     ];
 @endphp
 <header class="fixed top-0 inset-x-0 z-50 bg-stone-50/95 backdrop-blur-md border-b border-stone-200/80">

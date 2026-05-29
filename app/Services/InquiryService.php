@@ -21,6 +21,7 @@ class InquiryService
             'multilingual_needs'   => $validated['multilingual_needs'] ?? null,
             'other_language'       => $validated['other_language'] ?? null,
             'content_admin_needs'  => $validated['content_admin_needs'] ?? null,
+            'needs'                => $validated['needs'] ?? null,
             'project_description'  => $validated['project_description'],
             'gdpr_consent'         => true,
             'source'               => $request->headers->get('referer'),

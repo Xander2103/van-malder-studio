@@ -46,9 +46,9 @@
                             <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
                         </svg>
                     </a>
-                    <a href="{{ route('projects.index') }}"
+                    <a href="{{ route('showcase') }}"
                        class="inline-flex items-center gap-2 px-5 py-3 text-sm font-semibold bg-white border border-stone-300 text-slate-700 rounded-lg hover:border-slate-400 hover:text-slate-900 transition-colors duration-200 cursor-pointer">
-                        Bekijk projecten
+                        Bekijk showcase
                     </a>
                 </div>
             </div>
@@ -98,26 +98,89 @@
                     </ul>
                 </div>
 
-                {{-- Own projects --}}
+                {{-- Own projects compact links --}}
                 <div class="bg-white rounded-xl border border-stone-200 p-6 shadow-sm">
                     <h2 class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-4">Eigen projecten · VM Studios</h2>
-                    <ul class="space-y-3.5" role="list">
+                    <ul class="space-y-3" role="list">
                         @foreach($projects as $project)
-                        <li>
-                            <a href="{{ route('projects.index') }}#{{ $project['slug'] }}"
-                               class="group flex items-start gap-3 cursor-pointer">
-                                <div class="flex-1">
-                                    <p class="text-sm font-semibold text-slate-900 group-hover:text-blue-700 transition-colors duration-200">{{ $project['title'] }}</p>
-                                    <p class="text-xs text-slate-400 mt-0.5">{{ $project['type'] }} · <span class="{{ $project['status'] === 'Afgewerkt' ? 'text-emerald-600' : 'text-slate-400' }}">{{ $project['status'] }}</span></p>
-                                </div>
-                                <svg class="mt-1 w-3.5 h-3.5 text-stone-300 group-hover:text-blue-500 transition-colors duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
-                                </svg>
-                            </a>
+                        @php
+                            $sidebarBadge = match($project['status']) {
+                                'Live', 'Afgewerkt' => 'text-emerald-600 bg-emerald-50 border-emerald-100',
+                                'Prototype'         => 'text-amber-600 bg-amber-50 border-amber-100',
+                                default             => 'text-slate-400 bg-stone-100 border-stone-200',
+                            };
+                        @endphp
+                        <li class="flex items-center gap-3">
+                            <span class="w-1.5 h-1.5 rounded-full bg-blue-600 shrink-0" aria-hidden="true"></span>
+                            <div class="flex-1 min-w-0">
+                                <p class="text-sm font-medium text-slate-900 truncate">{{ $project['title'] }}</p>
+                                <p class="text-xs text-slate-400">{{ $project['type'] }}</p>
+                            </div>
+                            <span class="text-[0.6rem] font-medium px-1.5 py-0.5 {{ $sidebarBadge }} border rounded-full shrink-0">{{ $project['status'] }}</span>
                         </li>
                         @endforeach
                     </ul>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    {{-- ── VM Studios — expanded ── --}}
+    <section id="vm-studios" class="border-t border-stone-200 scroll-mt-20" aria-labelledby="vm-studios-heading">
+        <div class="max-w-6xl mx-auto px-6 py-16">
+            <div class="reveal mb-10">
+                <p class="inline-flex items-center gap-2 text-xs font-semibold text-amber-700 uppercase tracking-widest mb-3">
+                    <span class="w-4 h-px bg-amber-600 inline-block" aria-hidden="true"></span>
+                    Eigen projecten
+                </p>
+                <h2 id="vm-studios-heading" class="font-serif text-3xl font-medium text-slate-900 leading-tight">VM Studios</h2>
+                <p class="mt-3 text-slate-500 leading-relaxed max-w-2xl">
+                    Naast klantwerk bouw ik eigen apps, games en digitale projecten via <strong class="font-semibold text-slate-700">VM Studios</strong>.
+                    Ze tonen mijn technische achtergrond, productdenken en vermogen om ideeën volledig uit te werken —
+                    van eerste idee tot afgewerkt en werkend product.
+                </p>
+            </div>
+
+            <div class="space-y-6">
+                @foreach($projects as $i => $project)
+                @php
+                    $articleBadge = match($project['status']) {
+                        'Live', 'Afgewerkt' => 'bg-emerald-50 text-emerald-700 border-emerald-100',
+                        'Prototype'         => 'bg-amber-50 text-amber-700 border-amber-100',
+                        default             => 'bg-slate-100 text-slate-600 border-slate-200',
+                    };
+                @endphp
+                <article class="bg-white rounded-xl border border-stone-200 p-6 md:p-8 reveal" aria-labelledby="vm-{{ $project['slug'] }}-heading">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10">
+                        <div class="md:col-span-2">
+                            <div class="flex flex-wrap items-center gap-2 mb-3">
+                                <span class="text-xs font-semibold px-2.5 py-1 bg-blue-50 text-blue-700 border border-blue-100 rounded-full">{{ $project['category'] }}</span>
+                                <span class="text-xs font-medium px-2.5 py-1 {{ $articleBadge }} border rounded-full">{{ $project['status'] }}</span>
+                                @if(!empty($project['label']))
+                                <span class="text-xs font-medium text-stone-400">{{ $project['label'] }}</span>
+                                @endif
+                            </div>
+                            <h3 id="vm-{{ $project['slug'] }}-heading" class="font-serif text-xl font-medium text-slate-900">{{ $project['title'] }}</h3>
+                            <p class="text-sm text-slate-500 mt-0.5 mb-3">{{ $project['type'] }}</p>
+                            <p class="text-sm text-slate-600 leading-relaxed">{{ $project['description'] }}</p>
+                        </div>
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Wat het aantoont</h4>
+                                <p class="text-sm text-slate-600 leading-relaxed">{{ $project['proves'] }}</p>
+                            </div>
+                            <div>
+                                <h4 class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Technologieën</h4>
+                                <div class="flex flex-wrap gap-1.5">
+                                    @foreach($project['technologies'] as $tech)
+                                    <span class="text-xs font-medium px-2 py-0.5 bg-stone-100 border border-stone-200 text-slate-600 rounded-full">{{ $tech }}</span>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                @endforeach
             </div>
         </div>
     </section>

@@ -46,16 +46,29 @@ class PageController extends Controller
         return view('pages.privacy');
     }
 
+    public function showcase()
+    {
+        return view('pages.showcase', [
+            'projects' => config('projects'),
+        ]);
+    }
+
+    public function studioIntro()
+    {
+        return view('pages.studio-intro');
+    }
+
     public function sitemap()
     {
         $routes = [
             ['url' => route('home'),           'priority' => '1.0',  'freq' => 'weekly'],
             ['url' => route('services'),        'priority' => '0.9',  'freq' => 'monthly'],
-            ['url' => route('projects.index'),  'priority' => '0.8',  'freq' => 'monthly'],
             ['url' => route('process'),         'priority' => '0.7',  'freq' => 'monthly'],
             ['url' => route('pricing'),         'priority' => '0.8',  'freq' => 'monthly'],
             ['url' => route('about'),           'priority' => '0.7',  'freq' => 'monthly'],
             ['url' => route('contact'),         'priority' => '0.9',  'freq' => 'monthly'],
+            ['url' => route('showcase'),        'priority' => '0.8',  'freq' => 'monthly'],
+            ['url' => route('projects.index'),  'priority' => '0.5',  'freq' => 'monthly'],
             ['url' => route('privacy'),         'priority' => '0.3',  'freq' => 'yearly'],
         ];
 

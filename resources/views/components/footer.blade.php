@@ -24,12 +24,12 @@
                 <h3 class="text-xs font-semibold text-white uppercase tracking-wider mb-4">Studio</h3>
                 <ul class="space-y-2.5" role="list">
                     @foreach([
-                        ['route' => 'services',       'label' => 'Diensten'],
-                        ['route' => 'projects.index', 'label' => 'Projecten'],
-                        ['route' => 'process',        'label' => 'Werkwijze'],
-                        ['route' => 'pricing',        'label' => 'Prijzen'],
-                        ['route' => 'about',          'label' => 'Over mij'],
-                        ['route' => 'privacy',        'label' => 'Privacyverklaring'],
+                        ['route' => 'services',  'label' => 'Diensten'],
+                        ['route' => 'showcase',  'label' => 'Showcase'],
+                        ['route' => 'process',   'label' => 'Werkwijze'],
+                        ['route' => 'pricing',   'label' => 'Prijzen'],
+                        ['route' => 'about',     'label' => 'Over mij'],
+                        ['route' => 'privacy',   'label' => 'Privacyverklaring'],
                     ] as $link)
                     <li>
                         <a href="{{ route($link['route']) }}" class="text-sm text-slate-400 hover:text-white transition-colors duration-200">

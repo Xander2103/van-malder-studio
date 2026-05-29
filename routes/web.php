@@ -14,5 +14,7 @@ Route::get('/over-mij', [PageController::class, 'about'])->name('about');
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 Route::post('/contact', [InquiryController::class, 'store'])->name('inquiries.store')->middleware('throttle:5,1');
 Route::get('/privacyverklaring', [PageController::class, 'privacy'])->name('privacy');
+Route::get('/showcase', [PageController::class, 'showcase'])->name('showcase');
+Route::get('/studio-intro', [PageController::class, 'studioIntro'])->name('studio.intro');
 Route::get('/sitemap.xml', [PageController::class, 'sitemap'])->name('sitemap');
 Route::get('/robots.txt', [PageController::class, 'robots'])->name('robots.txt');
