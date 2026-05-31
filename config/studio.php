@@ -6,7 +6,7 @@ return [
     'owner'        => 'Xander Van Malder',
     'role'         => 'Full stack developer',
     'email'        => 'xander.vanmalder@gmail.com',
-    'location'     => 'Druivenstreek / Vlaams-Brabant',
+    'location'     => 'Druivenstreek (Tervuren) / Vlaams-Brabant',
     'positioning'  => 'Moderne websites en digitale oplossingen voor zelfstandigen en lokale bedrijven.',
 
     // Locales where content is fully translated and ready to index.
