@@ -374,6 +374,17 @@ return [
         'card_front_hint'    => 'Cliquer pour voir les coordonnées',
     ],
 
+    // ── E-mails transactionnels ────────────────────────────────────────────────
+    'mail' => [
+        'confirmation_subject' => 'Confirmation de votre demande — Van Malder Studio',
+        'confirmation_greeting' => 'Bonjour :name,',
+        'confirmation_body_1'   => 'Merci pour votre demande. Je l\'ai bien reçue et vous recontacterai dans les plus brefs délais — généralement sous 1 à 2 jours ouvrables.',
+        'confirmation_body_2'   => 'Entre-temps, si vous avez des questions, n\'hésitez pas à me contacter via info@vanmalderstudio.be.',
+        'confirmation_sign_off' => 'Cordialement,',
+        'confirmation_sender'   => 'Xander Van Malder',
+        'confirmation_brand'    => 'Van Malder Studio',
+    ],
+
     // ── About ─────────────────────────────────────────────────────────────────
     'about' => [
         'eyebrow'             => 'À propos',

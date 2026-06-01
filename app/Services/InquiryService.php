@@ -6,6 +6,7 @@ use App\Mail\AdminRequestReceivedMail;
 use App\Mail\CustomerRequestConfirmationMail;
 use App\Models\Inquiry;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
 class InquiryService
@@ -40,13 +41,33 @@ class InquiryService
     {
         $adminEmail = config('mail.contact_notification_email');
 
+        Log::info('[InquiryService] Sending admin notification', [
+            'inquiry_id' => $inquiry->id,
+            'to'         => $adminEmail,
+        ]);
         Mail::to($adminEmail)
             ->send(new AdminRequestReceivedMail($inquiry));
+        Log::info('[InquiryService] Admin notification sent', ['inquiry_id' => $inquiry->id]);
 
-        Mail::to($inquiry->email)
+        $customerEmail = $inquiry->email;
+
+        if (! filter_var($customerEmail, FILTER_VALIDATE_EMAIL)) {
+            Log::warning('[InquiryService] Skipping customer confirmation — invalid or missing email', [
+                'inquiry_id'    => $inquiry->id,
+                'email_present' => ! empty($customerEmail),
+            ]);
+            return;
+        }
+
+        Log::info('[InquiryService] Sending customer confirmation', [
+            'inquiry_id' => $inquiry->id,
+            'to'         => $customerEmail,
+        ]);
+        Mail::to($customerEmail)
             ->send(
                 (new CustomerRequestConfirmationMail($inquiry))
                     ->locale($inquiry->locale ?? 'nl')
             );
+        Log::info('[InquiryService] Customer confirmation sent', ['inquiry_id' => $inquiry->id]);
     }
 }

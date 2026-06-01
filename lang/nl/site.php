@@ -378,6 +378,17 @@ return [
         'card_front_hint'    => 'Klik om contactgegevens te bekijken',
     ],
 
+    // ── Transactionele e-mails ─────────────────────────────────────────────────
+    'mail' => [
+        'confirmation_subject' => 'Bevestiging van je aanvraag — Van Malder Studio',
+        'confirmation_greeting' => 'Dag :name,',
+        'confirmation_body_1'   => 'Bedankt voor je aanvraag. Ik heb ze goed ontvangen en neem zo snel mogelijk contact met je op — normaal gezien binnen 1 à 2 werkdagen.',
+        'confirmation_body_2'   => 'Heb je ondertussen vragen? Je kunt me bereiken via info@vanmalderstudio.be.',
+        'confirmation_sign_off' => 'Met vriendelijke groeten,',
+        'confirmation_sender'   => 'Xander Van Malder',
+        'confirmation_brand'    => 'Van Malder Studio',
+    ],
+
     // ── About ─────────────────────────────────────────────────────────────────
     'about' => [
         'eyebrow'             => 'Over mij',

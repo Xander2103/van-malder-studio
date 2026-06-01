@@ -361,6 +361,17 @@ return [
         'card_front_hint'    => 'Click to view contact details',
     ],
 
+    // ── Transactional emails ───────────────────────────────────────────────────
+    'mail' => [
+        'confirmation_subject' => 'Confirmation of your request — Van Malder Studio',
+        'confirmation_greeting' => 'Hello :name,',
+        'confirmation_body_1'   => 'Thank you for your inquiry. I\'ve received it and will get back to you as soon as possible — usually within 1 to 2 working days.',
+        'confirmation_body_2'   => 'In the meantime, if you have any questions feel free to reach me at info@vanmalderstudio.be.',
+        'confirmation_sign_off' => 'Kind regards,',
+        'confirmation_sender'   => 'Xander Van Malder',
+        'confirmation_brand'    => 'Van Malder Studio',
+    ],
+
     'about' => [
         'eyebrow'             => 'About me',
         'heading'             => 'Xander Van Malder',
