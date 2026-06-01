@@ -325,6 +325,291 @@
         background-position: 0 0, 10px 10px;
         animation: wovenDrift 25s ease-in-out infinite;
     }
+
+    /* -----------------------------------------------------------------------
+       Business Card — 3D flip component
+       ----------------------------------------------------------------------- */
+    .bc-scene--compact {
+        max-width: 24rem; /* ~384px — business-card proportions */
+    }
+
+    .bc-scene {
+        --bc-gold:    #c49a3a;
+        --bc-cream:   #f7f0e3;
+        --bc-icon-bg: #f0e4c8;
+        --bc-text:    #1c1917;
+        --bc-muted:   #78716c;
+        --bc-circle:  #ecdbb0;
+        perspective: 1000px;
+        width: 100%;
+        margin-top: 2rem;
+    }
+
+    .bc-float-wrapper {
+        width: 100%;
+        border-radius: 10px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        animation: bcFloat 3.5s ease-in-out infinite;
+        transition: box-shadow 0.3s ease;
+    }
+
+    .bc-scene:hover .bc-float-wrapper {
+        box-shadow: 0 14px 36px rgba(196, 154, 58, 0.14), 0 4px 10px rgba(0, 0, 0, 0.07);
+    }
+
+    .bc-interacted .bc-float-wrapper {
+        animation: none;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    }
+
+    .bc-inner {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 85.6 / 54;
+        transform-style: preserve-3d;
+        transition: transform 0.65s cubic-bezier(0.4, 0.2, 0.2, 1);
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: clamp(0.52rem, 1.8vw, 0.78rem);
+    }
+
+    .bc-inner.bc-flipped {
+        transform: rotateY(180deg);
+    }
+
+    .bc-inner:focus-visible {
+        outline: 2px solid var(--bc-gold);
+        outline-offset: 5px;
+        border-radius: 10px;
+    }
+
+    .bc-face {
+        position: absolute;
+        inset: 0;
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+        background: var(--bc-cream);
+        border: 1.5px solid var(--bc-gold);
+        border-radius: 10px;
+        overflow: hidden;
+        display: flex;
+        align-items: stretch;
+        color: var(--bc-text);
+    }
+
+    .bc-back {
+        transform: rotateY(180deg);
+    }
+
+    /* Front face */
+    .bc-f-left {
+        width: 48%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 5% 4% 5% 6%;
+        gap: 0.55em;
+    }
+
+    .bc-f-right {
+        width: 52%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2% 3%;
+        position: relative;
+    }
+
+    .bc-brand-name {
+        font-family: var(--font-serif);
+        font-size: 1.55em;
+        font-weight: 400;
+        line-height: 1.2;
+        color: var(--bc-text);
+        margin: 0;
+    }
+
+    .bc-tagline {
+        font-size: 0.75em;
+        line-height: 1.4;
+        color: var(--bc-muted);
+        margin: 0;
+    }
+
+    .bc-hdivider {
+        width: 100%;
+        height: 1px;
+        background: var(--bc-gold);
+        opacity: 0.5;
+        flex-shrink: 0;
+    }
+
+    .bc-f-circle {
+        width: 82%;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        background: var(--bc-circle);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .bc-f-logo-img,
+    .bc-f-logo-svg {
+        width: 55%;
+        height: auto;
+        object-fit: contain;
+        display: block;
+    }
+
+    .bc-f-front-hint {
+        font-size: 0.62em;
+        color: var(--bc-muted);
+        font-style: italic;
+        margin: 0;
+        opacity: 0.75;
+    }
+
+    /* Back face */
+    .bc-b-left {
+        width: 45%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 5% 3% 5% 4%;
+        gap: 0.55em;
+        text-align: center;
+    }
+
+    .bc-logo-img,
+    .bc-logo-svg {
+        width: 55%;
+        height: auto;
+        object-fit: contain;
+        display: block;
+    }
+
+    .bc-vdivider {
+        width: 1px;
+        background: var(--bc-gold);
+        opacity: 0.45;
+        margin: 6% 0;
+        flex-shrink: 0;
+        align-self: stretch;
+    }
+
+    .bc-b-right {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 4% 5% 4% 3%;
+        gap: 0.25em;
+        min-width: 0;
+    }
+
+    .bc-name {
+        font-family: var(--font-serif);
+        font-size: 1.3em;
+        font-weight: 400;
+        color: var(--bc-text);
+        line-height: 1.2;
+        margin: 0;
+    }
+
+    .bc-studio-label {
+        font-size: 0.65em;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--bc-muted);
+        margin: 0 0 0.4em;
+    }
+
+    .bc-contacts {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .bc-contact-row {
+        display: flex;
+        align-items: center;
+        gap: 0.45em;
+        padding: 0.3em 0;
+    }
+
+    .bc-icon-circle {
+        width: 1.6em;
+        height: 1.6em;
+        border-radius: 50%;
+        background: var(--bc-icon-bg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    .bc-icon-circle svg {
+        width: 0.78em;
+        height: 0.78em;
+        color: var(--bc-gold);
+    }
+
+    .bc-contact-text {
+        font-size: 0.7em;
+        color: var(--bc-text);
+        line-height: 1.3;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .bc-contact-link {
+        font-size: 0.62em;
+        color: var(--bc-gold);
+        text-decoration: none;
+        line-height: 1.3;
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .bc-hdivider-sm {
+        height: 1px;
+        background: var(--bc-gold);
+        opacity: 0.2;
+        width: 100%;
+        flex-shrink: 0;
+    }
+
+    /* Interaction hint */
+    .bc-hint {
+        text-align: center;
+        font-size: 0.68rem;
+        color: var(--bc-gold);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        margin-top: 0.75rem;
+        opacity: 1;
+        transition: opacity 0.5s ease;
+        pointer-events: none;
+        user-select: none;
+    }
+
+    .bc-hint.bc-hint-gone {
+        opacity: 0;
+    }
+
+    /* Navigation VM mark — subtle hover dim */
+    .nav-vm-mark {
+        transition: opacity 0.2s ease;
+    }
+
+    a:hover .nav-vm-mark {
+        opacity: 0.7;
+    }
 }
 
 /* ==========================================================================
@@ -346,6 +631,11 @@
 @keyframes introFadeUp {
     from { opacity: 0; transform: translateY(22px); }
     to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes bcFloat {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-5px); }
 }
 
 /* ==========================================================================

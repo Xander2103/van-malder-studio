@@ -279,6 +279,7 @@ return [
         'gdpr_link'        => 'Datenschutzerklärung',
         'success_heading'  => 'Nachricht erhalten',
         'success_body'     => 'Vielen Dank für Ihre Nachricht. Ich melde mich so schnell wie möglich, in der Regel innerhalb von 1 bis 2 Werktagen.',
+        'mail_error'       => 'Ihre Anfrage wurde erhalten, aber beim Senden der Bestätigungs-E-Mail ist ein Problem aufgetreten. Ich werde mich trotzdem so schnell wie möglich bei Ihnen melden.',
         'step_project'     => 'Projekt',
         'step_details'     => 'Angaben',
         'step_info'        => 'Details',
@@ -308,7 +309,7 @@ return [
         'summary_type'       => 'Projekttyp:',
         'summary_name'       => 'Name:',
         'summary_email'      => 'E-Mail:',
-        'gdpr_label'         => 'Ich stimme der :link zu und gebe mein Einverständnis, dass meine Daten zur Bearbeitung dieser Anfrage verwendet werden.',
+        'gdpr_label'         => 'Ich stimme zu, dass Van Malder Studio meine Daten verwendet, um meine Anfrage zu beantworten, und habe die :link gelesen.',
         'btn_prev'           => '← Zurück',
         'btn_next'           => 'Weiter →',
         'btn_submit'         => 'Anfrage absenden',
@@ -366,8 +367,12 @@ return [
             'multilingual_in'       => 'Ungültige Sprachoption ausgewählt.',
             'description_required'  => 'Bitte beschreiben Sie Ihr Projekt.',
             'description_min'       => 'Bitte beschreiben Sie Ihr Projekt mit mindestens 20 Zeichen.',
-            'gdpr_accepted'         => 'Sie müssen der Datenschutzerklärung zustimmen.',
+            'gdpr_accepted'         => 'Bitte akzeptieren Sie die Datenschutzerklärung, bevor Sie Ihre Anfrage senden.',
         ],
+        'card_hint'          => 'Klicken zum Umdrehen',
+        'card_aria_front'    => 'Visitenkarte — klicken zum Umdrehen',
+        'card_aria_back'     => 'Visitenkarte — zurückklicken',
+        'card_front_hint'    => 'Klicken um Kontaktdaten anzuzeigen',
     ],
 
     // ── About ─────────────────────────────────────────────────────────────────
@@ -580,7 +585,7 @@ return [
         'pricing_desc'      => 'Richtpreise für Websites, Webanwendungen und Wartung bei Van Malder Studio. Transparente Startpreise je nach Umfang, Sprachen und Funktionen.',
         'pricing_og_title'  => 'Preise | Van Malder Studio',
         'about_title'       => 'Über mich | Xander Van Malder — Full-Stack-Entwickler',
-        'about_desc'        => 'Xander Van Malder ist Full-Stack-Entwickler aus der Druivenstreek (Tevuren) und entwickelt professionelle Websites, Webanwendungen und digitale Lösungen für Selbstständige und lokale Unternehmen.',
+        'about_desc'        => 'Xander Van Malder ist Full-Stack-Entwickler aus der Druivenstreek (Tervuren) und entwickelt professionelle Websites, Webanwendungen und digitale Lösungen für Selbstständige und lokale Unternehmen.',
         'about_og_title'    => 'Über mich | Van Malder Studio',
         'contact_title'     => 'Kontakt | Ihr Projekt besprechen',
         'contact_desc'      => 'Nehmen Sie Kontakt mit Xander Van Malder auf, um eine neue Website, eine Webanwendung, eine Neugestaltung oder ein digitales Projekt zu besprechen.',
@@ -614,6 +619,17 @@ return [
         'cta_body'        => 'Erzählen Sie mir von Ihrem Projekt. Das erste Gespräch ist unverbindlich.',
         'cta_secondary'   => 'Über mich',
         'view_services'   => 'Alle Leistungen ansehen',
+    ],
+
+    // ── Mail ─────────────────────────────────────────────────────────────────
+    'mail' => [
+        'confirmation_subject' => 'Wir haben Ihre Anfrage erhalten',
+        'confirmation_greeting' => 'Hallo :name,',
+        'confirmation_body_1'   => 'Vielen Dank für Ihre Anfrage bei Van Malder Studio. Ich habe Ihre Nachricht erhalten und werde sie so schnell wie möglich prüfen.',
+        'confirmation_body_2'   => 'Ich werde mich in Kürze bei Ihnen melden, um Ihre Anfrage weiter zu besprechen.',
+        'confirmation_sign_off' => 'Mit freundlichen Grüßen,',
+        'confirmation_sender'   => 'Xander',
+        'confirmation_brand'    => 'Van Malder Studio',
     ],
 
 ];

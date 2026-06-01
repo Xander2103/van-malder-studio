@@ -816,3 +816,41 @@ import './bootstrap';
 
     update();
 })();
+
+// =============================================================================
+// Business Card — 3D flip interaction
+// Scoped to [data-flip-card]. No external dependencies.
+// =============================================================================
+(function () {
+    const scenes = document.querySelectorAll('[data-flip-card]');
+    if (!scenes.length) return;
+
+    scenes.forEach(function (scene) {
+        const inner = scene.querySelector('.bc-inner');
+        const hint  = scene.querySelector('.bc-hint');
+        if (!inner) return;
+
+        const labelFront = inner.dataset.labelFront || '';
+        const labelBack  = inner.dataset.labelBack  || '';
+
+        function flip() {
+            const isFlipped = inner.classList.toggle('bc-flipped');
+            inner.setAttribute('aria-pressed', isFlipped ? 'true' : 'false');
+            if (labelFront || labelBack) {
+                inner.setAttribute('aria-label', isFlipped ? labelBack : labelFront);
+            }
+            if (!scene.classList.contains('bc-interacted')) {
+                scene.classList.add('bc-interacted');
+                if (hint) hint.classList.add('bc-hint-gone');
+            }
+        }
+
+        inner.addEventListener('click', flip);
+        inner.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                flip();
+            }
+        });
+    });
+})();

@@ -44,6 +44,10 @@
                         {{ __('site.about.cta_showcase') }}
                     </a>
                 </div>
+
+                <div class="mt-10">
+                    <x-business-card size="compact" />
+                </div>
             </div>
 
             {{-- Sidebar cards --}}

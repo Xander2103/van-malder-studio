@@ -30,9 +30,13 @@
 <header class="fixed top-0 inset-x-0 z-50 bg-stone-50/95 backdrop-blur-md border-b border-stone-200/80">
     <nav class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between" aria-label="Hoofdnavigatie">
         <a href="{{ navRoute('home', $locale) }}"
-           class="font-serif text-[1.05rem] font-medium text-slate-900 tracking-tight hover:text-blue-700 transition-colors duration-200"
+           class="font-serif text-[1.05rem] font-medium text-slate-900 tracking-tight hover:text-blue-700 transition-colors duration-200 inline-flex items-center gap-2"
            aria-label="{{ config('studio.brand_name') }} — homepage">
-            Van Malder Studio
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="shrink-0 nav-vm-mark">
+                <circle cx="12" cy="12" r="10.5" stroke="#c49a3a" stroke-width="1"/>
+                <text x="12" y="16.5" text-anchor="middle" font-family="'Instrument Serif', Georgia, serif" font-size="9.5" fill="#c49a3a">VM</text>
+            </svg>
+            <span>Van Malder Studio</span>
         </a>
 
         {{-- Desktop nav --}}

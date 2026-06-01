@@ -265,6 +265,7 @@ return [
         'gdpr_link'        => 'privacy policy',
         'success_heading'  => 'Message received',
         'success_body'     => 'Thank you for your message. I\'ll get back to you as soon as possible, typically within 1 to 2 working days.',
+        'mail_error'       => 'Your request was received, but there was a problem sending the confirmation email. I will still contact you as soon as possible.',
         'step_project'     => 'Project',
         'step_details'     => 'Details',
         'step_info'        => 'More info',
@@ -294,7 +295,7 @@ return [
         'summary_type'       => 'Project type:',
         'summary_name'       => 'Name:',
         'summary_email'      => 'Email:',
-        'gdpr_label'         => 'I agree to the :link and consent to my data being used to handle this enquiry.',
+        'gdpr_label'         => 'I agree that Van Malder Studio may use my details to respond to my request and I have read the :link.',
         'btn_prev'           => '← Previous',
         'btn_next'           => 'Next →',
         'btn_submit'         => 'Send enquiry',
@@ -352,8 +353,12 @@ return [
             'multilingual_in'       => 'Invalid language option selected.',
             'description_required'  => 'Please describe your project.',
             'description_min'       => 'Please describe your project in at least 20 characters.',
-            'gdpr_accepted'         => 'You must agree to the privacy policy.',
+            'gdpr_accepted'         => 'Please accept the privacy policy before sending your request.',
         ],
+        'card_hint'          => 'Click to flip',
+        'card_aria_front'    => 'Business card — click to flip',
+        'card_aria_back'     => 'Business card — click to flip back',
+        'card_front_hint'    => 'Click to view contact details',
     ],
 
     'about' => [
@@ -594,6 +599,17 @@ return [
         'cta_body'        => 'Tell me about your project. The first conversation is free and without obligation.',
         'cta_secondary'   => 'About me',
         'view_services'   => 'View all services',
+    ],
+
+    // ── Mail ─────────────────────────────────────────────────────────────────
+    'mail' => [
+        'confirmation_subject' => 'We have received your request',
+        'confirmation_greeting' => 'Hello :name,',
+        'confirmation_body_1'   => 'Thank you for your request via Van Malder Studio. I have received your message and will review it as soon as possible.',
+        'confirmation_body_2'   => 'I will be in touch shortly to discuss your request further.',
+        'confirmation_sign_off' => 'Kind regards,',
+        'confirmation_sender'   => 'Xander',
+        'confirmation_brand'    => 'Van Malder Studio',
     ],
 
 ];

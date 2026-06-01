@@ -280,6 +280,7 @@ return [
         'gdpr_link'        => 'privacyverklaring',
         'success_heading'  => 'Bericht ontvangen',
         'success_body'     => 'Bedankt voor je bericht. Ik neem zo snel mogelijk contact met je op, doorgaans binnen 1 à 2 werkdagen.',
+        'mail_error'       => 'Je aanvraag werd goed ontvangen, maar er was een probleem bij het verzenden van de bevestigingsmail. Ik neem alsnog zo snel mogelijk contact met je op.',
         'step_project'     => 'Project',
         'step_details'     => 'Gegevens',
         'step_info'        => 'Details',
@@ -309,7 +310,7 @@ return [
         'summary_type'       => 'Projecttype:',
         'summary_name'       => 'Naam:',
         'summary_email'      => 'E-mail:',
-        'gdpr_label'         => 'Ik ga akkoord met de :link en geef toestemming om mijn gegevens te gebruiken voor het behandelen van deze aanvraag.',
+        'gdpr_label'         => 'Ik ga akkoord dat Van Malder Studio mijn gegevens gebruikt om mijn aanvraag te beantwoorden en heb de :link gelezen.',
         'btn_prev'           => '← Vorige',
         'btn_next'           => 'Volgende →',
         'btn_submit'         => 'Verstuur aanvraag',
@@ -369,8 +370,12 @@ return [
             'multilingual_in'       => 'Ongeldige taaloptie geselecteerd.',
             'description_required'  => 'Beschrijf je project.',
             'description_min'       => 'Beschrijf je project in minstens 20 tekens.',
-            'gdpr_accepted'         => 'Je moet akkoord gaan met de privacyverklaring.',
+            'gdpr_accepted'         => 'Gelieve akkoord te gaan met de privacyverklaring voordat je je aanvraag verzendt.',
         ],
+        'card_hint'          => 'Klik om te draaien',
+        'card_aria_front'    => 'Visitekaartje — klik om te draaien',
+        'card_aria_back'     => 'Visitekaartje — klik om terug te draaien',
+        'card_front_hint'    => 'Klik om contactgegevens te bekijken',
     ],
 
     // ── About ─────────────────────────────────────────────────────────────────
@@ -579,6 +584,17 @@ return [
         'cta_body'        => 'Vertel me over je project. Het eerste gesprek is vrijblijvend.',
         'cta_secondary'   => 'Over mij',
         'view_services'   => 'Bekijk alle diensten',
+    ],
+
+    // ── Mail ─────────────────────────────────────────────────────────────────
+    'mail' => [
+        'confirmation_subject' => 'We hebben je aanvraag goed ontvangen',
+        'confirmation_greeting' => 'Hallo :name,',
+        'confirmation_body_1'   => 'Bedankt voor je aanvraag via Van Malder Studio. Ik heb je bericht goed ontvangen en bekijk het zo snel mogelijk.',
+        'confirmation_body_2'   => 'Ik neem binnenkort contact met je op om je aanvraag verder te bespreken.',
+        'confirmation_sign_off' => 'Met vriendelijke groeten,',
+        'confirmation_sender'   => 'Xander',
+        'confirmation_brand'    => 'Van Malder Studio',
     ],
 
 ];

@@ -2,8 +2,11 @@
 
 namespace App\Services;
 
+use App\Mail\AdminRequestReceivedMail;
+use App\Mail\CustomerRequestConfirmationMail;
 use App\Models\Inquiry;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class InquiryService
 {
@@ -30,8 +33,20 @@ class InquiryService
             'locale'               => app()->getLocale() ?: 'nl',
         ]);
 
-        // TODO: Send email notification to hello@vanmalderstudio.be once mail is configured.
-
         return $inquiry;
+    }
+
+    public function sendNotifications(Inquiry $inquiry): void
+    {
+        $adminEmail = config('mail.contact_notification_email');
+
+        Mail::to($adminEmail)
+            ->send(new AdminRequestReceivedMail($inquiry));
+
+        Mail::to($inquiry->email)
+            ->send(
+                (new CustomerRequestConfirmationMail($inquiry))
+                    ->locale($inquiry->locale ?? 'nl')
+            );
     }
 }

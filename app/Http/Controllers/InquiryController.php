@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreInquiryRequest;
 use App\Services\InquiryService;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 
 class InquiryController extends Controller
@@ -20,7 +21,20 @@ class InquiryController extends Controller
             return redirect()->route($contactRoute)->with('success', true);
         }
 
-        $this->inquiryService->store($request->validated(), $request);
+        $inquiry = $this->inquiryService->store($request->validated(), $request);
+
+        try {
+            $this->inquiryService->sendNotifications($inquiry);
+        } catch (\Throwable $e) {
+            Log::error('Mail sending failed for inquiry', [
+                'inquiry_id'     => $inquiry->id,
+                'inquiry_email'  => $inquiry->email,
+                'inquiry_locale' => $inquiry->locale,
+                'exception'      => $e,
+            ]);
+
+            return redirect()->route($contactRoute)->with('mail_error', true);
+        }
 
         return redirect()->route($contactRoute)->with('success', true);
     }

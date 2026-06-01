@@ -115,4 +115,14 @@ return [
         'name' => env('MAIL_FROM_NAME', env('APP_NAME', 'Laravel')),
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Contact Notification Email
+    |--------------------------------------------------------------------------
+    |
+    | The address that receives admin notifications for every new inquiry.
+    |
+    */
+    'contact_notification_email' => env('CONTACT_NOTIFICATION_EMAIL', env('MAIL_FROM_ADDRESS', 'info@vanmalderstudio.be')),
+
 ];

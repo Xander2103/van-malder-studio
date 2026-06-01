@@ -68,6 +68,9 @@ $inquiryRoute = \Illuminate\Support\Facades\Route::has($loc . '.inquiries.store'
                         {!! __('site.contact.gdpr_note', ['link' => '<a href="' . e($privacyHref) . '" class="text-blue-700 hover:underline">' . e(__('site.contact.gdpr_link')) . '</a>']) !!}
                     </p>
                 </div>
+
+                {{-- Business card — placed below GDPR note --}}
+                <x-business-card />
             </div>
 
             {{-- Right: form --}}
@@ -77,6 +80,13 @@ $inquiryRoute = \Illuminate\Support\Facades\Route::has($loc . '.inquiries.store'
                 <div class="mb-8 rounded-xl bg-green-50 border border-green-200 p-6" role="alert" aria-live="polite">
                     <h2 class="font-serif text-xl font-medium text-green-900">{{ __('site.contact.success_heading') }}</h2>
                     <p class="mt-2 text-sm text-green-700 leading-relaxed">{{ __('site.contact.success_body') }}</p>
+                </div>
+                @endif
+
+                @if(session('mail_error'))
+                <div class="mb-8 rounded-xl bg-amber-50 border border-amber-200 p-6" role="alert" aria-live="polite">
+                    <h2 class="font-serif text-xl font-medium text-amber-900">{{ __('site.contact.success_heading') }}</h2>
+                    <p class="mt-2 text-sm text-amber-700 leading-relaxed">{{ __('site.contact.mail_error') }}</p>
                 </div>
                 @endif
 
@@ -91,7 +101,7 @@ $inquiryRoute = \Illuminate\Support\Facades\Route::has($loc . '.inquiries.store'
                 </div>
                 @endif
 
-                @unless(session('success'))
+                @unless(session('success') || session('mail_error'))
                 <form
                     action="{{ $inquiryRoute }}"
                     method="POST"

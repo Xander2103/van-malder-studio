@@ -5,7 +5,7 @@ return [
     'tagline'      => 'Websites by Xander Van Malder',
     'owner'        => 'Xander Van Malder',
     'role'         => 'Full stack developer',
-    'email'        => 'xander.vanmalder@gmail.com',
+    'email'        => 'info@vanmalderstudio.be',
     'location'     => 'Druivenstreek (Tervuren) / Vlaams-Brabant',
     'positioning'  => 'Moderne websites en digitale oplossingen voor zelfstandigen en lokale bedrijven.',
 
