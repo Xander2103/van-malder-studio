@@ -6,8 +6,11 @@ use Illuminate\Http\Request;
 
 class LandingPageController extends Controller
 {
-    public function show(Request $request, string $locale, string $slug)
+    public function show(Request $request, string $slug)
     {
+        // Locale is set by the setlocale middleware on the route group — no need to inject it.
+        $locale = app()->getLocale() ?: 'nl';
+
         $pages = collect(config('landing-pages', []));
 
         $page = $pages->first(

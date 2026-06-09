@@ -53,7 +53,9 @@ foreach (['nl', 'fr', 'en', 'de'] as $locale) {
                 ->middleware('throttle:5,1');
 
             // Landing pages — catch-all, must come LAST in this group
+            // ->defaults() injects $locale into the controller; the prefix is static, not a {locale} param.
             Route::get('{slug}', [LandingPageController::class, 'show'])
+                ->defaults('locale', $locale)
                 ->name($locale . '.landing')
                 ->where('slug', '[a-z0-9][a-z0-9-]*');
         });

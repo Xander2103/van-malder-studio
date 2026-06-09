@@ -94,6 +94,26 @@
         </div>
     </section>
 
+    {{-- ── Werkwijze / Steps ── --}}
+    @if(!empty($page['steps']))
+    <section class="max-w-6xl mx-auto px-6 py-12" aria-labelledby="landing-steps-heading">
+        <div class="reveal">
+            <h2 id="landing-steps-heading" class="font-serif text-2xl font-medium text-slate-900 mb-8">Hoe werkt het?</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                @foreach($page['steps'] as $i => $step)
+                <div class="bg-white border border-stone-200 rounded-xl p-5 flex flex-col">
+                    <div class="w-8 h-8 rounded-full bg-slate-900 text-white flex items-center justify-center text-xs font-bold mb-4 shrink-0">
+                        {{ $i + 1 }}
+                    </div>
+                    <h3 class="font-serif text-sm font-medium text-slate-900 mb-2">{{ $step['title'] }}</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">{{ $step['body'] }}</p>
+                </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
+    @endif
+
     {{-- ── Honest SEO note ── --}}
     @if(!empty($page['honest_note']))
     <section class="max-w-6xl mx-auto px-6 py-12">
@@ -174,5 +194,66 @@
             </div>
         </div>
     </section>
+
+
+    {{-- ── Structured data ── --}}
+    @php
+        $schemas = [];
+
+        $schemas[] = [
+            '@context'    => 'https://schema.org',
+            '@type'       => 'WebPage',
+            'name'        => $page['meta_title'],
+            'description' => $page['meta_description'],
+            'url'         => $canonical,
+            'inLanguage'  => 'nl-BE',
+        ];
+
+        if (!empty($page['location'])) {
+            $schemas[] = [
+                '@context'    => 'https://schema.org',
+                '@type'       => 'ProfessionalService',
+                '@id'         => 'https://vanmalderstudio.be/#business',
+                'name'        => 'Van Malder Studio',
+                'description' => $page['intro'],
+                'url'         => 'https://vanmalderstudio.be',
+                'areaServed'  => [
+                    '@type' => 'Place',
+                    'name'  => $page['location'],
+                ],
+                'address' => [
+                    '@type'           => 'PostalAddress',
+                    'addressLocality' => 'Tervuren',
+                    'addressRegion'   => 'Vlaams-Brabant',
+                    'addressCountry'  => 'BE',
+                ],
+                'email' => 'info@vanmalderstudio.be',
+                'founder' => [
+                    '@type' => 'Person',
+                    'name'  => 'Xander Van Malder',
+                ],
+            ];
+        }
+
+        if (!empty($page['faq'])) {
+            $schemas[] = [
+                '@context'   => 'https://schema.org',
+                '@type'      => 'FAQPage',
+                'mainEntity' => array_map(fn($item) => [
+                    '@type'          => 'Question',
+                    'name'           => $item['q'],
+                    'acceptedAnswer' => [
+                        '@type' => 'Answer',
+                        'text'  => $item['a'],
+                    ],
+                ], $page['faq']),
+            ];
+        }
+    @endphp
+    @foreach($schemas as $schema)
+    <script type="application/ld+json">
+{!! json_encode($schema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
+    </script>
+    @endforeach
 
 </x-layouts.app>

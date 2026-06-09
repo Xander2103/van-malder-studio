@@ -10,9 +10,11 @@
     ];
 
     // Resolve locale-aware route name for a given link
-    function navRoute(string $name, string $locale): string {
-        $localeName = $locale . '.' . $name;
-        return Route::has($localeName) ? route($localeName) : route($name);
+    if (!function_exists('navRoute')) {
+        function navRoute(string $name, string $locale): string {
+            $localeName = $locale . '.' . $name;
+            return Route::has($localeName) ? route($localeName) : route($name);
+        }
     }
 
     // Determine the equivalent page name for the language switcher
