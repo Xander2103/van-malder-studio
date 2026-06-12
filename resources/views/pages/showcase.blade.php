@@ -1,7 +1,6 @@
-<x-layouts.app
+﻿<x-layouts.app
     :title="__('site.seo.showcase_title')"
     :description="__('site.seo.showcase_desc')"
-    :canonical="route('showcase')"
     :ogTitle="__('site.seo.showcase_og_title')"
 >
 

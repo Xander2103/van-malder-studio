@@ -1,7 +1,6 @@
-<x-layouts.app
+﻿<x-layouts.app
     title="Projecten | Van Malder Studio en VM Studios"
     description="Een overzicht van websites, apps, tools en interactieve projecten van Xander Van Malder, waaronder Killer Darts, Smart Card Mat en Chains of Glory."
-    :canonical="route('projects.index')"
     ogTitle="Projecten | Van Malder Studio"
 >
 

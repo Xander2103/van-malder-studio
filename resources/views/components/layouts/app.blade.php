@@ -3,20 +3,24 @@
     $isReady = config('studio.translations_ready.' . $locale, false);
     $robotsMeta = isset($noindex) && $noindex ? 'noindex, nofollow' : (!$isReady ? 'noindex' : 'index, follow');
 
+    // Self-referencing canonical: explicit prop wins, otherwise use the actual request URL.
+    // url()->current() respects APP_URL + current path, always gives the localized URL.
+    $selfCanonical = $canonical ?? url()->current();
+
     // Compute hreflang alternate URLs from current route name
     $routeName = request()->route()?->getName() ?? '';
     $parts = explode('.', $routeName);
     // Strip locale prefix: 'nl.services' → 'services', 'services' → 'services'
     $baseName = count($parts) > 1 ? implode('.', array_slice($parts, 1)) : $parts[0] ?? 'home';
     // Normalise landing/store back to home so switcher doesn't break
-if (in_array($baseName, ['landing', 'inquiries.store', 'home', ''])) {
-    $baseName = 'home';
-}
+    if (in_array($baseName, ['landing', 'inquiries.store', 'home', ''])) {
+        $baseName = 'home';
+    }
 
-$hrefLangs = [];
-foreach (['nl', 'fr', 'en', 'de'] as $lang) {
-    $key = $lang . '.' . $baseName;
-    $hrefLangs[$lang] = Route::has($key) ? route($key) : route($lang . '.home');
+    $hrefLangs = [];
+    foreach (['nl', 'fr', 'en', 'de'] as $lang) {
+        $key = $lang . '.' . $baseName;
+        $hrefLangs[$lang] = Route::has($key) ? route($key) : route($lang . '.home');
     }
 @endphp
 <!DOCTYPE html>
@@ -34,12 +38,8 @@ foreach (['nl', 'fr', 'en', 'de'] as $lang) {
     <meta name="author" content="{{ config('studio.owner') }}">
     <meta name="robots" content="{{ $robotsMeta }}">
 
-    {{-- Canonical URL --}}
-    @if (!empty($canonical))
-        <link rel="canonical" href="{{ $canonical }}">
-    @else
-        <link rel="canonical" href="{{ rtrim(config('app.url'), '/') . request()->getPathInfo() }}">
-    @endif
+    {{-- Canonical URL — self-referencing, always matches the actual localized page --}}
+    <link rel="canonical" href="{{ $selfCanonical }}">
 
     {{-- hreflang — only output when current locale translation is ready --}}
     @if ($isReady)
@@ -54,7 +54,7 @@ foreach (['nl', 'fr', 'en', 'de'] as $lang) {
     <meta property="og:type" content="{{ $ogType ?? 'website' }}">
     <meta property="og:title" content="{{ $ogTitle ?? ($title ?? config('studio.brand_name')) }}">
     <meta property="og:description" content="{{ $ogDescription ?? ($description ?? config('studio.positioning')) }}">
-    <meta property="og:url" content="{{ $canonical ?? rtrim(config('app.url'), '/') . request()->getPathInfo() }}">
+    <meta property="og:url" content="{{ $selfCanonical }}">
     <meta property="og:site_name" content="{{ config('studio.brand_name') }}">
     <meta property="og:locale"
         content="{{ match ($locale) {'fr' => 'fr_BE','en' => 'en_GB','de' => 'de_BE',default => 'nl_BE'} }}">

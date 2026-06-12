@@ -1,7 +1,6 @@
-<x-layouts.app
+﻿<x-layouts.app
     :title="__('site.seo.home_title')"
     :description="__('site.seo.home_desc')"
-    :canonical="route('home')"
     :ogTitle="__('site.seo.home_og_title')"
 >
 

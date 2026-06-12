@@ -1,7 +1,6 @@
-<x-layouts.app
+﻿<x-layouts.app
     title="Privacyverklaring | Van Malder Studio"
     description="Privacyverklaring van Van Malder Studio. Hoe worden je gegevens verzameld, gebruikt en bewaard bij het invullen van het contactformulier?"
-    :canonical="route('privacy')"
     ogType="article"
 >
 
