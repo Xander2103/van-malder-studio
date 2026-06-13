@@ -52,6 +52,22 @@
             {{-- Sidebar cards --}}
             <div class="lg:col-span-2 space-y-4 reveal reveal-delay-1">
 
+                {{-- Portrait --}}
+                <div class="bg-white rounded-xl border border-stone-200 shadow-sm overflow-hidden">
+                    <div class="relative overflow-hidden rounded-t-xl" style="height:240px;">
+                        <img src="{{ asset('images/Xander.webp') }}"
+                             alt="{{ __('site.home.xander_caption') }}"
+                             class="absolute inset-0 w-full h-full object-cover object-center"
+                             loading="eager"
+                             width="480"
+                             height="280">
+                    </div>
+                    <div class="px-5 py-3 flex items-center gap-2 border-t border-stone-100">
+                        <div class="w-2 h-2 rounded-full bg-amber-500 shrink-0" aria-hidden="true"></div>
+                        <p class="text-sm text-slate-600 font-medium">{{ __('site.home.xander_caption') }}</p>
+                    </div>
+                </div>
+
                 {{-- Stack card --}}
                 <div class="bg-white rounded-xl border border-stone-200 p-6 shadow-sm">
                     <h2 class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-5">{{ __('site.about.tech_heading') }}</h2>

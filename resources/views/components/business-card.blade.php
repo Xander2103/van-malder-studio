@@ -20,7 +20,7 @@
                 <div class="bc-f-left">
                     <h3 class="bc-brand-name">Van Malder<br>Studio</h3>
                     <div class="bc-hdivider"></div>
-                    <p class="bc-tagline">Websites, automatisatie<br>&amp; digitale oplossingen</p>
+                    <p class="bc-tagline">Websites voor<br>lokale ondernemers</p>
                     <p class="bc-f-front-hint">{{ __('site.contact.card_front_hint') }}</p>
                 </div>
 
@@ -68,7 +68,7 @@
                         </svg>
                     @endif
                     <div class="bc-hdivider"></div>
-                    <p class="bc-tagline">Websites, automatisatie<br>&amp; digitale oplossingen</p>
+                    <p class="bc-tagline">Websites voor<br>lokale ondernemers</p>
                 </div>
 
                 {{-- Vertical divider --}}

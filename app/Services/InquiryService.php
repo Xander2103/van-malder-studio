@@ -61,7 +61,6 @@ class InquiryService
 
         Log::info('[InquiryService] Sending customer confirmation', [
             'inquiry_id' => $inquiry->id,
-            'to'         => $customerEmail,
         ]);
         Mail::to($customerEmail)
             ->send(

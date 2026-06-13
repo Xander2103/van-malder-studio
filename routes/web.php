@@ -4,6 +4,7 @@ use App\Http\Controllers\InquiryController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\QuickContactController;
 use Illuminate\Support\Facades\Route;
 
 // =============================================================================
@@ -18,6 +19,7 @@ Route::get('/prijzen', [PageController::class, 'pricing'])->name('pricing');
 Route::get('/over-mij', [PageController::class, 'about'])->name('about');
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 Route::post('/contact', [InquiryController::class, 'store'])->name('inquiries.store')->middleware('throttle:5,1');
+Route::post('/bericht', [QuickContactController::class, 'store'])->name('quick_message.store')->middleware('throttle:quick-contact');
 Route::get('/privacyverklaring', [PageController::class, 'privacy'])->name('privacy');
 Route::get('/showcase', [PageController::class, 'showcase'])->name('showcase');
 Route::get('/studio-intro', [PageController::class, 'studioIntro'])->name('studio.intro');
@@ -46,11 +48,14 @@ foreach (['nl', 'fr', 'en', 'de'] as $locale) {
             Route::get($paths['showcase'], [PageController::class, 'showcase'])->name($locale . '.showcase');
             Route::get($paths['privacy'], [PageController::class, 'privacy'])->name($locale . '.privacy');
 
-            // Contact — GET + POST
+            // Contact — GET + POST (project inquiry) + quick message POST
             Route::get($paths['contact'], [PageController::class, 'contact'])->name($locale . '.contact');
             Route::post($paths['contact'], [InquiryController::class, 'store'])
                 ->name($locale . '.inquiries.store')
                 ->middleware('throttle:5,1');
+            Route::post('bericht', [QuickContactController::class, 'store'])
+                ->name($locale . '.quick_message.store')
+                ->middleware('throttle:quick-contact');
 
             // Landing pages — catch-all, must come LAST in this group
             // ->defaults() injects $locale into the controller; the prefix is static, not a {locale} param.

@@ -27,10 +27,10 @@ class InquiryController extends Controller
             $this->inquiryService->sendNotifications($inquiry);
         } catch (\Throwable $e) {
             Log::error('Mail sending failed for inquiry', [
-                'inquiry_id'     => $inquiry->id,
-                'inquiry_email'  => $inquiry->email,
-                'inquiry_locale' => $inquiry->locale,
-                'exception'      => $e,
+                'inquiry_id'      => $inquiry->id,
+                'inquiry_locale'  => $inquiry->locale,
+                'exception_class' => get_class($e),
+                'exception_msg'   => $e->getMessage(),
             ]);
 
             return redirect()->route($contactRoute)->with('mail_error', true);

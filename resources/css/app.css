@@ -98,6 +98,23 @@
     }
 
     /* -----------------------------------------------------------------------
+       Card hover lift — subtle elevation on cards + pricing tiles
+       ----------------------------------------------------------------------- */
+    .card-lift {
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card-lift:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px 0 rgba(15, 23, 42, 0.09);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .card-lift { transition: none; }
+        .card-lift:hover { transform: none; }
+    }
+
+    /* -----------------------------------------------------------------------
        Project card visual art areas
        ----------------------------------------------------------------------- */
     .project-art {

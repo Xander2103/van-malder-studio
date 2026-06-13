@@ -3,7 +3,6 @@
 
     $links = [
         ['route' => 'services',  'label' => __('site.nav.services')],
-        ['route' => 'showcase',  'label' => __('site.nav.showcase')],
         ['route' => 'process',   'label' => __('site.nav.process')],
         ['route' => 'pricing',   'label' => __('site.nav.pricing')],
         ['route' => 'about',     'label' => __('site.nav.about')],

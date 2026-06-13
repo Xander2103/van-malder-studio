@@ -10,12 +10,13 @@ return [
 
     // ── Navigation ────────────────────────────────────────────────────────────
     'nav' => [
-        'services' => 'Leistungen',
-        'showcase' => 'Showcase',
-        'process'  => 'Arbeitsweise',
-        'pricing'  => 'Preise',
-        'about'    => 'Über mich',
-        'contact'  => 'Kontakt',
+        'services'        => 'Leistungen',
+        'showcase'        => 'Showcase',
+        'showcase_footer' => 'Möglichkeiten',
+        'process'         => 'Arbeitsweise',
+        'pricing'         => 'Preise',
+        'about'           => 'Über mich',
+        'contact'         => 'Kontakt',
     ],
 
     'lang_switcher' => [
@@ -50,8 +51,9 @@ return [
         'eyebrow'       => 'Websites von Xander Van Malder',
         'headline'      => 'Professionelle Websites, Webshops und digitale Lösungen für lokale Unternehmen.',
         'body'          => 'Ich bin :name, Full-Stack-Entwickler aus der Druivenstreek (Tervuren). Ich entwickle Websites, Webanwendungen und digitale Tools für Selbstständige und lokale Unternehmen — mit Fokus auf Qualität, SEO-Grundlagen und persönlicher Kommunikation.',
-        'cta_primary'   => 'Projekt besprechen',
-        'cta_secondary' => 'Leistungen ansehen',
+        'cta_primary'     => 'Kostenloses Erstgespräch anfragen',
+        'cta_secondary'   => 'Meine Arbeit ansehen',
+        'trustline_items' => ['Erstes Gespräch unverbindlich', 'Für Selbstständige und KMU', 'Ab €750'],
     ],
 
     // ── Home ──────────────────────────────────────────────────────────────────
@@ -59,6 +61,13 @@ return [
         'offer_eyebrow'  => 'Was ich für Sie entwickeln kann',
         'offer_heading'  => 'Leistungen',
         'offer_link'     => 'Alle Leistungen',
+
+        'studio_card_items' => [
+            'Neue Website erstellen',
+            'Website erneuern',
+            'Besser bei Google gefunden werden',
+            'Wartung & Betreuung',
+        ],
 
         'trust_clear_title'    => 'Klare Websites',
         'trust_clear_desc'     => 'Struktur und Inhalt auf Ihre Besucher abgestimmt',
@@ -107,10 +116,61 @@ return [
             'Glaubwürdigkeit und Wiedererkennungswert online',
         ],
 
+        // Für wen ist das?
+        'voor_wie_eyebrow' => 'Erkennen Sie sich wieder?',
+        'voor_wie_heading' => 'Für wen ist das?',
+        'voor_wie_intro'   => 'Für Selbstständige, kleine Unternehmen und lokale Dienstleister, die:',
+        'voor_wie_items'   => [
+            'Professionell auf potenzielle Kunden wirken möchten',
+            'Mehr Anfragen über ihre Website erhalten möchten',
+            'Sich nicht mit Technik befassen möchten',
+            'Jemanden suchen, der erreichbar ist und mitdenkt',
+        ],
+
+        // Was bekommt man konkret?
+        'concreet_eyebrow' => 'Keine Überraschungen',
+        'concreet_heading' => 'Was bekommt man konkret?',
+        'concreet_items'   => [
+            'Responsive Website',
+            'Klare Seitenstruktur',
+            'Kontaktformular',
+            'SEO-Grundlagen inklusive',
+            'Technisches Setup & Hosting-Beratung',
+            'Hilfe beim Go-live',
+        ],
+
+        // Xander Porträt
+        'xander_eyebrow'  => 'Persönlicher Kontakt',
+        'xander_heading'  => 'Sie arbeiten direkt mit Xander',
+        'xander_body'     => 'Keine große Agentur oder unklare Vermittler. Sie besprechen Ihre Website direkt mit der Person, die sie baut — vom ersten Gespräch bis zum Go-live.',
+        'xander_caption'  => 'Xander Van Malder — Webentwickler aus Tervuren',
+
+        // Service CTAs
+        'service_website_cta'  => 'Was ist inbegriffen?',
+        'service_redesign_cta' => 'Was ist inbegriffen?',
+
+        // Pricing advice
+        'pricing_advice_text' => 'Nicht sicher, welches Paket passt? Ich denke unverbindlich mit Ihnen nach.',
+        'pricing_advice_cta'  => 'Beratung anfragen',
+
+        // Why Van Malder Studio
+        'why_eyebrow'  => 'Warum Van Malder Studio',
+        'why_heading'  => 'Lokal, persönlich und technisch stark',
+        'why_reasons'  => [
+            ['title' => 'Lokal aus dem Druivenstreek', 'desc' => 'Ich kenne die Region, den lokalen Markt und die Unternehmer hier. Tervuren, Overijse, Huldenberg, Hoeilaart — das ist mein Arbeitsgebiet.'],
+            ['title' => 'Persönlicher Ansatz', 'desc' => 'Sie arbeiten direkt mit mir, Xander Van Malder. Keine Account-Manager, keine Auslagerung — kurze Wege und schnelle Kommunikation.'],
+            ['title' => 'Technisch stark, ohne Bürokratie', 'desc' => 'Eine solide gebaute Website, die schnell lädt, sicher ist und gut gefunden wird. Transparent über Ansatz und Preis.'],
+        ],
+
         'process_eyebrow' => 'Wie ich arbeite',
         'process_heading' => 'Ein klarer Ablauf von Anfang bis Ende',
         'process_body'    => 'Keine Überraschungen unterwegs. Schritt für Schritt, mit klarer Kommunikation.',
         'process_link'    => 'Vollständige Arbeitsweise',
+        'home_process_steps' => [
+            ['num' => '01', 'title' => 'Erstkontakt', 'desc' => 'Sie erzählen mir von Ihrem Unternehmen, Ihrer Zielgruppe und was Sie von Ihrer Website erwarten. Unverbindlich.'],
+            ['num' => '02', 'title' => 'Angebot & Design', 'desc' => 'Sie erhalten ein konkretes Angebot mit Ansatz, Preis und Timing. Wir einigen uns, bevor ich beginne.'],
+            ['num' => '03', 'title' => 'Bau & Launch', 'desc' => 'Ich baue die Website und halte Sie auf dem Laufenden. Wir launchen gemeinsam und ich bleibe erreichbar.'],
+        ],
 
         'pricing_eyebrow' => 'Preise',
         'pricing_heading' => 'Was kostet es?',
@@ -128,6 +188,7 @@ return [
 
         'cta_heading' => 'Möchten Sie wissen, was ich für Ihre Website oder Ihr Projekt tun kann?',
         'cta_body'    => 'Erzählen Sie mir von Ihrem Projekt. Das erste Gespräch ist unverbindlich.',
+        'cta_primary' => 'Erstgespräch planen',
 
         'service_forms_ai_note' => 'KI-Unterstützung möglich: Zusammenfassung, fehlende Informationen oder Angebotsgrundlage vorbereiten. Sie geben immer frei.',
         'service_forms_cta'     => 'Anfrageprozess ansehen',
@@ -270,6 +331,7 @@ return [
     // ── Contact ───────────────────────────────────────────────────────────────
     'contact' => [
         'heading'          => 'Lassen Sie uns sprechen',
+        'choice_heading'   => 'Wie kann ich Ihnen helfen?',
         'body'             => 'Erzählen Sie mir von Ihrem Projekt oder Ihrer Idee. Unverbindlich.',
         'email_label'      => 'E-Mail',
         'location_label'   => 'Standort',
@@ -630,6 +692,46 @@ return [
         'cta_body'        => 'Erzählen Sie mir von Ihrem Projekt. Das erste Gespräch ist unverbindlich.',
         'cta_secondary'   => 'Über mich',
         'view_services'   => 'Alle Leistungen ansehen',
+    ],
+
+    // ── Quick contact ────────────────────────────────────────────────────────
+    'quick_contact' => [
+        'eyebrow'          => 'Schnelle Nachricht',
+        'path_a_heading'   => 'Eine schnelle Frage?',
+        'path_a_helper'    => 'Senden Sie Ihre Frage und ich antworte normalerweise innerhalb von 1–2 Werktagen.',
+        'path_b_heading'   => 'Website oder Projekt besprechen?',
+        'path_b_helper'    => 'Das Projektformular hilft, gleich die richtigen Informationen zu erfassen.',
+        'separator_intro'  => 'Haben Sie nur eine kurze Frage? Senden Sie einfach eine schnelle Nachricht. Möchten Sie eine Website oder ein Projekt besprechen? Das Projektformular hilft dabei, die richtigen Informationen von Anfang an zu sammeln.',
+        'name_label'          => 'Name',
+        'email_label'         => 'E-Mail-Adresse',
+        'message_label'       => 'Ihre Nachricht',
+        'message_placeholder' => 'Schreiben Sie hier Ihre Frage oder Anmerkung…',
+        'privacy_label'       => 'Ich stimme zu, dass Van Malder Studio meine Daten verwendet, um auf meine Nachricht zu antworten. :link.',
+        'privacy_link'        => 'Datenschutzerklärung',
+        'cta'                 => 'Nachricht senden',
+        'trust_free'          => 'Unverbindlich',
+        'trust_response'      => 'Antwort innerhalb von 1–2 Werktagen',
+        'trust_no_obligation' => 'Keine Verpflichtung',
+        'success_heading'     => 'Nachricht erhalten!',
+        'success_body'        => 'Danke für Ihre Nachricht. Ich habe sie gut erhalten und melde mich normalerweise innerhalb von 1–2 Werktagen.',
+        'error_body'          => 'Beim Senden ist etwas schiefgelaufen. Bitte versuchen Sie es erneut oder senden Sie eine E-Mail an info@vanmalderstudio.be.',
+        'rate_limit'          => 'Sie haben zu viele Nachrichten gesendet. Bitte versuchen Sie es in einigen Minuten erneut.',
+        'validation' => [
+            'name_required'    => 'Ihr Name ist erforderlich.',
+            'email_required'   => 'Ihre E-Mail-Adresse ist erforderlich.',
+            'email_email'      => 'Bitte geben Sie eine gültige E-Mail-Adresse ein.',
+            'message_required' => 'Bitte schreiben Sie eine Nachricht.',
+            'message_min'      => 'Ihre Nachricht ist zu kurz.',
+            'message_max'      => 'Ihre Nachricht ist zu lang (max. 2.000 Zeichen).',
+            'privacy_accepted' => 'Bitte stimmen Sie der Datenschutzerklärung zu, um fortzufahren.',
+        ],
+        'confirmation_subject'  => 'Danke für Ihre Nachricht — Van Malder Studio',
+        'confirmation_greeting' => 'Hallo :name,',
+        'confirmation_body_1'   => 'Ich habe Ihre Nachricht gut erhalten und melde mich so schnell wie möglich — normalerweise innerhalb von 1–2 Werktagen.',
+        'confirmation_body_2'   => 'Vielen Dank für Ihr Vertrauen.',
+        'confirmation_sign_off' => 'Mit freundlichen Grüßen,',
+        'confirmation_sender'   => 'Xander',
+        'confirmation_brand'    => 'Van Malder Studio',
     ],
 
     // ── Mail ─────────────────────────────────────────────────────────────────

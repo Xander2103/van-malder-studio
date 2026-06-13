@@ -4,12 +4,13 @@ return [
 
     // ── Navigation ────────────────────────────────────────────────────────────
     'nav' => [
-        'services' => 'Diensten',
-        'showcase' => 'Showcase',
-        'process'  => 'Werkwijze',
-        'pricing'  => 'Prijzen',
-        'about'    => 'Over mij',
-        'contact'  => 'Contact',
+        'services'        => 'Diensten',
+        'showcase'        => 'Showcase',
+        'showcase_footer' => 'Mogelijkheden',
+        'process'         => 'Werkwijze',
+        'pricing'         => 'Prijzen',
+        'about'           => 'Over mij',
+        'contact'         => 'Contact',
     ],
 
     'lang_switcher' => [
@@ -40,35 +41,45 @@ return [
 
     // ── Hero ──────────────────────────────────────────────────────────────────
     'hero' => [
-        'eyebrow'       => 'Websites by Xander Van Malder',
-        'headline'      => 'Professionele websites, apps en digitale oplossingen voor lokale ondernemers.',
-        'body'          => 'Ik ben :name, full stack developer uit de Druivenstreek (Tervuren). Ik bouw websites, webapplicaties en digitale tools voor zelfstandigen en lokale bedrijven — met een focus op kwaliteit, SEO-basis en persoonlijke communicatie.',
-        'cta_primary'   => 'Bespreek je project',
-        'cta_secondary' => 'Bekijk aanbod',
+        'eyebrow'         => 'Van Malder Studio · Tervuren · Druivenstreek',
+        'headline'        => 'Websites die vertrouwen wekken en aanvragen opleveren.',
+        'body'            => 'Ik ben :name — webdeveloper uit Tervuren. Ik maak duidelijke, moderne websites voor zelfstandigen en lokale bedrijven in de Druivenstreek en Vlaams-Brabant. Websites die er professioneel uitzien, goed werken op mobiel en bezoekers begeleiden naar contact.',
+        'cta_primary'     => 'Gratis kennismaking aanvragen',
+        'cta_secondary'   => 'Bekijk wat ik maak',
+        'trustline_items' => ['Vrijblijvend eerste gesprek', 'Voor zelfstandigen en kmo\'s', 'Vanaf €750'],
     ],
 
     // ── Home ──────────────────────────────────────────────────────────────────
     'home' => [
-        'offer_eyebrow'  => 'Wat ik voor je kan bouwen',
-        'offer_heading'  => 'Aanbod',
-        'offer_link'     => 'Alle diensten',
-
         // Trust strip
-        'trust_clear_title'    => 'Duidelijke websites',
-        'trust_clear_desc'     => 'Structuur en inhoud afgestemd op je bezoeker',
-        'trust_custom_title'   => 'Maatwerk waar nodig',
-        'trust_custom_desc'    => 'Geen onnodige functies, wel wat telt',
-        'trust_secure_title'   => 'Veilig gebouwd',
-        'trust_secure_desc'    => 'Beveiliging en onderhoudbaarheid van bij het begin',
-        'trust_personal_title' => 'Persoonlijk contact',
-        'trust_personal_desc'  => 'Je praat rechtstreeks met de developer',
+        'trust_clear_title'    => 'Professionele uitstraling',
+        'trust_clear_desc'     => 'Een website die past bij wie je bent en vertrouwen wekt bij je bezoekers',
+        'trust_custom_title'   => 'Beter vindbaar in Google',
+        'trust_custom_desc'    => 'Met een technische SEO-basis en lokale zichtbaarheid voor jouw regio',
+        'trust_secure_title'   => 'Duidelijke contactflow',
+        'trust_secure_desc'    => 'Bezoekers vinden snel de weg naar contact — meer aanvragen, minder ruis',
+        'trust_personal_title' => 'Rechtstreeks contact',
+        'trust_personal_desc'  => 'Je praat altijd rechtstreeks met de developer — geen tussenpersonen',
 
-        // Bento grid service cards
-        'service_website_title'    => 'Website laten maken',
-        'service_website_body'     => 'Voor zelfstandigen die professioneel online zichtbaar willen zijn. Responsive, snel en SEO-vriendelijk — van landingspagina tot volledige bedrijfssite met duidelijke contactflow.',
-        'service_website_bullets'  => ['Responsive voor alle toestellen', 'SEO-basis inbegrepen', 'Duidelijke contactflow voor bezoekers', 'Geen templates — doordacht maatwerk'],
+        // Studio card — 4 items (no tech stack, no webshop/apps)
+        'studio_card_items' => [
+            'Nieuwe website laten maken',
+            'Website vernieuwen',
+            'Goed vindbaar in Google',
+            'Onderhoud & opvolging',
+        ],
+
+        // Service cards (homepage — 3 main services)
+        'offer_eyebrow'  => 'Wat ik voor je maak',
+        'offer_heading'  => 'De drie meest gevraagde diensten',
+        'offer_link'     => 'Alle diensten',
+        'service_website_title'    => 'Nieuwe website',
+        'service_website_body'     => 'Voor wie professioneel online wil starten — met een website die er goed uitziet, goed werkt op mobiel en bezoekers naar contact begeleidt.',
+        'service_website_bullets'  => ['Responsive op alle toestellen', 'Beter gevonden in Google', 'Duidelijke contactflow', 'Op maat — geen templates'],
+        'service_website_cta'      => 'Bekijk wat inbegrepen is',
         'service_redesign_title'   => 'Website vernieuwen',
-        'service_redesign_body'    => 'Voor bedrijven met een verouderde of onduidelijke website. Sterkere structuur, beter vertrouwen, duidelijkere contactflow en betere mobiele ervaring.',
+        'service_redesign_body'    => 'Voor wie een verouderde of onduidelijke site wil omzetten naar een moderne, duidelijke website met een sterkere uitstraling.',
+        'service_redesign_cta'     => 'Bekijk wat inbegrepen is',
         'service_webshop_title'    => 'Productcatalogus & online verkoop',
         'service_webshop_body'     => 'Voor producten, diensten of eenvoudige online verkoop. Van productcatalogus tot aanvraagflow of webshop met winkelmandje en betaalmogelijkheden — afhankelijk van scope en noden.',
         'service_webshop_seo'      => 'SEO-basis voor producten inbegrepen',
@@ -79,7 +90,7 @@ return [
         'service_apps_title'       => 'Apps, tools & maatwerk',
         'service_apps_body'        => 'Voor digitale ideeën die verder gaan dan je website: interne tools, kleine dashboards, klantportalen of specifieke workflows die je dagelijkse werking ondersteunen.',
         'service_maintenance_title' => 'Onderhoud & opvolging',
-        'service_maintenance_body'  => 'Updates, beveiligingschecks, backups en kleine aanpassingen — zodat je website veilig en up-to-date blijft.',
+        'service_maintenance_body'  => 'Voor wie gerust wil zijn dat alles veilig en up-to-date blijft — zonder er zelf aan te moeten denken.',
         'service_maintenance_price' => 'Vanaf €50/maand',
         'service_maintenance_cta'   => 'Vraag onderhoud aan',
         'seo_note_title'           => 'SEO-basis inbegrepen',
@@ -105,18 +116,63 @@ return [
             'Meer geloofwaardigheid en herkenbaarheid online',
         ],
 
-        // Process preview
-        'process_eyebrow'  => 'Hoe ik werk',
-        'process_heading'  => 'Een helder traject van begin tot einde',
-        'process_body'     => 'Geen verrassingen halverwege. Stap voor stap, met heldere communicatie.',
-        'process_link'     => 'Volledige werkwijze',
+        // Voor wie is dit?
+        'voor_wie_eyebrow' => 'Herken je jezelf?',
+        'voor_wie_heading' => 'Voor wie is dit?',
+        'voor_wie_intro'   => 'Voor zelfstandigen, kleine bedrijven en lokale diensten die:',
+        'voor_wie_items'   => [
+            'Professioneel willen overkomen bij potentiële klanten',
+            'Meer aanvragen via hun website willen',
+            'Niet technisch bezig willen zijn',
+            'Iemand zoeken die bereikbaar is en rechtstreeks meedenkt',
+        ],
+
+        // Wat krijg je concreet?
+        'concreet_eyebrow' => 'Geen verrassingen',
+        'concreet_heading' => 'Wat krijg je concreet?',
+        'concreet_items'   => [
+            'Responsive website',
+            'Duidelijke paginastructuur',
+            'Contactformulier',
+            'Basis-SEO inbegrepen',
+            'Technische setup & hosting-advies',
+            'Hulp bij livegang',
+        ],
+
+        // Why Van Malder Studio
+        'why_eyebrow'  => 'Waarom Van Malder Studio',
+        'why_heading'  => 'Lokaal, persoonlijk en technisch sterk',
+        'why_reasons'  => [
+            ['title' => 'Lokaal uit de Druivenstreek', 'desc' => 'Ik ken de streek, de lokale markt en de ondernemers hier. Tervuren, Overijse, Huldenberg, Hoeilaart — dat is mijn werkgebied.'],
+            ['title' => 'Persoonlijke aanpak', 'desc' => 'Je werkt rechtstreeks met mij, Xander Van Malder. Geen account managers, geen uitbesteding — korte lijnen en snelle communicatie.'],
+            ['title' => 'Technisch sterk, zonder bureau-gedoe', 'desc' => 'Een degelijk gebouwde website die snel laadt, veilig is en goed gevonden wordt. Transparant over aanpak en prijs.'],
+        ],
+
+        // Xander portrait section
+        'xander_eyebrow'  => 'Persoonlijk contact',
+        'xander_heading'  => 'Je werkt rechtstreeks met Xander',
+        'xander_body'     => 'Geen groot bureau of onduidelijke tussenpersonen. Je bespreekt je website rechtstreeks met de persoon die ze bouwt — van eerste gesprek tot livegang.',
+        'xander_caption'  => 'Xander Van Malder — webdeveloper uit Tervuren',
+
+        // Process preview (3 steps — full details on /werkwijze)
+        'process_eyebrow'  => 'Hoe het werkt',
+        'process_heading'  => 'Van eerste gesprek tot live website',
+        'process_body'     => 'Eenvoudig en transparant. Geen verrassingen halverwege.',
+        'process_link'     => 'Volledige werkwijze bekijken',
+        'home_process_steps' => [
+            ['num' => '01', 'title' => 'Kennismaking', 'desc' => 'Je vertelt me over je zaak, je doelgroep en wat je van je website verwacht. Vrijblijvend.'],
+            ['num' => '02', 'title' => 'Voorstel & ontwerp', 'desc' => 'Je krijgt een concreet voorstel met aanpak, prijs en timing. We stemmen af voor ik begin.'],
+            ['num' => '03', 'title' => 'Bouw & lancering', 'desc' => 'Ik bouw de website en hou je op de hoogte. We lanceren samen en ik blijf bereikbaar.'],
+        ],
 
         // Pricing preview
-        'pricing_eyebrow'  => 'Tarieven',
-        'pricing_heading'  => 'Wat kost het?',
-        'pricing_note'     => 'Richtprijzen. De uiteindelijke prijs hangt af van scope, talen, formulieren, integraties en functionaliteiten.',
-        'pricing_link'     => 'Zie uitgebreide prijspagina →',
-        'pricing_vat_note' => 'Alle richtprijzen zijn exclusief btw.',
+        'pricing_eyebrow'    => 'Tarieven',
+        'pricing_heading'    => 'Wat kost het?',
+        'pricing_note'       => 'Richtprijzen. Na een gesprek maak ik een concreet voorstel op maat van je project.',
+        'pricing_link'       => 'Zie uitgebreide prijspagina →',
+        'pricing_vat_note'   => 'Alle richtprijzen zijn exclusief btw.',
+        'pricing_advice_text' => 'Niet zeker welk pakket past? Ik denk vrijblijvend met je mee.',
+        'pricing_advice_cta'  => 'Vraag advies',
 
         // Projects proof
         'projects_eyebrow' => 'Technische diepgang',
@@ -130,8 +186,9 @@ return [
         'showcase_teaser_cta'   => 'Bekijk showcase',
 
         // Final CTA
-        'cta_heading' => 'Wil je weten wat ik voor jouw website of idee kan betekenen?',
-        'cta_body'    => 'Vertel me over je project. Het eerste gesprek is vrijblijvend.',
+        'cta_heading' => 'Wil je weten wat ik voor jouw website kan betekenen?',
+        'cta_body'    => 'Vertel me over je project. Het eerste gesprek is vrijblijvend en zonder verplichtingen.',
+        'cta_primary' => 'Gratis kennismaking aanvragen',
     ],
 
     // ── Services ──────────────────────────────────────────────────────────────
@@ -248,12 +305,12 @@ return [
         // Cards
         'card_starter_title'   => 'Starter',
         'card_starter_price'   => 'Vanaf €750',
-        'card_starter_desc'    => 'Voor starters, zelfstandigen en kleine bedrijven die een professionele online aanwezigheid nodig hebben.',
+        'card_starter_desc'    => 'Voor een duidelijke basiswebsite met professionele uitstraling.',
         'card_starter_bullets' => ["Tot 5 pagina's", 'Responsive design', 'Contactformulier', 'SEO-basis inbegrepen', '1 feedbackronde'],
         'card_starter_cta'     => 'Vraag een voorstel aan',
         'card_pro_title'       => 'Professioneel',
         'card_pro_price'       => 'Vanaf €1.250',
-        'card_pro_desc'        => "Voor bedrijven die een uitgebreidere website nodig hebben met meer pagina's en functionaliteiten.",
+        'card_pro_desc'        => "Voor bedrijven die meer pagina's, sterkere structuur en betere conversie nodig hebben.",
         'card_pro_bullets'     => ["Tot 10 pagina's", 'Responsive en snel', 'Contactformulier met validatie', 'SEO-vriendelijke structuur', '2 feedbackronden', 'Technische lanceringsondersteuning'],
         'card_pro_cta'         => 'Vraag een voorstel aan',
         'card_webshop_title'   => 'Productcatalogus',
@@ -263,7 +320,7 @@ return [
         'card_webshop_cta'     => 'Bespreek je productcatalogus',
         'card_maint_title'     => 'Onderhoud',
         'card_maint_price'     => 'Vanaf €50/mnd',
-        'card_maint_desc'      => 'Maandelijkse technische opvolging zodat je website veilig, up-to-date en goed blijft werken.',
+        'card_maint_desc'      => 'Voor updates, backups, kleine aanpassingen en technische opvolging.',
         'card_maint_bullets'   => ['Maandelijkse updates', 'Beveiligingscontroles', 'Kleine aanpassingen', 'Monitoring en snelle reactie'],
         'card_maint_cta'       => 'Vraag onderhoud aan',
     ],
@@ -271,6 +328,7 @@ return [
     // ── Contact ───────────────────────────────────────────────────────────────
     'contact' => [
         'heading'          => 'Laten we praten',
+        'choice_heading'   => 'Hoe kan ik je helpen?',
         'body'             => 'Vertel me over je project of idee. Het invullen is vrijblijvend.',
         'email_label'      => 'E-mail',
         'location_label'   => 'Locatie',
@@ -376,17 +434,6 @@ return [
         'card_aria_front'    => 'Visitekaartje — klik om te draaien',
         'card_aria_back'     => 'Visitekaartje — klik om terug te draaien',
         'card_front_hint'    => 'Klik om contactgegevens te bekijken',
-    ],
-
-    // ── Transactionele e-mails ─────────────────────────────────────────────────
-    'mail' => [
-        'confirmation_subject' => 'Bevestiging van je aanvraag — Van Malder Studio',
-        'confirmation_greeting' => 'Dag :name,',
-        'confirmation_body_1'   => 'Bedankt voor je aanvraag. Ik heb ze goed ontvangen en neem zo snel mogelijk contact met je op — normaal gezien binnen 1 à 2 werkdagen.',
-        'confirmation_body_2'   => 'Heb je ondertussen vragen? Je kunt me bereiken via info@vanmalderstudio.be.',
-        'confirmation_sign_off' => 'Met vriendelijke groeten,',
-        'confirmation_sender'   => 'Xander Van Malder',
-        'confirmation_brand'    => 'Van Malder Studio',
     ],
 
     // ── About ─────────────────────────────────────────────────────────────────
@@ -515,7 +562,7 @@ return [
         'contact_btn'   => 'Stuur een bericht',
         'studio_label'  => 'Studio',
         'privacy_label' => 'Privacyverklaring',
-        'description'   => 'Moderne websites en digitale oplossingen voor zelfstandigen en lokale bedrijven.',
+        'description'   => 'Professionele websites voor zelfstandigen en lokale bedrijven in de Druivenstreek en Vlaams-Brabant.',
     ],
 
     // ── Process ───────────────────────────────────────────────────────────────
@@ -595,6 +642,46 @@ return [
         'cta_body'        => 'Vertel me over je project. Het eerste gesprek is vrijblijvend.',
         'cta_secondary'   => 'Over mij',
         'view_services'   => 'Bekijk alle diensten',
+    ],
+
+    // ── Quick contact ────────────────────────────────────────────────────────
+    'quick_contact' => [
+        'eyebrow'          => 'Snel bericht',
+        'path_a_heading'   => 'Snel iets vragen?',
+        'path_a_helper'    => 'Vul je vraag of bericht in en ik antwoord je meestal binnen 1–2 werkdagen.',
+        'path_b_heading'   => 'Website of project bespreken?',
+        'path_b_helper'    => 'De projectaanvraag helpt om meteen de juiste informatie te verzamelen.',
+        'separator_intro'  => 'Heb je gewoon een korte vraag? Stuur gerust een snel bericht. Wil je een website of project bespreken? Dan helpt de projectaanvraag om meteen de juiste info te verzamelen.',
+        'name_label'          => 'Naam',
+        'email_label'         => 'E-mailadres',
+        'message_label'       => 'Je bericht',
+        'message_placeholder' => 'Typ hier je vraag of opmerking…',
+        'privacy_label'       => 'Ik ga akkoord dat Van Malder Studio mijn gegevens gebruikt om mijn bericht te beantwoorden. :link.',
+        'privacy_link'        => 'Privacyverklaring',
+        'cta'                 => 'Bericht versturen',
+        'trust_free'          => 'Vrijblijvend',
+        'trust_response'      => 'Reactie binnen 1–2 werkdagen',
+        'trust_no_obligation' => 'Geen verplichting',
+        'success_heading'     => 'Bericht ontvangen!',
+        'success_body'        => 'Bedankt voor je bericht. Ik heb je aanvraag goed ontvangen en neem meestal binnen 1–2 werkdagen contact op.',
+        'error_body'          => 'Er is iets fout gegaan bij het versturen. Probeer het opnieuw of stuur een e-mail naar info@vanmalderstudio.be.',
+        'rate_limit'          => 'Je hebt te veel berichten verstuurd. Probeer het even later opnieuw.',
+        'validation' => [
+            'name_required'    => 'Je naam is verplicht.',
+            'email_required'   => 'Je e-mailadres is verplicht.',
+            'email_email'      => 'Voer een geldig e-mailadres in.',
+            'message_required' => 'Schrijf een bericht.',
+            'message_min'      => 'Je bericht is te kort (min. 5 tekens).',
+            'message_max'      => 'Je bericht is te lang (max. 2.000 tekens).',
+            'privacy_accepted' => 'Ga akkoord met het privacybeleid om verder te gaan.',
+        ],
+        'confirmation_subject'  => 'Bedankt voor je bericht — Van Malder Studio',
+        'confirmation_greeting' => 'Hallo :name,',
+        'confirmation_body_1'   => 'Ik heb je bericht goed ontvangen en neem zo snel mogelijk contact op — meestal binnen 1–2 werkdagen.',
+        'confirmation_body_2'   => 'Bedankt voor je vertrouwen.',
+        'confirmation_sign_off' => 'Met vriendelijke groeten,',
+        'confirmation_sender'   => 'Xander',
+        'confirmation_brand'    => 'Van Malder Studio',
     ],
 
     // ── Mail ─────────────────────────────────────────────────────────────────

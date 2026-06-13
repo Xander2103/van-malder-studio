@@ -3,12 +3,13 @@
 return [
 
     'nav' => [
-        'services' => 'Services',
-        'showcase' => 'Showcase',
-        'process'  => 'Process',
-        'pricing'  => 'Pricing',
-        'about'    => 'About',
-        'contact'  => 'Contact',
+        'services'        => 'Services',
+        'showcase'        => 'Showcase',
+        'showcase_footer' => 'Possibilities',
+        'process'         => 'Process',
+        'pricing'         => 'Pricing',
+        'about'           => 'About',
+        'contact'         => 'Contact',
     ],
 
     'lang_switcher' => [
@@ -40,14 +41,22 @@ return [
         'eyebrow'       => 'Websites by Xander Van Malder',
         'headline'      => 'Professional websites, webshops and digital solutions for local businesses.',
         'body'          => 'I\'m :name, a full stack developer from the Druivenstreek (Tervuren). I build websites, web applications and digital tools for self-employed professionals and local businesses — with a focus on quality, SEO foundations and personal communication.',
-        'cta_primary'   => 'Discuss your project',
-        'cta_secondary' => 'View services',
+        'cta_primary'     => 'Request a free introduction',
+        'cta_secondary'   => 'See what I make',
+        'trustline_items' => ['No-obligation first meeting', 'For freelancers and local businesses', 'From €750'],
     ],
 
     'home' => [
         'offer_eyebrow'  => 'What I can build for you',
         'offer_heading'  => 'Services',
         'offer_link'     => 'All services',
+
+        'studio_card_items' => [
+            'New website',
+            'Website redesign',
+            'Better found on Google',
+            'Maintenance & support',
+        ],
 
         'trust_clear_title'    => 'Clear websites',
         'trust_clear_desc'     => 'Structure and content tailored to your visitor',
@@ -96,10 +105,61 @@ return [
             'Credibility and recognition online',
         ],
 
+        // For whom
+        'voor_wie_eyebrow' => 'Does this sound like you?',
+        'voor_wie_heading' => 'Who is this for?',
+        'voor_wie_intro'   => 'For freelancers, small businesses and local services that:',
+        'voor_wie_items'   => [
+            'Want to come across as professional to potential clients',
+            'Want more enquiries through their website',
+            'Don\'t want to deal with technical details',
+            'Are looking for someone available who thinks along with them',
+        ],
+
+        // What you get
+        'concreet_eyebrow' => 'No surprises',
+        'concreet_heading' => 'What do you get concretely?',
+        'concreet_items'   => [
+            'Responsive website',
+            'Clear page structure',
+            'Contact form',
+            'Basic SEO included',
+            'Technical setup & hosting advice',
+            'Help with going live',
+        ],
+
+        // Xander portrait
+        'xander_eyebrow'  => 'Personal contact',
+        'xander_heading'  => 'You work directly with Xander',
+        'xander_body'     => 'No large agency or unclear intermediaries. You discuss your website directly with the person building it — from the first conversation to going live.',
+        'xander_caption'  => 'Xander Van Malder — web developer from Tervuren',
+
+        // Service CTAs
+        'service_website_cta'  => 'See what\'s included',
+        'service_redesign_cta' => 'See what\'s included',
+
+        // Pricing advice
+        'pricing_advice_text' => 'Not sure which plan fits? I\'ll think along with you, no strings attached.',
+        'pricing_advice_cta'  => 'Ask for advice',
+
+        // Why Van Malder Studio
+        'why_eyebrow'  => 'Why Van Malder Studio',
+        'why_heading'  => 'Local, personal and technically strong',
+        'why_reasons'  => [
+            ['title' => 'Local from the Druivenstreek', 'desc' => 'I know the area, the local market and the entrepreneurs here. Tervuren, Overijse, Huldenberg, Hoeilaart — that\'s my territory.'],
+            ['title' => 'Personal approach', 'desc' => 'You work directly with me, Xander Van Malder. No account managers, no outsourcing — short lines and fast communication.'],
+            ['title' => 'Technically strong, without the agency overhead', 'desc' => 'A well-built website that loads fast, is secure and ranks well. Transparent about approach and pricing.'],
+        ],
+
         'process_eyebrow' => 'How I work',
         'process_heading' => 'A clear journey from start to finish',
         'process_body'    => 'No surprises along the way. Step by step, with clear communication.',
         'process_link'    => 'Full process',
+        'home_process_steps' => [
+            ['num' => '01', 'title' => 'Introduction', 'desc' => 'You tell me about your business, your audience and what you expect from your website. No commitment.'],
+            ['num' => '02', 'title' => 'Proposal & design', 'desc' => 'You receive a concrete proposal with approach, price and timeline. We align before I start.'],
+            ['num' => '03', 'title' => 'Build & launch', 'desc' => 'I build the website and keep you updated. We launch together and I stay available.'],
+        ],
 
         'pricing_eyebrow' => 'Pricing',
         'pricing_heading' => 'What does it cost?',
@@ -117,6 +177,7 @@ return [
 
         'cta_heading' => 'Want to know what I can do for your website or idea?',
         'cta_body'    => 'Tell me about your project. The first conversation is free and without obligation.',
+        'cta_primary' => 'Schedule a meeting',
 
         'service_forms_ai_note' => 'AI support is possible: preparing a summary, missing information or quote basis. You always approve.',
         'service_forms_cta'     => 'View request flow',
@@ -256,6 +317,7 @@ return [
 
     'contact' => [
         'heading'          => 'Let\'s talk',
+        'choice_heading'   => 'How can I help you?',
         'body'             => 'Tell me about your project or idea. No obligation.',
         'email_label'      => 'Email',
         'location_label'   => 'Location',
@@ -610,6 +672,46 @@ return [
         'cta_body'        => 'Tell me about your project. The first conversation is free and without obligation.',
         'cta_secondary'   => 'About me',
         'view_services'   => 'View all services',
+    ],
+
+    // ── Quick contact ────────────────────────────────────────────────────────
+    'quick_contact' => [
+        'eyebrow'          => 'Quick message',
+        'path_a_heading'   => 'Got a quick question?',
+        'path_a_helper'    => 'Send your question and I usually reply within 1–2 working days.',
+        'path_b_heading'   => 'Want to discuss a website or project?',
+        'path_b_helper'    => 'The project form helps gather the right information from the start.',
+        'separator_intro'  => 'Just a quick question? Send a short message. Want to discuss a website or project? The project form helps collect the right info from the start.',
+        'name_label'          => 'Name',
+        'email_label'         => 'Email address',
+        'message_label'       => 'Your message',
+        'message_placeholder' => 'Type your question or comment here…',
+        'privacy_label'       => 'I agree that Van Malder Studio may use my information to respond to my message. :link.',
+        'privacy_link'        => 'Privacy policy',
+        'cta'                 => 'Send message',
+        'trust_free'          => 'No strings attached',
+        'trust_response'      => 'Reply within 1–2 working days',
+        'trust_no_obligation' => 'No obligation',
+        'success_heading'     => 'Message received!',
+        'success_body'        => 'Thank you for your message. I\'ve received it and usually reply within 1–2 working days.',
+        'error_body'          => 'Something went wrong while sending. Please try again or email info@vanmalderstudio.be.',
+        'rate_limit'          => 'You\'ve sent too many messages. Please try again in a few minutes.',
+        'validation' => [
+            'name_required'    => 'Your name is required.',
+            'email_required'   => 'Your email address is required.',
+            'email_email'      => 'Please enter a valid email address.',
+            'message_required' => 'Please write a message.',
+            'message_min'      => 'Your message is too short.',
+            'message_max'      => 'Your message is too long (max. 2,000 characters).',
+            'privacy_accepted' => 'Please accept the privacy policy to continue.',
+        ],
+        'confirmation_subject'  => 'Thank you for your message — Van Malder Studio',
+        'confirmation_greeting' => 'Hello :name,',
+        'confirmation_body_1'   => 'I\'ve received your message and will get back to you as soon as possible — usually within 1–2 working days.',
+        'confirmation_body_2'   => 'Thank you for reaching out.',
+        'confirmation_sign_off' => 'Kind regards,',
+        'confirmation_sender'   => 'Xander',
+        'confirmation_brand'    => 'Van Malder Studio',
     ],
 
     // ── Mail ─────────────────────────────────────────────────────────────────
