@@ -134,6 +134,23 @@ class QuickContactTest extends TestCase
         }
     }
 
+    public function test_admin_mail_renders_without_crash(): void
+    {
+        $data = [
+            'qc_name'    => 'Marie Janssen',
+            'qc_email'   => 'marie@example.com',
+            'qc_message' => 'Ik wil graag meer info over jullie diensten.',
+            'qc_privacy' => '1',
+        ];
+
+        $html = (new AdminQuickMessageMail($data, 'nl'))->render();
+
+        $this->assertStringContainsString('Marie Janssen', $html);
+        $this->assertStringContainsString('marie@example.com', $html);
+        $this->assertStringContainsString('Ik wil graag meer info over jullie diensten.', $html);
+        $this->assertStringNotContainsString('Illuminate\\Mail\\Message', $html);
+    }
+
     // ── Validation failures ──────────────────────────────────────────────────
 
     public function test_missing_privacy_consent_fails(): void

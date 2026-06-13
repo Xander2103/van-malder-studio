@@ -35,10 +35,10 @@ class AdminQuickMessageMail extends Mailable
         return new Content(
             view: 'emails.admin.quick-message',
             with: [
-                'name'      => e($this->data['qc_name'] ?? ''),
-                'email'     => e($this->data['qc_email'] ?? ''),
-                'message'   => e($this->data['qc_message'] ?? ''),
-                'msgLocale' => $this->msgLocale,
+                'name'           => e($this->data['qc_name'] ?? ''),
+                'email'          => e($this->data['qc_email'] ?? ''),
+                'contactMessage' => e($this->data['qc_message'] ?? ''),
+                'msgLocale'      => $this->msgLocale,
             ],
         );
     }

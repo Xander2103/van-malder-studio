@@ -25,7 +25,7 @@
                 </tr>
                 <tr>
                     <td style="padding: 10px 0; width: 120px; vertical-align: top; color: #64748b; font-size: 13px; font-weight: 500; padding-right: 12px;">Bericht</td>
-                    <td style="padding: 10px 0; vertical-align: top; color: #0f172a; font-size: 14px; white-space: pre-wrap;">{{ $message }}</td>
+                    <td style="padding: 10px 0; vertical-align: top; color: #0f172a; font-size: 14px; white-space: pre-wrap;">{{ $contactMessage }}</td>
                 </tr>
             </table>
         </div>
