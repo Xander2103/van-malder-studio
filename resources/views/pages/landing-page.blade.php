@@ -114,6 +114,30 @@
     </section>
     @endif
 
+    {{-- ── Waarom lokaal werken met Xander? ── --}}
+    @if(!empty($page['why_local']))
+    <section class="bg-stone-50 border-y border-stone-200" aria-labelledby="landing-why-local-heading">
+        <div class="max-w-6xl mx-auto px-6 py-14">
+            <div class="reveal">
+                <h2 id="landing-why-local-heading" class="font-serif text-2xl font-medium text-slate-900 mb-8">Waarom lokaal werken met Xander?</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    @foreach($page['why_local'] as $i => $reason)
+                    <div class="bg-white border border-stone-200 rounded-xl p-6 flex items-start gap-4">
+                        <div class="w-8 h-8 rounded-lg bg-slate-900 text-white flex items-center justify-center text-xs font-bold shrink-0" aria-hidden="true">
+                            {{ str_pad($i + 1, 2, '0', STR_PAD_LEFT) }}
+                        </div>
+                        <div>
+                            <h3 class="text-sm font-semibold text-slate-900 mb-1">{{ $reason['title'] }}</h3>
+                            <p class="text-sm text-slate-500 leading-relaxed">{{ $reason['body'] }}</p>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </section>
+    @endif
+
     {{-- ── Honest SEO note ── --}}
     @if(!empty($page['honest_note']))
     <section class="max-w-6xl mx-auto px-6 py-12">
