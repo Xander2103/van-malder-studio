@@ -399,16 +399,16 @@ import './bootstrap';
     let cMouseX = 0.5, cMouseY = 0.5;
     let glowTarget = 0, glowCur = 0;
 
-    // More visible waves: higher opacity, stronger amplitudes
+    // Slightly more visible on desktop, mobile unchanged
     const waves = [
-        { amp: mobile ? 22 : 42, freq: 0.0058, speed: 0.40, offset: 0.20, opacity: 0.22, rgb: '100,116,139' },
-        { amp: mobile ? 14 : 28, freq: 0.0098, speed: 0.58, offset: 0.38, opacity: 0.17, rgb: '71,85,105'   },
-        { amp: mobile ? 26 : 48, freq: 0.0044, speed: 0.24, offset: 0.57, opacity: 0.14, rgb: '100,116,139' },
-        { amp: mobile ? 16 : 32, freq: 0.0080, speed: 0.50, offset: 0.32, opacity: 0.20, rgb: '148,163,184' },
-        { amp: mobile ? 12 : 24, freq: 0.0116, speed: 0.70, offset: 0.75, opacity: 0.11, rgb: '96,108,168'  },
+        { amp: mobile ? 22 : 44, freq: 0.0058, speed: 0.40, offset: 0.20, opacity: mobile ? 0.22 : 0.26, rgb: '100,116,139' },
+        { amp: mobile ? 14 : 30, freq: 0.0098, speed: 0.58, offset: 0.38, opacity: mobile ? 0.17 : 0.21, rgb: '71,85,105'   },
+        { amp: mobile ? 26 : 50, freq: 0.0044, speed: 0.24, offset: 0.57, opacity: mobile ? 0.14 : 0.17, rgb: '100,116,139' },
+        { amp: mobile ? 16 : 34, freq: 0.0080, speed: 0.50, offset: 0.32, opacity: mobile ? 0.20 : 0.24, rgb: '148,163,184' },
+        { amp: mobile ? 12 : 24, freq: 0.0116, speed: 0.70, offset: 0.75, opacity: mobile ? 0.11 : 0.14, rgb: '96,108,168'  },
     ];
     if (!mobile) {
-        waves.push({ amp: 16, freq: 0.0062, speed: 0.32, offset: 0.88, opacity: 0.07, rgb: '171,130,68' });
+        waves.push({ amp: 18, freq: 0.0062, speed: 0.32, offset: 0.88, opacity: 0.09, rgb: '171,130,68' });
     }
 
     function resize() {
@@ -443,6 +443,17 @@ import './bootstrap';
             gr.addColorStop(0.5, `rgba(99,120,190,${0.020 * glowCur})`);
             gr.addColorStop(1,   'rgba(99,120,190,0)');
             ctx.fillStyle = gr;
+            ctx.fillRect(0, 0, W, H);
+        }
+
+        // Soft ambient amber glow top-right (desktop only) — warmth behind studio card
+        if (!mobile) {
+            const ax = W * 0.80, ay = H * 0.30;
+            const ag = ctx.createRadialGradient(ax, ay, 0, ax, ay, Math.min(W, H) * 0.55);
+            ag.addColorStop(0,   'rgba(180,110,0,0.05)');
+            ag.addColorStop(0.5, 'rgba(180,110,0,0.02)');
+            ag.addColorStop(1,   'rgba(180,110,0,0)');
+            ctx.fillStyle = ag;
             ctx.fillRect(0, 0, W, H);
         }
 

@@ -37,7 +37,7 @@
                 {{-- CTAs --}}
                 <div class="mt-7 flex flex-wrap gap-3">
                     <a href="{{ $contactHref }}"
-                       class="inline-flex items-center gap-2 px-5 py-3.5 text-sm font-semibold bg-amber-600 text-white rounded-lg hover:bg-amber-700 active:bg-amber-800 transition-colors duration-200 shadow-sm cursor-pointer">
+                       class="hero-cta-primary inline-flex items-center gap-2 px-5 py-3.5 text-sm font-semibold text-white rounded-lg cursor-pointer">
                         {{ __('site.hero.cta_primary') }}
                         <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
@@ -65,12 +65,15 @@
                 @endif
             </div>
 
-            {{-- Right: studio card (4 services, clean) --}}
-            <div class="reveal reveal-delay-1">
-                <div class="bg-white rounded-2xl border border-stone-200 shadow-md overflow-hidden">
+            {{-- Right: studio card (premium product card) --}}
+            <div class="reveal reveal-delay-1 relative">
+                {{-- Soft ambient glow behind card --}}
+                <div class="absolute -inset-6 bg-blue-100/25 rounded-full blur-3xl pointer-events-none" aria-hidden="true"></div>
+
+                <div class="relative bg-white rounded-2xl border border-stone-200 shadow-xl shadow-slate-200/60 overflow-hidden">
                     <div class="studio-card-accent h-1 w-full" aria-hidden="true"></div>
                     <div class="p-7">
-                        <div class="flex items-start justify-between mb-6">
+                        <div class="flex items-start justify-between mb-5">
                             <div>
                                 <p class="text-[0.65rem] font-semibold text-stone-400 uppercase tracking-widest mb-1">Web Studio</p>
                                 <h2 class="font-serif text-xl font-medium text-slate-900">{{ config('studio.brand_name') }}</h2>
@@ -91,11 +94,11 @@
                             ];
                             $cardItems = is_array(__('site.home.studio_card_items')) ? __('site.home.studio_card_items') : [];
                         @endphp
-                        <div class="space-y-3 mb-6">
+                        <div class="divide-y divide-stone-100 mb-5">
                             @foreach($cardItems as $i => $item)
-                            <div class="flex items-center gap-3 text-sm text-slate-700">
-                                <div class="w-7 h-7 rounded-lg bg-amber-50 border border-amber-100 flex items-center justify-center shrink-0" aria-hidden="true">
-                                    <svg class="w-3.5 h-3.5 text-amber-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75">
+                            <div class="flex items-center gap-3 text-sm font-medium text-slate-700 py-2.5 {{ $loop->first ? 'pt-0' : '' }} {{ $loop->last ? 'pb-0' : '' }}">
+                                <div class="w-8 h-8 rounded-lg bg-amber-50 border border-amber-200 flex items-center justify-center shrink-0" aria-hidden="true">
+                                    <svg class="w-4 h-4 text-amber-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="{{ $cardIcons[$i] ?? $cardIcons[0] }}"/>
                                     </svg>
                                 </div>
@@ -105,10 +108,10 @@
                         </div>
 
                         <div class="pt-4 border-t border-stone-100 flex items-center justify-between">
-                            <p class="text-xs text-slate-400">Druivenstreek · Vlaams-Brabant</p>
+                            <p class="text-xs text-slate-400">Vanaf <span class="font-semibold text-slate-600">€750</span> · vrijblijvend gesprek</p>
                             <a href="{{ $contactHref }}"
                                class="text-xs font-semibold text-amber-700 hover:text-amber-900 transition-colors duration-200">
-                                Vrijblijvend contact →
+                                Kennismaking aanvragen →
                             </a>
                         </div>
                     </div>

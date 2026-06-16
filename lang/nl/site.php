@@ -45,7 +45,7 @@ return [
         'headline'        => 'Websites die vertrouwen wekken en aanvragen opleveren.',
         'body'            => 'Ik ben :name — webdeveloper uit Tervuren. Ik maak duidelijke, moderne websites voor zelfstandigen en lokale bedrijven in de Druivenstreek en Vlaams-Brabant. Websites die er professioneel uitzien, goed werken op mobiel en bezoekers begeleiden naar contact.',
         'cta_primary'     => 'Gratis kennismaking aanvragen',
-        'cta_secondary'   => 'Bekijk wat ik maak',
+        'cta_secondary'   => 'Bekijk diensten',
         'trustline_items' => ['Vrijblijvend eerste gesprek', 'Voor zelfstandigen en kmo\'s', 'Vanaf €750'],
     ],
 
@@ -53,13 +53,13 @@ return [
     'home' => [
         // Trust strip
         'trust_clear_title'    => 'Professionele uitstraling',
-        'trust_clear_desc'     => 'Een website die past bij wie je bent en vertrouwen wekt bij je bezoekers',
+        'trust_clear_desc'     => 'Een website die vertrouwen wekt bij je bezoekers.',
         'trust_custom_title'   => 'Beter vindbaar in Google',
-        'trust_custom_desc'    => 'Met een technische SEO-basis en lokale zichtbaarheid voor jouw regio',
+        'trust_custom_desc'    => 'SEO-basis voor lokale zoekopdrachten in jouw regio.',
         'trust_secure_title'   => 'Duidelijke contactflow',
-        'trust_secure_desc'    => 'Bezoekers vinden snel de weg naar contact — meer aanvragen, minder ruis',
+        'trust_secure_desc'    => 'Bezoekers vinden sneller de weg naar contact.',
         'trust_personal_title' => 'Rechtstreeks contact',
-        'trust_personal_desc'  => 'Je praat altijd rechtstreeks met de developer — geen tussenpersonen',
+        'trust_personal_desc'  => 'Geen account managers of tussenpersonen.',
 
         // Studio card — 4 items (no tech stack, no webshop/apps)
         'studio_card_items' => [
