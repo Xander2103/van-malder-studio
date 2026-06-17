@@ -72,7 +72,7 @@
                             ];
                             $cardItems = is_array(__('site.home.studio_card_items')) ? __('site.home.studio_card_items') : [];
                         @endphp
-                        <div class="divide-y divide-stone-100 mb-4 sm:mb-5">
+                        <div class="divide-y divide-stone-100 mb-3 sm:mb-4">
                             @foreach($cardItems as $i => $item)
                             <div class="flex items-center gap-3 text-sm font-medium text-slate-700 py-2 sm:py-2.5 {{ $loop->first ? 'pt-0' : '' }} {{ $loop->last ? 'pb-0' : '' }}">
                                 <div class="w-8 h-8 rounded-lg bg-amber-50 border border-amber-200 flex items-center justify-center shrink-0" aria-hidden="true">
@@ -84,6 +84,18 @@
                             </div>
                             @endforeach
                         </div>
+
+                        @php $reassurance = is_array(__('site.home.studio_card_reassurance')) ? __('site.home.studio_card_reassurance') : []; @endphp
+                        @if($reassurance)
+                        <ul class="mb-3 sm:mb-4 space-y-1" aria-label="Werkwijze en aanpak">
+                            @foreach($reassurance as $point)
+                            <li class="flex items-start gap-1.5 text-xs text-slate-400 leading-snug">
+                                <span class="mt-[0.2rem] w-1 h-1 rounded-full bg-slate-300 shrink-0" aria-hidden="true"></span>
+                                {{ $point }}
+                            </li>
+                            @endforeach
+                        </ul>
+                        @endif
 
                         <div class="pt-3 sm:pt-4 border-t border-stone-100 flex items-center justify-between">
                             <p class="text-xs text-slate-400">Vanaf <span class="font-semibold text-slate-600">€750</span> · vrijblijvend gesprek</p>

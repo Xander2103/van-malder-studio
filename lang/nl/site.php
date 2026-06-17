@@ -73,6 +73,14 @@ return [
             'Onderhoud & opvolging',
         ],
 
+        // Studio card — compact reassurance sub-line (Task 3)
+        'studio_card_reassurance' => [
+            'Van structuur en ontwerp tot livegang',
+            'Domein, hosting en e-mail kunnen mee geregeld worden',
+            'Eén rechtstreeks aanspreekpunt',
+            'Geen technisch gedoe voor jou',
+        ],
+
         // Service cards (homepage — 3 main services)
         'offer_eyebrow'  => 'Wat ik voor je maak',
         'offer_heading'  => 'De drie meest gevraagde diensten',
