@@ -15,65 +15,43 @@
 {{-- ════════════════════════════════════════════════════════════════════════
      A. HERO
      ════════════════════════════════════════════════════════════════════════ --}}
-<section class="hero-canvas-section pt-14 pb-16 md:pt-20 md:pb-24" aria-label="Van Malder Studio">
+<section class="hero-canvas-section pt-12 pb-14 md:pt-20 md:pb-24" aria-label="Van Malder Studio">
     <canvas id="hero-bg-canvas" class="absolute inset-0 w-full h-full pointer-events-none" aria-hidden="true" style="z-index:0;opacity:1;"></canvas>
 
     <div class="max-w-6xl mx-auto px-6 relative" style="z-index:1;">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-x-16 lg:gap-y-7 items-start">
 
-            {{-- Left: headline + CTA + trustline --}}
+            {{-- 1. Text top: eyebrow + headline + intro --}}
             <div class="reveal">
-                <p class="inline-flex items-center gap-2 text-xs font-semibold text-amber-700 uppercase tracking-widest mb-5">
+                <p class="inline-flex items-center gap-2 text-xs font-semibold text-amber-700 uppercase tracking-widest mb-4 sm:mb-5">
                     <span class="w-4 h-px bg-amber-600 inline-block" aria-hidden="true"></span>
                     {{ __('site.hero.eyebrow') }}
                 </p>
-                <h1 class="font-serif text-4xl md:text-5xl lg:text-[3.1rem] font-medium text-slate-900 leading-[1.15] tracking-tight">
+                <h1 class="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-[3.1rem] font-medium text-slate-900 leading-[1.15] tracking-tight">
                     {{ __('site.hero.headline') }}
                 </h1>
-                <p class="mt-5 text-[1.0625rem] text-slate-500 leading-relaxed max-w-lg">
-                    {!! __('site.hero.body', ['name' => '<strong class="font-semibold text-slate-700">'.e(config('studio.owner')).'</strong>']) !!}
+                {{-- Mobile intro --}}
+                <p class="block sm:hidden mt-3 text-base text-slate-500 leading-relaxed">
+                    {{ __('site.hero.body_mobile') }}
                 </p>
-
-                {{-- CTAs --}}
-                <div class="mt-7 flex flex-wrap gap-3">
-                    <a href="{{ $contactHref }}"
-                       class="hero-cta-primary inline-flex items-center gap-2 px-5 py-3.5 text-sm font-semibold text-white rounded-lg cursor-pointer">
-                        {{ __('site.hero.cta_primary') }}
-                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-                        </svg>
-                    </a>
-                    <a href="{{ $servicesHref }}"
-                       class="inline-flex items-center px-5 py-3.5 text-sm font-semibold bg-white text-slate-700 border border-stone-300 rounded-lg hover:border-slate-400 hover:text-slate-900 transition-colors duration-200 cursor-pointer">
-                        {{ __('site.hero.cta_secondary') }}
-                    </a>
-                </div>
-
-                {{-- Trustline --}}
-                @php $trustItems = __('site.hero.trustline_items'); @endphp
-                @if(is_array($trustItems))
-                <div class="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2">
-                    @foreach($trustItems as $item)
-                    <span class="flex items-center gap-1.5 text-xs text-slate-400">
-                        <svg class="w-3.5 h-3.5 text-emerald-500 shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                        </svg>
-                        {{ $item }}
-                    </span>
-                    @endforeach
-                </div>
-                @endif
+                {{-- Desktop body + byline --}}
+                <p class="hidden sm:block mt-5 text-[1.0625rem] text-slate-500 leading-relaxed max-w-lg">
+                    {{ __('site.hero.body') }}
+                </p>
+                <p class="hidden sm:block mt-2 text-sm text-slate-400 max-w-lg">
+                    {!! __('site.hero.body_byline', ['name' => '<strong class="font-semibold text-slate-600">'.e(config('studio.owner')).'</strong>']) !!}
+                </p>
             </div>
 
-            {{-- Right: studio card (premium product card) --}}
-            <div class="reveal reveal-delay-1 relative">
+            {{-- 2. Studio card — lg:row-span-2 keeps it right of both text rows on desktop --}}
+            <div class="reveal reveal-delay-1 relative lg:row-span-2">
                 {{-- Soft ambient glow behind card --}}
                 <div class="absolute -inset-6 bg-blue-100/25 rounded-full blur-3xl pointer-events-none" aria-hidden="true"></div>
 
                 <div class="relative bg-white rounded-2xl border border-stone-200 shadow-xl shadow-slate-200/60 overflow-hidden">
                     <div class="studio-card-accent h-1 w-full" aria-hidden="true"></div>
-                    <div class="p-7">
-                        <div class="flex items-start justify-between mb-5">
+                    <div class="p-5 sm:p-7">
+                        <div class="flex items-start justify-between mb-4 sm:mb-5">
                             <div>
                                 <p class="text-[0.65rem] font-semibold text-stone-400 uppercase tracking-widest mb-1">Web Studio</p>
                                 <h2 class="font-serif text-xl font-medium text-slate-900">{{ config('studio.brand_name') }}</h2>
@@ -94,9 +72,9 @@
                             ];
                             $cardItems = is_array(__('site.home.studio_card_items')) ? __('site.home.studio_card_items') : [];
                         @endphp
-                        <div class="divide-y divide-stone-100 mb-5">
+                        <div class="divide-y divide-stone-100 mb-4 sm:mb-5">
                             @foreach($cardItems as $i => $item)
-                            <div class="flex items-center gap-3 text-sm font-medium text-slate-700 py-2.5 {{ $loop->first ? 'pt-0' : '' }} {{ $loop->last ? 'pb-0' : '' }}">
+                            <div class="flex items-center gap-3 text-sm font-medium text-slate-700 py-2 sm:py-2.5 {{ $loop->first ? 'pt-0' : '' }} {{ $loop->last ? 'pb-0' : '' }}">
                                 <div class="w-8 h-8 rounded-lg bg-amber-50 border border-amber-200 flex items-center justify-center shrink-0" aria-hidden="true">
                                     <svg class="w-4 h-4 text-amber-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="{{ $cardIcons[$i] ?? $cardIcons[0] }}"/>
@@ -107,7 +85,7 @@
                             @endforeach
                         </div>
 
-                        <div class="pt-4 border-t border-stone-100 flex items-center justify-between">
+                        <div class="pt-3 sm:pt-4 border-t border-stone-100 flex items-center justify-between">
                             <p class="text-xs text-slate-400">Vanaf <span class="font-semibold text-slate-600">€750</span> · vrijblijvend gesprek</p>
                             <a href="{{ $contactHref }}"
                                class="text-xs font-semibold text-amber-700 hover:text-amber-900 transition-colors duration-200">
@@ -117,6 +95,40 @@
                     </div>
                 </div>
             </div>
+
+            {{-- 3. CTAs + trustline --}}
+            <div class="reveal">
+                <div class="flex flex-wrap gap-3 items-center">
+                    <a href="{{ $contactHref }}"
+                       class="hero-cta-primary inline-flex items-center gap-2 px-5 py-3.5 text-sm font-semibold text-white rounded-lg cursor-pointer">
+                        {{ __('site.hero.cta_primary') }}
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                        </svg>
+                    </a>
+                    <a href="{{ $servicesHref }}"
+                       class="hidden sm:inline-flex items-center px-5 py-3.5 text-sm font-semibold bg-white text-slate-700 border border-stone-300 rounded-lg hover:border-slate-400 hover:text-slate-900 transition-colors duration-200 cursor-pointer">
+                        {{ __('site.hero.cta_secondary') }}
+                    </a>
+                    <a href="{{ $servicesHref }}"
+                       class="sm:hidden text-sm font-medium text-slate-500 hover:text-amber-700 transition-colors duration-200">
+                        {{ __('site.hero.cta_secondary') }} →
+                    </a>
+                </div>
+                @php $trustItems = __('site.hero.trustline_items'); @endphp
+                @if(is_array($trustItems))
+                <div class="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2">
+                    @foreach($trustItems as $item)
+                    <span class="flex items-center gap-1.5 text-xs text-slate-400">
+                        <svg class="w-3.5 h-3.5 text-emerald-500 shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                        </svg>
+                        {{ $item }}
+                    </span>
+                    @endforeach
+                </div>
+                @endif
+            </div>
         </div>
     </div>
 </section>
@@ -125,8 +137,8 @@
      B. TRUST STRIP — 4 client benefits
      ════════════════════════════════════════════════════════════════════════ --}}
 <section class="bg-white border-y border-stone-200" aria-label="{{ __('site.home.trust_clear_title') }}">
-    <div class="max-w-6xl mx-auto px-6 py-9">
-        <dl class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-stone-100 rounded-xl overflow-hidden">
+    <div class="max-w-6xl mx-auto px-6 py-6 sm:py-9">
+        <dl class="grid grid-cols-2 lg:grid-cols-4 gap-px bg-stone-100 rounded-xl overflow-hidden">
             @foreach([
                 ['path' => 'M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z',
                  'term' => __('site.home.trust_clear_title'), 'desc' => __('site.home.trust_clear_desc')],
@@ -137,15 +149,15 @@
                 ['path' => 'M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z',
                  'term' => __('site.home.trust_personal_title'), 'desc' => __('site.home.trust_personal_desc')],
             ] as $point)
-            <div class="bg-white px-6 py-6 flex items-start gap-4">
-                <div class="shrink-0 w-9 h-9 rounded-lg bg-amber-50 border border-amber-100 flex items-center justify-center" aria-hidden="true">
-                    <svg class="w-4 h-4 text-amber-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75">
+            <div class="bg-white px-4 py-4 sm:px-6 sm:py-5 flex items-start gap-3 sm:gap-4">
+                <div class="shrink-0 w-7 h-7 sm:w-9 sm:h-9 rounded-lg bg-amber-50 border border-amber-100 flex items-center justify-center" aria-hidden="true">
+                    <svg class="w-3.5 h-3.5 text-amber-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75">
                         <path stroke-linecap="round" stroke-linejoin="round" d="{{ $point['path'] }}"/>
                     </svg>
                 </div>
                 <div>
-                    <dt class="text-sm font-semibold text-slate-900">{{ $point['term'] }}</dt>
-                    <dd class="mt-0.5 text-sm text-slate-500 leading-snug">{{ $point['desc'] }}</dd>
+                    <dt class="text-sm font-semibold text-slate-900 leading-snug">{{ $point['term'] }}</dt>
+                    <dd class="mt-0.5 text-xs sm:text-sm text-slate-500 leading-snug">{{ $point['desc'] }}</dd>
                 </div>
             </div>
             @endforeach
@@ -156,8 +168,8 @@
 {{-- ════════════════════════════════════════════════════════════════════════
      C. SERVICES — 3 main service cards
      ════════════════════════════════════════════════════════════════════════ --}}
-<section class="max-w-6xl mx-auto px-6 py-20" aria-labelledby="services-heading">
-    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-5 mb-10 reveal">
+<section class="max-w-6xl mx-auto px-6 py-12 md:py-20" aria-labelledby="services-heading">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-5 mb-8 reveal">
         <div>
             <p class="inline-flex items-center gap-2 text-xs font-semibold text-amber-700 uppercase tracking-widest mb-3">
                 <span class="w-4 h-px bg-amber-600 inline-block" aria-hidden="true"></span>
@@ -179,16 +191,16 @@
     <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
 
         {{-- Nieuwe website — featured card --}}
-        <article class="md:col-span-2 bg-slate-900 rounded-2xl p-8 flex flex-col card-lift reveal"
+        <article class="md:col-span-2 bg-slate-900 rounded-2xl p-6 sm:p-8 flex flex-col card-lift reveal"
                  aria-label="{{ __('site.home.service_website_title') }}">
             <p class="text-[0.65rem] font-bold text-slate-500 tracking-widest mb-3">01</p>
             <h3 class="font-serif text-2xl font-medium text-white">{{ __('site.home.service_website_title') }}</h3>
-            <p class="mt-3 text-sm text-slate-300 leading-relaxed mb-6 flex-1">{{ __('site.home.service_website_body') }}</p>
+            <p class="mt-3 text-sm text-slate-300 leading-relaxed mb-5 sm:mb-6 flex-1">{{ __('site.home.service_website_body') }}</p>
             @php $wBullets = is_array(__('site.home.service_website_bullets')) ? __('site.home.service_website_bullets') : []; @endphp
             @if(!empty($wBullets))
-            <ul class="space-y-2.5 mb-6" role="list">
-                @foreach($wBullets as $bullet)
-                <li class="flex items-center gap-2.5 text-sm text-slate-300">
+            <ul class="space-y-2 sm:space-y-2.5 mb-5 sm:mb-6" role="list">
+                @foreach($wBullets as $idx => $bullet)
+                <li class="flex items-center gap-2.5 text-sm text-slate-300 {{ $idx >= 3 ? 'hidden sm:flex' : '' }}">
                     <svg class="w-3.5 h-3.5 shrink-0 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
                     </svg>
@@ -207,13 +219,13 @@
         </article>
 
         {{-- Website vernieuwen --}}
-        <article class="bg-white rounded-2xl border border-stone-200 p-7 flex flex-col card-lift reveal reveal-delay-1"
+        <article class="bg-white rounded-2xl border border-stone-200 p-5 sm:p-7 flex flex-col card-lift reveal reveal-delay-1"
                  aria-label="{{ __('site.home.service_redesign_title') }}">
             <p class="text-[0.65rem] font-bold text-stone-300 tracking-widest mb-3">02</p>
             <h3 class="font-serif text-xl font-medium text-slate-900">{{ __('site.home.service_redesign_title') }}</h3>
             <p class="mt-3 text-sm text-slate-500 leading-relaxed flex-1">{{ __('site.home.service_redesign_body') }}</p>
             <a href="{{ $servicesHref }}#website-vernieuwen"
-               class="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-amber-700 hover:text-amber-900 transition-colors duration-200 group cursor-pointer">
+               class="mt-5 sm:mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-amber-700 hover:text-amber-900 transition-colors duration-200 group cursor-pointer">
                 {{ __('site.home.service_redesign_cta') }}
                 <svg class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
@@ -222,7 +234,7 @@
         </article>
 
         {{-- Onderhoud & opvolging — full-width strip --}}
-        <article class="md:col-span-3 bg-stone-50 border border-stone-200 rounded-2xl px-8 py-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5 card-lift reveal"
+        <article class="md:col-span-3 bg-stone-50 border border-stone-200 rounded-2xl px-5 py-4 sm:px-8 sm:py-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 sm:gap-5 card-lift reveal"
                  aria-label="{{ __('site.home.service_maintenance_title') }}">
             <div>
                 <p class="text-[0.65rem] font-bold text-stone-400 tracking-widest mb-1">03</p>
@@ -233,7 +245,7 @@
                 </p>
             </div>
             <a href="{{ $contactHref }}"
-               class="shrink-0 inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold bg-white border border-stone-300 text-slate-700 rounded-lg hover:border-amber-400 hover:text-amber-800 transition-colors duration-200 cursor-pointer">
+               class="shrink-0 self-start sm:self-auto inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold bg-white border border-stone-300 text-slate-700 rounded-lg hover:border-amber-400 hover:text-amber-800 transition-colors duration-200 cursor-pointer">
                 {{ __('site.home.service_maintenance_cta') }}
             </a>
         </article>
@@ -245,8 +257,8 @@
      D. VOOR WIE IS DIT? — warm recognition section
      ════════════════════════════════════════════════════════════════════════ --}}
 <section class="bg-amber-50 border-y border-amber-100" aria-labelledby="voor-wie-heading">
-    <div class="max-w-6xl mx-auto px-6 py-14">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+    <div class="max-w-6xl mx-auto px-6 py-10 md:py-14">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 items-center">
             <div class="reveal">
                 <p class="inline-flex items-center gap-2 text-xs font-semibold text-amber-700 uppercase tracking-widest mb-3">
                     <span class="w-4 h-px bg-amber-600 inline-block" aria-hidden="true"></span>
@@ -258,7 +270,7 @@
                 <p class="mt-4 text-slate-600 text-sm">{{ __('site.home.voor_wie_intro') }}</p>
             </div>
             @php $voorWieItems = is_array(__('site.home.voor_wie_items')) ? __('site.home.voor_wie_items') : []; @endphp
-            <ul class="space-y-3.5 reveal reveal-delay-1" role="list">
+            <ul class="space-y-2.5 md:space-y-3.5 reveal reveal-delay-1" role="list">
                 @foreach($voorWieItems as $item)
                 <li class="flex items-start gap-3 text-slate-700">
                     <div class="mt-0.5 w-5 h-5 rounded-full bg-amber-200 border border-amber-300 flex items-center justify-center shrink-0" aria-hidden="true">
@@ -271,7 +283,7 @@
                 @endforeach
             </ul>
         </div>
-        <div class="mt-8 reveal">
+        <div class="mt-7 md:mt-8 reveal">
             <a href="{{ $contactHref }}"
                class="inline-flex items-center gap-2 px-5 py-3 text-sm font-semibold bg-amber-600 text-white rounded-lg hover:bg-amber-700 transition-colors duration-200 shadow-sm cursor-pointer">
                 {{ __('site.hero.cta_primary') }}
@@ -287,8 +299,8 @@
      E. WAT KRIJG JE CONCREET?
      ════════════════════════════════════════════════════════════════════════ --}}
 <section class="bg-white" aria-labelledby="concreet-heading">
-    <div class="max-w-6xl mx-auto px-6 py-16">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+    <div class="max-w-6xl mx-auto px-6 py-10 md:py-16">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 items-center">
             <div class="reveal">
                 <p class="inline-flex items-center gap-2 text-xs font-semibold text-amber-700 uppercase tracking-widest mb-3">
                     <span class="w-4 h-px bg-amber-600 inline-block" aria-hidden="true"></span>
@@ -307,9 +319,9 @@
             </div>
             @php $concreetItems = is_array(__('site.home.concreet_items')) ? __('site.home.concreet_items') : []; @endphp
             <div class="reveal reveal-delay-1">
-                <ul class="grid grid-cols-1 sm:grid-cols-2 gap-3" role="list">
+                <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3" role="list">
                     @foreach($concreetItems as $item)
-                    <li class="flex items-center gap-3 bg-stone-50 border border-stone-200 rounded-lg px-4 py-3 text-sm text-slate-700">
+                    <li class="flex items-center gap-3 bg-stone-50 border border-stone-200 rounded-lg px-3 py-2.5 sm:px-4 sm:py-3 text-sm text-slate-700">
                         <svg class="w-4 h-4 shrink-0 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
                         </svg>
@@ -326,16 +338,30 @@
      F. WHY VAN MALDER STUDIO + XANDER PORTRAIT
      ════════════════════════════════════════════════════════════════════════ --}}
 <section class="bg-stone-50 border-y border-stone-200" aria-labelledby="xander-heading">
-    <div class="max-w-6xl mx-auto px-6 py-16">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+    <div class="max-w-6xl mx-auto px-6 py-12 md:py-16">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-x-16 lg:gap-y-8 items-start">
 
-            {{-- Portrait column --}}
-            <div class="reveal order-2 lg:order-1">
+            {{-- 1. Text top: eyebrow + heading + intro --}}
+            <div class="reveal order-1 lg:col-start-2 lg:row-start-1">
+                <p class="inline-flex items-center gap-2 text-xs font-semibold text-amber-700 uppercase tracking-widest mb-3">
+                    <span class="w-4 h-px bg-amber-600 inline-block" aria-hidden="true"></span>
+                    {{ __('site.home.xander_eyebrow') }}
+                </p>
+                <h2 id="xander-heading" class="font-serif text-3xl md:text-4xl font-medium text-slate-900 leading-tight">
+                    {{ __('site.home.xander_heading') }}
+                </h2>
+                <p class="mt-4 text-slate-500 leading-relaxed">
+                    {{ __('site.home.xander_body') }}
+                </p>
+            </div>
+
+            {{-- 2. Portrait — after intro on mobile; left col spanning both rows on desktop --}}
+            <div class="reveal order-2 lg:col-start-1 lg:row-start-1 lg:row-span-2">
                 <div class="bg-white rounded-2xl border border-stone-200 shadow-sm overflow-hidden">
-                    <div class="relative overflow-hidden" style="height:535px;">
+                    <div class="relative overflow-hidden h-56 sm:h-72 lg:h-[535px]">
                         <img src="{{ asset('images/Xander.webp') }}"
                              alt="{{ __('site.home.xander_caption') }}"
-                             class="absolute inset-0 w-full object-cover object-center"
+                             class="absolute inset-0 w-full h-full object-cover object-top"
                              loading="lazy"
                              width="600"
                              height="380">
@@ -347,24 +373,11 @@
                 </div>
             </div>
 
-            {{-- Text + reasons column --}}
-            <div class="order-1 lg:order-2">
-                <div class="reveal">
-                    <p class="inline-flex items-center gap-2 text-xs font-semibold text-amber-700 uppercase tracking-widest mb-3">
-                        <span class="w-4 h-px bg-amber-600 inline-block" aria-hidden="true"></span>
-                        {{ __('site.home.xander_eyebrow') }}
-                    </p>
-                    <h2 id="xander-heading" class="font-serif text-3xl md:text-4xl font-medium text-slate-900 leading-tight">
-                        {{ __('site.home.xander_heading') }}
-                    </h2>
-                    <p class="mt-4 text-slate-500 leading-relaxed">
-                        {{ __('site.home.xander_body') }}
-                    </p>
-                </div>
-
-                <div class="mt-8 space-y-4 reveal reveal-delay-1">
+            {{-- 3. Reason cards + CTA --}}
+            <div class="order-3 lg:col-start-2 lg:row-start-2">
+                <div class="space-y-3 md:space-y-4 reveal reveal-delay-1">
                     @foreach(is_array(__('site.home.why_reasons')) ? __('site.home.why_reasons') : [] as $i => $reason)
-                    <div class="flex items-start gap-4 bg-white rounded-xl border border-stone-200 px-5 py-4 card-lift">
+                    <div class="flex items-start gap-4 bg-white rounded-xl border border-stone-200 px-4 py-3.5 sm:px-5 sm:py-4 card-lift">
                         <div class="w-8 h-8 rounded-lg bg-slate-900 text-white flex items-center justify-center text-xs font-bold shrink-0" aria-hidden="true">
                             {{ str_pad($i + 1, 2, '0', STR_PAD_LEFT) }}
                         </div>
@@ -375,7 +388,6 @@
                     </div>
                     @endforeach
                 </div>
-
                 <div class="mt-6 reveal">
                     <a href="{{ $contactHref }}"
                        class="inline-flex items-center gap-2 px-5 py-3 text-sm font-semibold bg-slate-900 text-white rounded-lg hover:bg-slate-800 transition-colors duration-200 cursor-pointer shadow-sm">
@@ -393,8 +405,8 @@
 {{-- ════════════════════════════════════════════════════════════════════════
      G. PRICING PREVIEW — 3 cards
      ════════════════════════════════════════════════════════════════════════ --}}
-<section class="max-w-6xl mx-auto px-6 py-20" aria-labelledby="pricing-heading">
-    <div class="text-center mb-12 reveal">
+<section class="max-w-6xl mx-auto px-6 py-12 md:py-20" aria-labelledby="pricing-heading">
+    <div class="text-center mb-8 md:mb-12 reveal">
         <p class="inline-flex items-center gap-2 text-xs font-semibold text-amber-700 uppercase tracking-widest mb-3">
             <span class="w-4 h-px bg-amber-600 inline-block" aria-hidden="true"></span>
             {{ __('site.home.pricing_eyebrow') }}
@@ -443,8 +455,8 @@
      H. SIMPLE 3-STEP PROCESS
      ════════════════════════════════════════════════════════════════════════ --}}
 <section class="bg-stone-50 border-t border-stone-200" aria-labelledby="process-heading">
-    <div class="max-w-6xl mx-auto px-6 py-16">
-        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10 reveal">
+    <div class="max-w-6xl mx-auto px-6 py-12 md:py-16">
+        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-8 reveal">
             <div>
                 <p class="inline-flex items-center gap-2 text-xs font-semibold text-amber-700 uppercase tracking-widest mb-3">
                     <span class="w-4 h-px bg-amber-600 inline-block" aria-hidden="true"></span>
@@ -466,7 +478,7 @@
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-5 reveal">
             @foreach(is_array(__('site.home.home_process_steps')) ? __('site.home.home_process_steps') : [] as $step)
-            <div class="bg-white rounded-xl border border-stone-200 p-7 flex flex-col card-lift">
+            <div class="bg-white rounded-xl border border-stone-200 p-5 sm:p-7 flex flex-col card-lift">
                 <span class="text-3xl font-bold text-stone-200 leading-none mb-4 select-none" aria-hidden="true">{{ $step['num'] }}</span>
                 <h3 class="font-serif text-base font-medium text-slate-900 mb-2">{{ $step['title'] }}</h3>
                 <p class="text-sm text-slate-500 leading-relaxed">{{ $step['desc'] }}</p>
@@ -479,18 +491,18 @@
 {{-- ════════════════════════════════════════════════════════════════════════
      I. FINAL CTA — warm and direct
      ════════════════════════════════════════════════════════════════════════ --}}
-<section class="max-w-6xl mx-auto px-6 py-16 pb-20" aria-labelledby="cta-heading">
+<section class="max-w-6xl mx-auto px-6 py-10 md:py-16 pb-12 md:pb-20" aria-labelledby="cta-heading">
     <div class="relative bg-slate-900 rounded-2xl overflow-hidden">
         <div class="absolute inset-0" style="background:linear-gradient(135deg,#0f172a 0%,#1c2f4a 55%,#0f172a 100%)" aria-hidden="true"></div>
         <div class="absolute top-0 left-0 right-0 h-px" style="background:linear-gradient(90deg,transparent,#c49a3a 50%,transparent)" aria-hidden="true"></div>
-        <div class="relative px-8 py-14 md:px-14 md:py-20 text-center">
+        <div class="relative px-6 py-10 md:px-14 md:py-20 text-center">
             <h2 id="cta-heading" class="font-serif text-3xl md:text-4xl font-medium text-white leading-tight max-w-2xl mx-auto">
                 {{ __('site.home.cta_heading') }}
             </h2>
             <p class="mt-4 text-slate-300 max-w-lg mx-auto leading-relaxed">
                 {{ __('site.home.cta_body') }}
             </p>
-            <div class="mt-8 flex flex-wrap justify-center gap-3">
+            <div class="mt-7 md:mt-8 flex flex-wrap justify-center gap-3">
                 <a href="{{ $contactHref }}"
                    class="inline-flex items-center gap-2 px-6 py-3.5 text-sm font-semibold bg-amber-500 text-white rounded-lg hover:bg-amber-400 transition-colors duration-200 cursor-pointer shadow-sm">
                     {{ __('site.home.cta_primary') }}
@@ -509,18 +521,33 @@
 
 
 {{-- ════════════════════════════════════════════════════════════════════════
-     J. LOCAL PAGES STRIP — SEO internal links, Dutch only
+     J. LOCAL PAGES STRIP — SEO internal links (Dutch only, premium pills)
      ════════════════════════════════════════════════════════════════════════ --}}
 @if($loc === 'nl')
-<section class="border-t border-stone-200 bg-white" aria-label="Lokale diensten in de Druivenstreek">
-    <div class="max-w-6xl mx-auto px-6 py-8">
-        <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3">Lokaal in de Druivenstreek &amp; Vlaams-Brabant</p>
-        <div class="flex flex-wrap gap-x-6 gap-y-2">
-            <a href="/nl/website-laten-maken-tervuren" class="text-sm text-slate-500 hover:text-amber-700 transition-colors duration-200">Website laten maken in Tervuren</a>
-            <a href="/nl/website-laten-maken-vlaams-brabant" class="text-sm text-slate-500 hover:text-amber-700 transition-colors duration-200">Website laten maken in Vlaams-Brabant</a>
-            <a href="/nl/webdesigner-tervuren" class="text-sm text-slate-500 hover:text-amber-700 transition-colors duration-200">Webdesigner in Tervuren</a>
-            <a href="/nl/website-laten-maken-overijse" class="text-sm text-slate-500 hover:text-amber-700 transition-colors duration-200">Website laten maken in Overijse</a>
-            <a href="/nl/website-laten-maken-huldenberg" class="text-sm text-slate-500 hover:text-amber-700 transition-colors duration-200">Website laten maken in Huldenberg</a>
+<section class="border-t border-stone-200 bg-stone-50" aria-label="Lokale diensten in de Druivenstreek">
+    <div class="max-w-6xl mx-auto px-6 py-7">
+        <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-4">Lokaal in de Druivenstreek &amp; Vlaams-Brabant</p>
+        <div class="flex flex-wrap gap-2">
+            <a href="/nl/website-laten-maken-tervuren"
+               class="inline-flex items-center text-xs font-medium text-slate-600 bg-white border border-stone-200 rounded-full px-3 py-1.5 hover:border-amber-300 hover:text-amber-800 transition-colors duration-200">
+                Website laten maken in Tervuren
+            </a>
+            <a href="/nl/website-laten-maken-vlaams-brabant"
+               class="inline-flex items-center text-xs font-medium text-slate-600 bg-white border border-stone-200 rounded-full px-3 py-1.5 hover:border-amber-300 hover:text-amber-800 transition-colors duration-200">
+                Vlaams-Brabant
+            </a>
+            <a href="/nl/webdesigner-tervuren"
+               class="inline-flex items-center text-xs font-medium text-slate-600 bg-white border border-stone-200 rounded-full px-3 py-1.5 hover:border-amber-300 hover:text-amber-800 transition-colors duration-200">
+                Webdesigner in Tervuren
+            </a>
+            <a href="/nl/website-laten-maken-overijse"
+               class="inline-flex items-center text-xs font-medium text-slate-600 bg-white border border-stone-200 rounded-full px-3 py-1.5 hover:border-amber-300 hover:text-amber-800 transition-colors duration-200">
+                Website laten maken in Overijse
+            </a>
+            <a href="/nl/website-laten-maken-huldenberg"
+               class="inline-flex items-center text-xs font-medium text-slate-600 bg-white border border-stone-200 rounded-full px-3 py-1.5 hover:border-amber-300 hover:text-amber-800 transition-colors duration-200">
+                Website laten maken in Huldenberg
+            </a>
         </div>
     </div>
 </section>

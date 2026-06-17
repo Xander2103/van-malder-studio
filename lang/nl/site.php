@@ -43,7 +43,11 @@ return [
     'hero' => [
         'eyebrow'         => 'Van Malder Studio · Tervuren · Druivenstreek',
         'headline'        => 'Websites die vertrouwen wekken en aanvragen opleveren.',
-        'body'            => 'Ik ben :name — webdeveloper uit Tervuren. Ik maak duidelijke, moderne websites voor zelfstandigen en lokale bedrijven in de Druivenstreek en Vlaams-Brabant. Websites die er professioneel uitzien, goed werken op mobiel en bezoekers begeleiden naar contact.',
+        'body'            => 'Voor zelfstandigen en lokale bedrijven die professioneel online willen staan, beter gevonden willen worden en bezoekers makkelijker naar contact willen leiden.',
+        'body_byline'     => 'Gebouwd door :name, webdeveloper uit Tervuren.',
+        'body_mobile'     => 'Voor zelfstandigen en lokale bedrijven die professioneel online willen staan en meer aanvragen willen krijgen.',
+        'trust_card_role' => 'Webdeveloper uit Tervuren',
+        'trust_card_note' => 'Rechtstreeks contact, geen tussenpersonen',
         'cta_primary'     => 'Gratis kennismaking aanvragen',
         'cta_secondary'   => 'Bekijk diensten',
         'trustline_items' => ['Vrijblijvend eerste gesprek', 'Voor zelfstandigen en kmo\'s', 'Vanaf €750'],
@@ -53,13 +57,13 @@ return [
     'home' => [
         // Trust strip
         'trust_clear_title'    => 'Professionele uitstraling',
-        'trust_clear_desc'     => 'Een website die vertrouwen wekt bij je bezoekers.',
+        'trust_clear_desc'     => 'Vertrouwen vanaf de eerste indruk.',
         'trust_custom_title'   => 'Beter vindbaar in Google',
-        'trust_custom_desc'    => 'SEO-basis voor lokale zoekopdrachten in jouw regio.',
+        'trust_custom_desc'    => 'SEO-basis voor je regio.',
         'trust_secure_title'   => 'Duidelijke contactflow',
-        'trust_secure_desc'    => 'Bezoekers vinden sneller de weg naar contact.',
+        'trust_secure_desc'    => 'Bezoekers sneller naar aanvraag.',
         'trust_personal_title' => 'Rechtstreeks contact',
-        'trust_personal_desc'  => 'Geen account managers of tussenpersonen.',
+        'trust_personal_desc'  => 'Geen tussenpersonen.',
 
         // Studio card — 4 items (no tech stack, no webshop/apps)
         'studio_card_items' => [
@@ -562,7 +566,7 @@ return [
         'contact_btn'   => 'Stuur een bericht',
         'studio_label'  => 'Studio',
         'privacy_label' => 'Privacyverklaring',
-        'description'   => 'Professionele websites voor zelfstandigen en lokale bedrijven in de Druivenstreek en Vlaams-Brabant.',
+        'description'   => 'Websites voor lokale ondernemers in de Druivenstreek en Vlaams-Brabant.',
     ],
 
     // ── Process ───────────────────────────────────────────────────────────────

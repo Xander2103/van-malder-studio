@@ -6,51 +6,20 @@
 
     {{-- Header --}}
     <section class="max-w-6xl mx-auto px-6 pt-16 pb-16">
-        <div class="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16 items-start">
+        <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-16 items-start">
 
-            {{-- Main text --}}
-            <div class="lg:col-span-3 reveal">
+            {{-- 1. Heading + intro --}}
+            <div class="lg:col-span-3 reveal order-1">
                 <p class="inline-flex items-center gap-2 text-xs font-semibold text-amber-700 uppercase tracking-widest mb-4">
                     <span class="w-4 h-px bg-amber-600 inline-block" aria-hidden="true"></span>
                     {{ __('site.about.eyebrow') }}
                 </p>
                 <h1 class="font-serif text-4xl md:text-5xl font-medium text-slate-900 leading-tight">{{ __('site.about.heading') }}</h1>
                 <p class="mt-2 text-slate-500">{{ __('site.about.subtitle') }}</p>
-
-                <div class="mt-8 space-y-4 text-slate-600 leading-relaxed">
-                    <p>{{ __('site.about.body_1') }}</p>
-                    <p>{{ __('site.about.body_2') }}</p>
-                    <p>{{ __('site.about.body_3', ['brand' => 'VM Studios']) }}</p>
-                    <p>{{ __('site.about.body_4', ['brand' => 'VM Studios']) }}</p>
-                    <p>{{ __('site.about.body_5') }}</p>
-                </div>
-
-                @php
-                    $loc = app()->getLocale() ?: 'nl';
-                    $aboutContactHref = \Illuminate\Support\Facades\Route::has($loc . '.contact') ? route($loc . '.contact') : route('contact');
-                    $aboutShowcaseHref = \Illuminate\Support\Facades\Route::has($loc . '.showcase') ? route($loc . '.showcase') : route('showcase');
-                @endphp
-                <div class="mt-8 flex flex-wrap gap-3">
-                    <a href="{{ $aboutContactHref }}"
-                       class="inline-flex items-center gap-2 px-5 py-3 text-sm font-semibold bg-slate-900 text-white rounded-lg hover:bg-blue-800 transition-colors duration-200 cursor-pointer shadow-sm">
-                        {{ __('site.about.cta_contact') }}
-                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-                        </svg>
-                    </a>
-                    <a href="{{ $aboutShowcaseHref }}"
-                       class="inline-flex items-center gap-2 px-5 py-3 text-sm font-semibold bg-white border border-stone-300 text-slate-700 rounded-lg hover:border-slate-400 hover:text-slate-900 transition-colors duration-200 cursor-pointer">
-                        {{ __('site.about.cta_showcase') }}
-                    </a>
-                </div>
-
-                <div class="mt-10">
-                    <x-business-card size="compact" />
-                </div>
             </div>
 
-            {{-- Sidebar cards --}}
-            <div class="lg:col-span-2 space-y-4 reveal reveal-delay-1">
+            {{-- 2. Sidebar (portrait first on mobile; spans both rows on desktop) --}}
+            <div class="lg:col-span-2 lg:row-span-2 space-y-4 reveal reveal-delay-1 order-2">
 
                 {{-- Portrait --}}
                 <div class="bg-white rounded-xl border border-stone-200 shadow-sm overflow-hidden">
@@ -124,6 +93,40 @@
                         </li>
                         @endforeach
                     </ul>
+                </div>
+            </div>
+
+            {{-- 3. Body text + CTAs --}}
+            <div class="lg:col-span-3 reveal order-3">
+                <div class="space-y-4 text-slate-600 leading-relaxed">
+                    <p>{{ __('site.about.body_1') }}</p>
+                    <p>{{ __('site.about.body_2') }}</p>
+                    <p>{{ __('site.about.body_3', ['brand' => 'VM Studios']) }}</p>
+                    <p>{{ __('site.about.body_4', ['brand' => 'VM Studios']) }}</p>
+                    <p>{{ __('site.about.body_5') }}</p>
+                </div>
+
+                @php
+                    $loc = app()->getLocale() ?: 'nl';
+                    $aboutContactHref = \Illuminate\Support\Facades\Route::has($loc . '.contact') ? route($loc . '.contact') : route('contact');
+                    $aboutShowcaseHref = \Illuminate\Support\Facades\Route::has($loc . '.showcase') ? route($loc . '.showcase') : route('showcase');
+                @endphp
+                <div class="mt-8 flex flex-wrap gap-3">
+                    <a href="{{ $aboutContactHref }}"
+                       class="inline-flex items-center gap-2 px-5 py-3 text-sm font-semibold bg-slate-900 text-white rounded-lg hover:bg-blue-800 transition-colors duration-200 cursor-pointer shadow-sm">
+                        {{ __('site.about.cta_contact') }}
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                        </svg>
+                    </a>
+                    <a href="{{ $aboutShowcaseHref }}"
+                       class="inline-flex items-center gap-2 px-5 py-3 text-sm font-semibold bg-white border border-stone-300 text-slate-700 rounded-lg hover:border-slate-400 hover:text-slate-900 transition-colors duration-200 cursor-pointer">
+                        {{ __('site.about.cta_showcase') }}
+                    </a>
+                </div>
+
+                <div class="mt-10">
+                    <x-business-card size="compact" />
                 </div>
             </div>
         </div>

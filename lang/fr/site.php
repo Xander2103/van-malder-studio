@@ -49,7 +49,11 @@ return [
     'hero' => [
         'eyebrow'       => 'Sites web par Xander Van Malder',
         'headline'      => 'Sites web professionnels, applications et solutions numériques pour entrepreneurs locaux.',
-        'body'          => 'Je suis :name, développeur full stack du Druivenstreek (Tervuren). Je conçois des sites web, des applications web et des outils numériques pour indépendants et entreprises locales — avec un focus sur la qualité, les bases SEO et la communication personnelle.',
+        'body'          => 'Pour les indépendants et entreprises locales qui veulent une présence professionnelle en ligne, être mieux référencés et guider leurs visiteurs vers la prise de contact.',
+        'body_byline'   => 'Réalisé par :name, développeur web à Tervuren.',
+        'body_mobile'   => 'Pour les indépendants et entreprises locales qui veulent paraître professionnels en ligne et générer plus de demandes.',
+        'trust_card_role' => 'Développeur web à Tervuren',
+        'trust_card_note' => 'Contact direct, sans intermédiaires',
         'cta_primary'     => 'Demander une première rencontre gratuite',
         'cta_secondary'   => 'Voir mes réalisations',
         'trustline_items' => ['Premier entretien sans engagement', 'Pour indépendants et PME', 'À partir de €750'],
@@ -69,13 +73,13 @@ return [
         ],
 
         'trust_clear_title'    => 'Sites web clairs',
-        'trust_clear_desc'     => 'Structure et contenu adaptés à vos visiteurs',
+        'trust_clear_desc'     => 'Confiance dès le premier regard.',
         'trust_custom_title'   => 'Sur mesure quand nécessaire',
-        'trust_custom_desc'    => 'Pas de fonctionnalités inutiles — seulement ce qui compte',
+        'trust_custom_desc'    => 'Bases SEO pour votre région.',
         'trust_secure_title'   => 'Développé de manière sécurisée',
-        'trust_secure_desc'    => 'Sécurité et maintenabilité dès le départ',
+        'trust_secure_desc'    => 'Visiteurs guidés vers le contact.',
         'trust_personal_title' => 'Contact personnel',
-        'trust_personal_desc'  => 'Vous parlez directement avec le développeur',
+        'trust_personal_desc'  => 'Aucun intermédiaire.',
 
         'service_website_title'    => 'Création de site web',
         'service_website_body'     => 'Pour les indépendants qui veulent une présence en ligne professionnelle. Responsive, rapide et optimisé SEO — d\'une page d\'atterrissage ciblée à un site complet avec un parcours de contact clair.',
@@ -436,17 +440,6 @@ return [
         'card_front_hint'    => 'Cliquer pour voir les coordonnées',
     ],
 
-    // ── E-mails transactionnels ────────────────────────────────────────────────
-    'mail' => [
-        'confirmation_subject' => 'Confirmation de votre demande — Van Malder Studio',
-        'confirmation_greeting' => 'Bonjour :name,',
-        'confirmation_body_1'   => 'Merci pour votre demande. Je l\'ai bien reçue et vous recontacterai dans les plus brefs délais — généralement sous 1 à 2 jours ouvrables.',
-        'confirmation_body_2'   => 'Entre-temps, si vous avez des questions, n\'hésitez pas à me contacter via info@vanmalderstudio.be.',
-        'confirmation_sign_off' => 'Cordialement,',
-        'confirmation_sender'   => 'Xander Van Malder',
-        'confirmation_brand'    => 'Van Malder Studio',
-    ],
-
     // ── About ─────────────────────────────────────────────────────────────────
     'about' => [
         'eyebrow'             => 'À propos',
@@ -612,7 +605,7 @@ return [
         'contact_btn'   => 'Envoyer un message',
         'studio_label'  => 'Studio',
         'privacy_label' => 'Politique de confidentialité',
-        'description'   => 'Sites web modernes et solutions digitales pour indépendants et entreprises locales.',
+        'description'   => 'Sites web pour entrepreneurs locaux dans le Druivenstreek et le Brabant flamand.',
     ],
 
     // ── Process ───────────────────────────────────────────────────────────────
