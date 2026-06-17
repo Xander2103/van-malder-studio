@@ -40,14 +40,14 @@ return [
     'hero' => [
         'eyebrow'       => 'Websites by Xander Van Malder',
         'headline'      => 'Professional websites, webshops and digital solutions for local businesses.',
-        'body'          => 'For freelancers and local businesses who want a professional online presence, better visibility in search results, and a clearer path for visitors to get in touch.',
+        'body'          => 'I build websites for freelancers and local businesses in the region — professional, findable on Google, with a clear contact flow that guides visitors to you.',
         'body_byline'   => 'Built by :name, web developer from Tervuren.',
-        'body_mobile'   => 'For freelancers and local businesses who want to look professional online and get more enquiries.',
+        'body_mobile'   => 'I build websites that look professional, get found easily and guide visitors to get in touch — for freelancers and local businesses.',
         'trust_card_role' => 'Web developer from Tervuren',
         'trust_card_note' => 'Direct contact, no middlemen',
         'cta_primary'     => 'Request a free introduction',
         'cta_secondary'   => 'See what I make',
-        'trustline_items' => ['No-obligation first meeting', 'For freelancers and local businesses', 'From €750'],
+        'trustline_items' => ['No-obligation first meeting', 'For freelancers and local businesses', 'Direct contact, no middlemen', 'New website from €750'],
     ],
 
     'home' => [
@@ -62,9 +62,25 @@ return [
             'Maintenance & support',
         ],
 
-        // Studio card — footer row (Task 7 — TODO Task 12: translate)
-        'studio_card_pricing' => 'From :price · no obligation',
-        'studio_card_cta'     => 'Request a free intro call →',
+        // Studio card — footer row (Task 7)
+        'studio_card_pricing' => 'From :price · no-obligation conversation',
+        'studio_card_cta'     => 'Request a free introduction →',
+
+        // Honest trust signals — compact pill bar (Task 6)
+        'trust_signals' => [
+            'Direct contact with Xander',
+            'Local from Tervuren',
+            'Transparent guide prices',
+            'No obligation after the first meeting',
+        ],
+
+        // Studio card — compact reassurance sub-line (Task 3)
+        'studio_card_reassurance' => [
+            'From structure and design to going live',
+            'Domain, hosting and email can be arranged',
+            'One direct point of contact',
+            'No technical hassle for you',
+        ],
 
         'trust_clear_title'    => 'Clear websites',
         'trust_clear_desc'     => 'Trust from the first impression.',

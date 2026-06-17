@@ -50,14 +50,14 @@ return [
     'hero' => [
         'eyebrow'       => 'Websites von Xander Van Malder',
         'headline'      => 'Professionelle Websites, Webshops und digitale Lösungen für lokale Unternehmen.',
-        'body'          => 'Für Selbstständige und lokale Unternehmen, die professionell online auftreten, besser gefunden werden und Besucher einfacher zur Kontaktaufnahme führen möchten.',
+        'body'          => 'Ich entwickle Websites für Selbstständige und lokale Unternehmen in der Region — professionell, auffindbar bei Google, mit einem klaren Kontaktweg, der Besucher zu Ihnen führt.',
         'body_byline'   => 'Entwickelt von :name, Webentwickler aus Tervuren.',
-        'body_mobile'   => 'Für Selbstständige und lokale Unternehmen, die professionell online auftreten und mehr Anfragen erhalten möchten.',
+        'body_mobile'   => 'Ich entwickle Websites, die professionell wirken, gut gefunden werden und Besucher zur Kontaktaufnahme führen — für Selbstständige und lokale Unternehmen.',
         'trust_card_role' => 'Webentwickler aus Tervuren',
         'trust_card_note' => 'Direkter Kontakt, keine Mittelsmänner',
         'cta_primary'     => 'Kostenloses Erstgespräch anfragen',
         'cta_secondary'   => 'Meine Arbeit ansehen',
-        'trustline_items' => ['Erstes Gespräch unverbindlich', 'Für Selbstständige und KMU', 'Ab €750'],
+        'trustline_items' => ['Erstes Gespräch unverbindlich', 'Für Selbstständige und KMU', 'Direkter Kontakt, keine Mittelsmänner', 'Neue Website ab €750'],
     ],
 
     // ── Home ──────────────────────────────────────────────────────────────────
@@ -73,9 +73,25 @@ return [
             'Wartung & Betreuung',
         ],
 
-        // Studio card — footer row (Task 7 — TODO Task 12: translate)
-        'studio_card_pricing' => 'Ab :price · unverbindlich',
-        'studio_card_cta'     => 'Kostenloses Kennenlerngespräch anfragen →',
+        // Studio card — footer row (Task 7)
+        'studio_card_pricing' => 'Ab :price · unverbindliches Gespräch',
+        'studio_card_cta'     => 'Kostenloses Kennenlernen anfragen →',
+
+        // Honest trust signals — compact pill bar (Task 6)
+        'trust_signals' => [
+            'Direkter Kontakt mit Xander',
+            'Lokal aus Tervuren',
+            'Transparente Richtpreise',
+            'Keine Verpflichtung nach dem ersten Gespräch',
+        ],
+
+        // Studio card — compact reassurance sub-line (Task 3)
+        'studio_card_reassurance' => [
+            'Von Struktur und Design bis zum Go-live',
+            'Domain, Hosting und E-Mail können mitübernommen werden',
+            'Ein direkter Ansprechpartner',
+            'Kein technischer Aufwand für Sie',
+        ],
 
         'trust_clear_title'    => 'Klare Websites',
         'trust_clear_desc'     => 'Vertrauen beim ersten Eindruck.',

@@ -49,14 +49,14 @@ return [
     'hero' => [
         'eyebrow'       => 'Sites web par Xander Van Malder',
         'headline'      => 'Sites web professionnels, applications et solutions numériques pour entrepreneurs locaux.',
-        'body'          => 'Pour les indépendants et entreprises locales qui veulent une présence professionnelle en ligne, être mieux référencés et guider leurs visiteurs vers la prise de contact.',
+        'body'          => 'Je crée des sites web pour les indépendants et entreprises locales de la région — professionnels, visibles sur Google, avec un parcours de contact clair qui guide vos visiteurs vers vous.',
         'body_byline'   => 'Réalisé par :name, développeur web à Tervuren.',
-        'body_mobile'   => 'Pour les indépendants et entreprises locales qui veulent paraître professionnels en ligne et générer plus de demandes.',
+        'body_mobile'   => 'Je crée des sites web qui ont l\'air professionnel, qui se trouvent facilement et qui guident les visiteurs vers la prise de contact — pour les indépendants et entreprises locales.',
         'trust_card_role' => 'Développeur web à Tervuren',
         'trust_card_note' => 'Contact direct, sans intermédiaires',
         'cta_primary'     => 'Demander une première rencontre gratuite',
         'cta_secondary'   => 'Voir mes réalisations',
-        'trustline_items' => ['Premier entretien sans engagement', 'Pour indépendants et PME', 'À partir de €750'],
+        'trustline_items' => ['Premier entretien sans engagement', 'Pour indépendants et PME', 'Contact direct, sans intermédiaires', 'Nouveau site à partir de €750'],
     ],
 
     // ── Home ──────────────────────────────────────────────────────────────────
@@ -72,9 +72,25 @@ return [
             'Maintenance & suivi',
         ],
 
-        // Studio card — footer row (Task 7 — TODO Task 12: translate)
-        'studio_card_pricing' => 'À partir de :price · sans engagement',
-        'studio_card_cta'     => 'Demander un premier entretien gratuit →',
+        // Studio card — footer row (Task 7)
+        'studio_card_pricing' => 'À partir de :price · entretien sans engagement',
+        'studio_card_cta'     => 'Demander une présentation gratuite →',
+
+        // Honest trust signals — compact pill bar (Task 6)
+        'trust_signals' => [
+            'Contact direct avec Xander',
+            'Basé à Tervuren',
+            'Prix indicatifs transparents',
+            'Aucune obligation après le premier entretien',
+        ],
+
+        // Studio card — compact reassurance sub-line (Task 3)
+        'studio_card_reassurance' => [
+            'De la structure et du design jusqu\'à la mise en ligne',
+            'Domaine, hébergement et e-mail peuvent être pris en charge',
+            'Un seul interlocuteur direct',
+            'Aucune gestion technique de votre côté',
+        ],
 
         'trust_clear_title'    => 'Sites web clairs',
         'trust_clear_desc'     => 'Confiance dès le premier regard.',
