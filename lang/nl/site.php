@@ -81,6 +81,10 @@ return [
             'Geen verplichting na het eerste gesprek',
         ],
 
+        // Studio card — footer row (Task 7)
+        'studio_card_pricing' => 'Vanaf :price · vrijblijvend gesprek',
+        'studio_card_cta'     => 'Gratis kennismaking aanvragen →',
+
         // Studio card — compact reassurance sub-line (Task 3)
         'studio_card_reassurance' => [
             'Van structuur en ontwerp tot livegang',

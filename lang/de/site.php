@@ -73,6 +73,10 @@ return [
             'Wartung & Betreuung',
         ],
 
+        // Studio card — footer row (Task 7 — TODO Task 12: translate)
+        'studio_card_pricing' => 'Ab :price · unverbindlich',
+        'studio_card_cta'     => 'Kostenloses Kennenlerngespräch anfragen →',
+
         'trust_clear_title'    => 'Klare Websites',
         'trust_clear_desc'     => 'Vertrauen beim ersten Eindruck.',
         'trust_custom_title'   => 'Maßarbeit wo nötig',

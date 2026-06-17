@@ -98,10 +98,10 @@
                         @endif
 
                         <div class="pt-3 sm:pt-4 border-t border-stone-100 flex items-center justify-between">
-                            <p class="text-xs text-slate-400">Vanaf <span class="font-semibold text-slate-600">€750</span> · vrijblijvend gesprek</p>
+                            <p class="text-xs text-slate-400">{!! __('site.home.studio_card_pricing', ['price' => '<span class="font-semibold text-slate-600">€750</span>']) !!}</p>
                             <a href="{{ $contactHref }}"
                                class="text-xs font-semibold text-amber-700 hover:text-amber-900 transition-colors duration-200">
-                                Kennismaking aanvragen →
+                                {{ __('site.home.studio_card_cta') }}
                             </a>
                         </div>
                     </div>

@@ -62,6 +62,10 @@ return [
             'Maintenance & support',
         ],
 
+        // Studio card — footer row (Task 7 — TODO Task 12: translate)
+        'studio_card_pricing' => 'From :price · no obligation',
+        'studio_card_cta'     => 'Request a free intro call →',
+
         'trust_clear_title'    => 'Clear websites',
         'trust_clear_desc'     => 'Trust from the first impression.',
         'trust_custom_title'   => 'Custom where it matters',

@@ -72,6 +72,10 @@ return [
             'Maintenance & suivi',
         ],
 
+        // Studio card — footer row (Task 7 — TODO Task 12: translate)
+        'studio_card_pricing' => 'À partir de :price · sans engagement',
+        'studio_card_cta'     => 'Demander un premier entretien gratuit →',
+
         'trust_clear_title'    => 'Sites web clairs',
         'trust_clear_desc'     => 'Confiance dès le premier regard.',
         'trust_custom_title'   => 'Sur mesure quand nécessaire',
