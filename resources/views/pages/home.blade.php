@@ -87,7 +87,7 @@
 
                         @php $reassurance = is_array(__('site.home.studio_card_reassurance')) ? __('site.home.studio_card_reassurance') : []; @endphp
                         @if($reassurance)
-                        <ul class="mb-3 sm:mb-4 space-y-1" aria-label="Werkwijze en aanpak">
+                        <ul class="mb-3 sm:mb-4 space-y-1 hidden lg:block" aria-label="Werkwijze en aanpak">
                             @foreach($reassurance as $point)
                             <li class="flex items-start gap-1.5 text-xs text-slate-400 leading-snug">
                                 <span class="mt-[0.2rem] w-1 h-1 rounded-full bg-slate-300 shrink-0" aria-hidden="true"></span>
@@ -97,7 +97,7 @@
                         </ul>
                         @endif
 
-                        <div class="pt-3 sm:pt-4 border-t border-stone-100 flex items-center justify-between">
+                        <div class="pt-3 sm:pt-4 border-t border-stone-100 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                             <p class="text-xs text-slate-400">{!! __('site.home.studio_card_pricing', ['price' => '<span class="font-semibold text-slate-600">€750</span>']) !!}</p>
                             <a href="{{ $contactHref }}"
                                class="text-xs font-semibold text-amber-700 hover:text-amber-900 transition-colors duration-200">
@@ -182,7 +182,7 @@
      ════════════════════════════════════════════════════════════════════════ --}}
 @php $trustSignals = __('site.home.trust_signals'); @endphp
 @if(is_array($trustSignals))
-<div class="bg-white border-b border-stone-100" aria-label="Werkwijze en aanpak">
+<div class="hidden sm:block bg-white border-b border-stone-100" aria-label="Werkwijze en aanpak">
     <div class="max-w-6xl mx-auto px-6 py-3 sm:py-4">
         <div class="flex flex-wrap items-center gap-x-5 gap-y-2">
             @foreach($trustSignals as $signal)
