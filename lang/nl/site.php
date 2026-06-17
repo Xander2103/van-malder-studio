@@ -43,9 +43,9 @@ return [
     'hero' => [
         'eyebrow'         => 'Van Malder Studio · Tervuren · Druivenstreek',
         'headline'        => 'Websites die vertrouwen wekken en aanvragen opleveren.',
-        'body'            => 'Voor zelfstandigen en lokale bedrijven die professioneel online willen staan, beter gevonden willen worden en bezoekers makkelijker naar contact willen leiden.',
+        'body'            => 'Ik bouw websites voor zelfstandigen en lokale bedrijven in de regio — professioneel, vindbaar in Google, met een duidelijke contactflow die bezoekers naar jou leidt.',
         'body_byline'     => 'Gebouwd door :name, webdeveloper uit Tervuren.',
-        'body_mobile'     => 'Voor zelfstandigen en lokale bedrijven die professioneel online willen staan en meer aanvragen willen krijgen.',
+        'body_mobile'     => 'Ik bouw websites die er professioneel uitzien, goed gevonden worden en bezoekers naar contact leiden — voor zelfstandigen en lokale bedrijven.',
         'trust_card_role' => 'Webdeveloper uit Tervuren',
         'trust_card_note' => 'Rechtstreeks contact, geen tussenpersonen',
         'cta_primary'     => 'Gratis kennismaking aanvragen',
