@@ -73,6 +73,14 @@ return [
             'Onderhoud & opvolging',
         ],
 
+        // Honest trust signals — compact pill bar (Task 6)
+        'trust_signals' => [
+            'Rechtstreeks contact met Xander',
+            'Lokaal uit Tervuren',
+            'Transparante richtprijzen',
+            'Geen verplichting na het eerste gesprek',
+        ],
+
         // Studio card — compact reassurance sub-line (Task 3)
         'studio_card_reassurance' => [
             'Van structuur en ontwerp tot livegang',

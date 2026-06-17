@@ -178,6 +178,26 @@
 </section>
 
 {{-- ════════════════════════════════════════════════════════════════════════
+     B2. TRUST SIGNALS — compact honest pill bar (no fake reviews)
+     ════════════════════════════════════════════════════════════════════════ --}}
+@php $trustSignals = __('site.home.trust_signals'); @endphp
+@if(is_array($trustSignals))
+<div class="bg-white border-b border-stone-100" aria-label="Werkwijze en aanpak">
+    <div class="max-w-6xl mx-auto px-6 py-3 sm:py-4">
+        <div class="flex flex-wrap items-center gap-x-5 gap-y-2">
+            @foreach($trustSignals as $signal)
+            <span class="flex items-center gap-1.5 text-xs text-slate-500">
+                <span class="w-1 h-1 rounded-full bg-amber-400 shrink-0" aria-hidden="true"></span>
+                {{ $signal }}
+            </span>
+            @endforeach
+            {{-- TODO: add Google review badge here when real reviews are available --}}
+        </div>
+    </div>
+</div>
+@endif
+
+{{-- ════════════════════════════════════════════════════════════════════════
      C. SERVICES — 3 main service cards
      ════════════════════════════════════════════════════════════════════════ --}}
 <section class="max-w-6xl mx-auto px-6 py-12 md:py-20" aria-labelledby="services-heading">
