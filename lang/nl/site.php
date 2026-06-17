@@ -50,7 +50,7 @@ return [
         'trust_card_note' => 'Rechtstreeks contact, geen tussenpersonen',
         'cta_primary'     => 'Gratis kennismaking aanvragen',
         'cta_secondary'   => 'Bekijk diensten',
-        'trustline_items' => ['Vrijblijvend eerste gesprek', 'Voor zelfstandigen en kmo\'s', 'Vanaf €750'],
+        'trustline_items' => ['Vrijblijvend eerste gesprek', 'Voor zelfstandigen en kmo\'s', 'Nieuwe website vanaf €750'],
     ],
 
     // ── Home ──────────────────────────────────────────────────────────────────
