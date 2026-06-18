@@ -28,6 +28,7 @@
         $langLinks[$lang] = Route::has($key) ? route($key) : route($lang . '.home');
     }
 @endphp
+
 <header class="fixed top-0 inset-x-0 z-50 bg-stone-50/95 backdrop-blur-md border-b border-stone-200/80">
     <nav class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between" aria-label="Hoofdnavigatie">
         <a href="{{ navRoute('home', $locale) }}"
@@ -53,9 +54,8 @@
         </ul>
 
         <div class="hidden md:flex items-center gap-3">
-
             {{-- Language switcher --}}
-            <div class="flex items-center gap-0.5" role="navigation" aria-label="Taalwissel">
+            <div class="flex items-center gap-0.5" role="navigation" aria-label="{{ __('site.lang_switcher.label') }}">
                 @foreach(['nl' => 'NL', 'fr' => 'FR', 'en' => 'EN', 'de' => 'DE'] as $lang => $label)
                 <a href="{{ $langLinks[$lang] }}"
                    class="px-2 py-1 text-[0.7rem] font-semibold rounded transition-colors duration-150 {{ $locale === $lang ? 'text-slate-900 bg-stone-200' : 'text-slate-400 hover:text-slate-700' }}"
@@ -82,49 +82,105 @@
                 class="md:hidden p-2 rounded-md text-slate-500 hover:text-slate-900 hover:bg-stone-100 transition-colors duration-200 cursor-pointer"
                 aria-controls="mobile-menu"
                 aria-expanded="false"
-                aria-label="Menu openen">
-            <svg id="icon-open" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                aria-label="{{ __('site.nav.open_menu') }}">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
-            </svg>
-            <svg id="icon-close" class="w-5 h-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
             </svg>
         </button>
     </nav>
+</header>
 
-    {{-- Mobile menu --}}
-    <div id="mobile-menu" class="hidden md:hidden border-t border-stone-200 bg-stone-50" role="dialog" aria-label="Mobiel menu">
-        <ul class="max-w-6xl mx-auto px-4 py-3 flex flex-col gap-0.5" role="list">
+{{-- ── Mobile menu overlay ─────────────────────────────────────────────────── --}}
+{{-- Full-screen fixed overlay — hidden until nav-toggle is clicked.           --}}
+{{-- Separate from <header> so it can cover the full viewport.                 --}}
+<div id="mobile-menu"
+     class="mobile-nav-overlay"
+     role="dialog"
+     aria-modal="true"
+     aria-label="{{ __('site.nav.menu_label') }}">
+
+    {{-- Top bar: mirrors header height, logo + close --}}
+    <div class="flex items-center justify-between px-6 h-16 border-b border-stone-200/60 shrink-0">
+        <a href="{{ navRoute('home', $locale) }}"
+           class="font-serif text-[1.05rem] font-medium text-slate-900 tracking-tight inline-flex items-center gap-2"
+           aria-label="{{ config('studio.brand_name') }} — homepage"
+           tabindex="-1">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="shrink-0">
+                <circle cx="12" cy="12" r="10.5" stroke="#c49a3a" stroke-width="1"/>
+                <text x="12" y="16.5" text-anchor="middle" font-family="'Instrument Serif', Georgia, serif" font-size="9.5" fill="#c49a3a">VM</text>
+            </svg>
+            <span>Van Malder Studio</span>
+        </a>
+
+        <button id="mobile-menu-close"
+                type="button"
+                class="p-2 rounded-md text-slate-400 hover:text-slate-800 hover:bg-stone-100 transition-colors duration-200 cursor-pointer"
+                aria-label="{{ __('site.nav.close_menu') }}">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+        </button>
+    </div>
+
+    {{-- Navigation links — serif, large, airy --}}
+    <nav class="px-6 pt-6 pb-4 flex-1" aria-label="{{ __('site.nav.menu_label') }}">
+        <ul class="flex flex-col" role="list">
             @foreach($links as $link)
+            @php
+                $isActive = request()->routeIs($locale . '.' . $link['route']) || request()->routeIs($link['route']);
+            @endphp
             <li>
                 <a href="{{ navRoute($link['route'], $locale) }}"
-                   class="block px-3 py-2.5 text-sm font-medium rounded-md transition-colors duration-200 {{ request()->routeIs($locale . '.' . $link['route']) || request()->routeIs($link['route']) ? 'text-slate-900 bg-stone-100' : 'text-slate-600 hover:bg-stone-100 hover:text-slate-900' }}">
-                    {{ $link['label'] }}
+                   class="flex items-center justify-between py-4 border-b border-stone-100 transition-colors duration-200 {{ $isActive ? 'text-slate-900' : 'text-slate-400 hover:text-slate-800' }}"
+                   @if($isActive) aria-current="page" @endif>
+                    <span class="font-serif text-[1.9rem] font-normal leading-none">{{ $link['label'] }}</span>
+                    @if($isActive)
+                    <span class="w-1.5 h-1.5 rounded-full shrink-0" style="background:#c49a3a" aria-hidden="true"></span>
+                    @endif
                 </a>
             </li>
             @endforeach
-
-            {{-- Mobile language switcher --}}
-            <li class="pt-2 mt-1 border-t border-stone-200">
-                <div class="flex items-center gap-2 px-3 py-2" aria-label="Taalwissel">
-                    @foreach(['nl' => 'NL', 'fr' => 'FR', 'en' => 'EN', 'de' => 'DE'] as $lang => $label)
-                    <a href="{{ $langLinks[$lang] }}"
-                       class="px-2.5 py-1 text-xs font-semibold rounded border transition-colors duration-150 {{ $locale === $lang ? 'bg-slate-900 text-white border-slate-900' : 'text-slate-500 border-stone-200 hover:border-slate-400 hover:text-slate-700' }}"
-                       hreflang="{{ $lang }}"
-                       aria-current="{{ $locale === $lang ? 'true' : 'false' }}">
-                        {{ $label }}
-                    </a>
-                    @endforeach
-                </div>
-            </li>
-
-            <li class="pt-1">
-                <a href="{{ navRoute('contact', $locale) }}"
-                   class="block px-3 py-2.5 text-sm font-semibold text-white bg-slate-900 rounded-md hover:bg-blue-800 transition-colors duration-200 text-center cursor-pointer">
-                    {{ __('site.nav.contact') }}
-                </a>
-            </li>
         </ul>
+    </nav>
+
+    {{-- Bottom section: lang switcher + CTA + trust line --}}
+    <div class="px-6 pt-4 pb-8 shrink-0 flex flex-col gap-5">
+
+        {{-- Language switcher — minimal, no borders --}}
+        <div class="flex items-center gap-4" role="navigation" aria-label="{{ __('site.lang_switcher.label') }}">
+            @foreach(['nl' => 'NL', 'fr' => 'FR', 'en' => 'EN', 'de' => 'DE'] as $lang => $label)
+            <a href="{{ $langLinks[$lang] }}"
+               class="text-xs font-semibold tracking-widest transition-colors duration-150 {{ $locale === $lang ? 'text-slate-900' : 'text-slate-400 hover:text-slate-600' }}"
+               hreflang="{{ $lang }}"
+               aria-current="{{ $locale === $lang ? 'true' : 'false' }}"
+               aria-label="{{ match($lang) { 'nl' => 'Nederlands', 'fr' => 'Français', 'en' => 'English', 'de' => 'Deutsch', default => $lang } }}">
+                {{ $label }}
+            </a>
+            @endforeach
+        </div>
+
+        {{-- CTA — one strong primary, one quiet secondary --}}
+        <div class="flex flex-col gap-3">
+            <a href="{{ navRoute('contact', $locale) }}"
+               class="flex items-center justify-center gap-2 w-full px-6 py-3.5 text-sm font-semibold bg-slate-900 text-white rounded-xl hover:bg-blue-800 transition-colors duration-200 cursor-pointer">
+                {{ __('site.nav.mobile_cta') }}
+                <svg class="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                </svg>
+            </a>
+
+            <a href="{{ navRoute('services', $locale) }}"
+               class="text-center text-sm text-slate-400 hover:text-slate-700 transition-colors duration-200 py-1">
+                {{ __('site.nav.cta_secondary') }}
+            </a>
+        </div>
+
+        {{-- Trust / local identity line --}}
+        <div class="pt-3 border-t border-stone-200/60 flex flex-col gap-0.5">
+            <p class="text-xs text-slate-400 leading-relaxed">{{ __('site.nav.mobile_tagline') }}</p>
+            <p class="text-xs text-slate-400 leading-relaxed">{{ __('site.nav.mobile_price') }}</p>
+        </div>
     </div>
-</header>
+</div>
+
 <div class="h-16" aria-hidden="true"></div>

@@ -17,6 +17,13 @@ return [
         'pricing'         => 'Preise',
         'about'           => 'Über mich',
         'contact'         => 'Kontakt',
+        'open_menu'       => 'Menü öffnen',
+        'close_menu'      => 'Menü schließen',
+        'menu_label'      => 'Navigationsmenü',
+        'cta_secondary'   => 'Leistungen ansehen',
+        'mobile_cta'      => 'Kostenloses Erstgespräch anfragen',
+        'mobile_tagline'  => 'Van Malder Studio · Tervuren',
+        'mobile_price'    => 'Neue Website ab €750',
     ],
 
     'lang_switcher' => [

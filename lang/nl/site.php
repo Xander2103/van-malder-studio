@@ -11,6 +11,13 @@ return [
         'pricing'         => 'Prijzen',
         'about'           => 'Over mij',
         'contact'         => 'Contact',
+        'open_menu'       => 'Menu openen',
+        'close_menu'      => 'Menu sluiten',
+        'menu_label'      => 'Navigatiemenu',
+        'cta_secondary'   => 'Bekijk diensten',
+        'mobile_cta'      => 'Gratis kennismaking aanvragen',
+        'mobile_tagline'  => 'Van Malder Studio · Tervuren · Druivenstreek',
+        'mobile_price'    => 'Nieuwe website vanaf €750',
     ],
 
     'lang_switcher' => [

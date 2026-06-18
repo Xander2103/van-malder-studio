@@ -17,6 +17,13 @@ return [
         'pricing'         => 'Tarifs',
         'about'           => 'À propos',
         'contact'         => 'Contact',
+        'open_menu'       => 'Ouvrir le menu',
+        'close_menu'      => 'Fermer le menu',
+        'menu_label'      => 'Menu de navigation',
+        'cta_secondary'   => 'Voir les services',
+        'mobile_cta'      => 'Demander une rencontre gratuite',
+        'mobile_tagline'  => 'Van Malder Studio · Tervuren',
+        'mobile_price'    => 'Nouveau site à partir de €750',
     ],
 
     'lang_switcher' => [

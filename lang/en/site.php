@@ -10,6 +10,13 @@ return [
         'pricing'         => 'Pricing',
         'about'           => 'About',
         'contact'         => 'Contact',
+        'open_menu'       => 'Open menu',
+        'close_menu'      => 'Close menu',
+        'menu_label'      => 'Navigation menu',
+        'cta_secondary'   => 'View services',
+        'mobile_cta'      => 'Request a free introduction',
+        'mobile_tagline'  => 'Van Malder Studio · Tervuren',
+        'mobile_price'    => 'New website from €750',
     ],
 
     'lang_switcher' => [

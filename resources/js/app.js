@@ -1,40 +1,39 @@
 import './bootstrap';
 
 // =============================================================================
-// Mobile navigation toggle
+// Mobile navigation overlay
 // =============================================================================
 (function () {
-    const toggle    = document.getElementById('nav-toggle');
-    const menu      = document.getElementById('mobile-menu');
-    const iconOpen  = document.getElementById('icon-open');
-    const iconClose = document.getElementById('icon-close');
+    const toggle   = document.getElementById('nav-toggle');
+    const menu     = document.getElementById('mobile-menu');
+    const closeBtn = document.getElementById('mobile-menu-close');
 
     if (!toggle || !menu) return;
 
-    toggle.addEventListener('click', () => {
-        const isOpen = menu.classList.contains('hidden');
-        menu.classList.toggle('hidden', !isOpen);
-        toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-        iconOpen.classList.toggle('hidden', isOpen);
-        iconClose.classList.toggle('hidden', !isOpen);
-    });
+    function openMenu() {
+        menu.classList.add('menu-open');
+        toggle.setAttribute('aria-expanded', 'true');
+        document.body.classList.add('overflow-hidden');
+        // Move focus to close button so keyboard users land inside the overlay
+        if (closeBtn) setTimeout(() => closeBtn.focus(), 50);
+    }
 
-    document.addEventListener('click', (e) => {
-        if (!toggle.contains(e.target) && !menu.contains(e.target)) {
-            menu.classList.add('hidden');
-            toggle.setAttribute('aria-expanded', 'false');
-            iconOpen.classList.remove('hidden');
-            iconClose.classList.add('hidden');
-        }
-    });
+    function closeMenu() {
+        menu.classList.remove('menu-open');
+        toggle.setAttribute('aria-expanded', 'false');
+        document.body.classList.remove('overflow-hidden');
+        toggle.focus();
+    }
+
+    toggle.addEventListener('click', openMenu);
+
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closeMenu);
+    }
 
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && !menu.classList.contains('hidden')) {
-            menu.classList.add('hidden');
-            toggle.setAttribute('aria-expanded', 'false');
-            iconOpen.classList.remove('hidden');
-            iconClose.classList.add('hidden');
-            toggle.focus();
+        if (e.key === 'Escape' && menu.classList.contains('menu-open')) {
+            closeMenu();
         }
     });
 })();
