@@ -81,6 +81,12 @@
         <priority>0.8</priority>
     </url>
 
+<url>
+    <loc>https://vanmalderstudio.be/nl/website-laten-maken-leuven</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+</url>
+
     <url>
         <loc>https://vanmalderstudio.be/nl/website-onderhoud</loc>
         <changefreq>monthly</changefreq>
