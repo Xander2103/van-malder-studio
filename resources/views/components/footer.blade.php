@@ -62,9 +62,10 @@
                     <div class="md:mt-6 md:pt-5 md:border-t md:border-slate-800">
                         <h3 class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3">Lokaal</h3>
                         <ul class="space-y-2" role="list">
-                            <li><a href="/nl/website-laten-maken-tervuren" class="text-sm text-slate-500 hover:text-white transition-colors duration-200">Tervuren</a></li>
-                            <li><a href="/nl/website-laten-maken-vlaams-brabant" class="text-sm text-slate-500 hover:text-white transition-colors duration-200">Vlaams-Brabant</a></li>
-                            <li><a href="/nl/webdesigner-tervuren" class="text-sm text-slate-500 hover:text-white transition-colors duration-200">Webdesigner Tervuren</a></li>
+                            <li><a href="/nl/website-laten-maken-tervuren" class="text-sm text-slate-500 hover:text-white transition-colors duration-200">Website laten maken in Tervuren</a></li>
+                            <li><a href="/nl/website-laten-maken-leuven" class="text-sm text-slate-500 hover:text-white transition-colors duration-200">Website laten maken in Leuven</a></li>
+                            <li><a href="/nl/website-laten-maken-vlaams-brabant" class="text-sm text-slate-500 hover:text-white transition-colors duration-200">Website laten maken in Vlaams-Brabant</a></li>
+                            <li><a href="/nl/webdesigner-tervuren" class="text-sm text-slate-500 hover:text-white transition-colors duration-200">Webdesigner in Tervuren</a></li>
                         </ul>
                     </div>
                     @endif

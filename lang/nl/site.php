@@ -354,6 +354,29 @@ return [
         'card_maint_desc'      => 'Voor updates, backups, kleine aanpassingen en technische opvolging.',
         'card_maint_bullets'   => ['Maandelijkse updates', 'Beveiligingscontroles', 'Kleine aanpassingen', 'Monitoring en snelle reactie'],
         'card_maint_cta'       => 'Vraag onderhoud aan',
+        'faq_heading'          => 'Veelgestelde vragen over prijs',
+        'faq'                  => [
+            [
+                'q' => 'Wat kost een website laten maken?',
+                'a' => 'Een eenvoudige professionele website start bij €750 (Starterpakket). Voor een uitgebreidere site met meerdere pagina\'s en een beheermodule kijk je naar de Professionele formule vanaf €1.250. Webshops starten vanaf €950 voor een catalogus. Na een kennismakingsgesprek maak ik een concreet voorstel op maat.',
+            ],
+            [
+                'q' => 'Zijn er maandelijkse kosten?',
+                'a' => 'De bouwprijs is eenmalig. Daarna betaal je enkel voor hosting (buiten mijn rekening) en optioneel een onderhoudspakket vanaf €50/maand. Ik leg alle kosten vooraf transparant uit, geen verrassingen.',
+            ],
+            [
+                'q' => 'Wat bepaalt de uiteindelijke prijs?',
+                'a' => 'Aantal pagina\'s, gewenste functies (contactformulieren, webshop, meerdere talen), hoeveel inhoud er verwerkt moet worden, en eventueel maatwerk. Hoe meer scope, hoe meer tijd en dus een hogere prijs.',
+            ],
+            [
+                'q' => 'Kan ik starten met een kleine website en later uitbreiden?',
+                'a' => 'Ja. Een starterspakket is een volledig werkende professionele website. Later kunnen we pagina\'s toevoegen, functies uitbreiden of de site herwerken. Ik bouw met het oog op groei.',
+            ],
+            [
+                'q' => 'Betaal ik alles vooraf?',
+                'a' => 'Nee. Ik werk met een betaling in twee fasen: een voorschot bij de start en het saldo bij de lancering. De exacte verdeling staat steeds vermeld in het voorstel.',
+            ],
+        ],
     ],
 
     // ── Contact ───────────────────────────────────────────────────────────────
@@ -634,9 +657,9 @@ return [
         'services_title'  => 'Diensten | Websites, webapplicaties en onderhoud',
         'services_desc'   => 'Bekijk de diensten van Van Malder Studio: websites laten maken, bestaande websites vernieuwen, webapplicaties, formulieren en technisch onderhoud.',
         'services_og_title' => 'Diensten | Van Malder Studio',
-        'pricing_title'   => 'Prijzen | Website laten maken vanaf €750',
-        'pricing_desc'    => 'Richtprijzen voor websites, webapplicaties en onderhoud bij Van Malder Studio. Transparante startprijzen afhankelijk van scope, talen en functionaliteiten.',
-        'pricing_og_title' => 'Prijzen | Van Malder Studio',
+        'pricing_title'    => 'Wat kost een website? Richtprijzen vanaf €750 | Van Malder Studio',
+        'pricing_desc'     => 'Transparante richtprijzen voor een professionele website. Starterspakket vanaf €750, Pro vanaf €1.400. Bekijk de pakketten, prijsfactoren en veelgestelde vragen.',
+        'pricing_og_title' => 'Richtprijzen | Van Malder Studio',
         'about_title'     => 'Over mij | Xander Van Malder — Full stack developer',
         'about_desc'      => 'Xander Van Malder is een full stack developer uit de Druivenstreek (Tervuren) die professionele websites, webapplicaties en digitale oplossingen bouwt voor zelfstandigen en lokale bedrijven in Vlaams-Brabant.',
         'about_og_title'  => 'Over mij | Van Malder Studio',

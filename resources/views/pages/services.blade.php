@@ -105,6 +105,7 @@
             <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3">Lokaal in de Druivenstreek &amp; Vlaams-Brabant</p>
             <div class="flex flex-wrap gap-x-6 gap-y-2">
                 <a href="/nl/website-laten-maken-tervuren" class="text-sm text-slate-500 hover:text-amber-700 transition-colors duration-200">Website laten maken in Tervuren</a>
+                <a href="/nl/website-laten-maken-leuven" class="text-sm text-slate-500 hover:text-amber-700 transition-colors duration-200">Website laten maken in Leuven</a>
                 <a href="/nl/website-laten-maken-vlaams-brabant" class="text-sm text-slate-500 hover:text-amber-700 transition-colors duration-200">Website laten maken in Vlaams-Brabant</a>
                 <a href="/nl/webdesigner-tervuren" class="text-sm text-slate-500 hover:text-amber-700 transition-colors duration-200">Webdesigner in Tervuren</a>
                 <a href="/nl/website-laten-maken-overijse" class="text-sm text-slate-500 hover:text-amber-700 transition-colors duration-200">Website laten maken in Overijse</a>

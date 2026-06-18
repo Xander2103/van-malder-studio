@@ -133,4 +133,39 @@
         </p>
     </section>
 
+    {{-- FAQ --}}
+    @if(is_array(__('site.pricing.faq')))
+    <section class="max-w-6xl mx-auto px-6 py-12" aria-labelledby="pricing-faq-heading">
+        <div class="reveal">
+            <h2 id="pricing-faq-heading" class="font-serif text-2xl font-medium text-slate-900 mb-8">{{ __('site.pricing.faq_heading') }}</h2>
+            <div class="space-y-5">
+                @foreach(__('site.pricing.faq') as $item)
+                <div class="bg-white border border-stone-200 rounded-xl p-6">
+                    <h3 class="font-serif text-base font-medium text-slate-900 mb-2">{{ $item['q'] }}</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">{{ $item['a'] }}</p>
+                </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
+    @endif
+
+    {{-- FAQPage structured data --}}
+    @if(is_array(__('site.pricing.faq')))
+    @php
+        $pricingFaqSchema = [
+            '@context'   => 'https://schema.org',
+            '@type'      => 'FAQPage',
+            'mainEntity' => array_map(fn($item) => [
+                '@type'          => 'Question',
+                'name'           => $item['q'],
+                'acceptedAnswer' => ['@type' => 'Answer', 'text' => $item['a']],
+            ], __('site.pricing.faq')),
+        ];
+    @endphp
+    <script type="application/ld+json">
+{!! json_encode($pricingFaqSchema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
+    </script>
+    @endif
+
 </x-layouts.app>
