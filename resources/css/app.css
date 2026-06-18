@@ -658,6 +658,32 @@
     }
 
     /* -----------------------------------------------------------------------
+       Mobile language dropdown
+       JS toggles .lang-open. Default state is hidden via opacity/visibility.
+       ----------------------------------------------------------------------- */
+    .lang-dropdown {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transform: translateY(-4px);
+        transition: opacity 0.15s ease, visibility 0.15s ease, transform 0.15s ease;
+    }
+
+    .lang-dropdown.lang-open {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateY(0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .lang-dropdown {
+            transition: none;
+            transform: none !important;
+        }
+    }
+
+    /* -----------------------------------------------------------------------
        Mobile navigation overlay
        Full-screen panel; animated with opacity + visibility.
        JS toggles .menu-open to show/hide. Body gets overflow-hidden while open.

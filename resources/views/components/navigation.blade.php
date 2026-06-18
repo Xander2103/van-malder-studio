@@ -27,10 +27,14 @@
         $key = $lang . '.' . $baseName;
         $langLinks[$lang] = Route::has($key) ? route($key) : route($lang . '.home');
     }
+
+    $langLabels = ['nl' => 'Nederlands', 'fr' => 'Français', 'en' => 'English', 'de' => 'Deutsch'];
 @endphp
 
 <header class="fixed top-0 inset-x-0 z-50 bg-stone-50/95 backdrop-blur-md border-b border-stone-200/80">
     <nav class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between" aria-label="Hoofdnavigatie">
+
+        {{-- Logo --}}
         <a href="{{ navRoute('home', $locale) }}"
            class="font-serif text-[1.05rem] font-medium text-slate-900 tracking-tight hover:text-blue-700 transition-colors duration-200 inline-flex items-center gap-2"
            aria-label="{{ config('studio.brand_name') }} — homepage">
@@ -41,7 +45,7 @@
             <span>Van Malder Studio</span>
         </a>
 
-        {{-- Desktop nav --}}
+        {{-- Desktop: nav links --}}
         <ul class="hidden md:flex items-center gap-5" role="list">
             @foreach($links as $link)
             <li>
@@ -53,15 +57,15 @@
             @endforeach
         </ul>
 
+        {{-- Desktop: language switcher + contact --}}
         <div class="hidden md:flex items-center gap-3">
-            {{-- Language switcher --}}
             <div class="flex items-center gap-0.5" role="navigation" aria-label="{{ __('site.lang_switcher.label') }}">
                 @foreach(['nl' => 'NL', 'fr' => 'FR', 'en' => 'EN', 'de' => 'DE'] as $lang => $label)
                 <a href="{{ $langLinks[$lang] }}"
                    class="px-2 py-1 text-[0.7rem] font-semibold rounded transition-colors duration-150 {{ $locale === $lang ? 'text-slate-900 bg-stone-200' : 'text-slate-400 hover:text-slate-700' }}"
                    hreflang="{{ $lang }}"
                    aria-current="{{ $locale === $lang ? 'true' : 'false' }}"
-                   aria-label="{{ match($lang) { 'nl' => 'Nederlands', 'fr' => 'Français', 'en' => 'English', 'de' => 'Deutsch', default => $lang } }}">
+                   aria-label="{{ $langLabels[$lang] ?? $lang }}">
                     {{ $label }}
                 </a>
                 @endforeach
@@ -76,30 +80,67 @@
             </a>
         </div>
 
-        {{-- Mobile hamburger --}}
-        <button id="nav-toggle"
-                type="button"
-                class="md:hidden p-2 rounded-md text-slate-500 hover:text-slate-900 hover:bg-stone-100 transition-colors duration-200 cursor-pointer"
-                aria-controls="mobile-menu"
-                aria-expanded="false"
-                aria-label="{{ __('site.nav.open_menu') }}">
-            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
-            </svg>
-        </button>
+        {{-- Mobile: language dropdown + hamburger --}}
+        <div class="flex items-center gap-1.5 md:hidden">
+
+            {{-- Compact language dropdown --}}
+            <div class="relative" id="lang-switcher-mobile">
+                <button id="lang-toggle"
+                        type="button"
+                        class="flex items-center gap-1 px-2.5 py-1.5 text-xs font-semibold text-slate-700 bg-stone-100 border border-stone-200 rounded-md hover:bg-stone-200/70 transition-colors duration-150 cursor-pointer"
+                        aria-expanded="false"
+                        aria-controls="lang-dropdown"
+                        aria-haspopup="true"
+                        aria-label="{{ __('site.lang_switcher.label') }}: {{ strtoupper($locale) }}">
+                    <span>{{ strtoupper($locale) }}</span>
+                    <svg class="w-3 h-3 text-slate-400 shrink-0 transition-transform duration-150" id="lang-toggle-chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </button>
+
+                <nav id="lang-dropdown"
+                     class="lang-dropdown absolute right-0 top-full mt-1.5 bg-white border border-stone-200/80 rounded-lg shadow-lg py-1.5 z-10"
+                     aria-label="{{ __('site.lang_switcher.label') }}">
+                    @foreach(['nl' => 'NL', 'fr' => 'FR', 'en' => 'EN', 'de' => 'DE'] as $lang => $label)
+                    <a href="{{ $langLinks[$lang] }}"
+                       class="flex items-center justify-between px-3.5 py-2 text-xs font-semibold tracking-wider whitespace-nowrap transition-colors duration-100 {{ $locale === $lang ? 'text-slate-900 bg-stone-50' : 'text-slate-500 hover:text-slate-900 hover:bg-stone-50' }}"
+                       hreflang="{{ $lang }}"
+                       aria-current="{{ $locale === $lang ? 'true' : 'false' }}"
+                       aria-label="{{ $langLabels[$lang] ?? $lang }}">
+                        {{ $label }}
+                        @if($locale === $lang)
+                        <span class="w-1 h-1 rounded-full shrink-0 ml-2" style="background:#c49a3a" aria-hidden="true"></span>
+                        @endif
+                    </a>
+                    @endforeach
+                </nav>
+            </div>
+
+            {{-- Hamburger --}}
+            <button id="nav-toggle"
+                    type="button"
+                    class="p-2 rounded-md text-slate-500 hover:text-slate-900 hover:bg-stone-100 transition-colors duration-200 cursor-pointer"
+                    aria-controls="mobile-menu"
+                    aria-expanded="false"
+                    aria-label="{{ __('site.nav.open_menu') }}">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+            </button>
+        </div>
+
     </nav>
 </header>
 
 {{-- ── Mobile menu overlay ─────────────────────────────────────────────────── --}}
-{{-- Full-screen fixed overlay — hidden until nav-toggle is clicked.           --}}
-{{-- Separate from <header> so it can cover the full viewport.                 --}}
+{{-- Full-screen fixed overlay. Language switching is now in the header button. --}}
 <div id="mobile-menu"
      class="mobile-nav-overlay"
      role="dialog"
      aria-modal="true"
      aria-label="{{ __('site.nav.menu_label') }}">
 
-    {{-- Top bar: mirrors header height, logo + close --}}
+    {{-- Top bar: logo + close --}}
     <div class="flex items-center justify-between px-6 h-16 border-b border-stone-200/60 shrink-0">
         <a href="{{ navRoute('home', $locale) }}"
            class="font-serif text-[1.05rem] font-medium text-slate-900 tracking-tight inline-flex items-center gap-2"
@@ -143,21 +184,8 @@
         </ul>
     </nav>
 
-    {{-- Bottom section: lang switcher + CTA + trust line --}}
+    {{-- Bottom section: CTA + trust line (language switching is now in header) --}}
     <div class="px-6 pt-4 pb-8 shrink-0 flex flex-col gap-5">
-
-        {{-- Language switcher — minimal, no borders --}}
-        <div class="flex items-center gap-4" role="navigation" aria-label="{{ __('site.lang_switcher.label') }}">
-            @foreach(['nl' => 'NL', 'fr' => 'FR', 'en' => 'EN', 'de' => 'DE'] as $lang => $label)
-            <a href="{{ $langLinks[$lang] }}"
-               class="text-xs font-semibold tracking-widest transition-colors duration-150 {{ $locale === $lang ? 'text-slate-900' : 'text-slate-400 hover:text-slate-600' }}"
-               hreflang="{{ $lang }}"
-               aria-current="{{ $locale === $lang ? 'true' : 'false' }}"
-               aria-label="{{ match($lang) { 'nl' => 'Nederlands', 'fr' => 'Français', 'en' => 'English', 'de' => 'Deutsch', default => $lang } }}">
-                {{ $label }}
-            </a>
-            @endforeach
-        </div>
 
         {{-- CTA — one strong primary, one quiet secondary --}}
         <div class="flex flex-col gap-3">
