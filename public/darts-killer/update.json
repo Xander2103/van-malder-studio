@@ -1,0 +1,12 @@
+{
+  "enabled": true,
+  "latestVersion": "3.0.0",
+  "minRequiredVersion": "3.0.0",
+  "forceUpdate": false,
+  "title": "Update available",
+  "message": "A new version of Killer Darts is available.",
+  "buttonText": "Update now",
+  "laterButtonText": "Later",
+  "androidUrl": "https://play.google.com/store/apps/details?id=com.vmstudios.killerdarts",
+  "iosUrl": ""
+}
