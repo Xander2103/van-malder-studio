@@ -1,10 +1,10 @@
 {
   "enabled": true,
-  "latestVersion": "3.0.0",
+  "latestVersion": "4.0.0",
   "minRequiredVersion": "3.0.0",
   "forceUpdate": false,
-  "title": "Update available",
-  "message": "A new version of Killer Darts is available.",
+  "title": "Major update available",
+  "message": "New modes added: Cricket, Around the Clock, Halve It, Duel, Transit Arena and more.",
   "buttonText": "Update now",
   "laterButtonText": "Later",
   "androidUrl": "https://play.google.com/store/apps/details?id=com.vmstudios.killerdarts",
