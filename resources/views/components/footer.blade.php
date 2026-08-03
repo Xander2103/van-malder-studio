@@ -12,6 +12,23 @@
         ['key' => 'about',     'label' => __('site.nav.about')],
         ['key' => 'privacy',   'label' => __('site.footer.privacy_label')],
     ];
+
+    // Primary region — Tervuren / Druivenstreek. Order matters: first focus first.
+    $footerLocal = [
+        ['href' => '/nl/website-laten-maken-tervuren',   'label' => 'Website laten maken in Tervuren'],
+        ['href' => '/nl/website-laten-maken-duisburg',   'label' => 'Website laten maken in Duisburg'],
+        ['href' => '/nl/website-laten-maken-overijse',   'label' => 'Website laten maken in Overijse'],
+        ['href' => '/nl/website-laten-maken-hoeilaart',  'label' => 'Website laten maken in Hoeilaart'],
+        ['href' => '/nl/website-laten-maken-huldenberg', 'label' => 'Website laten maken in Huldenberg'],
+        ['href' => '/nl/website-laten-maken-bertem',     'label' => 'Website laten maken in Bertem'],
+    ];
+
+    // Secondary regions and service variants — linked, but not the first focus.
+    $footerLocalSecondary = [
+        ['href' => '/nl/webdesigner-tervuren',              'label' => 'Webdesigner in Tervuren'],
+        ['href' => '/nl/website-laten-maken-leuven',        'label' => 'Leuven'],
+        ['href' => '/nl/website-laten-maken-vlaams-brabant', 'label' => 'Vlaams-Brabant'],
+    ];
 @endphp
 <footer class="bg-slate-900 text-slate-300">
     <div class="max-w-6xl mx-auto px-6 pt-10 pb-6 md:pt-16 md:pb-8">
@@ -57,16 +74,21 @@
                         </ul>
                     </div>
 
-                    {{-- Lokaal links — NL only, beside Studio on mobile, below on desktop --}}
+                    {{-- Lokaal links — NL only, beside Studio on mobile, below on desktop.
+                         Primary region first (Druivenstreek), secondary regions on one compact line. --}}
                     @if($locale === 'nl')
                     <div class="md:mt-6 md:pt-5 md:border-t md:border-slate-800">
                         <h3 class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3">Lokaal</h3>
                         <ul class="space-y-2" role="list">
-                            <li><a href="/nl/website-laten-maken-tervuren" class="text-sm text-slate-500 hover:text-white transition-colors duration-200">Website laten maken in Tervuren</a></li>
-                            <li><a href="/nl/website-laten-maken-leuven" class="text-sm text-slate-500 hover:text-white transition-colors duration-200">Website laten maken in Leuven</a></li>
-                            <li><a href="/nl/website-laten-maken-vlaams-brabant" class="text-sm text-slate-500 hover:text-white transition-colors duration-200">Website laten maken in Vlaams-Brabant</a></li>
-                            <li><a href="/nl/webdesigner-tervuren" class="text-sm text-slate-500 hover:text-white transition-colors duration-200">Webdesigner in Tervuren</a></li>
+                            @foreach($footerLocal as $local)
+                            <li><a href="{{ $local['href'] }}" class="text-sm text-slate-500 hover:text-white transition-colors duration-200">{{ $local['label'] }}</a></li>
+                            @endforeach
                         </ul>
+                        <p class="mt-3 text-xs text-slate-600 leading-relaxed">
+                            @foreach($footerLocalSecondary as $local)
+                            <a href="{{ $local['href'] }}" class="hover:text-slate-400 transition-colors duration-200">{{ $local['label'] }}</a>@if(! $loop->last)<span aria-hidden="true"> · </span>@endif
+                            @endforeach
+                        </p>
                     </div>
                     @endif
 

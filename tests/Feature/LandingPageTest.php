@@ -20,6 +20,8 @@ class LandingPageTest extends TestCase
             'website-laten-maken-overijse',
             'website-laten-maken-huldenberg',
             'website-laten-maken-hoeilaart',
+            'website-laten-maken-bertem',
+            'website-laten-maken-leuven',
             'website-laten-maken-vlaams-brabant',
             'webdesigner-tervuren',
             'webdesigner-vlaams-brabant',

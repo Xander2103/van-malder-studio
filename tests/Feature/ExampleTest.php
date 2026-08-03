@@ -8,12 +8,13 @@ use Tests\TestCase;
 class ExampleTest extends TestCase
 {
     /**
-     * A basic test example.
+     * The root URL has no locale prefix and redirects permanently to /nl,
+     * the canonical Dutch homepage. See routes/web.php.
      */
-    public function test_the_application_returns_a_successful_response(): void
+    public function test_the_root_url_redirects_to_the_dutch_homepage(): void
     {
         $response = $this->get('/');
 
-        $response->assertStatus(200);
+        $response->assertRedirect('/nl');
     }
 }

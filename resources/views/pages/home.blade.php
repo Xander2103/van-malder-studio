@@ -556,30 +556,30 @@
      J. LOCAL PAGES STRIP — SEO internal links (Dutch only, premium pills)
      ════════════════════════════════════════════════════════════════════════ --}}
 @if($loc === 'nl')
+@php
+    // Primary region first (Tervuren / Druivenstreek), then secondary regions.
+    $localPills = [
+        ['href' => '/nl/website-laten-maken-tervuren',   'label' => 'Website laten maken in Tervuren'],
+        ['href' => '/nl/website-laten-maken-duisburg',   'label' => 'Duisburg'],
+        ['href' => '/nl/website-laten-maken-overijse',   'label' => 'Overijse'],
+        ['href' => '/nl/website-laten-maken-hoeilaart',  'label' => 'Hoeilaart'],
+        ['href' => '/nl/website-laten-maken-huldenberg', 'label' => 'Huldenberg'],
+        ['href' => '/nl/website-laten-maken-bertem',     'label' => 'Bertem'],
+        ['href' => '/nl/webdesigner-tervuren',           'label' => 'Webdesigner in Tervuren'],
+        ['href' => '/nl/website-laten-maken-leuven',     'label' => 'Leuven'],
+        ['href' => '/nl/website-laten-maken-vlaams-brabant', 'label' => 'Vlaams-Brabant'],
+    ];
+@endphp
 <section class="border-t border-stone-200 bg-stone-50" aria-label="Lokale diensten in de Druivenstreek">
     <div class="max-w-6xl mx-auto px-6 py-7">
-        <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-4">Lokaal in de Druivenstreek &amp; Vlaams-Brabant</p>
+        <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-4">Lokaal in Tervuren, de Druivenstreek &amp; Vlaams-Brabant</p>
         <div class="flex flex-wrap gap-2">
-            <a href="/nl/website-laten-maken-tervuren"
+            @foreach($localPills as $pill)
+            <a href="{{ $pill['href'] }}"
                class="inline-flex items-center text-xs font-medium text-slate-600 bg-white border border-stone-200 rounded-full px-3 py-1.5 hover:border-amber-300 hover:text-amber-800 transition-colors duration-200">
-                Website laten maken in Tervuren
+                {{ $pill['label'] }}
             </a>
-            <a href="/nl/website-laten-maken-vlaams-brabant"
-               class="inline-flex items-center text-xs font-medium text-slate-600 bg-white border border-stone-200 rounded-full px-3 py-1.5 hover:border-amber-300 hover:text-amber-800 transition-colors duration-200">
-                Vlaams-Brabant
-            </a>
-            <a href="/nl/webdesigner-tervuren"
-               class="inline-flex items-center text-xs font-medium text-slate-600 bg-white border border-stone-200 rounded-full px-3 py-1.5 hover:border-amber-300 hover:text-amber-800 transition-colors duration-200">
-                Webdesigner in Tervuren
-            </a>
-            <a href="/nl/website-laten-maken-overijse"
-               class="inline-flex items-center text-xs font-medium text-slate-600 bg-white border border-stone-200 rounded-full px-3 py-1.5 hover:border-amber-300 hover:text-amber-800 transition-colors duration-200">
-                Website laten maken in Overijse
-            </a>
-            <a href="/nl/website-laten-maken-huldenberg"
-               class="inline-flex items-center text-xs font-medium text-slate-600 bg-white border border-stone-200 rounded-full px-3 py-1.5 hover:border-amber-300 hover:text-amber-800 transition-colors duration-200">
-                Website laten maken in Huldenberg
-            </a>
+            @endforeach
         </div>
     </div>
 </section>

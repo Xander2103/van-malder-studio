@@ -177,7 +177,7 @@ return [
         'why_eyebrow'  => 'Why Van Malder Studio',
         'why_heading'  => 'Local, personal and technically strong',
         'why_reasons'  => [
-            ['title' => 'Local from the Druivenstreek', 'desc' => 'I know the area, the local market and the entrepreneurs here. Tervuren, Overijse, Huldenberg, Hoeilaart — that\'s my territory.'],
+            ['title' => 'Local from the Druivenstreek', 'desc' => 'I know the area, the local market and the entrepreneurs here. Tervuren, Duisburg, Overijse, Hoeilaart, Huldenberg and Bertem — that\'s my territory.'],
             ['title' => 'Personal approach', 'desc' => 'You work directly with me, Xander Van Malder. No account managers, no outsourcing — short lines and fast communication.'],
             ['title' => 'Technically strong, without the agency overhead', 'desc' => 'A well-built website that loads fast, is secure and ranks well. Transparent about approach and pricing.'],
         ],

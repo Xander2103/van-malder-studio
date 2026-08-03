@@ -119,7 +119,7 @@ class PageController extends Controller
         foreach ($landingPages as $lp) {
             $routes[] = [
                 'url'      => url('/nl/' . $lp['slug']),
-                'priority' => '0.8',
+                'priority' => $lp['sitemap_priority'] ?? '0.8',
                 'freq'     => 'monthly',
             ];
         }

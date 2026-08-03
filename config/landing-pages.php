@@ -7,6 +7,10 @@
  * Do not add pages without unique, useful copy.
  * Initial set: Dutch only. FR/EN versions should not be created until translated.
  *
+ * Primary region (first focus): Tervuren · Duisburg · Overijse · Hoeilaart ·
+ * Huldenberg · Bertem · Druivenstreek. Leuven and Vlaams-Brabant stay in the set
+ * but are secondary — they should not outrank the core region in internal links.
+ *
  * Schema per page:
  *   slug             string   — URL path under /{locale}/
  *   locale           string   — nl | fr | en
@@ -24,6 +28,8 @@
  *   related          array    — slugs of related landing pages
  *   cta_text         string   — CTA button label
  *   noindex          bool     — true = add noindex (use for stubs / untranslated)
+ *   sitemap_priority string|null — sitemap <priority>; defaults to 0.8 when omitted.
+ *                                  0.9 = primary region page.
  */
 
 return [
@@ -64,7 +70,7 @@ return [
             ['q' => 'Wat heb ik nodig om te starten?', 'a' => 'Een kort gesprek over je doelen en doelgroep is voldoende om te beginnen. Teksten en beelden kunnen later aangeleverd worden.'],
             ['q' => 'Kan ik de website nadien zelf aanpassen?', 'a' => 'Dat bespreken we op voorhand. Ik kan een eenvoudige admin-omgeving voorzien zodat je teksten en foto\'s zelf kunt beheren, of ik neem het onderhoud op mij.'],
         ],
-        'related'          => ['website-laten-maken-tervuren', 'website-laten-maken-vlaams-brabant', 'website-vernieuwen'],
+        'related'          => ['website-laten-maken-tervuren', 'website-laten-maken-overijse', 'website-vernieuwen'],
         'cta_text'         => 'Bespreek je website vrijblijvend',
         'noindex'          => false,
     ],
@@ -100,7 +106,7 @@ return [
             ['q' => 'Kan ik mijn bestaande inhoud bewaren?', 'a' => 'Ja, teksten en afbeeldingen die je wilt bewaren kunnen overgenomen worden in de nieuwe versie.'],
             ['q' => 'Wat als mijn huidige site op een CMS staat dat ik niet wil bewaren?', 'a' => 'Dan stap je over naar een nieuw platform. Ik help je kiezen wat het beste past bij je wensen voor beheer en functionaliteiten.'],
         ],
-        'related'          => ['website-laten-maken', 'website-laten-maken-vlaams-brabant', 'website-onderhoud'],
+        'related'          => ['website-laten-maken', 'website-laten-maken-tervuren', 'website-onderhoud'],
         'cta_text'         => 'Bespreek de vernieuwing',
         'noindex'          => false,
     ],
@@ -137,7 +143,7 @@ return [
             ['q' => 'Kan ik later producten zelf toevoegen?', 'a' => 'Ja. Ik kan een admin-omgeving voorzien waarmee je zelf producten, foto\'s en prijzen beheert.'],
             ['q' => 'Wat als ik maar een klein aantal producten heb?', 'a' => 'Dan is een productcatalogus (zonder winkelmandje) misschien voldoende. Dat is goedkoper en eenvoudiger te beheren. We bespreken wat het beste past.'],
         ],
-        'related'          => ['website-laten-maken', 'offerteformulier-laten-maken', 'website-laten-maken-vlaams-brabant'],
+        'related'          => ['website-laten-maken', 'offerteformulier-laten-maken', 'website-laten-maken-tervuren'],
         'cta_text'         => 'Bespreek je webshop',
         'noindex'          => false,
     ],
@@ -246,7 +252,7 @@ return [
             ['q' => 'Hoe lang duurt het voor ik iets merk?', 'a' => 'Dat verschilt sterk per regio, sector en concurrentie. Vaak zie je na 3 tot 6 maanden beweging. Sommige lokale zoekopdrachten zijn sneller te beïnvloeden dan andere.'],
             ['q' => 'Werk je ook voor websites die door iemand anders gebouwd zijn?', 'a' => 'Ja. Ik kan SEO-verbeteringen doorvoeren op bestaande websites, ook als ik ze niet zelf gebouwd heb. Na een korte analyse vertel ik je wat mogelijk is.'],
         ],
-        'related'          => ['website-laten-maken', 'website-laten-maken-tervuren', 'website-laten-maken-vlaams-brabant'],
+        'related'          => ['website-laten-maken-tervuren', 'website-laten-maken-overijse', 'website-laten-maken'],
         'cta_text'         => 'Bespreek je online zichtbaarheid',
         'noindex'          => false,
     ],
@@ -265,7 +271,7 @@ return [
         'intro'            => 'Ik ben Xander Van Malder — webdeveloper uit Tervuren, gevestigd in Duisburg aan de rand van de Druivenstreek. Ik bouw professionele websites voor zelfstandigen en lokale bedrijven in Tervuren en omgeving: van een kinesist in Vossem tot een aannemer in Moorsel, van een horecazaak in het centrum tot een vrij beroep in Duisburg of Moorsel. Persoonlijk contact, een eerlijke aanpak en een website die aanvragen oplevert — starterspakket vanaf €750.',
         'service_type'     => 'website',
         'location'         => 'Tervuren / Druivenstreek',
-        'who_for'          => 'Voor zelfstandigen en lokale bedrijven in Tervuren, Vossem, Moorsel, Duisburg en de omliggende deelgemeenten van de Druivenstreek.',
+        'who_for'          => 'Voor zelfstandigen en lokale bedrijven in Tervuren, Vossem, Moorsel, Duisburg en de omliggende gemeenten van de Druivenstreek — Overijse, Hoeilaart, Huldenberg en Bertem.',
         'bullets'          => [
             'Persoonlijk contact — je praat rechtstreeks met Xander',
             'Lokale kennis van Tervuren, Duisburg en de Druivenstreek',
@@ -292,13 +298,14 @@ return [
             ['q' => 'Wat kost een website laten maken in Tervuren?', 'a' => 'Een eenvoudige professionele website begint vanaf €750. De prijs hangt af van het aantal pagina\'s, gewenste functies en inhoud. Na een kennismakingsgesprek maak ik een concreet voorstel op maat.'],
             ['q' => 'Hoe lang duurt het om een website te laten maken?', 'a' => 'Gemiddeld 2 tot 6 weken, afhankelijk van de scope en hoe snel feedback en inhoud aangeleverd worden.'],
             ['q' => 'Kunnen we elkaar ontmoeten?', 'a' => 'Ja, zeker. Een kennismakingsgesprek in de buurt of via video — jij kiest wat het beste uitkomt.'],
-            ['q' => 'Werk je enkel in Tervuren?', 'a' => 'Nee — ik werk voor heel Vlaams-Brabant en ook daarbuiten. Tervuren en de Druivenstreek zijn mijn thuisbasis, maar ik werk even goed met klanten in Leuven, Brussel-rand of elders.'],
+            ['q' => 'Werk je enkel in Tervuren?', 'a' => 'Tervuren en de Druivenstreek zijn mijn thuisbasis: Duisburg, Overijse, Hoeilaart, Huldenberg en Bertem liggen op een kwartier rijden. Daarbuiten werk ik ook — Leuven, de Brusselse rand en de rest van Vlaams-Brabant — maar in de directe regio kunnen we makkelijker persoonlijk afspreken.'],
             ['q' => 'Wat als ik al een verouderde website heb?', 'a' => 'Dan bespreken we of een volledige vernieuwing of gerichte aanpassingen de beste aanpak zijn. Ik analyseer eerlijk wat voor jou het meeste oplevert.'],
             ['q' => 'Kan ik de website nadien zelf aanpassen?', 'a' => 'Dat bespreken we op voorhand. Een eenvoudige admin-omgeving is mogelijk zodat je teksten en foto\'s zelf kunt beheren. Of ik neem het onderhoud op mij — afhankelijk van wat je verkiest.'],
         ],
-        'related'          => ['webdesigner-tervuren', 'website-laten-maken-leuven', 'website-laten-maken-vlaams-brabant'],
+        'related'          => ['webdesigner-tervuren', 'website-laten-maken-duisburg', 'website-laten-maken-overijse'],
         'cta_text'         => 'Gratis kennismaking aanvragen',
         'noindex'          => false,
+        'sitemap_priority' => '0.9',
     ],
 
     // ─── 8. Website laten maken — Duisburg ───────────────────────────────────
@@ -332,9 +339,10 @@ return [
             ['q' => 'Is een lokale website echt nuttig voor een kleine zaak?', 'a' => 'Zeker. Juist kleine lokale bedrijven profiteren sterk van een goede online aanwezigheid. Klanten zoeken je online, ook als je klein bent.'],
             ['q' => 'Kan ik de website nadien zelf beheren?', 'a' => 'Dat bespreken we vooraf. Een eenvoudige admin-omgeving is mogelijk. Of ik neem het onderhoud op mij — afhankelijk van wat je verkiest.'],
         ],
-        'related'          => ['website-laten-maken-tervuren', 'website-laten-maken-huldenberg', 'website-laten-maken'],
+        'related'          => ['website-laten-maken-tervuren', 'website-laten-maken-huldenberg', 'website-laten-maken-overijse'],
         'cta_text'         => 'Neem contact op',
         'noindex'          => false,
+        'sitemap_priority' => '0.9',
     ],
 
     // ─── 9. Website laten maken — Overijse / Druivenstreek ───────────────────
@@ -368,9 +376,10 @@ return [
             ['q' => 'Kan mijn website ook reservaties of bestellingen ontvangen?', 'a' => 'Ja, dat is mogelijk. We bespreken op voorhand welke functionaliteiten je nodig hebt — zo kies je de juiste aanpak en prijs.'],
             ['q' => 'Wat maakt jou anders dan een groter agency?', 'a' => 'Persoonlijk contact. Je werkt met mij, niet met een account manager. Korte lijnen, snelle reacties, eerlijke communicatie.'],
         ],
-        'related'          => ['website-laten-maken-tervuren', 'website-laten-maken-huldenberg', 'website-laten-maken'],
+        'related'          => ['website-laten-maken-hoeilaart', 'website-laten-maken-tervuren', 'website-laten-maken-huldenberg'],
         'cta_text'         => 'Neem contact op',
         'noindex'          => false,
+        'sitemap_priority' => '0.9',
     ],
 
     // ─── 10. Website laten maken — Huldenberg ────────────────────────────────
@@ -404,9 +413,10 @@ return [
             ['q' => 'Moet ik naar jou toe komen voor een gesprek?', 'a' => 'Nee, alles kan digitaal. Persoonlijk afspreken in de streek is ook mogelijk.'],
             ['q' => 'Hoe snel kan ik een website online hebben?', 'a' => 'Afhankelijk van de scope en je beschikbaarheid voor feedback: 2 tot 6 weken is realistisch.'],
         ],
-        'related'          => ['website-laten-maken-tervuren', 'website-laten-maken-overijse', 'website-laten-maken'],
+        'related'          => ['website-laten-maken-bertem', 'website-laten-maken-overijse', 'website-laten-maken-tervuren'],
         'cta_text'         => 'Neem contact op',
         'noindex'          => false,
+        'sitemap_priority' => '0.9',
     ],
 
     // ─── 11. Website laten maken — Hoeilaart ─────────────────────────────────
@@ -440,22 +450,60 @@ return [
             ['q' => 'Werk je ook voor toeristische activiteiten of evenementen?', 'a' => 'Ja. Een site voor een B&B, restaurant, activiteit of lokale attractie heeft een andere aanpak dan een gewone bedrijfssite. Dat bespreken we samen.'],
             ['q' => 'Zijn er extra kosten na de lancering?', 'a' => 'Optioneel: je kunt een onderhoudspakket nemen. Dat is niet verplicht maar handig als je weinig tijd hebt voor technische updates.'],
         ],
-        'related'          => ['website-laten-maken-tervuren', 'website-laten-maken-overijse', 'website-laten-maken'],
+        'related'          => ['website-laten-maken-overijse', 'website-laten-maken-tervuren', 'website-laten-maken-duisburg'],
         'cta_text'         => 'Neem contact op',
         'noindex'          => false,
+        'sitemap_priority' => '0.9',
     ],
 
-    // ─── 12. Website laten maken — Vlaams-Brabant ────────────────────────────
+    // ─── 12. Website laten maken — Bertem ────────────────────────────────────
+    [
+        'slug'             => 'website-laten-maken-bertem',
+        'locale'           => 'nl',
+        'meta_title'       => 'Website laten maken Bertem | Van Malder Studio',
+        'meta_description' => 'Webdeveloper actief in Bertem, Leefdaal en Korbeek-Dijle. Professionele websites voor zelfstandigen en lokale bedrijven tussen Tervuren en Leuven.',
+        'h1'               => 'Website laten maken in Bertem',
+        'intro'            => 'Bertem ligt tussen Tervuren en Leuven, met Leefdaal en Korbeek-Dijle als landelijke deelgemeenten in de Dijlevallei. Dat is een bijzondere positie: veel ondernemers hier bedienen zowel de dorpskernen als klanten uit Leuven. Een website die enkel "Bertem" zegt, laat de helft van die markt liggen — en een website die enkel op Leuven mikt, verliest de nabijheid die je lokaal net sterk maakt. Ik bouw sites die dat evenwicht respecteren: verankerd in je gemeente, maar zichtbaar in de bredere regio.',
+        'service_type'     => 'website',
+        'location'         => 'Bertem',
+        'who_for'          => 'Voor zelfstandigen, zorgverleners, bouw- en tuinondernemingen en lokale zaken in Bertem, Leefdaal en Korbeek-Dijle.',
+        'bullets'          => [
+            'Website die zowel je gemeente als de regio Leuven aanspreekt',
+            'Responsive design met sterke mobiele weergave',
+            'SEO-basis voor lokale zoekopdrachten in Bertem en omgeving',
+            'Duidelijke contactflow — afspraak, offerte of telefoon',
+            'Persoonlijk contact — je werkt rechtstreeks met de developer',
+            'Onderhoud en opvolging mogelijk na lancering',
+        ],
+        'steps'            => [
+            ['title' => 'Kennismakingsgesprek', 'body' => 'We bespreken je zaak, je werkgebied en waar je klanten vandaan komen. In de streek of via video.'],
+            ['title' => 'Voorstel op maat', 'body' => 'Een concreet plan met scope, prijs en planning — helder en zonder verrassingen.'],
+            ['title' => 'Bouw', 'body' => 'Ik bouw de website en hou je op de hoogte van de voortgang.'],
+            ['title' => 'Lancering', 'body' => 'We gaan live en daarna blijf ik bereikbaar voor vragen en aanpassingen.'],
+        ],
+        'honest_note'      => 'Wie in Bertem werkt maar ook op Leuven mikt, concurreert daar met een grotere markt. Ik zorg dat je website technisch en inhoudelijk klopt voor beide. Welke zoekopdrachten je effectief wint, hangt af van je sector en de concurrentie — garanties op posities geef ik niet.',
+        'faq'              => [
+            ['q' => 'Kan mijn website zowel op Bertem als op Leuven mikken?', 'a' => 'Ja. We bepalen samen welke gemeenten en diensten er inhoudelijk in je site verwerkt worden, zodat je zichtbaar bent in je eigen gemeente én in de bredere regio zonder geforceerde herhaling van plaatsnamen.'],
+            ['q' => 'Werk je ook voor zaken in Leefdaal of Korbeek-Dijle?', 'a' => 'Zeker. De deelgemeenten horen bij mijn werkgebied — ik kom vanuit Tervuren in een kwartier ter plaatse.'],
+            ['q' => 'Wat kost een website voor een kleine zaak in Bertem?', 'a' => 'Een starterspakket begint vanaf €750. De prijs hangt af van het aantal pagina\'s, de gewenste functies en hoeveel inhoud er verwerkt moet worden. Na een gesprek krijg je een concreet voorstel.'],
+        ],
+        'related'          => ['website-laten-maken-huldenberg', 'website-laten-maken-tervuren', 'website-laten-maken-leuven'],
+        'cta_text'         => 'Neem contact op',
+        'noindex'          => false,
+        'sitemap_priority' => '0.9',
+    ],
+
+    // ─── 13. Website laten maken — Vlaams-Brabant ────────────────────────────
     [
         'slug'             => 'website-laten-maken-vlaams-brabant',
         'locale'           => 'nl',
         'meta_title'       => 'Website laten maken Vlaams-Brabant | Van Malder Studio',
-        'meta_description' => 'Webdeveloper actief in heel Vlaams-Brabant. Professionele websites, webshops en digitale oplossingen voor zelfstandigen en kmo\'s in Leuven, Halle, Zaventem en omgeving.',
+        'meta_description' => 'Webdeveloper actief in heel Vlaams-Brabant, met thuisbasis in de Druivenstreek. Professionele websites, webshops en digitale oplossingen voor zelfstandigen en kmo\'s.',
         'h1'               => 'Website laten maken in Vlaams-Brabant',
-        'intro'            => 'Van Malder Studio werkt voor zelfstandigen en bedrijven door heel Vlaams-Brabant. Of je nu in Leuven, Halle, Zaventem, Asse, Tervuren, Overijse of Huldenberg gevestigd bent — ik bouw een professionele website die aansluit bij jouw sector en jouw klanten. Persoonlijk contact, eerlijke aanpak en een resultaat dat werkt.',
+        'intro'            => 'Van Malder Studio werkt voor zelfstandigen en bedrijven door heel Vlaams-Brabant, met de Druivenstreek als thuisbasis. In Tervuren, Duisburg, Overijse, Hoeilaart, Huldenberg en Bertem kom ik makkelijk persoonlijk langs; in Leuven, Zaventem, Asse of elders in de provincie werken we vlot digitaal. In beide gevallen krijg je hetzelfde: een professionele website die aansluit bij jouw sector en jouw klanten, met persoonlijk contact en een eerlijke aanpak.',
         'service_type'     => 'website',
         'location'         => 'Vlaams-Brabant',
-        'who_for'          => 'Voor zelfstandigen en kmo\'s in Leuven, Halle-Vilvoorde, Aarschot, Diest, Tienen, Zaventem, Bertem en de rest van Vlaams-Brabant.',
+        'who_for'          => 'Voor zelfstandigen en kmo\'s in de Druivenstreek — Tervuren, Overijse, Hoeilaart, Huldenberg, Bertem — en verder in Leuven, Zaventem, Tienen en de rest van Vlaams-Brabant.',
         'bullets'          => [
             'Actief in heel Vlaams-Brabant — geen afstandstoeslag',
             'Responsive website met SEO-basis voor lokale zichtbaarheid',
@@ -481,7 +529,7 @@ return [
         'noindex'          => false,
     ],
 
-    // ─── 13. Website laten maken — Leuven ────────────────────────────────────
+    // ─── 14. Website laten maken — Leuven (secundair) ────────────────────────
     [
         'slug'             => 'website-laten-maken-leuven',
         'locale'           => 'nl',
@@ -520,12 +568,12 @@ return [
             ['q' => 'Ik heb al een website, maar die ziet er verouderd uit. Wat zijn de opties?', 'a' => 'Dan bekijken we samen of een volledige vernieuwing of gerichte aanpassingen meer zin hebben. Ik geef je een eerlijk advies gebaseerd op wat het meeste oplevert voor jouw situatie.'],
             ['q' => 'Kan ik mijn website nadien zelf beheren?', 'a' => 'Dat bespreken we vooraf. Een eenvoudige admin-omgeving is mogelijk, zodat je teksten en afbeeldingen zelf kunt beheren. Of ik neem het onderhoud op mij — afhankelijk van jouw voorkeur.'],
         ],
-        'related'          => ['website-laten-maken-tervuren', 'website-laten-maken-vlaams-brabant', 'website-laten-maken'],
+        'related'          => ['website-laten-maken-tervuren', 'website-laten-maken-bertem', 'website-laten-maken-vlaams-brabant'],
         'cta_text'         => 'Gratis kennismaking aanvragen',
         'noindex'          => false,
     ],
 
-    // ─── 14. Webdesigner Tervuren ─────────────────────────────────────────────
+    // ─── 15. Webdesigner Tervuren ─────────────────────────────────────────────
     [
         'slug'             => 'webdesigner-tervuren',
         'locale'           => 'nl',
@@ -558,22 +606,22 @@ return [
             ['q' => 'Hoe lang duurt een websiteontwerp?', 'a' => 'Een eenvoudige site met doordacht ontwerp is in 2 à 4 weken klaar. Complexere projecten met meerdere pagina\'s en functies nemen langer. We spreken een realistische planning af na het kennismakingsgesprek.'],
             ['q' => 'Wat kost webdesign in Tervuren?', 'a' => 'Een website met professioneel ontwerp start vanaf €750. De prijs hangt af van de scope, gewenste functies en de complexiteit van het ontwerp. Ik maak een concreet voorstel op maat na een eerste gesprek.'],
         ],
-        'related'          => ['website-laten-maken-tervuren', 'webdesigner-vlaams-brabant', 'website-laten-maken'],
+        'related'          => ['website-laten-maken-tervuren', 'website-laten-maken-duisburg', 'webdesigner-vlaams-brabant'],
         'cta_text'         => 'Bespreek je websiteontwerp',
         'noindex'          => false,
     ],
 
-    // ─── 14. Webdesigner Vlaams-Brabant ──────────────────────────────────────
+    // ─── 16. Webdesigner Vlaams-Brabant ──────────────────────────────────────
     [
         'slug'             => 'webdesigner-vlaams-brabant',
         'locale'           => 'nl',
         'meta_title'       => 'Webdesigner in Vlaams-Brabant | Van Malder Studio',
-        'meta_description' => 'Webdesigner actief in heel Vlaams-Brabant. Van Malder Studio ontwerpt en bouwt professionele websites voor zelfstandigen en kmo\'s in Leuven, Tervuren, Halle en omgeving.',
+        'meta_description' => 'Webdesigner actief in heel Vlaams-Brabant. Van Malder Studio ontwerpt en bouwt professionele websites voor zelfstandigen en kmo\'s in de Druivenstreek, Leuven en omgeving.',
         'h1'               => 'Webdesigner in Vlaams-Brabant',
-        'intro'            => 'Van Malder Studio is webdesigner en full stack developer actief in heel Vlaams-Brabant. Of je nu in Leuven, Tervuren, Overijse, Halle, Zaventem, Bertem of een andere gemeente in de provincie gevestigd bent: ik ontwerp en bouw websites die passen bij jouw merk en doelgroep. Geen kant-en-klare thema\'s, maar een doordacht ontwerp van A tot Z — met een technische basis die ook werkt.',
+        'intro'            => 'Van Malder Studio is webdesigner en full stack developer actief in heel Vlaams-Brabant, met de Druivenstreek als uitvalsbasis. Of je nu in Tervuren, Overijse, Hoeilaart, Huldenberg, Bertem, Leuven of een andere gemeente in de provincie gevestigd bent: ik ontwerp en bouw websites die passen bij jouw merk en doelgroep. Geen kant-en-klare thema\'s, maar een doordacht ontwerp van A tot Z — met een technische basis die ook werkt.',
         'service_type'     => 'website',
         'location'         => 'Vlaams-Brabant',
-        'who_for'          => 'Voor zelfstandigen, vrije beroepen en kmo\'s in Leuven, Tervuren, Halle, Zaventem, Overijse, Huldenberg, Bertem en heel Vlaams-Brabant.',
+        'who_for'          => 'Voor zelfstandigen, vrije beroepen en kmo\'s in Tervuren, Duisburg, Overijse, Hoeilaart, Huldenberg, Bertem, Leuven en heel Vlaams-Brabant.',
         'bullets'          => [
             'Professioneel ontwerp — geen templates, maar maatwerk',
             'Responsive en mobile-first van de eerste schets af',
