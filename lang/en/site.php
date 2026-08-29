@@ -14,10 +14,7 @@ return [
         'open_menu'       => 'Open menu',
         'close_menu'      => 'Close menu',
         'menu_label'      => 'Navigation menu',
-        'cta_secondary'   => 'View services',
         'mobile_cta'      => 'Request a free introduction',
-        'mobile_tagline'  => 'Van Malder Studio · Tervuren',
-        'mobile_price'    => 'New website from €750',
     ],
 
     'lang_switcher' => [
@@ -559,6 +556,34 @@ return [
     ],
 
     // ── Client work (real projects) ───────────────────────────────────────────
+    'clientwork_page' => [
+        'eyebrow'        => 'Built for clients',
+        'heading'        => 'Client Projects',
+        'intro'          => 'A selection of websites designed and developed for clients. Every project is live — follow the link and judge the result yourself.',
+        'permission'     => 'All showcased projects are published with the client\'s permission.',
+        'built_heading'  => 'What was built',
+        'visit'          => 'View the live website',
+        'sector_label'   => 'Sector',
+        'type_label'     => 'Project type',
+        'cta_heading'    => 'Need a project like this?',
+        'cta_body'       => 'Tell me what you want to build. I think along with you about the website, the functionality and the technical approach.',
+        'cta_button'     => 'Discuss your project',
+        'cta_secondary'  => 'View services',
+    ],
+
+    'more_than_website' => [
+        'eyebrow' => 'More than just a website',
+        'heading' => 'The functionality behind your website too',
+        'body'    => 'Need to automate a workflow, connect existing systems or build a custom management environment? Van Malder Studio can also develop functionality tailored to the way your business works.',
+        'items'   => [
+            ['title' => 'Management systems', 'desc' => 'A custom admin environment, customer portal or dashboard to manage your requests and records.'],
+            ['title' => 'Integrations',       'desc' => 'Connecting your website to tools you already use, such as a booking system, CRM or newsletter.'],
+            ['title' => 'Automation',         'desc' => 'Automating repetitive steps in your request or follow-up process, so less of it stays manual.'],
+        ],
+        'proof'      => 'For Mastechnics I built not just the website but also a custom management environment used to follow up enquiries and potential customers.',
+        'proof_link' => 'View the Mastechnics project',
+        'price_note' => 'On request — the price depends on the scope.',
+    ],
     'client_work' => [
         'eyebrow'            => 'Built for clients',
         'heading'            => 'Client Projects',
@@ -593,7 +618,7 @@ return [
                     'Accessible, responsive and fast on every device',
                 ],
                 'alt'         => 'Dr. Sue-Liza Eta website homepage',
-                'service'     => 'Conversion-focused website',
+                'service'     => 'Conversion-focused medical website',
             ],
             'schrijnwerkerij-van-kerkhoven' => [
                 'sector'      => 'Custom woodworking',
@@ -745,6 +770,9 @@ return [
         'about_title'     => 'Xander Van Malder — Full Stack & .NET Developer, Tervuren | Van Malder Studio',
         'about_desc'      => 'Xander Van Malder is a full stack and .NET developer from Tervuren, Belgium. Through Van Malder Studio he builds websites, web applications and digital products with Laravel, C#/.NET and React — see real client work.',
         'about_og_title'  => 'About Xander Van Malder | Van Malder Studio',
+        'clientwork_title'    => 'Client Projects — websites built for real businesses | Van Malder Studio',
+        'clientwork_desc'     => 'Real websites designed and developed by Van Malder Studio for clients in Vlaams-Brabant and Brussels: an HVAC company with a custom management environment, a medical practice and a joinery. Every project is live.',
+        'clientwork_og_title' => 'Client Projects | Van Malder Studio',
         'contact_title'   => 'Contact Van Malder Studio — Discuss Your Website or Application',
         'contact_desc'    => 'Get in touch with Xander Van Malder in Tervuren to discuss a new website, web application, redesign or custom software project. Reply within 1–2 working days.',
         'showcase_title'  => 'Showcase | Van Malder Studio',

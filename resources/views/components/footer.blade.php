@@ -6,7 +6,7 @@
 
     $footerNav = [
         ['key' => 'services',  'label' => __('site.nav.services')],
-        ['key' => 'about',     'label' => __('site.nav.work'), 'anchor' => 'client-work'],
+        ['key' => 'clientwork', 'label' => __('site.nav.work')],
         ['key' => 'showcase',  'label' => __('site.nav.showcase_footer')],
         ['key' => 'process',   'label' => __('site.nav.process')],
         ['key' => 'pricing',   'label' => __('site.nav.pricing')],

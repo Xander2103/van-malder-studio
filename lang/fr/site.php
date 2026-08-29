@@ -21,10 +21,7 @@ return [
         'open_menu'       => 'Ouvrir le menu',
         'close_menu'      => 'Fermer le menu',
         'menu_label'      => 'Menu de navigation',
-        'cta_secondary'   => 'Voir les services',
         'mobile_cta'      => 'Demander une rencontre gratuite',
-        'mobile_tagline'  => 'Van Malder Studio · Tervuren',
-        'mobile_price'    => 'Nouveau site à partir de €750',
     ],
 
     'lang_switcher' => [
@@ -573,6 +570,34 @@ return [
     ],
 
     // ── Projets clients (projets réels) ───────────────────────────────────────
+    'clientwork_page' => [
+        'eyebrow'        => 'Réalisés pour des clients',
+        'heading'        => 'Projets clients',
+        'intro'          => 'Une sélection de sites web conçus et développés pour des clients. Chaque projet est en ligne — suivez le lien et jugez le résultat par vous-même.',
+        'permission'     => 'Tous les projets présentés sont publiés avec l\'autorisation du client.',
+        'built_heading'  => 'Ce qui a été réalisé',
+        'visit'          => 'Voir le site en ligne',
+        'sector_label'   => 'Secteur',
+        'type_label'     => 'Type de projet',
+        'cta_heading'    => 'Besoin d\'un projet similaire ?',
+        'cta_body'       => 'Dites-moi ce que vous souhaitez construire. Je réfléchis avec vous au site, aux fonctionnalités et à l\'approche technique.',
+        'cta_button'     => 'Discuter de votre projet',
+        'cta_secondary'  => 'Voir les services',
+    ],
+
+    'more_than_website' => [
+        'eyebrow' => 'Plus qu\'un simple site web',
+        'heading' => 'Aussi les fonctionnalités derrière votre site',
+        'body'    => 'Vous voulez automatiser un processus, connecter des systèmes existants ou disposer d\'un environnement de gestion sur mesure ? Van Malder Studio peut également développer des fonctionnalités adaptées à votre façon de travailler.',
+        'items'   => [
+            ['title' => 'Systèmes de gestion', 'desc' => 'Un environnement d\'administration, un portail client ou un tableau de bord pour gérer vos demandes et vos données.'],
+            ['title' => 'Intégrations',        'desc' => 'Connecter votre site aux outils que vous utilisez déjà : système de réservation, CRM ou newsletter.'],
+            ['title' => 'Automatisation',      'desc' => 'Automatiser les étapes répétitives de vos demandes ou de votre suivi, pour réduire le travail manuel.'],
+        ],
+        'proof'      => 'Pour Mastechnics, j\'ai développé non seulement le site mais aussi un environnement de gestion sur mesure pour suivre les demandes et les clients potentiels.',
+        'proof_link' => 'Voir le projet Mastechnics',
+        'price_note' => 'Sur demande — le prix dépend de la portée.',
+    ],
     'client_work' => [
         'eyebrow'            => 'Réalisés pour des clients',
         'heading'            => 'Projets clients',
@@ -607,7 +632,7 @@ return [
                     'Accessible, responsive et rapide sur tous les appareils',
                 ],
                 'alt'         => 'Page d\'accueil du site web du Dr. Sue-Liza Eta',
-                'service'     => 'Site web orienté conversion',
+                'service'     => 'Site médical orienté conversion',
             ],
             'schrijnwerkerij-van-kerkhoven' => [
                 'sector'      => 'Menuiserie sur mesure',
@@ -763,6 +788,9 @@ return [
         'about_title'     => 'Xander Van Malder — Développeur full stack & .NET à Tervuren | Van Malder Studio',
         'about_desc'      => 'Xander Van Malder est développeur full stack et .NET à Tervuren, en Belgique. Avec Van Malder Studio, il crée des sites web, des applications web et des produits numériques avec Laravel, C#/.NET et React — découvrez de vrais projets clients.',
         'about_og_title'  => 'À propos de Xander Van Malder | Van Malder Studio',
+        'clientwork_title'    => 'Projets clients — des sites web créés pour de vraies entreprises | Van Malder Studio',
+        'clientwork_desc'     => 'De vrais sites web conçus et développés par Van Malder Studio pour des clients du Brabant flamand et de Bruxelles : une entreprise HVAC avec environnement de gestion sur mesure, un cabinet médical et une menuiserie. Chaque projet est en ligne.',
+        'clientwork_og_title' => 'Projets clients | Van Malder Studio',
         'contact_title'   => 'Contact Van Malder Studio — Discutons de votre site ou application',
         'contact_desc'    => 'Prenez contact avec Xander Van Malder à Tervuren pour un nouveau site web, une application web, une refonte ou un logiciel sur mesure. Réponse sous 1 à 2 jours ouvrables.',
         'showcase_title'  => 'Showcase | Van Malder Studio',

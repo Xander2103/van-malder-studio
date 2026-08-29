@@ -11,7 +11,7 @@
     $pricingHref  = \Illuminate\Support\Facades\Route::has($loc . '.pricing')  ? route($loc . '.pricing')  : route('pricing');
     $processHref  = \Illuminate\Support\Facades\Route::has($loc . '.process')  ? route($loc . '.process')  : route('process');
     $aboutHref    = \Illuminate\Support\Facades\Route::has($loc . '.about')    ? route($loc . '.about')    : route('about');
-    $workHref     = $aboutHref . '#client-work';
+    $workHref     = \Illuminate\Support\Facades\Route::has($loc . '.clientwork') ? route($loc . '.clientwork') : $aboutHref;
 @endphp
 
 {{-- ════════════════════════════════════════════════════════════════════════
@@ -499,6 +499,8 @@
         </a>
     </div>
 </section>
+
+<x-more-than-website :contactHref="$contactHref" :servicesHref="$servicesHref" />
 
 {{-- ════════════════════════════════════════════════════════════════════════
      H. SIMPLE 3-STEP PROCESS

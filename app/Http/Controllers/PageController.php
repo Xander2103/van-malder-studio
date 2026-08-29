@@ -43,6 +43,13 @@ class PageController extends Controller
         ]);
     }
 
+    public function clientWork()
+    {
+        return view('pages.client-work', [
+            'clientWork' => config('client-work'),
+        ]);
+    }
+
     public function contact()
     {
         return view('pages.contact');
@@ -69,7 +76,7 @@ class PageController extends Controller
     {
         $ready = config('studio.translations_ready', []);
 
-        $pages = ['home', 'services', 'process', 'pricing', 'about', 'contact', 'showcase', 'privacy'];
+        $pages = ['home', 'services', 'process', 'pricing', 'about', 'clientwork', 'contact', 'showcase', 'privacy'];
         $priorities = [
             'home'     => ['priority' => '1.0', 'freq' => 'weekly'],
             'services' => ['priority' => '0.9', 'freq' => 'monthly'],
@@ -77,6 +84,7 @@ class PageController extends Controller
             'contact'  => ['priority' => '0.9', 'freq' => 'monthly'],
             'showcase' => ['priority' => '0.8', 'freq' => 'monthly'],
             'about'    => ['priority' => '0.7', 'freq' => 'monthly'],
+            'clientwork' => ['priority' => '0.8', 'freq' => 'monthly'],
             'process'  => ['priority' => '0.7', 'freq' => 'monthly'],
             'privacy'  => ['priority' => '0.3', 'freq' => 'yearly'],
         ];

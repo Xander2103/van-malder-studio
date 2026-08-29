@@ -47,6 +47,7 @@ foreach (['nl', 'fr', 'en', 'de'] as $locale) {
             Route::get($paths['pricing'], [PageController::class, 'pricing'])->name($locale . '.pricing');
             Route::get($paths['about'], [PageController::class, 'about'])->name($locale . '.about');
             Route::get($paths['showcase'], [PageController::class, 'showcase'])->name($locale . '.showcase');
+            Route::get($paths['clientwork'], [PageController::class, 'clientWork'])->name($locale . '.clientwork');
             Route::get($paths['privacy'], [PageController::class, 'privacy'])->name($locale . '.privacy');
 
             // Contact — GET + POST (project inquiry) + quick message POST

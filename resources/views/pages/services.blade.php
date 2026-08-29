@@ -102,6 +102,7 @@
     @php
         $loc       = app()->getLocale() ?: 'nl';
         $aboutHref = \Illuminate\Support\Facades\Route::has($loc . '.about') ? route($loc . '.about') : route('about');
+        $servicesClientWorkHref = \Illuminate\Support\Facades\Route::has($loc . '.clientwork') ? route($loc . '.clientwork') : $aboutHref;
         $localLink = fn (string $slug, string $label) => '<a href="' . e(url('/nl/' . $slug)) . '" class="font-medium text-slate-700 underline decoration-stone-300 underline-offset-2 hover:text-amber-800 hover:decoration-amber-400 transition-colors duration-200">' . e($label) . '</a>';
     @endphp
     <section class="border-t border-stone-200 bg-white" aria-labelledby="services-work-heading">
@@ -118,7 +119,7 @@
                 </p>
                 @endif
             </div>
-            <a href="{{ $aboutHref }}#client-work"
+            <a href="{{ $servicesClientWorkHref }}"
                class="shrink-0 inline-flex items-center gap-1.5 text-sm font-semibold text-amber-700 hover:text-amber-900 transition-colors duration-200 group">
                 {{ __('site.services.work_link') }}
                 <svg class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
@@ -167,6 +168,8 @@
     @endif
 
     {{-- CTA --}}
+    <x-more-than-website :servicesHref="null" />
+
     <section class="bg-slate-900 mt-0" aria-labelledby="services-cta-heading">
         <div class="max-w-6xl mx-auto px-6 py-16 text-center">
             <h2 id="services-cta-heading" class="font-serif text-3xl font-medium text-white">{{ __('site.services.cta_heading') }}</h2>

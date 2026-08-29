@@ -6,33 +6,65 @@ use Tests\TestCase;
 
 class SeoAndClientWorkTest extends TestCase
 {
-    // ── Client work section (About page) ─────────────────────────────────────
+    // ── Client Projects page ─────────────────────────────────────────────────
 
-    public static function aboutPathProvider(): array
+    public static function clientWorkPathProvider(): array
     {
         return [
-            'nl' => ['/nl/over-mij'],
-            'fr' => ['/fr/a-propos'],
-            'en' => ['/en/about'],
-            'de' => ['/de/ueber-mich'],
+            'nl' => ['/nl/klantprojecten'],
+            'fr' => ['/fr/projets-clients'],
+            'en' => ['/en/client-projects'],
+            'de' => ['/de/kundenprojekte'],
         ];
     }
 
-    /** @dataProvider aboutPathProvider */
-    public function test_about_page_has_client_work_section_with_live_links(string $path): void
+    /** @dataProvider clientWorkPathProvider */
+    public function test_client_work_page_shows_every_project_with_live_links(string $path): void
+    {
+        $response = $this->get($path);
+
+        $response->assertStatus(200);
+
+        foreach (config('client-work') as $work) {
+            $response->assertSee($work['title']);
+            $response->assertSee('href="'.$work['url'].'"', false);
+            // Each project is deep-linkable from elsewhere on the site.
+            $response->assertSee('id="project-'.$work['slug'].'"', false);
+            // The real screenshot is used, not a placeholder.
+            $response->assertSee($work['image'], false);
+        }
+
+        // External links open safely in a new tab.
+        $response->assertSee('rel="noopener noreferrer"', false);
+        // Technology badges belong on the About page, not in the case studies.
+        $response->assertDontSee('>Tailwind CSS<', false);
+    }
+
+    /** @dataProvider clientWorkPathProvider */
+    public function test_client_work_page_states_client_permission_once(string $path): void
+    {
+        $html = $this->get($path)->getContent();
+
+        // Blade escapes apostrophes, so compare against the escaped form.
+        $permission = e(__('site.clientwork_page.permission'));
+        $this->assertSame(
+            1,
+            substr_count($html, $permission),
+            'The client permission note must appear exactly once on the page'
+        );
+    }
+
+    public function test_about_page_links_to_client_work_page(string $path = '/en/about'): void
     {
         $response = $this->get($path);
 
         $response->assertStatus(200);
         $response->assertSee('id="client-work"', false);
+        $response->assertSee('href="http://localhost/en/client-projects"', false);
 
-        foreach (config('client-work') as $work) {
-            $response->assertSee($work['title']);
-            $response->assertSee('href="'.$work['url'].'"', false);
-        }
-
-        // External links open safely in a new tab.
-        $response->assertSee('rel="noopener noreferrer"', false);
+        // The About page references the clients but no longer carries the full cases.
+        $response->assertSee('Mastechnics');
+        $response->assertDontSee('What was built');
     }
 
     public function test_about_page_client_work_comes_before_own_projects(): void
@@ -71,10 +103,10 @@ class SeoAndClientWorkTest extends TestCase
     public static function workNavProvider(): array
     {
         return [
-            'nl' => ['/nl', 'Klantprojecten', 'http://localhost/nl/over-mij#client-work'],
-            'fr' => ['/fr', 'Projets clients', 'http://localhost/fr/a-propos#client-work'],
-            'en' => ['/en', 'Client Projects', 'http://localhost/en/about#client-work'],
-            'de' => ['/de', 'Kundenprojekte', 'http://localhost/de/ueber-mich#client-work'],
+            'nl' => ['/nl', 'Klantprojecten', 'http://localhost/nl/klantprojecten'],
+            'fr' => ['/fr', 'Projets clients', 'http://localhost/fr/projets-clients'],
+            'en' => ['/en', 'Client Projects', 'http://localhost/en/client-projects'],
+            'de' => ['/de', 'Kundenprojekte', 'http://localhost/de/kundenprojekte'],
         ];
     }
 
@@ -253,8 +285,27 @@ class SeoAndClientWorkTest extends TestCase
     {
         $response = $this->get('/en');
 
-        $response->assertSee('href="http://localhost/en/about#client-work"', false);
+        $response->assertSee('href="http://localhost/en/client-projects"', false);
         $response->assertSee('Mastechnics');
+    }
+
+    public function test_client_work_page_is_in_sitemap_for_every_ready_locale(): void
+    {
+        $xml = $this->get('/sitemap.xml')->getContent();
+
+        foreach (['nl/klantprojecten', 'fr/projets-clients', 'en/client-projects', 'de/kundenprojekte'] as $path) {
+            $this->assertStringContainsString($path, $xml, "Sitemap must list /$path");
+        }
+    }
+
+    public function test_client_work_page_emits_canonical_and_hreflang(): void
+    {
+        $response = $this->get('/en/client-projects');
+
+        $response->assertSee('<link rel="canonical" href="http://localhost/en/client-projects">', false);
+        $response->assertSee('hreflang="nl" href="http://localhost/nl/klantprojecten"', false);
+        $response->assertSee('hreflang="x-default"', false);
+        $response->assertSee('"@type":"ItemList"', false);
     }
 
     public function test_contact_page_shows_contact_details_and_form(): void

@@ -15,7 +15,7 @@
         ['route' => 'process',   'label' => __('site.nav.process')],
         ['route' => 'pricing',   'label' => __('site.nav.pricing')],
         ['route' => 'about',     'label' => __('site.nav.about')],
-        ['route' => 'about',     'label' => __('site.nav.work'), 'anchor' => 'client-work'],
+        ['route' => 'clientwork', 'label' => __('site.nav.work')],
     ];
 
     foreach ($links as &$link) {
@@ -174,48 +174,35 @@
         </button>
     </div>
 
-    {{-- Navigation links --}}
-    <nav class="px-6 pt-5 pb-1" aria-label="{{ __('site.nav.menu_label') }}">
-        <ul class="flex flex-col" role="list">
-            @foreach($links as $link)
-            @php $isActive = $link['active']; @endphp
-            <li>
-                <a href="{{ $link['href'] }}"
-                   class="flex items-center justify-between py-3.5 border-b border-stone-100 last:border-b-0 transition-colors duration-200 {{ $isActive ? 'text-slate-900' : 'text-slate-500 hover:text-slate-900' }}"
-                   @if($isActive) aria-current="page" @endif>
-                    <span class="font-serif text-[1.35rem] font-normal leading-snug">{{ $link['label'] }}</span>
-                    @if($isActive)
-                    <span class="w-1.5 h-1.5 rounded-full shrink-0" style="background:#c49a3a" aria-hidden="true"></span>
-                    @endif
-                </a>
-            </li>
-            @endforeach
-        </ul>
-    </nav>
+    {{-- Navigation + CTA form one compact group directly under the header.
+         No flex growth, no spacers: the drawer fills the viewport, the content does not. --}}
+    <div class="px-6 pt-7 pb-8">
+        <nav aria-label="{{ __('site.nav.menu_label') }}">
+            <ul class="flex flex-col" role="list">
+                @foreach($links as $link)
+                @php $isActive = $link['active']; @endphp
+                <li>
+                    <a href="{{ $link['href'] }}"
+                       class="flex items-center justify-between py-3 transition-colors duration-200 {{ $isActive ? 'text-slate-900' : 'text-slate-600 hover:text-slate-900' }}"
+                       @if($isActive) aria-current="page" @endif>
+                        <span class="font-serif text-[1.2rem] font-normal leading-snug">{{ $link['label'] }}</span>
+                        @if($isActive)
+                        <span class="w-1.5 h-1.5 rounded-full shrink-0" style="background:#c49a3a" aria-hidden="true"></span>
+                        @endif
+                    </a>
+                </li>
+                @endforeach
+            </ul>
+        </nav>
 
-    {{-- CTA + supporting meta (language switching is now in header) --}}
-    <div class="px-6 pt-5 pb-8 border-t border-stone-200/60 flex flex-col gap-4">
-
-        {{-- CTA — one strong primary, one quiet secondary --}}
-        <div class="flex flex-col gap-2">
-            <a href="{{ navRoute('contact', $locale) }}"
-               class="flex items-center justify-center gap-2 w-full px-6 py-3.5 text-sm font-semibold bg-slate-900 text-white rounded-xl hover:bg-blue-800 transition-colors duration-200 cursor-pointer">
-                {{ __('site.nav.mobile_cta') }}
-                <svg class="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-                </svg>
-            </a>
-
-            <a href="{{ navRoute('services', $locale) }}"
-               class="text-center text-[0.8125rem] font-medium text-slate-400 hover:text-slate-700 transition-colors duration-200 py-1.5">
-                {{ __('site.nav.cta_secondary') }}
-            </a>
-        </div>
-
-        {{-- Supporting meta --}}
-        <p class="text-[0.6875rem] text-slate-400 leading-relaxed">
-            {{ __('site.nav.mobile_tagline') }}<span class="mx-1.5 text-stone-300" aria-hidden="true">·</span>{{ __('site.nav.mobile_price') }}
-        </p>
+        {{-- One prominent CTA, full width, sitting directly after the navigation --}}
+        <a href="{{ navRoute('contact', $locale) }}"
+           class="mt-7 flex items-center justify-center gap-2 w-full px-6 py-3.5 text-sm font-semibold bg-slate-900 text-white rounded-xl hover:bg-blue-800 transition-colors duration-200 cursor-pointer">
+            {{ __('site.nav.mobile_cta') }}
+            <svg class="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+            </svg>
+        </a>
     </div>
 </div>
 

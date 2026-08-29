@@ -14,6 +14,7 @@
     $lpContact  = $lpRoute('contact');
     $lpServices = $lpRoute('services');
     $lpAbout    = $lpRoute('about');
+    $lpClientWork = $lpRoute('clientwork');
 @endphp
 
     {{-- ── Hero ── --}}
@@ -219,7 +220,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
                         </svg>
                     </a>
-                    <a href="{{ $lpAbout }}#client-work"
+                    <a href="{{ $lpClientWork }}"
                        class="inline-flex items-center px-6 py-3 text-sm font-semibold text-slate-300 border border-slate-700 rounded-lg hover:border-slate-500 hover:text-white transition-colors duration-200 cursor-pointer">
                         Bekijk klantenprojecten
                     </a>

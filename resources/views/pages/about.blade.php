@@ -10,6 +10,7 @@
     $aboutContactHref  = \Illuminate\Support\Facades\Route::has($loc . '.contact')  ? route($loc . '.contact')  : route('contact');
     $aboutShowcaseHref = \Illuminate\Support\Facades\Route::has($loc . '.showcase') ? route($loc . '.showcase') : route('showcase');
     $aboutServicesHref = \Illuminate\Support\Facades\Route::has($loc . '.services') ? route($loc . '.services') : route('services');
+    $aboutClientWorkHref = \Illuminate\Support\Facades\Route::has($loc . '.clientwork') ? route($loc . '.clientwork') : $aboutServicesHref;
 @endphp
 
     {{-- ── 1. Introduction ── --}}
@@ -83,7 +84,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
                         </svg>
                     </a>
-                    <a href="#client-work"
+                    <a href="{{ $aboutClientWorkHref }}"
                        class="inline-flex items-center gap-2 px-5 py-3 text-sm font-semibold bg-white border border-stone-300 text-slate-700 rounded-lg hover:border-slate-400 hover:text-slate-900 transition-colors duration-200 cursor-pointer">
                         {{ __('site.about.cta_work') }}
                     </a>
@@ -100,23 +101,48 @@
         </div>
     </section>
 
-    {{-- ── 4. Client work ── --}}
+    {{-- ── 4. Client work — concise reference; the full cases live on their own page ── --}}
     <section id="client-work" class="bg-white border-t border-stone-200 scroll-mt-20" aria-labelledby="client-work-heading">
-        <div class="max-w-6xl mx-auto px-6 py-16">
-            <div class="reveal mb-10">
-                <x-section-heading
-                    id="client-work-heading"
-                    :eyebrow="__('site.client_work.eyebrow')"
-                    :title="__('site.client_work.heading')"
-                    :description="__('site.client_work.body')"
-                />
+        <div class="max-w-6xl mx-auto px-6 py-14">
+            <div class="reveal flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
+                <div class="max-w-2xl">
+                    <p class="inline-flex items-center gap-2 text-xs font-semibold text-amber-700 uppercase tracking-widest mb-3">
+                        <span class="w-4 h-px bg-amber-600 inline-block" aria-hidden="true"></span>
+                        {{ __('site.client_work.eyebrow') }}
+                    </p>
+                    <h2 id="client-work-heading" class="font-serif text-2xl md:text-3xl font-medium text-slate-900 leading-tight">
+                        {{ __('site.client_work.heading') }}
+                    </h2>
+                    <p class="mt-3 text-slate-500 leading-relaxed">{{ __('site.client_work.body') }}</p>
+                </div>
+                <a href="{{ $aboutClientWorkHref }}"
+                   class="inline-flex items-center gap-2 px-5 py-3 text-sm font-semibold bg-slate-900 text-white rounded-lg hover:bg-blue-800 transition-colors duration-200 cursor-pointer shadow-sm shrink-0">
+                    {{ __('site.about.cta_work') }}
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                    </svg>
+                </a>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 items-stretch">
+            {{-- Crawlable client list; each name deep-links to its case on the portfolio page --}}
+            <ul class="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4 reveal" role="list">
                 @foreach($clientWork as $work)
-                <x-client-work-card :work="$work" :servicesHref="$aboutServicesHref" />
+                @php
+                    $tw = __('site.client_work.items.' . $work['slug']);
+                    $tw = is_array($tw) ? $tw : [];
+                @endphp
+                <li class="bg-stone-50 border border-stone-200 rounded-xl px-5 py-4">
+                    <p class="text-[0.65rem] font-semibold text-slate-400 uppercase tracking-widest mb-1">{{ $tw['sector'] ?? $work['sector'] }}</p>
+                    <a href="{{ $aboutClientWorkHref }}#project-{{ $work['slug'] }}"
+                       class="font-serif text-base font-medium text-slate-900 hover:text-amber-800 transition-colors duration-200">
+                        {{ $work['title'] }}
+                    </a>
+                    @if(!empty($tw['service']))
+                    <p class="mt-0.5 text-xs text-slate-500">{{ $tw['service'] }}</p>
+                    @endif
+                </li>
                 @endforeach
-            </div>
+            </ul>
         </div>
     </section>
 

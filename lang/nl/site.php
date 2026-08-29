@@ -15,10 +15,7 @@ return [
         'open_menu'       => 'Menu openen',
         'close_menu'      => 'Menu sluiten',
         'menu_label'      => 'Navigatiemenu',
-        'cta_secondary'   => 'Bekijk diensten',
         'mobile_cta'      => 'Gratis kennismaking aanvragen',
-        'mobile_tagline'  => 'Van Malder Studio · Tervuren · Druivenstreek',
-        'mobile_price'    => 'Nieuwe website vanaf €750',
     ],
 
     'lang_switcher' => [
@@ -531,6 +528,34 @@ return [
     ],
 
     // ── Klantenprojecten (echte projecten) ────────────────────────────────────
+    'clientwork_page' => [
+        'eyebrow'        => 'Voor klanten gebouwd',
+        'heading'        => 'Klantprojecten',
+        'intro'          => 'Een selectie van websites die ik voor klanten heb ontworpen en ontwikkeld. Elk project staat live — volg de link en beoordeel het resultaat zelf.',
+        'permission'     => 'Alle getoonde projecten worden gepubliceerd met toestemming van de klant.',
+        'built_heading'  => 'Wat er gebouwd is',
+        'visit'          => 'Bekijk de live website',
+        'sector_label'   => 'Sector',
+        'type_label'     => 'Type project',
+        'cta_heading'    => 'Ook zo\'n project nodig?',
+        'cta_body'       => 'Vertel me wat je wilt bouwen. Ik denk mee over de website, de functionaliteit en de technische aanpak.',
+        'cta_button'     => 'Bespreek je project',
+        'cta_secondary'  => 'Bekijk diensten',
+    ],
+
+    'more_than_website' => [
+        'eyebrow' => 'Meer dan alleen een website',
+        'heading' => 'Ook de functionaliteit achter je website',
+        'body'    => 'Heb je een specifieke workflow die je wilt automatiseren, systemen die met elkaar moeten communiceren of een eigen beheeromgeving nodig? Ook daarvoor kan Van Malder Studio maatwerk ontwikkelen.',
+        'items'   => [
+            ['title' => 'Beheersystemen', 'desc' => 'Een eigen adminomgeving, klantenportaal of dashboard om je aanvragen en gegevens te beheren.'],
+            ['title' => 'Integraties',    'desc' => 'Je website koppelen aan tools die je al gebruikt, zoals een boekingssysteem, CRM of nieuwsbrief.'],
+            ['title' => 'Automatisatie',  'desc' => 'Terugkerende stappen in je aanvraag- of opvolgproces automatiseren, zodat er minder handwerk overblijft.'],
+        ],
+        'proof'      => 'Voor Mastechnics bouwde ik naast de website ook een eigen beheeromgeving waarmee aanvragen en potentiële klanten worden opgevolgd.',
+        'proof_link' => 'Bekijk het Mastechnics-project',
+        'price_note' => 'Op aanvraag — de prijs hangt af van de scope.',
+    ],
     'client_work' => [
         'eyebrow'            => 'Voor klanten gebouwd',
         'heading'            => 'Klantprojecten',
@@ -565,7 +590,7 @@ return [
                     'Toegankelijk, responsive en snel op elk toestel',
                 ],
                 'alt'         => 'Homepage van de website van Dr. Sue-Liza Eta',
-                'service'     => 'Conversiegerichte website',
+                'service'     => 'Conversiegerichte medische website',
             ],
             'schrijnwerkerij-van-kerkhoven' => [
                 'sector'      => 'Schrijnwerk op maat',
@@ -578,7 +603,7 @@ return [
                     'Eenvoudige contactflow voor offerteaanvragen',
                 ],
                 'alt'         => 'Homepage van Schrijnwerkerij Van Kerkhoven',
-                'service'     => 'Website voor lokale bedrijven',
+                'service'     => 'Website voor lokaal bedrijf',
             ],
         ],
     ],
@@ -721,6 +746,9 @@ return [
         'about_title'     => 'Xander Van Malder — Full stack & .NET developer in Tervuren | Van Malder Studio',
         'about_desc'      => 'Xander Van Malder is full stack en .NET developer uit Tervuren. Met Van Malder Studio bouwt hij websites, webapplicaties en digitale producten met Laravel, C#/.NET en React — bekijk echte klantenprojecten.',
         'about_og_title'  => 'Over Xander Van Malder | Van Malder Studio',
+        'clientwork_title'    => 'Klantprojecten — websites gebouwd voor echte bedrijven | Van Malder Studio',
+        'clientwork_desc'     => 'Echte websites die Van Malder Studio ontwierp en ontwikkelde voor klanten in Vlaams-Brabant en Brussel: een HVAC-bedrijf met eigen beheeromgeving, een medische praktijk en een schrijnwerkerij. Elk project staat live.',
+        'clientwork_og_title' => 'Klantprojecten | Van Malder Studio',
         'contact_title'   => 'Contact Van Malder Studio — Bespreek je website of applicatie',
         'contact_desc'    => 'Neem contact op met Xander Van Malder in Tervuren voor een nieuwe website, webapplicatie, websitevernieuwing of software op maat. Antwoord binnen 1–2 werkdagen.',
         'showcase_title'  => 'Showcase | Van Malder Studio',
