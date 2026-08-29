@@ -10,6 +10,8 @@
     $servicesHref = \Illuminate\Support\Facades\Route::has($loc . '.services') ? route($loc . '.services') : route('services');
     $pricingHref  = \Illuminate\Support\Facades\Route::has($loc . '.pricing')  ? route($loc . '.pricing')  : route('pricing');
     $processHref  = \Illuminate\Support\Facades\Route::has($loc . '.process')  ? route($loc . '.process')  : route('process');
+    $aboutHref    = \Illuminate\Support\Facades\Route::has($loc . '.about')    ? route($loc . '.about')    : route('about');
+    $workHref     = $aboutHref . '#client-work';
 @endphp
 
 {{-- ════════════════════════════════════════════════════════════════════════
@@ -27,7 +29,7 @@
                     <span class="w-4 h-px bg-amber-600 inline-block" aria-hidden="true"></span>
                     {{ __('site.hero.eyebrow') }}
                 </p>
-                <h1 class="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-[3.1rem] font-medium text-slate-900 leading-[1.15] tracking-tight">
+                <h1 class="font-serif text-[1.75rem] sm:text-[2rem] md:text-[2.4rem] lg:text-[2.6rem] font-medium text-slate-900 leading-[1.18] tracking-tight text-balance max-w-[19ch]">
                     {{ __('site.hero.headline') }}
                 </h1>
                 {{-- Mobile intro --}}
@@ -35,11 +37,8 @@
                     {{ __('site.hero.body_mobile') }}
                 </p>
                 {{-- Desktop body + byline --}}
-                <p class="hidden sm:block mt-5 text-[1.0625rem] text-slate-500 leading-relaxed max-w-lg">
+                <p class="hidden sm:block mt-5 text-[1.0625rem] text-slate-500 leading-relaxed max-w-md">
                     {{ __('site.hero.body') }}
-                </p>
-                <p class="hidden sm:block mt-2 text-sm text-slate-400 max-w-lg">
-                    {!! __('site.hero.body_byline', ['name' => '<strong class="font-semibold text-slate-600">'.e(config('studio.owner')).'</strong>']) !!}
                 </p>
             </div>
 
@@ -51,16 +50,10 @@
                 <div class="relative bg-white rounded-2xl border border-stone-200 shadow-xl shadow-slate-200/60 overflow-hidden">
                     <div class="studio-card-accent h-1 w-full" aria-hidden="true"></div>
                     <div class="p-5 sm:p-7">
-                        <div class="flex items-start justify-between mb-4 sm:mb-5">
-                            <div>
-                                <p class="text-[0.65rem] font-semibold text-stone-400 uppercase tracking-widest mb-1">Web Studio</p>
-                                <h2 class="font-serif text-xl font-medium text-slate-900">{{ config('studio.brand_name') }}</h2>
-                                <p class="text-sm text-slate-500 mt-0.5">{{ config('studio.owner') }} · Tervuren, Vlaams-Brabant</p>
-                            </div>
-                            <span class="flex items-center gap-1.5 text-xs font-medium text-emerald-700 bg-emerald-50 border border-emerald-200 px-2.5 py-1 rounded-full shrink-0">
-                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" aria-hidden="true"></span>
-                                {{ __('site.common.available') }}
-                            </span>
+                        <div class="text-center mb-5 sm:mb-6">
+                            <p class="text-[0.65rem] font-semibold text-stone-400 uppercase tracking-widest mb-1.5">Web Studio</p>
+                            <h2 class="font-serif text-xl font-medium text-slate-900">{{ config('studio.brand_name') }}</h2>
+                            <p class="text-sm text-slate-500 mt-1">{{ config('studio.owner') }} · Tervuren, Vlaams-Brabant</p>
                         </div>
 
                         @php
@@ -72,9 +65,9 @@
                             ];
                             $cardItems = is_array(__('site.home.studio_card_items')) ? __('site.home.studio_card_items') : [];
                         @endphp
-                        <div class="divide-y divide-stone-100 mb-3 sm:mb-4">
+                        <div class="divide-y divide-stone-100">
                             @foreach($cardItems as $i => $item)
-                            <div class="flex items-center gap-3 text-sm font-medium text-slate-700 py-2 sm:py-2.5 {{ $loop->first ? 'pt-0' : '' }} {{ $loop->last ? 'pb-0' : '' }}">
+                            <div class="flex items-center gap-3 text-sm font-medium text-slate-700 py-2 sm:py-2.5 {{ $loop->first ? 'pt-0' : '' }}">
                                 <div class="w-8 h-8 rounded-lg bg-amber-50 border border-amber-200 flex items-center justify-center shrink-0" aria-hidden="true">
                                     <svg class="w-4 h-4 text-amber-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="{{ $cardIcons[$i] ?? $cardIcons[0] }}"/>
@@ -84,18 +77,6 @@
                             </div>
                             @endforeach
                         </div>
-
-                        @php $reassurance = is_array(__('site.home.studio_card_reassurance')) ? __('site.home.studio_card_reassurance') : []; @endphp
-                        @if($reassurance)
-                        <ul class="mb-3 sm:mb-4 space-y-1 hidden lg:block" aria-label="Werkwijze en aanpak">
-                            @foreach($reassurance as $point)
-                            <li class="flex items-start gap-1.5 text-xs text-slate-400 leading-snug">
-                                <span class="mt-[0.2rem] w-1 h-1 rounded-full bg-slate-300 shrink-0" aria-hidden="true"></span>
-                                {{ $point }}
-                            </li>
-                            @endforeach
-                        </ul>
-                        @endif
 
                         <div class="pt-3 sm:pt-4 border-t border-stone-100 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                             <p class="text-xs text-slate-400">{!! __('site.home.studio_card_pricing', ['price' => '<span class="font-semibold text-slate-600">€750</span>']) !!}</p>
@@ -129,10 +110,10 @@
                 </div>
                 @php $trustItems = __('site.hero.trustline_items'); @endphp
                 @if(is_array($trustItems))
-                <div class="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2">
+                <div class="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2">
                     @foreach($trustItems as $item)
-                    <span class="{{ $loop->iteration === 3 ? 'hidden sm:flex' : 'flex' }} items-center gap-1.5 text-xs {{ $loop->last ? 'text-amber-700 font-semibold' : 'text-slate-400' }}">
-                        <svg class="w-3.5 h-3.5 {{ $loop->last ? 'text-amber-500' : 'text-emerald-500' }} shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                    <span class="flex items-center gap-1.5 text-xs text-slate-400">
+                        <svg class="w-3.5 h-3.5 text-emerald-500 shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
                             <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
                         </svg>
                         {{ $item }}
@@ -177,25 +158,7 @@
     </div>
 </section>
 
-{{-- ════════════════════════════════════════════════════════════════════════
-     B2. TRUST SIGNALS — compact honest pill bar (no fake reviews)
-     ════════════════════════════════════════════════════════════════════════ --}}
-@php $trustSignals = __('site.home.trust_signals'); @endphp
-@if(is_array($trustSignals))
-<div class="hidden sm:block bg-white border-b border-stone-100" aria-label="Werkwijze en aanpak">
-    <div class="max-w-6xl mx-auto px-6 py-3 sm:py-4">
-        <div class="flex flex-wrap items-center gap-x-5 gap-y-2">
-            @foreach($trustSignals as $signal)
-            <span class="flex items-center gap-1.5 text-xs text-slate-500">
-                <span class="w-1 h-1 rounded-full bg-amber-400 shrink-0" aria-hidden="true"></span>
-                {{ $signal }}
-            </span>
-            @endforeach
-            {{-- TODO: add Google review badge here when real reviews are available --}}
-        </div>
-    </div>
-</div>
-@endif
+
 
 {{-- ════════════════════════════════════════════════════════════════════════
      C. SERVICES — 3 main service cards
@@ -286,6 +249,59 @@
 </section>
 
 {{-- ════════════════════════════════════════════════════════════════════════
+     C2. CLIENT WORK — real websites as proof (links to About → Client work)
+     ════════════════════════════════════════════════════════════════════════ --}}
+@if(!empty($clientWork))
+<section class="bg-white border-y border-stone-200" aria-labelledby="work-heading">
+    <div class="max-w-6xl mx-auto px-6 py-12 md:py-16">
+        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-5 mb-8 reveal">
+            <div>
+                <p class="inline-flex items-center gap-2 text-xs font-semibold text-amber-700 uppercase tracking-widest mb-3">
+                    <span class="w-4 h-px bg-amber-600 inline-block" aria-hidden="true"></span>
+                    {{ __('site.home.work_eyebrow') }}
+                </p>
+                <h2 id="work-heading" class="font-serif text-3xl md:text-4xl font-medium text-slate-900 leading-tight">
+                    {{ __('site.home.work_heading') }}
+                </h2>
+                <p class="mt-3 text-sm text-slate-500 leading-relaxed max-w-xl">{{ __('site.home.work_body') }}</p>
+            </div>
+            <a href="{{ $workHref }}"
+               class="text-sm font-semibold text-amber-700 hover:text-amber-900 flex items-center gap-1.5 transition-colors duration-200 shrink-0 group">
+                {{ __('site.home.work_link') }}
+                <svg class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                </svg>
+            </a>
+        </div>
+
+        <ul class="grid grid-cols-1 md:grid-cols-3 gap-4" role="list">
+            @foreach($clientWork as $work)
+            @php
+                $wt = __('site.client_work.items.' . $work['slug']);
+                $wt = is_array($wt) ? $wt : [];
+            @endphp
+            <li class="bg-stone-50 border border-stone-200 rounded-xl p-5 flex flex-col card-lift reveal">
+                <p class="text-[0.65rem] font-semibold text-slate-400 uppercase tracking-widest mb-2">{{ $wt['sector'] ?? $work['sector'] }}</p>
+                <h3 class="font-serif text-lg font-medium text-slate-900 leading-snug">{{ $work['title'] }}</h3>
+                <p class="mt-2 text-sm text-slate-500 leading-relaxed flex-1">{{ $wt['short'] ?? $wt['description'] ?? '' }}</p>
+                <div class="mt-5 pt-4 border-t border-stone-200/70">
+                    <a href="{{ $work['url'] }}" target="_blank" rel="noopener noreferrer"
+                       aria-label="{{ __('site.client_work.visit_aria', ['name' => $work['title']]) }}"
+                       class="inline-flex items-center gap-1.5 text-sm font-semibold text-slate-800 hover:text-amber-800 transition-colors duration-200 whitespace-nowrap">
+                        {{ __('site.client_work.visit') }}
+                        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M14 5h5m0 0v5m0-5L10 14"/>
+                        </svg>
+                    </a>
+                </div>
+            </li>
+            @endforeach
+        </ul>
+    </div>
+</section>
+@endif
+
+{{-- ════════════════════════════════════════════════════════════════════════
      D. VOOR WIE IS DIT? — warm recognition section
      ════════════════════════════════════════════════════════════════════════ --}}
 <section class="bg-amber-50 border-y border-amber-100" aria-labelledby="voor-wie-heading">
@@ -347,6 +363,7 @@
                     @else
                     {{ __('site.home.pricing_note') }}
                     @endif
+                    <a href="{{ $workHref }}" class="block mt-2 font-medium text-amber-700 hover:text-amber-900 transition-colors duration-200">{{ __('site.home.work_link') }} →</a>
                 </p>
             </div>
             @php $concreetItems = is_array(__('site.home.concreet_items')) ? __('site.home.concreet_items') : []; @endphp
@@ -551,38 +568,5 @@
     </div>
 </section>
 
-
-{{-- ════════════════════════════════════════════════════════════════════════
-     J. LOCAL PAGES STRIP — SEO internal links (Dutch only, premium pills)
-     ════════════════════════════════════════════════════════════════════════ --}}
-@if($loc === 'nl')
-@php
-    // Primary region first (Tervuren / Druivenstreek), then secondary regions.
-    $localPills = [
-        ['href' => '/nl/website-laten-maken-tervuren',   'label' => 'Website laten maken in Tervuren'],
-        ['href' => '/nl/website-laten-maken-duisburg',   'label' => 'Duisburg'],
-        ['href' => '/nl/website-laten-maken-overijse',   'label' => 'Overijse'],
-        ['href' => '/nl/website-laten-maken-hoeilaart',  'label' => 'Hoeilaart'],
-        ['href' => '/nl/website-laten-maken-huldenberg', 'label' => 'Huldenberg'],
-        ['href' => '/nl/website-laten-maken-bertem',     'label' => 'Bertem'],
-        ['href' => '/nl/webdesigner-tervuren',           'label' => 'Webdesigner in Tervuren'],
-        ['href' => '/nl/website-laten-maken-leuven',     'label' => 'Leuven'],
-        ['href' => '/nl/website-laten-maken-vlaams-brabant', 'label' => 'Vlaams-Brabant'],
-    ];
-@endphp
-<section class="border-t border-stone-200 bg-stone-50" aria-label="Lokale diensten in de Druivenstreek">
-    <div class="max-w-6xl mx-auto px-6 py-7">
-        <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-4">Lokaal in Tervuren, de Druivenstreek &amp; Vlaams-Brabant</p>
-        <div class="flex flex-wrap gap-2">
-            @foreach($localPills as $pill)
-            <a href="{{ $pill['href'] }}"
-               class="inline-flex items-center text-xs font-medium text-slate-600 bg-white border border-stone-200 rounded-full px-3 py-1.5 hover:border-amber-300 hover:text-amber-800 transition-colors duration-200">
-                {{ $pill['label'] }}
-            </a>
-            @endforeach
-        </div>
-    </div>
-</section>
-@endif
 
 </x-layouts.app>

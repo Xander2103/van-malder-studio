@@ -46,14 +46,14 @@
 
     {{-- ── Top bar: back link ── --}}
     <header class="fixed top-0 inset-x-0 z-30 p-6 flex justify-between items-center">
-        <a href="{{ route('showcase') }}"
+        <a href="{{ Route::has((app()->getLocale() ?: 'nl') . '.showcase') ? route((app()->getLocale() ?: 'nl') . '.showcase') : route('showcase') }}"
            class="intro-fade intro-fade-1 inline-flex items-center gap-2 text-sm font-medium text-slate-400 hover:text-white transition-colors duration-200">
             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M7 16l-4-4m0 0l4-4m-4 4h18"/>
             </svg>
             {{ __('site.studio_intro.back_link') }}
         </a>
-        <a href="{{ route('home') }}"
+        <a href="{{ Route::has((app()->getLocale() ?: 'nl') . '.home') ? route((app()->getLocale() ?: 'nl') . '.home') : route('home') }}"
            class="intro-fade intro-fade-1 text-sm font-medium text-slate-500 hover:text-white transition-colors duration-200">
             Van Malder Studio
         </a>
@@ -98,14 +98,14 @@
 
         {{-- CTAs --}}
         <div class="intro-fade intro-fade-5 mt-10 flex flex-wrap justify-center gap-4">
-            <a href="{{ route('home') }}"
+            <a href="{{ Route::has((app()->getLocale() ?: 'nl') . '.home') ? route((app()->getLocale() ?: 'nl') . '.home') : route('home') }}"
                class="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold bg-white text-slate-900 rounded-full hover:bg-stone-100 transition-colors duration-200 cursor-pointer shadow-sm">
                 {{ __('site.studio_intro.cta_website') }}
                 <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
                 </svg>
             </a>
-            <a href="{{ route('contact') }}"
+            <a href="{{ Route::has((app()->getLocale() ?: 'nl') . '.contact') ? route((app()->getLocale() ?: 'nl') . '.contact') : route('contact') }}"
                class="inline-flex items-center px-6 py-3 text-sm font-semibold text-slate-300 border border-slate-700 rounded-full hover:border-slate-500 hover:text-white transition-colors duration-200 cursor-pointer backdrop-blur-sm">
                 {{ __('site.studio_intro.cta_contact') }}
             </a>

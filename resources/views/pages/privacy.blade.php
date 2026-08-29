@@ -157,7 +157,7 @@
         </div>
 
         <div class="mt-12 pt-8 border-t border-stone-200">
-            <a href="{{ route('home') }}"
+            <a href="{{ Route::has((app()->getLocale() ?: 'nl') . '.home') ? route((app()->getLocale() ?: 'nl') . '.home') : route('home') }}"
                class="inline-flex items-center gap-2 text-sm font-medium text-slate-500 hover:text-slate-800 transition-colors duration-200">
                 <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M7 16l-4-4m0 0l4-4m-4 4h18"/>

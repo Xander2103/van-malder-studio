@@ -3,25 +3,26 @@
 use App\Http\Controllers\InquiryController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\PageController;
-use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\QuickContactController;
 use Illuminate\Support\Facades\Route;
 
 // =============================================================================
-// Legacy Dutch routes (no locale prefix) — kept for backwards compatibility.
-// Canonical versions live under /nl/...
+// Legacy Dutch routes (no locale prefix) — permanently redirected to /nl/...
+// so the canonical localized URL is the only indexable version of each page.
+// Route names are kept so existing route('...') calls keep resolving.
+// POST endpoints stay functional for old forms/bookmarks.
 // =============================================================================
 Route::redirect('/', '/nl', 301)->name('home');
-Route::get('/diensten', [PageController::class, 'services'])->name('services');
-Route::get('/projecten', [ProjectController::class, 'index'])->name('projects.index');
-Route::get('/werkwijze', [PageController::class, 'process'])->name('process');
-Route::get('/prijzen', [PageController::class, 'pricing'])->name('pricing');
-Route::get('/over-mij', [PageController::class, 'about'])->name('about');
-Route::get('/contact', [PageController::class, 'contact'])->name('contact');
+Route::redirect('/diensten', '/nl/diensten', 301)->name('services');
+Route::redirect('/projecten', '/nl/over-mij#vm-studios', 301)->name('projects.index');
+Route::redirect('/werkwijze', '/nl/werkwijze', 301)->name('process');
+Route::redirect('/prijzen', '/nl/prijzen', 301)->name('pricing');
+Route::redirect('/over-mij', '/nl/over-mij', 301)->name('about');
+Route::redirect('/contact', '/nl/contact', 301)->name('contact');
 Route::post('/contact', [InquiryController::class, 'store'])->name('inquiries.store')->middleware('throttle:5,1');
 Route::post('/bericht', [QuickContactController::class, 'store'])->name('quick_message.store')->middleware('throttle:quick-contact');
-Route::get('/privacyverklaring', [PageController::class, 'privacy'])->name('privacy');
-Route::get('/showcase', [PageController::class, 'showcase'])->name('showcase');
+Route::redirect('/privacyverklaring', '/nl/privacyverklaring', 301)->name('privacy');
+Route::redirect('/showcase', '/nl/showcase', 301)->name('showcase');
 Route::get('/studio-intro', [PageController::class, 'studioIntro'])->name('studio.intro');
 Route::get('/sitemap.xml', [PageController::class, 'sitemap'])->name('sitemap');
 Route::get('/robots.txt', [PageController::class, 'robots'])->name('robots.txt');

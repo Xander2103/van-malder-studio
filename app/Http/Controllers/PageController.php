@@ -9,7 +9,8 @@ class PageController extends Controller
     public function home()
     {
         return view('pages.home', [
-            'projects' => config('projects'),
+            'projects'   => config('projects'),
+            'clientWork' => config('client-work'),
         ]);
     }
 
@@ -37,7 +38,8 @@ class PageController extends Controller
     public function about()
     {
         return view('pages.about', [
-            'projects' => config('projects'),
+            'projects'   => config('projects'),
+            'clientWork' => config('client-work'),
         ]);
     }
 
@@ -131,8 +133,31 @@ class PageController extends Controller
 
     public function robots()
     {
-        $content = "User-agent: *\nAllow: /\nDisallow: /storage/\nSitemap: " . route('sitemap') . "\n";
+        // Public marketing site: everything is crawlable except framework internals.
+        // AI search crawlers (OpenAI's OAI-SearchBot, Perplexity, Anthropic) are
+        // explicitly allowed so the studio can be cited in generative answers.
+        $lines = [
+            'User-agent: *',
+            'Allow: /',
+            'Disallow: /storage/',
+            'Disallow: /up',
+            'Disallow: /bericht',
+            'Disallow: /*/bericht',
+            '',
+            'User-agent: OAI-SearchBot',
+            'Allow: /',
+            '',
+            'User-agent: PerplexityBot',
+            'Allow: /',
+            '',
+            'User-agent: ClaudeBot',
+            'Allow: /',
+            '',
+            'Sitemap: ' . route('sitemap'),
+        ];
 
-        return response($content, 200)->header('Content-Type', 'text/plain');
+        return response(implode("\n", $lines) . "\n", 200)
+            ->header('Content-Type', 'text/plain; charset=UTF-8')
+            ->header('Cache-Control', 'public, max-age=3600');
     }
 }

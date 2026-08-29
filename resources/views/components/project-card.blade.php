@@ -7,6 +7,7 @@ $artClass = match($art) {
     'darts'    => 'project-art-darts',
     'cards'    => 'project-art-cards',
     'strategy' => 'project-art-strategy',
+    'ball'     => 'project-art-ball',
     default    => 'project-art-darts',
 };
 @endphp
@@ -75,6 +76,22 @@ $artClass = match($art) {
         {{-- Grid lines --}}
         <div class="absolute inset-0 opacity-10">
             <div class="h-full" style="background-image: linear-gradient(rgba(217,119,6,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(217,119,6,0.3) 1px, transparent 1px); background-size: 24px 24px;"></div>
+        </div>
+        @endif
+
+        @if($art === 'ball')
+        {{-- Pitch lines + ball marker — football prediction feel --}}
+        <div class="absolute inset-4 rounded-lg border border-emerald-400/20"></div>
+        <div class="absolute top-4 bottom-4 left-1/2 w-px bg-emerald-400/20"></div>
+        <div class="absolute inset-0 flex items-center justify-center">
+            <div class="absolute w-16 h-16 rounded-full border border-emerald-400/25"></div>
+        </div>
+        <div class="absolute top-9 right-12 w-8 h-8 rounded-full border-2 border-emerald-300/60"></div>
+        <div class="absolute top-[3.1rem] right-[3.9rem] w-2.5 h-2.5 rounded-full bg-white/80"></div>
+        <div class="absolute bottom-6 left-6 flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400/60"></span>
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400/35"></span>
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400/20"></span>
         </div>
         @endif
 

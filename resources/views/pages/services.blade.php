@@ -98,21 +98,72 @@
         </div>
     </section>
 
-    {{-- Local pages strip — Dutch only --}}
-    @if(app()->getLocale() === 'nl')
-    <section class="border-t border-stone-200 bg-white" aria-label="Lokale diensten in de Druivenstreek">
-        <div class="max-w-6xl mx-auto px-6 py-8">
-            <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3">Lokaal in de Druivenstreek &amp; Vlaams-Brabant</p>
-            <div class="flex flex-wrap gap-x-6 gap-y-2">
-                <a href="/nl/website-laten-maken-tervuren" class="text-sm text-slate-500 hover:text-amber-700 transition-colors duration-200">Website laten maken in Tervuren</a>
-                <a href="/nl/website-laten-maken-leuven" class="text-sm text-slate-500 hover:text-amber-700 transition-colors duration-200">Website laten maken in Leuven</a>
-                <a href="/nl/website-laten-maken-vlaams-brabant" class="text-sm text-slate-500 hover:text-amber-700 transition-colors duration-200">Website laten maken in Vlaams-Brabant</a>
-                <a href="/nl/webdesigner-tervuren" class="text-sm text-slate-500 hover:text-amber-700 transition-colors duration-200">Webdesigner in Tervuren</a>
-                <a href="/nl/website-laten-maken-overijse" class="text-sm text-slate-500 hover:text-amber-700 transition-colors duration-200">Website laten maken in Overijse</a>
-                <a href="/nl/website-laten-maken-duisburg" class="text-sm text-slate-500 hover:text-amber-700 transition-colors duration-200">Website laten maken in Duisburg</a>
+    {{-- Proof + contextual local links (one sentence, NL only — the detailed local pages stay reachable) --}}
+    @php
+        $loc       = app()->getLocale() ?: 'nl';
+        $aboutHref = \Illuminate\Support\Facades\Route::has($loc . '.about') ? route($loc . '.about') : route('about');
+        $localLink = fn (string $slug, string $label) => '<a href="' . e(url('/nl/' . $slug)) . '" class="font-medium text-slate-700 underline decoration-stone-300 underline-offset-2 hover:text-amber-800 hover:decoration-amber-400 transition-colors duration-200">' . e($label) . '</a>';
+    @endphp
+    <section class="border-t border-stone-200 bg-white" aria-labelledby="services-work-heading">
+        <div class="max-w-6xl mx-auto px-6 py-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <div>
+                <h2 id="services-work-heading" class="text-sm font-semibold text-slate-800">{{ __('site.services.work_note') }}</h2>
+                @if($loc === 'nl')
+                <p class="mt-1 text-sm text-slate-500 leading-relaxed">
+                    {!! __('site.services.local_note', [
+                        'tervuren'       => $localLink('website-laten-maken-tervuren', __('site.services.local_tervuren')),
+                        'seo'            => $localLink('seo-voor-lokale-bedrijven', __('site.services.local_seo')),
+                        'vlaams_brabant' => $localLink('webdesigner-vlaams-brabant', __('site.services.local_vlaams_brabant')),
+                    ]) !!}
+                </p>
+                @endif
+            </div>
+            <a href="{{ $aboutHref }}#client-work"
+               class="shrink-0 inline-flex items-center gap-1.5 text-sm font-semibold text-amber-700 hover:text-amber-900 transition-colors duration-200 group">
+                {{ __('site.services.work_link') }}
+                <svg class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                </svg>
+            </a>
+        </div>
+    </section>
+
+    {{-- FAQ — answer-friendly content for real pre-sales questions --}}
+    @php $servicesFaq = is_array(__('site.services.faq')) ? __('site.services.faq') : []; @endphp
+    @if($servicesFaq)
+    <section class="border-t border-stone-200 bg-stone-50" aria-labelledby="services-faq-heading">
+        <div class="max-w-6xl mx-auto px-6 py-16">
+            <div class="reveal mb-8">
+                <p class="inline-flex items-center gap-2 text-xs font-semibold text-amber-700 uppercase tracking-widest mb-3">
+                    <span class="w-4 h-px bg-amber-600 inline-block" aria-hidden="true"></span>
+                    {{ __('site.services.faq_eyebrow') }}
+                </p>
+                <h2 id="services-faq-heading" class="font-serif text-2xl md:text-3xl font-medium text-slate-900 leading-tight">{{ __('site.services.faq_heading') }}</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 reveal">
+                @foreach($servicesFaq as $item)
+                <div class="bg-white border border-stone-200 rounded-xl p-6">
+                    <h3 class="font-serif text-base font-medium text-slate-900 mb-2">{{ $item['q'] }}</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">{{ $item['a'] }}</p>
+                </div>
+                @endforeach
             </div>
         </div>
     </section>
+    @php
+        $servicesFaqSchema = [
+            '@context'   => 'https://schema.org',
+            '@type'      => 'FAQPage',
+            'mainEntity' => array_map(fn ($item) => [
+                '@type'          => 'Question',
+                'name'           => $item['q'],
+                'acceptedAnswer' => ['@type' => 'Answer', 'text' => $item['a']],
+            ], $servicesFaq),
+        ];
+    @endphp
+    <script type="application/ld+json">
+{!! json_encode($servicesFaqSchema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
+    </script>
     @endif
 
     {{-- CTA --}}

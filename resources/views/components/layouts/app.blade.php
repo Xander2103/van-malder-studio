@@ -12,6 +12,8 @@
     $parts = explode('.', $routeName);
     // Strip locale prefix: 'nl.services' → 'services', 'services' → 'services'
     $baseName = count($parts) > 1 ? implode('.', array_slice($parts, 1)) : $parts[0] ?? 'home';
+    // Landing pages exist in one language only: no hreflang cluster for them.
+    $isLandingPage = $baseName === 'landing';
     // Normalise landing/store back to home so switcher doesn't break
     if (in_array($baseName, ['landing', 'inquiries.store', 'home', ''])) {
         $baseName = 'home';
@@ -22,6 +24,11 @@
         $key = $lang . '.' . $baseName;
         $hrefLangs[$lang] = Route::has($key) ? route($key) : route($lang . '.home');
     }
+
+    $pageTitle       = $title ?? config('studio.brand_name');
+    $pageDescription = $description ?? null;
+    $ogImage         = asset(config('studio.og_image', 'preview.png'));
+    $schemaPageType  = $pageType ?? 'WebPage';
 @endphp
 <!DOCTYPE html>
 <html lang="{{ $locale }}" class="scroll-smooth">
@@ -31,18 +38,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     {{-- Primary meta --}}
-    <title>{{ $title ?? config('studio.brand_name') }}</title>
-    @if (!empty($description))
-        <meta name="description" content="{{ $description }}">
+    <title>{{ $pageTitle }}</title>
+    @if (!empty($pageDescription))
+        <meta name="description" content="{{ $pageDescription }}">
     @endif
     <meta name="author" content="{{ config('studio.owner') }}">
     <meta name="robots" content="{{ $robotsMeta }}">
+    <meta name="theme-color" content="#fafaf9">
 
     {{-- Canonical URL — self-referencing, always matches the actual localized page --}}
     <link rel="canonical" href="{{ $selfCanonical }}">
 
-    {{-- hreflang — only output when current locale translation is ready --}}
-    @if ($isReady)
+    {{-- hreflang — only for pages that exist in every locale and are ready to index --}}
+    @if ($isReady && !$isLandingPage)
         <link rel="alternate" hreflang="nl" href="{{ $hrefLangs['nl'] }}">
         <link rel="alternate" hreflang="fr" href="{{ $hrefLangs['fr'] }}">
         <link rel="alternate" hreflang="en" href="{{ $hrefLangs['en'] }}">
@@ -52,17 +60,25 @@
 
     {{-- Open Graph --}}
     <meta property="og:type" content="{{ $ogType ?? 'website' }}">
-    <meta property="og:title" content="{{ $ogTitle ?? ($title ?? config('studio.brand_name')) }}">
-    <meta property="og:description" content="{{ $ogDescription ?? ($description ?? config('studio.positioning')) }}">
+    <meta property="og:title" content="{{ $ogTitle ?? $pageTitle }}">
+    <meta property="og:description" content="{{ $ogDescription ?? ($pageDescription ?? config('studio.positioning')) }}">
     <meta property="og:url" content="{{ $selfCanonical }}">
     <meta property="og:site_name" content="{{ config('studio.brand_name') }}">
+    <meta property="og:image" content="{{ $ogImage }}">
+    <meta property="og:image:alt" content="{{ config('studio.brand_name') }} — {{ config('studio.tagline') }}">
     <meta property="og:locale"
         content="{{ match ($locale) {'fr' => 'fr_BE','en' => 'en_GB','de' => 'de_BE',default => 'nl_BE'} }}">
+    @foreach (['nl' => 'nl_BE', 'fr' => 'fr_BE', 'en' => 'en_GB', 'de' => 'de_BE'] as $altLang => $ogAlt)
+        @if ($altLang !== $locale)
+    <meta property="og:locale:alternate" content="{{ $ogAlt }}">
+        @endif
+    @endforeach
 
     {{-- Twitter card --}}
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="{{ $ogTitle ?? ($title ?? config('studio.brand_name')) }}">
-    <meta name="twitter:description" content="{{ $ogDescription ?? ($description ?? config('studio.positioning')) }}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ $ogTitle ?? $pageTitle }}">
+    <meta name="twitter:description" content="{{ $ogDescription ?? ($pageDescription ?? config('studio.positioning')) }}">
+    <meta name="twitter:image" content="{{ $ogImage }}">
 
     {{-- Favicons --}}
     <link rel="icon" href="{{ asset('favicon.ico') }}" sizes="any">
@@ -81,6 +97,15 @@
         rel="stylesheet">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    {{-- Structured data — shared entity graph (business, person, website, page, breadcrumb) --}}
+    <x-structured-data
+        :title="$pageTitle"
+        :description="$pageDescription"
+        :canonical="$selfCanonical"
+        :pageType="$schemaPageType"
+        :baseName="$baseName"
+    />
 </head>
 
 <body class="bg-stone-50 text-slate-800 antialiased">

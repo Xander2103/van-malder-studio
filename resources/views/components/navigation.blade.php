@@ -1,13 +1,6 @@
 @php
     $locale = app()->getLocale() ?: 'nl';
 
-    $links = [
-        ['route' => 'services',  'label' => __('site.nav.services')],
-        ['route' => 'process',   'label' => __('site.nav.process')],
-        ['route' => 'pricing',   'label' => __('site.nav.pricing')],
-        ['route' => 'about',     'label' => __('site.nav.about')],
-    ];
-
     // Resolve locale-aware route name for a given link
     if (!function_exists('navRoute')) {
         function navRoute(string $name, string $locale): string {
@@ -15,6 +8,23 @@
             return Route::has($localeName) ? route($localeName) : route($name);
         }
     }
+
+    // 'anchor' links point at a section on another page (no separate route yet).
+    $links = [
+        ['route' => 'services',  'label' => __('site.nav.services')],
+        ['route' => 'process',   'label' => __('site.nav.process')],
+        ['route' => 'pricing',   'label' => __('site.nav.pricing')],
+        ['route' => 'about',     'label' => __('site.nav.about')],
+        ['route' => 'about',     'label' => __('site.nav.work'), 'anchor' => 'client-work'],
+    ];
+
+    foreach ($links as &$link) {
+        $link['href']   = navRoute($link['route'], $locale) . (isset($link['anchor']) ? '#' . $link['anchor'] : '');
+        // Anchor links never claim the "current page" state — the page link already does.
+        $link['active'] = !isset($link['anchor'])
+            && (request()->routeIs($locale . '.' . $link['route']) || request()->routeIs($link['route']));
+    }
+    unset($link);
 
     // Determine the equivalent page name for the language switcher
     $routeName = request()->route()?->getName() ?? '';
@@ -49,8 +59,9 @@
         <ul class="hidden md:flex items-center gap-5" role="list">
             @foreach($links as $link)
             <li>
-                <a href="{{ navRoute($link['route'], $locale) }}"
-                   class="text-sm font-medium transition-colors duration-200 {{ request()->routeIs($locale . '.' . $link['route']) || request()->routeIs($link['route']) ? 'text-slate-900' : 'text-slate-500 hover:text-slate-800' }}">
+                <a href="{{ $link['href'] }}"
+                   class="text-sm font-medium transition-colors duration-200 {{ $link['active'] ? 'text-slate-900' : 'text-slate-500 hover:text-slate-800' }}"
+                   @if($link['active']) aria-current="page" @endif>
                     {{ $link['label'] }}
                 </a>
             </li>
@@ -163,18 +174,16 @@
         </button>
     </div>
 
-    {{-- Navigation links — serif, large, airy --}}
-    <nav class="px-6 pt-6 pb-4 flex-1" aria-label="{{ __('site.nav.menu_label') }}">
+    {{-- Navigation links --}}
+    <nav class="px-6 pt-5 pb-1" aria-label="{{ __('site.nav.menu_label') }}">
         <ul class="flex flex-col" role="list">
             @foreach($links as $link)
-            @php
-                $isActive = request()->routeIs($locale . '.' . $link['route']) || request()->routeIs($link['route']);
-            @endphp
+            @php $isActive = $link['active']; @endphp
             <li>
-                <a href="{{ navRoute($link['route'], $locale) }}"
-                   class="flex items-center justify-between py-4 border-b border-stone-100 transition-colors duration-200 {{ $isActive ? 'text-slate-900' : 'text-slate-400 hover:text-slate-800' }}"
+                <a href="{{ $link['href'] }}"
+                   class="flex items-center justify-between py-3.5 border-b border-stone-100 last:border-b-0 transition-colors duration-200 {{ $isActive ? 'text-slate-900' : 'text-slate-500 hover:text-slate-900' }}"
                    @if($isActive) aria-current="page" @endif>
-                    <span class="font-serif text-[1.9rem] font-normal leading-none">{{ $link['label'] }}</span>
+                    <span class="font-serif text-[1.35rem] font-normal leading-snug">{{ $link['label'] }}</span>
                     @if($isActive)
                     <span class="w-1.5 h-1.5 rounded-full shrink-0" style="background:#c49a3a" aria-hidden="true"></span>
                     @endif
@@ -184,11 +193,11 @@
         </ul>
     </nav>
 
-    {{-- Bottom section: CTA + trust line (language switching is now in header) --}}
-    <div class="px-6 pt-4 pb-8 shrink-0 flex flex-col gap-5">
+    {{-- CTA + supporting meta (language switching is now in header) --}}
+    <div class="px-6 pt-5 pb-8 border-t border-stone-200/60 flex flex-col gap-4">
 
         {{-- CTA — one strong primary, one quiet secondary --}}
-        <div class="flex flex-col gap-3">
+        <div class="flex flex-col gap-2">
             <a href="{{ navRoute('contact', $locale) }}"
                class="flex items-center justify-center gap-2 w-full px-6 py-3.5 text-sm font-semibold bg-slate-900 text-white rounded-xl hover:bg-blue-800 transition-colors duration-200 cursor-pointer">
                 {{ __('site.nav.mobile_cta') }}
@@ -198,16 +207,15 @@
             </a>
 
             <a href="{{ navRoute('services', $locale) }}"
-               class="text-center text-sm text-slate-400 hover:text-slate-700 transition-colors duration-200 py-1">
+               class="text-center text-[0.8125rem] font-medium text-slate-400 hover:text-slate-700 transition-colors duration-200 py-1.5">
                 {{ __('site.nav.cta_secondary') }}
             </a>
         </div>
 
-        {{-- Trust / local identity line --}}
-        <div class="pt-3 border-t border-stone-200/60 flex flex-col gap-0.5">
-            <p class="text-xs text-slate-400 leading-relaxed">{{ __('site.nav.mobile_tagline') }}</p>
-            <p class="text-xs text-slate-400 leading-relaxed">{{ __('site.nav.mobile_price') }}</p>
-        </div>
+        {{-- Supporting meta --}}
+        <p class="text-[0.6875rem] text-slate-400 leading-relaxed">
+            {{ __('site.nav.mobile_tagline') }}<span class="mx-1.5 text-stone-300" aria-hidden="true">·</span>{{ __('site.nav.mobile_price') }}
+        </p>
     </div>
 </div>
 

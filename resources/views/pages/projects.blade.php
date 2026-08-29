@@ -79,7 +79,7 @@
                 Ik help graag bij het uitwerken van je digitale project — van idee tot werkende applicatie.
             </p>
             <div class="mt-7">
-                <a href="{{ route('contact') }}"
+                <a href="{{ Route::has((app()->getLocale() ?: 'nl') . '.contact') ? route((app()->getLocale() ?: 'nl') . '.contact') : route('contact') }}"
                    class="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold bg-slate-900 text-white rounded-lg hover:bg-blue-800 transition-colors duration-200 cursor-pointer shadow-sm">
                     Bespreek je idee
                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">

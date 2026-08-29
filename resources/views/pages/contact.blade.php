@@ -6,6 +6,7 @@
     :title="__('site.seo.contact_title')"
     :description="__('site.seo.contact_desc')"
     :canonical="$_contactCanonical"
+    pageType="ContactPage"
 >
 
 @php
@@ -55,22 +56,35 @@ if (($errors->any() && !$hasQuickErrors) || session('success') || session('mail_
             <h1 class="font-serif text-3xl md:text-4xl font-medium text-slate-900 leading-tight">{{ __('site.contact.heading') }}</h1>
             <p class="mt-3 text-slate-500 leading-relaxed">{{ __('site.contact.body') }}</p>
 
-            <div class="mt-8 space-y-5">
-                <div>
-                    <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">{{ __('site.contact.email_label') }}</p>
-                    <a href="mailto:{{ config('studio.email') }}" class="text-sm text-blue-700 hover:text-blue-900 transition-colors duration-200">
-                        {{ config('studio.email') }}
-                    </a>
-                </div>
-                <div>
-                    <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">{{ __('site.contact.location_label') }}</p>
-                    <p class="text-sm text-slate-600">{{ config('studio.location') }}</p>
-                </div>
-                <div>
-                    <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">{{ __('site.contact.response_label') }}</p>
-                    <p class="text-sm text-slate-600">{{ __('site.contact.response_value') }}</p>
-                </div>
+            @php $contactTopics = is_array(__('site.contact.topics')) ? __('site.contact.topics') : []; @endphp
+            @if($contactTopics)
+            <div class="mt-6">
+                <h2 class="font-sans text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">{{ __('site.contact.topics_heading') }}</h2>
+                <ul class="space-y-1.5" role="list">
+                    @foreach($contactTopics as $topic)
+                    <li class="flex items-start gap-2.5 text-sm text-slate-600 leading-relaxed">
+                        <span class="mt-2 w-1.5 h-1.5 rounded-full bg-amber-600 shrink-0" aria-hidden="true"></span>
+                        <span>{{ $topic }}</span>
+                    </li>
+                    @endforeach
+                </ul>
             </div>
+            @endif
+
+            <dl class="mt-8 space-y-5">
+                <div>
+                    <dt class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">{{ __('site.contact.email_label') }}</dt>
+                    <dd>
+                        <a href="mailto:{{ config('studio.email') }}" class="text-sm text-blue-700 hover:text-blue-900 transition-colors duration-200">
+                            {{ config('studio.email') }}
+                        </a>
+                    </dd>
+                </div>
+                <div>
+                    <dt class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">{{ __('site.contact.location_label') }}</dt>
+                    <dd class="text-sm text-slate-600">{{ config('studio.location') }}</dd>
+                </div>
+            </dl>
 
             <div class="mt-8 p-5 bg-stone-100 rounded-xl border border-stone-200">
                 <p class="text-sm text-slate-500 leading-relaxed">

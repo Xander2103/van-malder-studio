@@ -102,40 +102,9 @@
         </div>
     </section>
 
-    {{-- Optional add-ons --}}
-    <section class="max-w-6xl mx-auto px-6 py-16" aria-labelledby="addons-heading">
-        <div class="reveal mb-8">
-            <p class="inline-flex items-center gap-2 text-xs font-semibold text-amber-700 uppercase tracking-widest mb-3">
-                <span class="w-4 h-px bg-amber-600 inline-block" aria-hidden="true"></span>
-                {{ __('site.pricing.addons_eyebrow') }}
-            </p>
-            <h2 id="addons-heading" class="font-serif text-2xl font-medium text-slate-900 leading-tight">{{ __('site.pricing.addons_heading') }}</h2>
-            <p class="mt-2 text-slate-500 max-w-xl leading-relaxed">{{ __('site.pricing.addons_body') }}</p>
-        </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 reveal">
-
-            @foreach(__('site.pricing.addons_items') as $addon)
-            <div class="bg-white border border-stone-200 rounded-xl p-5 flex items-start gap-4">
-                <div class="flex-1 min-w-0">
-                    <h3 class="text-sm font-semibold text-slate-800">{{ $addon['title'] }}</h3>
-                    <p class="text-xs text-slate-500 mt-1 leading-relaxed">{{ $addon['desc'] }}</p>
-                </div>
-                <span class="text-xs font-medium text-stone-600 bg-stone-100 border border-stone-200 px-2.5 py-0.5 rounded-full shrink-0 whitespace-nowrap">{{ $addon['price'] }}</span>
-            </div>
-            @endforeach
-
-        </div>
-        <p class="mt-5 text-xs text-slate-400 text-center max-w-xl mx-auto leading-relaxed">
-            {{ __('site.pricing.addons_note') }}
-        </p>
-        <p class="mt-2 text-xs font-medium text-slate-500 text-center">
-            {{ __('site.pricing.vat_note') }}
-        </p>
-    </section>
-
     {{-- FAQ --}}
     @if(is_array(__('site.pricing.faq')))
-    <section class="max-w-6xl mx-auto px-6 py-12" aria-labelledby="pricing-faq-heading">
+    <section class="max-w-6xl mx-auto px-6 py-16" aria-labelledby="pricing-faq-heading">
         <div class="reveal">
             <h2 id="pricing-faq-heading" class="font-serif text-2xl font-medium text-slate-900 mb-8">{{ __('site.pricing.faq_heading') }}</h2>
             <div class="space-y-5">

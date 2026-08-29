@@ -466,22 +466,27 @@ import './bootstrap';
     let cMouseX = 0.5, cMouseY = 0.5;
     let glowTarget = 0, glowCur = 0;
 
-    // Slightly more visible on desktop, mobile unchanged
+    // Three low-contrast lines. They read as background texture, so the opaque
+    // studio card interrupting one is no longer noticeable as a hard cut.
     const waves = [
-        { amp: mobile ? 22 : 44, freq: 0.0058, speed: 0.40, offset: 0.20, opacity: mobile ? 0.22 : 0.26, rgb: '100,116,139' },
-        { amp: mobile ? 14 : 30, freq: 0.0098, speed: 0.58, offset: 0.38, opacity: mobile ? 0.17 : 0.21, rgb: '71,85,105'   },
-        { amp: mobile ? 26 : 50, freq: 0.0044, speed: 0.24, offset: 0.57, opacity: mobile ? 0.14 : 0.17, rgb: '100,116,139' },
-        { amp: mobile ? 16 : 34, freq: 0.0080, speed: 0.50, offset: 0.32, opacity: mobile ? 0.20 : 0.24, rgb: '148,163,184' },
-        { amp: mobile ? 12 : 24, freq: 0.0116, speed: 0.70, offset: 0.75, opacity: mobile ? 0.11 : 0.14, rgb: '96,108,168'  },
+        { amp: mobile ? 20 : 40, freq: 0.0052, speed: 0.34, offset: 0.24, opacity: mobile ? 0.11 : 0.13, rgb: '100,116,139' },
+        { amp: mobile ? 14 : 28, freq: 0.0086, speed: 0.50, offset: 0.52, opacity: mobile ? 0.08 : 0.10, rgb: '148,163,184' },
+        { amp: mobile ? 22 : 44, freq: 0.0040, speed: 0.22, offset: 0.79, opacity: mobile ? 0.07 : 0.09, rgb: '100,116,139' },
     ];
-    if (!mobile) {
-        waves.push({ amp: 18, freq: 0.0062, speed: 0.32, offset: 0.88, opacity: 0.09, rgb: '171,130,68' });
-    }
 
+    let cssW = 0, cssH = 0;
     function resize() {
         const p = canvas.parentElement;
-        W = canvas.width  = p.offsetWidth;
-        H = canvas.height = p.offsetHeight;
+        const w = p.offsetWidth, h = p.offsetHeight;
+        if (w === cssW && h === cssH) return;
+        cssW = w; cssH = h;
+        // Bitmap in device pixels, drawing coordinates in CSS pixels: the canvas
+        // is never stretched, so lines stay crisp and correctly proportioned.
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        canvas.width  = Math.round(w * dpr);
+        canvas.height = Math.round(h * dpr);
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        W = w; H = h;
     }
 
     let frameCount = 0;
@@ -542,8 +547,13 @@ import './bootstrap';
                     + Math.sin(x * w.freq * 0.47 + time * w.speed * 0.52) * (w.amp * 0.30);
                 ctx.lineTo(x, y);
             }
-            ctx.strokeStyle = `rgba(${w.rgb},${w.opacity})`;
-            ctx.lineWidth   = idx < 2 ? 1.5 : 1.2;
+            const fade = ctx.createLinearGradient(0, 0, W, 0);
+            fade.addColorStop(0,    `rgba(${w.rgb},0)`);
+            fade.addColorStop(0.14, `rgba(${w.rgb},${w.opacity})`);
+            fade.addColorStop(0.86, `rgba(${w.rgb},${w.opacity})`);
+            fade.addColorStop(1,    `rgba(${w.rgb},0)`);
+            ctx.strokeStyle = fade;
+            ctx.lineWidth   = idx === 0 ? 1.4 : 1.1;
             ctx.stroke();
         });
     }
@@ -552,6 +562,9 @@ import './bootstrap';
     draw();
 
     window.addEventListener('resize', resize, { passive: true });
+    if (typeof ResizeObserver !== 'undefined') {
+        new ResizeObserver(resize).observe(canvas.parentElement);
+    }
     document.addEventListener('visibilitychange', () => {
         running = !document.hidden;
         if (running) draw();

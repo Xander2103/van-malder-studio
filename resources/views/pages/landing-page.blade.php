@@ -7,6 +7,15 @@
     :noindex="$noindex"
 >
 
+@php
+    // Landing pages are NL-only today, but never link to the legacy unprefixed routes (they 301 to /nl/...).
+    $lpLocale   = $page['locale'] ?? (app()->getLocale() ?: 'nl');
+    $lpRoute    = fn (string $name) => \Illuminate\Support\Facades\Route::has($lpLocale . '.' . $name) ? route($lpLocale . '.' . $name) : route($name);
+    $lpContact  = $lpRoute('contact');
+    $lpServices = $lpRoute('services');
+    $lpAbout    = $lpRoute('about');
+@endphp
+
     {{-- ── Hero ── --}}
     <section class="max-w-6xl mx-auto px-6 pt-16 pb-12">
         <div class="reveal">
@@ -29,14 +38,14 @@
                 {{ $page['intro'] }}
             </p>
             <div class="mt-7 flex flex-wrap gap-3">
-                <a href="{{ route('contact') }}"
+                <a href="{{ $lpContact }}"
                    class="inline-flex items-center gap-2 px-5 py-3 text-sm font-semibold bg-slate-900 text-white rounded-lg hover:bg-blue-800 transition-colors duration-200 cursor-pointer shadow-sm">
                     {{ $page['cta_text'] }}
                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
                     </svg>
                 </a>
-                <a href="{{ route('services') }}"
+                <a href="{{ $lpServices }}"
                    class="inline-flex items-center px-5 py-3 text-sm font-semibold bg-white border border-stone-300 text-slate-700 rounded-lg hover:border-slate-400 hover:text-slate-900 transition-colors duration-200 cursor-pointer">
                     Bekijk alle diensten
                 </a>
@@ -82,7 +91,7 @@
                         Ik werk rechtstreeks met je samen — geen account managers, geen uitbesteding.
                         Je praat altijd met de developer zelf.
                     </p>
-                    <a href="{{ route('contact') }}"
+                    <a href="{{ $lpContact }}"
                        class="w-full inline-flex items-center justify-center gap-2 px-5 py-3 text-sm font-semibold bg-slate-900 text-white rounded-lg hover:bg-blue-800 transition-colors duration-200 cursor-pointer shadow-sm">
                         {{ $page['cta_text'] }}
                         <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
@@ -203,16 +212,16 @@
                     Vertel me over je project. Het eerste gesprek is vrijblijvend.
                 </p>
                 <div class="mt-7 flex flex-wrap justify-center gap-3">
-                    <a href="{{ route('contact') }}"
+                    <a href="{{ $lpContact }}"
                        class="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold bg-white text-slate-900 rounded-lg hover:bg-blue-50 transition-colors duration-200 cursor-pointer shadow-sm">
                         {{ $page['cta_text'] }}
                         <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
                         </svg>
                     </a>
-                    <a href="{{ route('about') }}"
+                    <a href="{{ $lpAbout }}#client-work"
                        class="inline-flex items-center px-6 py-3 text-sm font-semibold text-slate-300 border border-slate-700 rounded-lg hover:border-slate-500 hover:text-white transition-colors duration-200 cursor-pointer">
-                        Over mij
+                        Bekijk klantenprojecten
                     </a>
                 </div>
             </div>
@@ -220,44 +229,9 @@
     </section>
 
 
-    {{-- ── Structured data ── --}}
+    {{-- ── Structured data — FAQ only; WebPage / ProfessionalService / Person come from the shared layout graph ── --}}
     @php
         $schemas = [];
-
-        $schemas[] = [
-            '@context'    => 'https://schema.org',
-            '@type'       => 'WebPage',
-            'name'        => $page['meta_title'],
-            'description' => $page['meta_description'],
-            'url'         => $canonical,
-            'inLanguage'  => 'nl-BE',
-        ];
-
-        if (!empty($page['location'])) {
-            $schemas[] = [
-                '@context'    => 'https://schema.org',
-                '@type'       => 'ProfessionalService',
-                '@id'         => 'https://vanmalderstudio.be/#business',
-                'name'        => 'Van Malder Studio',
-                'description' => $page['intro'],
-                'url'         => 'https://vanmalderstudio.be',
-                'areaServed'  => [
-                    '@type' => 'Place',
-                    'name'  => $page['location'],
-                ],
-                'address' => [
-                    '@type'           => 'PostalAddress',
-                    'addressLocality' => 'Tervuren',
-                    'addressRegion'   => 'Vlaams-Brabant',
-                    'addressCountry'  => 'BE',
-                ],
-                'email' => 'info@vanmalderstudio.be',
-                'founder' => [
-                    '@type' => 'Person',
-                    'name'  => 'Xander Van Malder',
-                ],
-            ];
-        }
 
         if (!empty($page['faq'])) {
             $schemas[] = [

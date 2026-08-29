@@ -138,6 +138,31 @@
         background: linear-gradient(135deg, #1c1000 0%, #451a03 40%, #1c1008 100%);
     }
 
+    .project-art-ball {
+        background: linear-gradient(135deg, #052e16 0%, #14532d 45%, #0f172a 100%);
+    }
+
+    /* -----------------------------------------------------------------------
+       Client work card — CSS browser-frame header used until a real screenshot
+       is added (config/client-work.php → 'image').
+       ----------------------------------------------------------------------- */
+    .client-art {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .client-art-heat {
+        background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 55%, #7c2d12 100%);
+    }
+
+    .client-art-medical {
+        background: linear-gradient(135deg, #0f172a 0%, #164e63 55%, #0f766e 100%);
+    }
+
+    .client-art-wood {
+        background: linear-gradient(135deg, #1c1917 0%, #44403c 50%, #78350f 100%);
+    }
+
     /* -----------------------------------------------------------------------
        Dot pattern overlay for project art
        ----------------------------------------------------------------------- */
