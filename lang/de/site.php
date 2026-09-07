@@ -299,10 +299,10 @@ return [
             ],
         ],
         'addons_items' => [
-            ['title' => 'Website-Audit & Verbesserungsberatung', 'price' => 'Ab €75',                    'desc' => 'Ich analysiere Ihre aktuelle Website und gebe konkrete Empfehlungen: Erscheinungsbild, mobile Nutzung, Ladegeschwindigkeit, Kontaktführung und SEO-Grundlagen. Kurzcheck kostenlos beim Kennenlernen.'],
-            ['title' => 'Google Business Profil Unterstützung',  'price' => 'Ab €50',                    'desc' => 'Kontaktdaten, Öffnungszeiten, Leistungen, Website-Verknüpfung und Grundberatung zu Bewertungen und Fotos — damit Ihr Unternehmen bei Google gut aussieht.'],
+            ['title' => 'Website-Audit & Verbesserungsberatung', 'price' => 'Auf Anfrage',                'desc' => 'Ich analysiere Ihre aktuelle Website und gebe konkrete Empfehlungen: Erscheinungsbild, mobile Nutzung, Ladegeschwindigkeit, Kontaktführung und SEO-Grundlagen. Kurzcheck kostenlos beim Kennenlernen.'],
+            ['title' => 'Google Business Profil Unterstützung',  'price' => 'Auf Anfrage',                'desc' => 'Kontaktdaten, Öffnungszeiten, Leistungen, Website-Verknüpfung und Grundberatung zu Bewertungen und Fotos — damit Ihr Unternehmen bei Google gut aussieht.'],
             ['title' => 'Inhaltsstruktur & Texte',               'price' => 'Inbegriffen / auf Anfrage', 'desc' => 'Inbegriffen bei professionellen Websites. Zusätzliche Hilfe bei der Strukturierung Ihres Angebots und beim Verfassen klarer Website-Texte auf Anfrage.'],
-            ['title' => 'Mehrsprachige Websites',                'price' => 'Ab €150/Sprache',           'desc' => 'Ihre Website kann in mehreren Sprachen aufgebaut werden mit einer klaren Sprachstruktur. Der Preis hängt von der Anzahl der Seiten ab.'],
+            ['title' => 'Mehrsprachige Websites',                'price' => 'Auf Anfrage',               'desc' => 'Ihre Website kann in mehreren Sprachen aufgebaut werden mit einer klaren Sprachstruktur. Der Preis hängt von der Anzahl der Seiten ab.'],
             ['title' => 'Visuelle Grundausrichtung',             'price' => 'Auf Anfrage',               'desc' => 'Noch keinen starken visuellen Stil? Ich helfe mit einer einfachen, professionellen Richtung für Farben, Typografie und Erscheinungsbild. Inbegriffen bei professionellen Websites.'],
             ['title' => 'Integrationen',                         'price' => 'Auf Anfrage',               'desc' => 'Verknüpfung mit Tools, die Sie bereits nutzen: Google Maps, WhatsApp, E-Mail-Benachrichtigungen, Newsletter oder Google Sheets und CRM. Preis je nach Komplexität.'],
         ],

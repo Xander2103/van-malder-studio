@@ -298,10 +298,10 @@ return [
             ],
         ],
         'addons_items' => [
-            ['title' => 'Audit de site web & conseils',       'price' => 'À partir de €75',              'desc' => 'Je passe en revue votre site actuel et donne des conseils concrets : apparence, utilisation mobile, vitesse, parcours de contact et bases SEO. Bref audit gratuit lors de la prise de contact.'],
-            ['title' => 'Google Business Profile',            'price' => 'À partir de €50',              'desc' => 'Coordonnées, horaires, services, lien vers le site et conseils de base sur les avis et photos — pour que votre entreprise soit bien représentée sur Google.'],
+            ['title' => 'Audit de site web & conseils',       'price' => 'Sur demande',                  'desc' => 'Je passe en revue votre site actuel et donne des conseils concrets : apparence, utilisation mobile, vitesse, parcours de contact et bases SEO. Bref audit gratuit lors de la prise de contact.'],
+            ['title' => 'Google Business Profile',            'price' => 'Sur demande',                  'desc' => 'Coordonnées, horaires, services, lien vers le site et conseils de base sur les avis et photos — pour que votre entreprise soit bien représentée sur Google.'],
             ['title' => 'Structure de contenu & rédaction',   'price' => 'Inclus / sur demande',         'desc' => 'Inclus avec les sites professionnels. Aide supplémentaire pour structurer votre offre et rédiger des textes clairs sur demande.'],
-            ['title' => 'Sites web multilingues',             'price' => 'À partir de €150/langue',      'desc' => 'Votre site peut être conçu en plusieurs langues avec une structure linguistique claire. Le prix dépend du nombre de pages.'],
+            ['title' => 'Sites web multilingues',             'price' => 'Sur demande',                  'desc' => 'Votre site peut être conçu en plusieurs langues avec une structure linguistique claire. Le prix dépend du nombre de pages.'],
             ['title' => 'Direction visuelle de base',         'price' => 'Sur demande',                  'desc' => 'Pas encore de style visuel fort ? Je peux aider avec une direction simple et professionnelle pour les couleurs, la typographie et l\'apparence. Inclus avec les sites professionnels.'],
             ['title' => 'Intégrations',                       'price' => 'Sur demande',                  'desc' => 'Connexion aux outils que vous utilisez déjà : Google Maps, WhatsApp, notifications e-mail, newsletter ou Google Sheets et CRM. Le prix dépend de la complexité.'],
         ],

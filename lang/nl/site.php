@@ -305,10 +305,10 @@ return [
             ],
         ],
         'addons_items' => [
-            ['title' => 'Website audit & verbeteradvies',           'price' => 'Vanaf €75',               'desc' => 'Ik kijk naar je huidige website en geef concreet aan wat beter kan: uitstraling, mobiel gebruik, snelheid, contactflow en SEO-basis. Korte check gratis bij kennismaking.'],
-            ['title' => 'Google Business Profile ondersteuning',    'price' => 'Vanaf €50',               'desc' => "Contactgegevens, openingsuren, diensten, websitekoppeling en basisadvies rond reviews en foto's — zodat je bedrijf er goed uitziet op Google."],
+            ['title' => 'Website audit & verbeteradvies',           'price' => 'Op aanvraag',             'desc' => 'Ik kijk naar je huidige website en geef concreet aan wat beter kan: uitstraling, mobiel gebruik, snelheid, contactflow en SEO-basis. Korte check gratis bij kennismaking.'],
+            ['title' => 'Google Business Profile ondersteuning',    'price' => 'Op aanvraag',             'desc' => "Contactgegevens, openingsuren, diensten, websitekoppeling en basisadvies rond reviews en foto's — zodat je bedrijf er goed uitziet op Google."],
             ['title' => 'Contentstructuur & teksten',               'price' => 'Inbegrepen / op aanvraag', 'desc' => 'Inbegrepen bij professionele websites. Extra hulp bij het structureren van je aanbod en het schrijven van duidelijke websiteteksten op aanvraag.'],
-            ['title' => 'Meertalige websites',                      'price' => 'Vanaf €150/taal',         'desc' => "Voor bedrijven in België kan de website meertalig worden opgebouwd met een duidelijke taalstructuur. De prijs hangt af van het aantal pagina's."],
+            ['title' => 'Meertalige websites',                      'price' => 'Op aanvraag',             'desc' => "Voor bedrijven in België kan de website meertalig worden opgebouwd met een duidelijke taalstructuur. De prijs hangt af van het aantal pagina's."],
             ['title' => 'Basis visuele richting',                   'price' => 'Op aanvraag',             'desc' => 'Heb je nog geen sterke stijl? Dan help ik met een eenvoudige professionele richting voor kleuren, typografie en uitstraling. Inbegrepen bij professionele websites.'],
             ['title' => 'Integraties',                              'price' => 'Op aanvraag',             'desc' => "Koppeling aan tools die je al gebruikt: Google Maps, WhatsApp, e-mailmeldingen, nieuwsbrief of later Google Sheets en CRM. De complexiteit bepaalt de prijs."],
         ],

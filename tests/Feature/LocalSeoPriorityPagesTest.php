@@ -148,6 +148,26 @@ class LocalSeoPriorityPagesTest extends TestCase
         }
     }
 
+    /**
+     * Add-ons are "on request": no fixed micro prices (audit €75, extra language €150, form €100)
+     * anywhere on the public site. Package prices (€750 / €1.250 / €950 / €1.500 webshop / €50 per month) stay.
+     */
+    public function test_no_public_page_quotes_addon_micro_prices(): void
+    {
+        $paths = ['/nl', '/en', '/fr', '/de', '/nl/diensten', '/en/services', '/fr/services', '/de/dienstleistungen',
+            '/nl/prijzen', '/en/pricing', '/fr/tarifs', '/de/preise', '/nl/offerteformulier-laten-maken'];
+
+        foreach ($paths as $path) {
+            $text = html_entity_decode(strip_tags($this->get($path)->getContent()));
+            preg_match_all('/€\s?([0-9][0-9.,\s]*[0-9])|([0-9][0-9.,\s]*[0-9])\s?€/u', $text, $m);
+            $amounts = array_map(fn ($a, $b) => (int) preg_replace('/[^0-9]/', '', $a ?: $b), $m[1], $m[2]);
+            foreach ([75, 100, 150] as $micro) {
+                $this->assertNotContains($micro, $amounts, "$path still quotes the add-on price €$micro");
+            }
+        }
+        $this->get('/nl/diensten')->assertSee('Op aanvraag');
+    }
+
     public function test_services_technology_faq_mentions_drupal_in_every_locale(): void
     {
         foreach (['/nl/diensten', '/en/services', '/fr/services', '/de/dienstleistungen'] as $path) {

@@ -178,7 +178,7 @@ return [
         'honest_note'      => null,
         'faq'              => [
             ['q' => 'Kan het formulier gekoppeld worden aan mijn e-mail?', 'a' => 'Ja — je ontvangt een duidelijke bevestigingsmail bij elke aanvraag. Koppeling aan andere tools is mogelijk op aanvraag.'],
-            ['q' => 'Wat kost een formulier op maat?', 'a' => 'Een formulier op maat start vanaf €100. De prijs hangt af van het aantal stappen, velden en de gewenste logica.'],
+            ['q' => 'Wat kost een formulier op maat?', 'a' => 'Dat hangt af van de omvang: het aantal stappen, velden, de gewenste logica en de opvolging erachter. Een eenvoudig formulier is vaak inbegrepen bij een nieuwe website; een uitgebreide aanvraagflow bespreken we apart. Na een kort gesprek krijg je een concreet voorstel.'],
             ['q' => 'Kan ik het formulier in mijn bestaande website integreren?', 'a' => 'Ja, dat is mogelijk. Ik bekijk je bestaande site en bouw het formulier in. Ik hoef je volledige website niet te herbouwen.'],
         ],
         'related'          => ['website-laten-maken', 'website-vernieuwen', 'website-onderhoud'],

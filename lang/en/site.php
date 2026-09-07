@@ -287,10 +287,10 @@ return [
             ],
         ],
         'addons_items' => [
-            ['title' => 'Website audit & improvement advice',    'price' => 'From €75',               'desc' => 'I review your current website and give concrete advice on what can be improved: appearance, mobile use, speed, contact flow and SEO foundations. Short check free at introduction.'],
-            ['title' => 'Google Business Profile support',       'price' => 'From €50',               'desc' => 'Contact details, opening hours, services, website link and basic advice on reviews and photos — so your business looks great on Google.'],
+            ['title' => 'Website audit & improvement advice',    'price' => 'On request',             'desc' => 'I review your current website and give concrete advice on what can be improved: appearance, mobile use, speed, contact flow and SEO foundations. Short check free at introduction.'],
+            ['title' => 'Google Business Profile support',       'price' => 'On request',             'desc' => 'Contact details, opening hours, services, website link and basic advice on reviews and photos — so your business looks great on Google.'],
             ['title' => 'Content structure & copywriting',       'price' => 'Included / on request',  'desc' => 'Included with professional websites. Extra help with structuring your offer and writing clear website copy on request.'],
-            ['title' => 'Multilingual websites',                 'price' => 'From €150/language',     'desc' => 'Your website can be built in multiple languages with a clear language structure. Price depends on number of pages and volume of content.'],
+            ['title' => 'Multilingual websites',                 'price' => 'On request',             'desc' => 'Your website can be built in multiple languages with a clear language structure. Price depends on number of pages and volume of content.'],
             ['title' => 'Basic visual direction',                'price' => 'On request',             'desc' => 'Don\'t have a strong visual style yet? I can help with a simple, professional direction for colours, typography and appearance. Included with professional websites.'],
             ['title' => 'Integrations',                         'price' => 'On request',             'desc' => 'Connecting to tools you already use: Google Maps, WhatsApp, email notifications, newsletter or Google Sheets and CRM. Price depends on complexity.'],
         ],

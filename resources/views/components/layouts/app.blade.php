@@ -15,20 +15,20 @@
     // Landing pages exist in one language only: no hreflang cluster for them.
     $isLandingPage = $baseName === 'landing';
     // Normalise landing/store back to home so switcher doesn't break
-    if (in_array($baseName, ['landing', 'inquiries.store', 'home', ''])) {
-        $baseName = 'home';
-    }
+if (in_array($baseName, ['landing', 'inquiries.store', 'home', ''])) {
+    $baseName = 'home';
+}
 
-    $hrefLangs = [];
-    foreach (['nl', 'fr', 'en', 'de'] as $lang) {
-        $key = $lang . '.' . $baseName;
-        $hrefLangs[$lang] = Route::has($key) ? route($key) : route($lang . '.home');
-    }
+$hrefLangs = [];
+foreach (['nl', 'fr', 'en', 'de'] as $lang) {
+    $key = $lang . '.' . $baseName;
+    $hrefLangs[$lang] = Route::has($key) ? route($key) : route($lang . '.home');
+}
 
-    $pageTitle       = $title ?? config('studio.brand_name');
-    $pageDescription = $description ?? null;
-    $ogImage         = asset(config('studio.og_image', 'preview.png'));
-    $schemaPageType  = $pageType ?? 'WebPage';
+$pageTitle = $title ?? config('studio.brand_name');
+$pageDescription = $description ?? null;
+$ogImage = asset(config('studio.og_image', 'preview.png'));
+$schemaPageType = $pageType ?? 'WebPage';
 @endphp
 <!DOCTYPE html>
 <html lang="{{ $locale }}" class="scroll-smooth">
@@ -61,7 +61,8 @@
     {{-- Open Graph --}}
     <meta property="og:type" content="{{ $ogType ?? 'website' }}">
     <meta property="og:title" content="{{ $ogTitle ?? $pageTitle }}">
-    <meta property="og:description" content="{{ $ogDescription ?? ($pageDescription ?? config('studio.positioning')) }}">
+    <meta property="og:description"
+        content="{{ $ogDescription ?? ($pageDescription ?? config('studio.positioning')) }}">
     <meta property="og:url" content="{{ $selfCanonical }}">
     <meta property="og:site_name" content="{{ config('studio.brand_name') }}">
     <meta property="og:image" content="{{ $ogImage }}">
@@ -70,14 +71,15 @@
         content="{{ match ($locale) {'fr' => 'fr_BE','en' => 'en_GB','de' => 'de_BE',default => 'nl_BE'} }}">
     @foreach (['nl' => 'nl_BE', 'fr' => 'fr_BE', 'en' => 'en_GB', 'de' => 'de_BE'] as $altLang => $ogAlt)
         @if ($altLang !== $locale)
-    <meta property="og:locale:alternate" content="{{ $ogAlt }}">
+            <meta property="og:locale:alternate" content="{{ $ogAlt }}">
         @endif
     @endforeach
 
     {{-- Twitter card --}}
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{{ $ogTitle ?? $pageTitle }}">
-    <meta name="twitter:description" content="{{ $ogDescription ?? ($pageDescription ?? config('studio.positioning')) }}">
+    <meta name="twitter:description"
+        content="{{ $ogDescription ?? ($pageDescription ?? config('studio.positioning')) }}">
     <meta name="twitter:image" content="{{ $ogImage }}">
 
     {{-- Favicons --}}
@@ -99,13 +101,19 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     {{-- Structured data — shared entity graph (business, person, website, page, breadcrumb) --}}
-    <x-structured-data
-        :title="$pageTitle"
-        :description="$pageDescription"
-        :canonical="$selfCanonical"
-        :pageType="$schemaPageType"
-        :baseName="$isLandingPage ? 'landing' : $baseName"
-    />
+    <x-structured-data :title="$pageTitle" :description="$pageDescription" :canonical="$selfCanonical" :pageType="$schemaPageType" :baseName="$isLandingPage ? 'landing' : $baseName" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RZMSGS6HLT"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-RZMSGS6HLT');
+    </script>
 </head>
 
 <body class="bg-stone-50 text-slate-800 antialiased">
