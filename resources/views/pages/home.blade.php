@@ -402,6 +402,16 @@
                 <p class="mt-4 text-slate-500 leading-relaxed">
                     {{ __('site.home.xander_body') }}
                 </p>
+                @if($loc === 'nl' && is_string(__('site.home.local_note')) && __('site.home.local_note') !== 'site.home.local_note')
+                @php $homeLocalLink = fn (string $slug, string $label) => '<a href="' . e(url('/nl/' . $slug)) . '" class="font-medium text-slate-700 underline decoration-stone-300 underline-offset-2 hover:text-amber-800 hover:decoration-amber-400 transition-colors duration-200">' . e($label) . '</a>'; @endphp
+                <p class="mt-3 text-sm text-slate-500 leading-relaxed">
+                    {!! __('site.home.local_note', [
+                        'tervuren'       => $homeLocalLink('website-laten-maken-tervuren', __('site.home.local_tervuren')),
+                        'leuven'         => $homeLocalLink('website-laten-maken-leuven', __('site.home.local_leuven')),
+                        'vlaams_brabant' => $homeLocalLink('webdesigner-vlaams-brabant', __('site.home.local_vlaams_brabant')),
+                    ]) !!}
+                </p>
+                @endif
             </div>
 
             {{-- 2. Portrait — after intro on mobile; left col spanning both rows on desktop --}}

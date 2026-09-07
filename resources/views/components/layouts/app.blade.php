@@ -104,7 +104,7 @@
         :description="$pageDescription"
         :canonical="$selfCanonical"
         :pageType="$schemaPageType"
-        :baseName="$baseName"
+        :baseName="$isLandingPage ? 'landing' : $baseName"
     />
 </head>
 

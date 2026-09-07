@@ -2,7 +2,7 @@
 
 return [
     'brand_name'   => 'Van Malder Studio',
-    'tagline'      => 'Websites by Xander Van Malder',
+    'tagline'      => 'Websites by VanMalder Studio',
     'owner'        => 'Xander Van Malder',
     'role'         => 'Full stack & .NET developer',
     'email'        => 'info@vanmalderstudio.be',

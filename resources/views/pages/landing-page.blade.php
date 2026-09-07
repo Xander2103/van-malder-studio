@@ -15,6 +15,7 @@
     $lpServices = $lpRoute('services');
     $lpAbout    = $lpRoute('about');
     $lpClientWork = $lpRoute('clientwork');
+    $lpPricing  = $lpRoute('pricing');
 @endphp
 
     {{-- ── Hero ── --}}
@@ -74,6 +75,12 @@
                         </li>
                         @endforeach
                     </ul>
+                    {{-- Prices live on one canonical page; landing pages only quote the starting price. --}}
+                    <p class="mt-5 text-sm text-slate-500">
+                        Alle richtprijzen staan op de
+                        <a href="{{ $lpPricing }}" class="font-medium text-slate-700 underline decoration-stone-300 underline-offset-2 hover:text-amber-800 hover:decoration-amber-400 transition-colors duration-200">prijzenpagina</a>.
+                        Na een gesprek volgt een concreet voorstel op maat.
+                    </p>
                 </div>
 
                 <div class="bg-white rounded-xl border border-stone-200 p-7 shadow-sm">
@@ -85,7 +92,7 @@
                         </div>
                         <div>
                             <p class="text-sm font-semibold text-slate-900">Xander Van Malder</p>
-                            <p class="text-xs text-slate-500">Full stack developer · Druivenstreek</p>
+                            <p class="text-xs text-slate-500">Webdesigner & full stack developer · Tervuren</p>
                         </div>
                     </div>
                     <p class="text-sm text-slate-600 leading-relaxed mb-5">
@@ -143,6 +150,48 @@
                     </div>
                     @endforeach
                 </div>
+            </div>
+        </div>
+    </section>
+    @endif
+
+    {{-- ── Client proof — short factual examples, full cases live on Klantprojecten ── --}}
+    @if(!empty($page['proof']) && isset($proofClients) && $proofClients->isNotEmpty())
+    <section class="max-w-6xl mx-auto px-6 py-12" aria-labelledby="landing-proof-heading">
+        <div class="reveal">
+            <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8">
+                <div class="max-w-2xl">
+                    <p class="inline-flex items-center gap-2 text-xs font-semibold text-amber-700 uppercase tracking-widest mb-3">
+                        <span class="w-4 h-px bg-amber-600 inline-block" aria-hidden="true"></span>
+                        Klantprojecten
+                    </p>
+                    <h2 id="landing-proof-heading" class="font-serif text-2xl font-medium text-slate-900">{{ $page['proof']['heading'] ?? 'Gebouwd voor echte bedrijven' }}</h2>
+                    @if(!empty($page['proof']['intro']))
+                    <p class="mt-3 text-slate-500 leading-relaxed">{{ $page['proof']['intro'] }}</p>
+                    @endif
+                </div>
+                <a href="{{ $lpClientWork }}"
+                   class="shrink-0 inline-flex items-center gap-1.5 text-sm font-semibold text-amber-700 hover:text-amber-900 transition-colors duration-200 group">
+                    Bekijk alle klantprojecten
+                    <svg class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                    </svg>
+                </a>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                @foreach($proofClients as $client)
+                @php $clientCopy = __('site.client_work.items.' . $client['slug']); @endphp
+                <a href="{{ $lpClientWork }}#project-{{ $client['slug'] }}"
+                   class="bg-white border border-stone-200 rounded-xl p-5 hover:border-slate-300 hover:shadow-sm transition-all duration-200 group">
+                    <p class="text-[0.65rem] font-semibold uppercase tracking-wider text-slate-500">{{ is_array($clientCopy) ? ($clientCopy['sector'] ?? '') : '' }}</p>
+                    <h3 class="mt-1 text-sm font-semibold text-slate-900 group-hover:text-blue-700 transition-colors duration-200">{{ $client['title'] }}</h3>
+                    <p class="mt-1.5 text-xs text-slate-500 leading-relaxed">{{ $client['note'] }}</p>
+                    <span class="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-blue-700 group-hover:text-blue-900">
+                        {{ $client['domain'] }}
+                        <svg class="w-3 h-3 group-hover:translate-x-0.5 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+                    </span>
+                </a>
+                @endforeach
             </div>
         </div>
     </section>

@@ -228,7 +228,7 @@ return [
         'faq_heading'    => 'Questions people ask before starting',
         'faq' => [
             ['q' => 'Do you build websites for businesses in Tervuren and the surrounding area?', 'a' => 'Yes. Van Malder Studio is based in Tervuren and works with businesses across Vlaams-Brabant and Brussels — Duisburg, Overijse, Hoeilaart, Huldenberg, Bertem and Leuven are all nearby. Remote collaboration throughout Belgium works just as well.'],
-            ['q' => 'Which technologies do you use?', 'a' => 'Client websites are usually built with Laravel (PHP), Tailwind CSS and JavaScript. For custom applications I also work with C#, ASP.NET Core, Entity Framework Core and SQL Server, and with React and TypeScript on the frontend. The choice depends on the project, not on habit.'],
+            ['q' => 'Which technologies do you use?', 'a' => 'Client websites are usually built with Laravel (PHP), Tailwind CSS and JavaScript. For custom applications I also work with C#, ASP.NET Core, Entity Framework Core and SQL Server, and with React and TypeScript on the frontend. Already have a Drupal website? I can maintain, extend or rebuild it — I have Drupal experience, although for new websites I usually choose Laravel. The choice depends on the project, not on habit.'],
             ['q' => 'Do you develop in C# and .NET?', 'a' => 'Yes. I work professionally with C#, .NET, ASP.NET Core Web API, Entity Framework Core and Microsoft Azure / Entra ID. That makes Van Malder Studio a fit for business applications, integrations and APIs in the Microsoft ecosystem.'],
             ['q' => 'Do you build custom web applications?', 'a' => 'Yes. Beyond websites I build web applications such as customer portals, internal tools, dashboards, request flows and APIs — with proper authentication, secure data handling and documentation.'],
             ['q' => 'Can you redesign an existing website?', 'a' => 'Yes. I analyse the current website first — structure, speed, mobile experience, contact flow and SEO — and then rebuild what needs improving while keeping what works.'],
@@ -758,8 +758,8 @@ return [
     ],
 
     'seo' => [
-        'home_title'      => 'Websites & Custom Web Development in Tervuren | Van Malder Studio',
-        'home_desc'       => 'Van Malder Studio designs and builds professional websites, web applications and custom software for businesses — based in Tervuren, Vlaams-Brabant. Laravel, C#/.NET and React by one developer.',
+        'home_title'      => 'Website Creation & Custom Web Development in Tervuren | Van Malder Studio',
+        'home_desc'       => 'Website creation and web development from Tervuren: professional websites, web applications and custom functionality (Laravel, C#/.NET) for businesses in Vlaams-Brabant. One developer, from €750.',
         'home_og_title'   => 'Websites & Custom Web Development | Van Malder Studio',
         'services_title'  => 'Web Design, Web Development & Custom Software | Van Malder Studio',
         'services_desc'   => 'Website creation, redesigns, web applications, custom software (Laravel, C#/.NET), local SEO and maintenance for businesses in Vlaams-Brabant and Brussels.',

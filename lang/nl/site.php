@@ -180,6 +180,11 @@ return [
         'xander_heading'  => 'Je werkt rechtstreeks met Xander',
         'xander_body'     => 'Geen groot bureau of onduidelijke tussenpersonen. Je bespreekt je website rechtstreeks met de persoon die ze bouwt — van eerste gesprek tot livegang.',
         'xander_caption'  => 'Xander Van Malder — webdeveloper uit Tervuren',
+        // NL-only contextual sentence with links to the primary local pages (rendered only when the keys exist).
+        'local_note'      => 'Van Malder Studio is gevestigd in Tervuren en werkt voor bedrijven in de Druivenstreek, Leuven en heel Vlaams-Brabant. Lees meer over :tervuren, :leuven of :vlaams_brabant.',
+        'local_tervuren'  => 'een website laten maken in Tervuren',
+        'local_leuven'    => 'een website laten maken in Leuven',
+        'local_vlaams_brabant' => 'webdesign in Vlaams-Brabant',
 
         // Process preview (3 steps — full details on /werkwijze)
         'process_eyebrow'  => 'Hoe het werkt',
@@ -232,15 +237,16 @@ return [
         'addons_body'    => 'Aanvullende diensten die je website of project verder versterken — op aanvraag of als uitbreiding op een lopend project.',
         'work_note'      => 'Benieuwd hoe dit er in de praktijk uitziet?',
         'work_link'      => 'Bekijk websites gebouwd voor klanten',
-        'local_note'     => 'Lokaal actief? Lees meer over :tervuren, :seo of :vlaams_brabant.',
+        'local_note'     => 'Lokaal actief? Lees meer over :tervuren, :leuven, :seo of :vlaams_brabant.',
         'local_tervuren' => 'een website laten maken in Tervuren',
+        'local_leuven'   => 'een website laten maken in Leuven',
         'local_seo'      => 'lokale SEO voor bedrijven',
         'local_vlaams_brabant' => 'webdesign in Vlaams-Brabant',
         'faq_eyebrow'    => 'Veelgestelde vragen',
         'faq_heading'    => 'Vragen die mensen stellen voor ze starten',
         'faq' => [
             ['q' => 'Bouw je websites voor bedrijven in Tervuren en omgeving?', 'a' => 'Ja. Van Malder Studio is gevestigd in Tervuren en werkt voor bedrijven in heel Vlaams-Brabant en Brussel — Duisburg, Overijse, Hoeilaart, Huldenberg, Bertem en Leuven liggen allemaal dichtbij. Samenwerken op afstand in heel België werkt even goed.'],
-            ['q' => 'Welke technologieën gebruik je?', 'a' => 'Klantenwebsites bouw ik meestal met Laravel (PHP), Tailwind CSS en JavaScript. Voor applicaties op maat werk ik ook met C#, ASP.NET Core, Entity Framework Core en SQL Server, en met React en TypeScript aan de frontend. De keuze hangt af van het project, niet van gewoonte.'],
+            ['q' => 'Welke technologieën gebruik je?', 'a' => 'Klantenwebsites bouw ik meestal met Laravel (PHP), Tailwind CSS en JavaScript. Voor applicaties op maat werk ik ook met C#, ASP.NET Core, Entity Framework Core en SQL Server, en met React en TypeScript aan de frontend. Heb je al een Drupal-website? Die kan ik onderhouden, uitbreiden of vernieuwen — ik heb ervaring met Drupal, al kies ik voor nieuwe websites meestal Laravel. De keuze hangt af van het project, niet van gewoonte.'],
             ['q' => 'Ontwikkel je in C# en .NET?', 'a' => 'Ja. Ik werk professioneel met C#, .NET, ASP.NET Core Web API, Entity Framework Core en Microsoft Azure / Entra ID. Daardoor past Van Malder Studio ook bij bedrijfsapplicaties, integraties en API\'s in het Microsoft-ecosysteem.'],
             ['q' => 'Bouw je webapplicaties op maat?', 'a' => 'Ja. Naast websites bouw ik webapplicaties zoals klantenportalen, interne tools, dashboards, aanvraagflows en API\'s — met degelijke authenticatie, veilige gegevensverwerking en documentatie.'],
             ['q' => 'Kun je een bestaande website vernieuwen?', 'a' => 'Ja. Ik analyseer eerst de huidige website — structuur, snelheid, mobiele ervaring, contactflow en SEO — en bouw daarna opnieuw wat beter moet, terwijl ik behoud wat goed werkt.'],
@@ -734,14 +740,14 @@ return [
 
     // ── SEO meta ─────────────────────────────────────────────────────────────
     'seo' => [
-        'home_title'      => 'Website laten maken in Tervuren & Vlaams-Brabant | Van Malder Studio',
-        'home_desc'       => 'Van Malder Studio ontwerpt en bouwt professionele websites, webapplicaties en software op maat voor bedrijven en zelfstandigen — vanuit Tervuren, voor Vlaams-Brabant en Brussel. Laravel, C#/.NET en React door één developer.',
+        'home_title'      => 'Van Malder Studio — Webdesign & webdevelopment uit Tervuren',
+        'home_desc'       => 'Webdesign en webdevelopment uit Tervuren: professionele websites, webshops en maatwerk voor zelfstandigen en kmo\'s in Vlaams-Brabant en Brussel. Rechtstreeks met één developer, vanaf €750.',
         'home_og_title'   => 'Websites & webapplicaties op maat | Van Malder Studio',
         'services_title'  => 'Webdesign, webdevelopment & software op maat | Van Malder Studio',
         'services_desc'   => 'Website laten maken, website vernieuwen, webapplicaties, software op maat (Laravel, C#/.NET), lokale SEO en onderhoud voor bedrijven in Vlaams-Brabant en Brussel.',
         'services_og_title' => 'Diensten | Van Malder Studio',
         'pricing_title'    => 'Wat kost een website? Richtprijzen vanaf €750 | Van Malder Studio',
-        'pricing_desc'     => 'Transparante richtprijzen voor een professionele website. Starterspakket vanaf €750, Pro vanaf €1.400. Bekijk de pakketten, prijsfactoren en veelgestelde vragen.',
+        'pricing_desc'     => 'Transparante richtprijzen voor een professionele website. Starterspakket vanaf €750, professionele website vanaf €1.250. Bekijk de pakketten, prijsfactoren en veelgestelde vragen.',
         'pricing_og_title' => 'Richtprijzen | Van Malder Studio',
         'about_title'     => 'Xander Van Malder — Full stack & .NET developer in Tervuren | Van Malder Studio',
         'about_desc'      => 'Xander Van Malder is full stack en .NET developer uit Tervuren. Met Van Malder Studio bouwt hij websites, webapplicaties en digitale producten met Laravel, C#/.NET en React — bekijk echte klantenprojecten.',

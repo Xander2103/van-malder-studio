@@ -22,8 +22,6 @@ class LandingPageTest extends TestCase
             'website-laten-maken-hoeilaart',
             'website-laten-maken-bertem',
             'website-laten-maken-leuven',
-            'website-laten-maken-vlaams-brabant',
-            'webdesigner-tervuren',
             'webdesigner-vlaams-brabant',
         ]);
     }
@@ -34,6 +32,23 @@ class LandingPageTest extends TestCase
         $response = $this->get("/nl/$slug");
 
         $response->assertStatus(200);
+    }
+
+    public static function consolidatedSlugProvider(): array
+    {
+        return [
+            'webdesigner-tervuren → website-laten-maken-tervuren' => ['webdesigner-tervuren', 'website-laten-maken-tervuren'],
+            'website-laten-maken-vlaams-brabant → webdesigner-vlaams-brabant' => ['website-laten-maken-vlaams-brabant', 'webdesigner-vlaams-brabant'],
+        ];
+    }
+
+    /** @dataProvider consolidatedSlugProvider */
+    public function test_retired_slug_redirects_permanently_to_primary_page(string $from, string $to): void
+    {
+        $response = $this->get("/nl/$from");
+
+        $response->assertStatus(301);
+        $response->assertRedirect("/nl/$to");
     }
 
     public function test_unknown_slug_returns_404(): void

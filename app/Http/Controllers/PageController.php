@@ -122,9 +122,9 @@ class PageController extends Controller
             }
         }
 
-        // Dutch landing pages (noindex pages excluded)
+        // Dutch landing pages (noindex pages and retired slugs that 301 elsewhere are excluded)
         $landingPages = collect(config('landing-pages', []))
-            ->filter(fn($p) => $p['locale'] === 'nl' && empty($p['noindex']));
+            ->filter(fn($p) => $p['locale'] === 'nl' && empty($p['noindex']) && empty($p['redirect_to']));
 
         foreach ($landingPages as $lp) {
             $routes[] = [

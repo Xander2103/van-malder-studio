@@ -113,6 +113,7 @@
                 <p class="mt-1 text-sm text-slate-500 leading-relaxed">
                     {!! __('site.services.local_note', [
                         'tervuren'       => $localLink('website-laten-maken-tervuren', __('site.services.local_tervuren')),
+                        'leuven'         => $localLink('website-laten-maken-leuven', __('site.services.local_leuven')),
                         'seo'            => $localLink('seo-voor-lokale-bedrijven', __('site.services.local_seo')),
                         'vlaams_brabant' => $localLink('webdesigner-vlaams-brabant', __('site.services.local_vlaams_brabant')),
                     ]) !!}

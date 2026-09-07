@@ -7,9 +7,9 @@
  * Do not add pages without unique, useful copy.
  * Initial set: Dutch only. FR/EN versions should not be created until translated.
  *
- * Primary region (first focus): Tervuren · Duisburg · Overijse · Hoeilaart ·
- * Huldenberg · Bertem · Druivenstreek. Leuven and Vlaams-Brabant stay in the set
- * but are secondary — they should not outrank the core region in internal links.
+ * Primary region: Tervuren (thuisbasis) · Leuven · Vlaams-Brabant · Overijse — these four are
+ * the pages Search Console shows impressions for. Duisburg, Hoeilaart, Huldenberg and
+ * Bertem stay as supporting Druivenstreek pages. One primary page per search intent.
  *
  * Schema per page:
  *   slug             string   — URL path under /{locale}/
@@ -27,6 +27,8 @@
  *   faq              array    — [[q, a], ...]
  *   related          array    — slugs of related landing pages
  *   cta_text         string   — CTA button label
+ *   proof            array|null — client proof block: [heading, intro, clients => [client-work slug => one factual line]]
+ *   redirect_to      string|null — retired slug: 301 to this slug (kept out of sitemap and related links)
  *   noindex          bool     — true = add noindex (use for stubs / untranslated)
  *   sitemap_priority string|null — sitemap <priority>; defaults to 0.8 when omitted.
  *                                  0.9 = primary region page.
@@ -261,49 +263,61 @@ return [
     // PHASE 2 — Local priority pages
     // ═══════════════════════════════════════════════════════════════════════════
 
-    // ─── 7. Website laten maken — Tervuren / Druivenstreek ───────────────────
+    // ─── 7. Website laten maken — Tervuren (thuisbasis, primaire lokale pagina) ─
+    // Primaire pagina voor: website laten maken (in) Tervuren, webdesigner Tervuren,
+    // webdesign Tervuren, website creation Tervuren. /nl/webdesigner-tervuren 301't hierheen.
     [
         'slug'             => 'website-laten-maken-tervuren',
         'locale'           => 'nl',
         'meta_title'       => 'Website laten maken in Tervuren | Van Malder Studio',
-        'meta_description' => 'Laat een professionele website maken door Xander Van Malder uit Tervuren. Voor zelfstandigen en lokale bedrijven. Vanaf €750 en vrijblijvend kennismaken.',
+        'meta_description' => 'Webdesigner en developer uit Tervuren. Professionele websites voor zelfstandigen en kmo\'s, met maatwerk waar nodig. Rechtstreeks met Xander, vanaf €750.',
         'h1'               => 'Website laten maken in Tervuren',
-        'intro'            => 'Ik ben Xander Van Malder — webdeveloper uit Tervuren, gevestigd in Duisburg aan de rand van de Druivenstreek. Ik bouw professionele websites voor zelfstandigen en lokale bedrijven in Tervuren en omgeving: van een kinesist in Vossem tot een aannemer in Moorsel, van een horecazaak in het centrum tot een vrij beroep in Duisburg of Moorsel. Persoonlijk contact, een eerlijke aanpak en een website die aanvragen oplevert — starterspakket vanaf €750.',
+        'intro'            => 'Van Malder Studio is de webstudio van Xander Van Malder, webdesigner en full stack developer gevestigd in Tervuren (Duisburg). Ik ontwerp en bouw professionele websites voor zelfstandigen, vrije beroepen en kmo\'s in Tervuren, Vossem, Moorsel en de Druivenstreek — en waar het nuttig is ook de functionaliteit erachter: een offerteformulier met opvolging, een eigen beheeromgeving of een koppeling met de tools die je al gebruikt. Rechtstreeks contact, een helder voorstel en een starterspakket vanaf €750.',
         'service_type'     => 'website',
         'location'         => 'Tervuren / Druivenstreek',
-        'who_for'          => 'Voor zelfstandigen en lokale bedrijven in Tervuren, Vossem, Moorsel, Duisburg en de omliggende gemeenten van de Druivenstreek — Overijse, Hoeilaart, Huldenberg en Bertem.',
+        'who_for'          => 'Voor zelfstandigen, vrije beroepen en lokale bedrijven in Tervuren, Vossem, Moorsel en Duisburg, en in de omliggende gemeenten van de Druivenstreek: Overijse, Hoeilaart, Huldenberg en Bertem.',
         'bullets'          => [
-            'Persoonlijk contact — je praat rechtstreeks met Xander',
-            'Lokale kennis van Tervuren, Duisburg en de Druivenstreek',
-            'Responsive website met SEO-basis voor lokale zoekopdrachten',
-            'Duidelijke contactflow voor jouw doelgroep',
-            'Snelle laadtijd op alle apparaten',
-            'Starterspakket vanaf €750 — concreet voorstel na gesprek',
-            'Onderhoud en opvolging mogelijk na lancering',
+            'Ontwerp én bouw door dezelfde persoon — je praat rechtstreeks met Xander',
+            'Responsive design: smartphone, tablet en desktop in balans',
+            'SEO-basis voor lokale zoekopdrachten in Tervuren en omgeving',
+            'Duidelijke contactflow: bezoekers vinden snel de weg naar een aanvraag',
+            'Maatwerk waar nodig: offerteformulier, beheeromgeving of integratie',
+            'Starterspakket vanaf €750 — concreet voorstel na gesprek, alle richtprijzen op de prijzenpagina',
+            'Onderhoud en opvolging na lancering, vanaf €50/maand',
         ],
         'steps'            => [
-            ['title' => 'Kennismakingsgesprek', 'body' => 'We bespreken jouw zaak, jouw klanten en wat je van je website verwacht. In de buurt of via video — jij kiest.'],
+            ['title' => 'Kennismakingsgesprek', 'body' => 'We bespreken jouw zaak, jouw klanten en wat je van je website verwacht. In Tervuren, bij jou op de zaak of via video — jij kiest.'],
             ['title' => 'Voorstel op maat', 'body' => 'Je krijgt een concreet plan met scope, aanpak, prijs en timing. Duidelijk en zonder verborgen kosten.'],
             ['title' => 'Ontwerp en bouw', 'body' => 'Ik ontwerp en bouw de website. Je wordt op de hoogte gehouden en hebt inspraak in elke stap.'],
             ['title' => 'Lancering', 'body' => 'We lanceren samen en ik blijf bereikbaar voor vragen, aanpassingen en eventueel onderhoud.'],
         ],
         'why_local'        => [
-            ['title' => 'Je werkt rechtstreeks met Xander', 'body' => 'Geen account manager, geen uitbesteding. Ik begeleid je project zelf van het eerste gesprek tot de lancering.'],
-            ['title' => 'Ik ken de streek', 'body' => 'Als developer woonachtig in Duisburg (Tervuren) begrijp ik de lokale context — voor welke doelgroepen je werkt en hoe je die bereikt.'],
-            ['title' => 'Kort op de bal', 'body' => 'Vragen, aanpassingen, problemen — ik reageer snel. Geen ticketsysteem, geen wachtrij. Je hebt altijd een aanspreekpunt.'],
+            ['title' => 'Gevestigd in Tervuren', 'body' => 'Van Malder Studio werkt vanuit Duisburg (Tervuren). Een kennismaking in de buurt is snel geregeld: in het centrum van Tervuren, bij jou op de zaak of via video.'],
+            ['title' => 'Je werkt rechtstreeks met Xander', 'body' => 'Geen account manager, geen uitbesteding. Ik ontwerp en bouw zelf, en begeleid je project van het eerste gesprek tot de lancering.'],
+            ['title' => 'Meer dan een brochure als dat nodig is', 'body' => 'Voor Mastechnics bouwde ik een meertalige website met slimme aanvraagformulieren en een eigen beheeromgeving voor de opvolging van klanten. Groeit je zaak, dan kan je website meegroeien.'],
             ['title' => 'Eerlijk en transparant', 'body' => 'Een helder voorstel met prijs en planning, geen verborgen kosten. En eerlijk advies, ook als een eenvoudigere oplossing beter past.'],
+        ],
+        'proof'            => [
+            'heading' => 'Gebouwd voor echte bedrijven',
+            'intro'   => 'Elke website hieronder staat live en werd ontworpen en ontwikkeld door Van Malder Studio. Zo zie je zelf hoe een website voor een zelfstandige of kmo eruit kan zien: van een lokale schrijnwerkerij tot een bedrijf met eigen beheeromgeving.',
+            'clients' => [
+                'mastechnics'                   => 'Meertalige website met slimme aanvraagflow en eigen beheeromgeving voor opvolging.',
+                'dr-sue-liza-eta'               => 'Medische website gericht op vertrouwen en online afspraken.',
+                'schrijnwerkerij-van-kerkhoven' => 'Website voor een lokale schrijnwerkerij met projectoverzicht en lokale vindbaarheid.',
+            ],
         ],
         'honest_note'      => 'Lokale relevantie in je website helpt zoekmachines begrijpen wie je bent en waar je actief bent. Ik bouw die structuur correct in. Garanties op rankings geef ik niet — dat is onmogelijk om eerlijk te beloven.',
         'faq'              => [
-            ['q' => 'Wat kost een website laten maken in Tervuren?', 'a' => 'Een eenvoudige professionele website begint vanaf €750. De prijs hangt af van het aantal pagina\'s, gewenste functies en inhoud. Na een kennismakingsgesprek maak ik een concreet voorstel op maat.'],
+            ['q' => 'Wat kost een website laten maken in Tervuren?', 'a' => 'Een starterswebsite begint vanaf €750, een professionele website vanaf €1.250. De prijs hangt af van het aantal pagina\'s, talen, formulieren en functies. Na een kennismakingsgesprek maak ik een concreet voorstel op maat.'],
             ['q' => 'Hoe lang duurt het om een website te laten maken?', 'a' => 'Gemiddeld 2 tot 6 weken, afhankelijk van de scope en hoe snel feedback en inhoud aangeleverd worden.'],
-            ['q' => 'Kunnen we elkaar ontmoeten?', 'a' => 'Ja, zeker. Een kennismakingsgesprek in de buurt of via video — jij kiest wat het beste uitkomt.'],
+            ['q' => 'Kunnen we elkaar ontmoeten in Tervuren?', 'a' => 'Ja. Ik ben gevestigd in Duisburg (Tervuren) en spreek graag af in de buurt of bij jou op de zaak. Er is geen winkel of kantoor met openingsuren: afspreken gebeurt op afspraak, en via video kan uiteraard ook.'],
             ['q' => 'Werk je enkel in Tervuren?', 'a' => 'Tervuren en de Druivenstreek zijn mijn thuisbasis: Duisburg, Overijse, Hoeilaart, Huldenberg en Bertem liggen op een kwartier rijden. Daarbuiten werk ik ook — Leuven, de Brusselse rand en de rest van Vlaams-Brabant — maar in de directe regio kunnen we makkelijker persoonlijk afspreken.'],
-            ['q' => 'Wat als ik al een verouderde website heb?', 'a' => 'Dan bespreken we of een volledige vernieuwing of gerichte aanpassingen de beste aanpak zijn. Ik analyseer eerlijk wat voor jou het meeste oplevert.'],
-            ['q' => 'Kan ik de website nadien zelf aanpassen?', 'a' => 'Dat bespreken we op voorhand. Een eenvoudige admin-omgeving is mogelijk zodat je teksten en foto\'s zelf kunt beheren. Of ik neem het onderhoud op mij — afhankelijk van wat je verkiest.'],
+            ['q' => 'Ontwerp je de website ook, of bouw je alleen?', 'a' => 'Allebei. Ik ontwerp en bouw de website zelf: lay-out, typografie, kleur, structuur en de technische kant. Heb je al een logo of huisstijl, dan bouw ik daarop verder. Heb je nog niets, dan bepalen we samen een eenvoudige professionele richting.'],
+            ['q' => 'Kan mijn bestaande website vernieuwd worden?', 'a' => 'Ja. Ik analyseer eerst je huidige website — structuur, snelheid, mobiele ervaring, contactflow en SEO — en bespreek daarna eerlijk of een volledige vernieuwing of gerichte aanpassingen het meeste opleveren.'],
+            ['q' => 'Kan ik later uitbreiden met een webshop, beheeromgeving of integratie?', 'a' => 'Ja. Websites bouw ik zo dat ze kunnen groeien. Een productcatalogus of webshop, een offerteformulier met opvolging, een eigen beheeromgeving om teksten en aanvragen zelf te beheren, of een koppeling met je agenda, nieuwsbrief of CRM kunnen later toegevoegd worden.'],
         ],
-        'related'          => ['webdesigner-tervuren', 'website-laten-maken-duisburg', 'website-laten-maken-overijse'],
-        'cta_text'         => 'Gratis kennismaking aanvragen',
+        'related'          => ['website-laten-maken-leuven', 'website-laten-maken-overijse', 'webdesigner-vlaams-brabant'],
+        'cta_text'         => 'Bespreek je website',
         'noindex'          => false,
         'sitemap_priority' => '0.9',
     ],
@@ -349,10 +363,10 @@ return [
     [
         'slug'             => 'website-laten-maken-overijse',
         'locale'           => 'nl',
-        'meta_title'       => 'Website laten maken Overijse | Van Malder Studio',
-        'meta_description' => 'Webdeveloper actief in Overijse en de Druivenstreek. Professionele websites voor horeca, ambachtslieden en zelfstandigen in Overijse, Jezus-Eik en omgeving.',
+        'meta_title'       => 'Website laten maken in Overijse | Van Malder Studio',
+        'meta_description' => 'Professionele website voor je zaak in Overijse, Jezus-Eik, Maleizen of Tombeek. Gebouwd door Xander Van Malder uit het naburige Tervuren, vanaf €750.',
         'h1'               => 'Website laten maken in Overijse en de Druivenstreek',
-        'intro'            => 'Overijse is het hart van de Druivenstreek — een gemeente met een sterke lokale identiteit, actieve horeca en ambachtelijke ondernemers. Of je zaak nu in Overijse zelf ligt, in Jezus-Eik, Maleizen of Tombeek: klanten zoeken je online en een professionele website maakt dat eerste contact makkelijker. Ik bouw websites die passen bij de streek — persoonlijk, technisch sterk en met aandacht voor lokale context.',
+        'intro'            => 'Overijse is het hart van de Druivenstreek — een gemeente met een sterke lokale identiteit, actieve horeca en ambachtelijke ondernemers. Of je zaak nu in Overijse zelf ligt, in Jezus-Eik, Maleizen of Tombeek: klanten zoeken je online en een professionele website maakt dat eerste contact makkelijker. Ik ben Xander Van Malder, webdeveloper uit het naburige Tervuren, en ik bouw websites die passen bij de streek: persoonlijk, technisch sterk en gericht op aanvragen.',
         'service_type'     => 'website',
         'location'         => 'Overijse / Druivenstreek',
         'who_for'          => 'Voor horeca, zelfstandigen, ambachtslieden en lokale bedrijven in Overijse, Jezus-Eik, Maleizen, Tombeek en de Druivenstreek.',
@@ -362,6 +376,7 @@ return [
             'SEO-basis voor lokale zoekopdrachten in de regio',
             'Duidelijke contactflow — of een reservatiesysteem voor horeca',
             'Persoonlijk contact — je werkt rechtstreeks met de developer',
+            'Starterspakket vanaf €750 — concreet voorstel na gesprek',
             'Onderhoud en opvolging mogelijk na lancering',
         ],
         'steps'            => [
@@ -370,14 +385,28 @@ return [
             ['title' => 'Bouw', 'body' => 'Ik bouw de website en hou je op de hoogte van elke stap.'],
             ['title' => 'Lancering en opvolging', 'body' => 'We gaan live en ik blijf bereikbaar voor verdere opvolging.'],
         ],
+        'why_local'        => [
+            ['title' => 'Op tien minuten van Overijse', 'body' => 'Van Malder Studio zit in Duisburg (Tervuren), vlak naast Overijse. Een gesprek bij jou op de zaak of ergens in de buurt is snel geregeld.'],
+            ['title' => 'Functie boven franje', 'body' => 'Een restaurant heeft een menukaart en reservaties nodig, een aannemer een offerteformulier en projectfoto\'s, een wijnbouwer een verhaal en een webshop. De website wordt opgebouwd rond wat jouw klanten zoeken.'],
+        ],
+        'proof'            => [
+            'heading' => 'Voorbeelden van gebouwde websites',
+            'intro'   => 'Deze websites staan live en tonen wat een lokale zaak van Van Malder Studio mag verwachten: van een ambachtelijk bedrijf tot een installateur met eigen beheeromgeving.',
+            'clients' => [
+                'schrijnwerkerij-van-kerkhoven' => 'Lokale schrijnwerkerij: diensten, gerealiseerde projecten en een eenvoudige offerteflow.',
+                'mastechnics'                   => 'HVAC- en sanitairbedrijf: meertalige website met slimme aanvraagformulieren en eigen beheeromgeving.',
+            ],
+        ],
         'honest_note'      => 'Een website legt de basis voor online zichtbaarheid. Of klanten je ook effectief vinden, hangt af van je sector, je inhoud en hoe je website technisch in orde is. Ik leg die basis correct.',
         'faq'              => [
-            ['q' => 'Werk je enkel in Overijse?', 'a' => 'Nee — ik werk voor heel de Druivenstreek en Vlaams-Brabant. Overijse en omgeving is een regio waar ik graag voor werk.'],
+            ['q' => 'Werk je enkel in Overijse?', 'a' => 'Nee — ik werk voor heel de Druivenstreek en Vlaams-Brabant. Overijse ligt vlak naast mijn thuisbasis in Tervuren, dus persoonlijk afspreken is hier eenvoudig.'],
+            ['q' => 'Wat kost een website laten maken in Overijse?', 'a' => 'Een professionele starterswebsite begint vanaf €750. De prijs hangt af van het aantal pagina\'s, functies zoals reservaties of een menukaart, en de inhoud. Na een kennismakingsgesprek krijg je een concreet voorstel.'],
             ['q' => 'Kan mijn website ook reservaties of bestellingen ontvangen?', 'a' => 'Ja, dat is mogelijk. We bespreken op voorhand welke functionaliteiten je nodig hebt — zo kies je de juiste aanpak en prijs.'],
+            ['q' => 'Hoe lang duurt het?', 'a' => 'Gemiddeld 2 tot 6 weken, afhankelijk van de scope en hoe snel teksten en foto\'s aangeleverd worden.'],
             ['q' => 'Wat maakt jou anders dan een groter agency?', 'a' => 'Persoonlijk contact. Je werkt met mij, niet met een account manager. Korte lijnen, snelle reacties, eerlijke communicatie.'],
         ],
-        'related'          => ['website-laten-maken-hoeilaart', 'website-laten-maken-tervuren', 'website-laten-maken-huldenberg'],
-        'cta_text'         => 'Neem contact op',
+        'related'          => ['website-laten-maken-tervuren', 'website-laten-maken-hoeilaart', 'website-laten-maken-huldenberg'],
+        'cta_text'         => 'Bespreek je website',
         'noindex'          => false,
         'sitemap_priority' => '0.9',
     ],
@@ -493,158 +522,138 @@ return [
         'sitemap_priority' => '0.9',
     ],
 
-    // ─── 13. Website laten maken — Vlaams-Brabant ────────────────────────────
+    // ─── 13. Website laten maken — Vlaams-Brabant (samengevoegd) ─────────────
+    // Zelfde zoekintentie als /nl/webdesigner-vlaams-brabant: één regionale pagina.
+    // Deze slug blijft bestaan als 301 zodat bestaande links en rankings meegaan.
     [
-        'slug'             => 'website-laten-maken-vlaams-brabant',
-        'locale'           => 'nl',
-        'meta_title'       => 'Website laten maken Vlaams-Brabant | Van Malder Studio',
-        'meta_description' => 'Webdeveloper actief in heel Vlaams-Brabant, met thuisbasis in de Druivenstreek. Professionele websites, webshops en digitale oplossingen voor zelfstandigen en kmo\'s.',
-        'h1'               => 'Website laten maken in Vlaams-Brabant',
-        'intro'            => 'Van Malder Studio werkt voor zelfstandigen en bedrijven door heel Vlaams-Brabant, met de Druivenstreek als thuisbasis. In Tervuren, Duisburg, Overijse, Hoeilaart, Huldenberg en Bertem kom ik makkelijk persoonlijk langs; in Leuven, Zaventem, Asse of elders in de provincie werken we vlot digitaal. In beide gevallen krijg je hetzelfde: een professionele website die aansluit bij jouw sector en jouw klanten, met persoonlijk contact en een eerlijke aanpak.',
-        'service_type'     => 'website',
-        'location'         => 'Vlaams-Brabant',
-        'who_for'          => 'Voor zelfstandigen en kmo\'s in de Druivenstreek — Tervuren, Overijse, Hoeilaart, Huldenberg, Bertem — en verder in Leuven, Zaventem, Tienen en de rest van Vlaams-Brabant.',
-        'bullets'          => [
-            'Actief in heel Vlaams-Brabant — geen afstandstoeslag',
-            'Responsive website met SEO-basis voor lokale zichtbaarheid',
-            'Persoonlijk contact — geen agency-tussenpersonen',
-            'Duidelijke aanpak van eerste gesprek tot lancering',
-            'Webshops, formulieren en maatwerkapplicaties mogelijk',
-            'Onderhoud en opvolging na lancering mogelijk',
-        ],
-        'steps'            => [
-            ['title' => 'Kennismakingsgesprek', 'body' => 'We bespreken jouw zaak, doelgroep en verwachtingen. Digitaal of persoonlijk in Vlaams-Brabant.'],
-            ['title' => 'Voorstel op maat', 'body' => 'Je krijgt een concreet plan met scope, aanpak, prijs en timing. Transparant en zonder kleine lettertjes.'],
-            ['title' => 'Ontwerp en bouw', 'body' => 'Ik bouw de website en hou je op de hoogte. Jij hebt inspraak in elke fase.'],
-            ['title' => 'Lancering en opvolging', 'body' => 'We lanceren samen. Daarna ben ik bereikbaar voor vragen, aanpassingen en onderhoud.'],
-        ],
-        'honest_note'      => 'Een website met correcte lokale informatie en technische SEO-basis legt een solide fundament. Dat vergroot je kansen om gevonden te worden, maar garanties op specifieke rankings zijn onmogelijk te geven.',
-        'faq'              => [
-            ['q' => 'Werk je enkel voor kleine zaken?', 'a' => 'Nee — ik werk voor zelfstandigen, vrije beroepen, kmo\'s en bedrijven met specifieke digitale noden. De schaal van het project bepaalt de aanpak.'],
-            ['q' => 'Moet ik naar jou toe komen?', 'a' => 'Dat hoeft niet. De meeste trajecten verlopen digitaal, met een kennismakingsgesprek via video. Persoonlijk afspreken in Vlaams-Brabant is uiteraard ook mogelijk.'],
-            ['q' => 'Maak je ook websites voor specifieke sectoren?', 'a' => 'Ja — horeca, bouwbedrijven, zorgverleners, vrije beroepen, winkels. De inhoud en structuur passen we aan op je sector.'],
-        ],
-        'related'          => ['website-laten-maken', 'website-laten-maken-tervuren', 'webdesigner-vlaams-brabant'],
-        'cta_text'         => 'Bespreek je project vrijblijvend',
-        'noindex'          => false,
+        'slug'        => 'website-laten-maken-vlaams-brabant',
+        'locale'      => 'nl',
+        'redirect_to' => 'webdesigner-vlaams-brabant',
     ],
 
-    // ─── 14. Website laten maken — Leuven (secundair) ────────────────────────
+    // ─── 14. Website laten maken — Leuven (hoogste prioriteit in Search Console) ─
+    // Primaire pagina voor: website laten maken (in) Leuven, website maken Leuven,
+    // webdesigner / webdesign / webbureau Leuven, drupal website laten maken Leuven.
     [
         'slug'             => 'website-laten-maken-leuven',
         'locale'           => 'nl',
         'meta_title'       => 'Website laten maken in Leuven | Van Malder Studio',
-        'meta_description' => 'Professionele website voor consultants, coaches en zelfstandigen in Leuven. Xander Van Malder bouwt heldere websites die vertrouwen wekken. Vanaf €750.',
+        'meta_description' => 'Professionele website voor zelfstandigen en kmo\'s in Leuven, gebouwd door Xander Van Malder uit Tervuren. Echte klantprojecten, maatwerk mogelijk, vanaf €750.',
         'h1'               => 'Website laten maken in Leuven',
-        'intro'            => 'Leuven is een bruisende universiteitsstad vol consultants, coaches, onderzoekers en startups. Veel zelfstandigen die hier actief zijn, hebben een expertise die hun website niet weerspiegelt — een generieke WordPress-template of een LinkedIn-profiel volstaat niet meer wanneer je echt professioneel wil overkomen. Ik ben Xander Van Malder, webdeveloper uit Tervuren, en ik bouw heldere websites die jouw kennis en aanpak zichtbaar maken voor de juiste klanten in Leuven en omgeving.',
+        'intro'            => 'Van Malder Studio ontwerpt en bouwt professionele websites voor zelfstandigen, vrije beroepen en kmo\'s in Leuven en omgeving. Ik ben Xander Van Malder, webdesigner en full stack developer uit Tervuren, op twintig minuten van Leuven. Je krijgt een responsive website die vindbaar is in Google en bezoekers naar contact leidt — en waar het nuttig is ook de functionaliteit erachter: een offerteformulier met opvolging, een eigen beheeromgeving of een koppeling met de tools die je al gebruikt.',
         'service_type'     => 'website',
         'location'         => 'Leuven / Vlaams-Brabant',
-        'who_for'          => 'Voor consultants, coaches, vrije beroepen, onderzoekers en startups in Leuven en de bredere kennisregio rond Leuven.',
+        'who_for'          => 'Voor zelfstandigen, vrije beroepen, consultants, praktijken en kmo\'s in Leuven, Heverlee, Kessel-Lo, Wilsele en Wijgmaal, en in omliggende gemeenten zoals Herent, Bertem en Haasrode.',
         'bullets'          => [
-            'Helder en professioneel — ontwerp dat jouw expertise weerspiegelt',
-            'Responsive website die werkt op alle toestellen',
+            'Professionele website, ontworpen én gebouwd door dezelfde developer',
+            'Responsive design dat werkt op smartphone, tablet en desktop',
             'SEO-basis voor zoekopdrachten in Leuven en omgeving',
-            'Duidelijke contactflow — bezoekers weten hoe ze je kunnen bereiken',
-            'Starterspakket vanaf €750 — concreet voorstel na gesprek',
-            'Persoonlijk contact — je praat rechtstreeks met de developer',
+            'Duidelijke contactflow: bezoekers weten meteen hoe ze je bereiken',
+            'Maatwerk waar nodig: aanvraagflow, beheeromgeving, webshop of integratie',
+            'Starterspakket vanaf €750 — concreet voorstel na gesprek, alle richtprijzen op de prijzenpagina',
+            'Onderhoud en opvolging na lancering, vanaf €50/maand',
         ],
         'steps'            => [
-            ['title' => 'Kennismakingsgesprek', 'body' => 'We bespreken jouw werk, jouw doelgroep en wat je website moet overbrengen. Via video of ergens in Leuven.'],
+            ['title' => 'Kennismakingsgesprek', 'body' => 'We bespreken jouw zaak, jouw doelgroep en wat je website moet overbrengen. Via video of op locatie in Leuven.'],
             ['title' => 'Voorstel op maat', 'body' => 'Je krijgt een concreet plan met scope, aanpak, prijs en timing — transparant, zonder kleine lettertjes.'],
             ['title' => 'Ontwerp en bouw', 'body' => 'Ik ontwerp en bouw de website. Je wordt op de hoogte gehouden en hebt inspraak in elke stap.'],
             ['title' => 'Lancering', 'body' => 'We gaan live. Daarna ben ik bereikbaar voor vragen, aanpassingen en eventueel onderhoud.'],
         ],
         'why_local'        => [
-            ['title' => 'Jij bent de expert — laat je website dat zeggen', 'body' => 'Een consultant of coach met een generieke site mist kansen. Ik vertaal wat jij doet naar een heldere, geloofwaardige online aanwezigheid.'],
-            ['title' => 'Geen templates, geen kant-en-klare thema\'s', 'body' => 'Elk project start vanuit jouw specifieke noden en uitstraling. Je website mag er niet uitzien als die van honderd anderen.'],
-            ['title' => 'Korte, directe samenwerking', 'body' => 'Je werkt rechtstreeks met mij — geen project managers, geen teams, geen tussenpersonen. Wat je zegt, hoor ik zelf.'],
-            ['title' => 'Nabij en bereikbaar', 'body' => 'Vanuit Tervuren ben ik snel in Leuven. Afspreken op locatie is zeker mogelijk, al verloopt het meeste via video.'],
+            ['title' => 'Dichtbij, zonder kantoor in Leuven', 'body' => 'Van Malder Studio is gevestigd in Tervuren. Leuven ligt op twintig minuten: afspreken bij jou op de zaak of ergens in de stad is geen probleem, en het meeste verloopt vlot via video.'],
+            ['title' => 'Meer dan een brochure als je zaak dat vraagt', 'body' => 'Voor Mastechnics bouwde ik een meertalige website met slimme aanvraagformulieren en een eigen beheeromgeving voor de opvolging van klanten. Dezelfde aanpak past bij een praktijk, een aannemer of een groeiende kmo in Leuven.'],
+            ['title' => 'Geen templates, geen tussenpersonen', 'body' => 'Elk project start vanuit jouw aanbod en jouw klanten, niet vanuit een kant-en-klaar thema. Je praat rechtstreeks met de persoon die ontwerpt en bouwt.'],
+            ['title' => 'Transparante richtprijzen', 'body' => 'Starter vanaf €750, professionele website vanaf €1.250, onderhoud vanaf €50 per maand — dezelfde richtprijzen als op de prijzenpagina. Na een kennismaking krijg je een voorstel met scope, prijs en timing — zonder verborgen kosten.'],
+        ],
+        'proof'            => [
+            'heading' => 'Gebouwd voor echte bedrijven',
+            'intro'   => 'Elke website hieronder staat live en werd ontworpen en ontwikkeld door Van Malder Studio. Bekijk ze gerust: zo zie je wat een zelfstandige of kmo in Leuven mag verwachten.',
+            'clients' => [
+                'mastechnics'                   => 'HVAC-bedrijf: meertalige website, slimme aanvraagflow en eigen beheeromgeving voor klantopvolging.',
+                'dr-sue-liza-eta'               => 'Medische praktijk: website gericht op vertrouwen en online afspraken.',
+                'schrijnwerkerij-van-kerkhoven' => 'Schrijnwerkerij: website met projectoverzicht en lokale SEO-structuur.',
+            ],
         ],
         'honest_note'      => 'Leuven is een competitieve regio voor veel sectoren. Een kwalitatieve website vergroot je geloofwaardigheid en legt een solide basis voor online zichtbaarheid. Rankings kan ik niet garanderen — dat is simpelweg niet eerlijk te beloven.',
         'faq'              => [
-            ['q' => 'Werk je specifiek in Leuven?', 'a' => 'Ik ben gevestigd in Tervuren, op 20 minuten van Leuven. Afspreken in Leuven is geen probleem. Ik werk voor klanten door heel Vlaams-Brabant en ook verder.'],
-            ['q' => 'Wat kost een website voor een consultant of coach in Leuven?', 'a' => 'Een professionele starterspagina begint vanaf €750. De prijs hangt af van het aantal pagina\'s, functies en hoeveel inhoud er moet worden verwerkt. Na een kennismakingsgesprek maak ik een concreet voorstel.'],
-            ['q' => 'Hoe lang duurt het om een website te laten maken?', 'a' => 'Gemiddeld 2 tot 6 weken, afhankelijk van de scope en hoe snel inhoud aangeleverd wordt.'],
-            ['q' => 'Ik heb al een website, maar die ziet er verouderd uit. Wat zijn de opties?', 'a' => 'Dan bekijken we samen of een volledige vernieuwing of gerichte aanpassingen meer zin hebben. Ik geef je een eerlijk advies gebaseerd op wat het meeste oplevert voor jouw situatie.'],
-            ['q' => 'Kan ik mijn website nadien zelf beheren?', 'a' => 'Dat bespreken we vooraf. Een eenvoudige admin-omgeving is mogelijk, zodat je teksten en afbeeldingen zelf kunt beheren. Of ik neem het onderhoud op mij — afhankelijk van jouw voorkeur.'],
+            ['q' => 'Werk je ook voor bedrijven in Leuven?', 'a' => 'Ja. Ik ben gevestigd in Tervuren, op 20 minuten van Leuven, en werk voor klanten in Leuven, Heverlee, Kessel-Lo en heel Vlaams-Brabant. Afspreken in Leuven is geen probleem; een kantoor in Leuven zelf heb ik niet.'],
+            ['q' => 'Wat kost een website laten maken in Leuven?', 'a' => 'Een starterswebsite begint vanaf €750, een professionele website vanaf €1.250. De prijs hangt af van het aantal pagina\'s, talen, formulieren en functies. Na een kennismakingsgesprek krijg je een concreet voorstel.'],
+            ['q' => 'Hoe lang duurt het om een website te bouwen?', 'a' => 'Gemiddeld 2 tot 6 weken, afhankelijk van de scope en hoe snel inhoud en feedback aangeleverd worden.'],
+            ['q' => 'Kan mijn bestaande website vernieuwd worden?', 'a' => 'Ja. Ik analyseer eerst je huidige website — structuur, snelheid, mobiele ervaring, contactflow en SEO — en bespreek daarna eerlijk of een volledige vernieuwing of gerichte aanpassingen het meeste opleveren.'],
+            ['q' => 'Bouw je ook webshops of een eigen beheeromgeving?', 'a' => 'Ja. Een productcatalogus of webshop, een offerteformulier met opvolging, een eigen beheeromgeving of een koppeling met je agenda, nieuwsbrief of CRM: dat bouw ik zelf, met Laravel of .NET afhankelijk van het project. Een website kan later uitgebreid worden.'],
+            ['q' => 'Bouw je ook Drupal-websites?', 'a' => 'Ik heb ervaring met Drupal en kan een bestaande Drupal-website onderhouden, uitbreiden of vernieuwen. Voor nieuwe websites werk ik meestal met Laravel, omdat dat voor een zelfstandige of kmo sneller, lichter en eenvoudiger te onderhouden is. Heb je specifiek een Drupal-project? Bespreek het gerust — ik geef eerlijk advies over wat het beste past.'],
+            ['q' => 'Kan ik mijn website nadien zelf beheren?', 'a' => 'Dat bespreken we vooraf. Een eenvoudige beheeromgeving is mogelijk, zodat je teksten en afbeeldingen zelf kunt aanpassen. Of ik neem het onderhoud op mij — afhankelijk van jouw voorkeur.'],
         ],
-        'related'          => ['website-laten-maken-tervuren', 'website-laten-maken-bertem', 'website-laten-maken-vlaams-brabant'],
-        'cta_text'         => 'Gratis kennismaking aanvragen',
+        'related'          => ['website-laten-maken-tervuren', 'webdesigner-vlaams-brabant', 'website-vernieuwen'],
+        'cta_text'         => 'Bespreek je website',
         'noindex'          => false,
+        'sitemap_priority' => '0.9',
     ],
 
-    // ─── 15. Webdesigner Tervuren ─────────────────────────────────────────────
+    // ─── 15. Webdesigner Tervuren (samengevoegd) ──────────────────────────────
+    // Zelfde zoekintentie als /nl/website-laten-maken-tervuren: één lokale pagina.
+    // Het ontwerp-gedeelte (designer én developer, huisstijl) zit nu in die pagina.
     [
-        'slug'             => 'webdesigner-tervuren',
-        'locale'           => 'nl',
-        'meta_title'       => 'Webdesigner in Tervuren | Van Malder Studio',
-        'meta_description' => 'Zoek je een webdesigner in Tervuren? Van Malder Studio bouwt duidelijke, mobiele websites voor zelfstandigen en lokale bedrijven in de Druivenstreek.',
-        'h1'               => 'Webdesigner in Tervuren en de Druivenstreek',
-        'intro'            => 'Mijn naam is Xander Van Malder en ik ben webdesigner en full stack developer gevestigd in Tervuren. Ik geloof dat een goed ontwerp meer is dan een mooie lay-out: het vertaalt wat jouw zaak doet naar iets dat bezoekers begrijpen en vertrouwen. Geen kant-en-klare thema\'s, geen agency-workflow met account managers — je praat rechtstreeks met de designer die ook bouwt.',
-        'service_type'     => 'website',
-        'location'         => 'Tervuren / Druivenstreek',
-        'who_for'          => 'Voor zelfstandigen en bedrijven in Tervuren, Duisburg, Vossem, Moorsel en de Druivenstreek die een sterk ontwerp zoeken voor hun website.',
-        'bullets'          => [
-            'Ontwerp als vertaalmiddel — jouw aanbod helder en geloofwaardig',
-            'Responsive design: smartphone, tablet en desktop in balans',
-            'Typografie, kleur en structuur die passen bij jouw sector',
-            'Snelle laadtijd — design ten koste van performance bestaat niet',
-            'Je werkt rechtstreeks met de designer én de developer',
-            'Van eerste schets tot live site — één aanspreekpunt',
-        ],
-        'steps'            => [
-            ['title' => 'Kennismakingsgesprek', 'body' => 'We bespreken jouw merk, je klanten en je verwachtingen van het ontwerp.'],
-            ['title' => 'Ontwerpsuggestie', 'body' => 'Ik toon een eerste richting voor het design. We stemmen af en verfijnen.'],
-            ['title' => 'Bouw', 'body' => 'Ik bouw de definitieve website en integreer alle inhoud en functies.'],
-            ['title' => 'Lancering', 'body' => 'We gaan live, gecheckt op alle apparaten en schermformaten.'],
-        ],
-        'honest_note'      => 'Webdesign is méér dan kleur en typografie. Een goed design is pas goed als het ook bruikbaar is, snel laadt en de juiste boodschap overbrengt. Dat is wat ik nastreef.',
-        'faq'              => [
-            ['q' => 'Wat is het verschil tussen een webdesigner en een webdeveloper?', 'a' => 'Een webdesigner richt zich op de visuele kant — look and feel, layout, typografie. Een webdeveloper bouwt de technische kant. Ik doe allebei: ontwerpen én bouwen, wat zorgt voor een consistenter eindresultaat.'],
-            ['q' => 'Gebruik je templates of werk je volledig op maat?', 'a' => 'Ik werk met kwalitatieve basistechnologieën en geen generieke kant-en-klare templates. Elk project start vanuit jouw specifieke noden en uitstraling.'],
-            ['q' => 'Kan ik mijn bestaande branding meenemen?', 'a' => 'Ja. Als je al een logo of huisstijl hebt, bouw ik daar op verder. Heb je nog niets? Dan bespreken we samen wat past bij jouw zaak.'],
-            ['q' => 'Hoe lang duurt een websiteontwerp?', 'a' => 'Een eenvoudige site met doordacht ontwerp is in 2 à 4 weken klaar. Complexere projecten met meerdere pagina\'s en functies nemen langer. We spreken een realistische planning af na het kennismakingsgesprek.'],
-            ['q' => 'Wat kost webdesign in Tervuren?', 'a' => 'Een website met professioneel ontwerp start vanaf €750. De prijs hangt af van de scope, gewenste functies en de complexiteit van het ontwerp. Ik maak een concreet voorstel op maat na een eerste gesprek.'],
-        ],
-        'related'          => ['website-laten-maken-tervuren', 'website-laten-maken-duisburg', 'webdesigner-vlaams-brabant'],
-        'cta_text'         => 'Bespreek je websiteontwerp',
-        'noindex'          => false,
+        'slug'        => 'webdesigner-tervuren',
+        'locale'      => 'nl',
+        'redirect_to' => 'website-laten-maken-tervuren',
     ],
 
-    // ─── 16. Webdesigner Vlaams-Brabant ──────────────────────────────────────
+    // ─── 16. Webdesign in Vlaams-Brabant (regionale pagina) ──────────────────
+    // Primaire pagina voor: webdesign Vlaams-Brabant, webdesigner Vlaams-Brabant,
+    // website laten maken Vlaams-Brabant. Eén regionale positionering, geen stadspagina's.
     [
         'slug'             => 'webdesigner-vlaams-brabant',
         'locale'           => 'nl',
-        'meta_title'       => 'Webdesigner in Vlaams-Brabant | Van Malder Studio',
-        'meta_description' => 'Webdesigner actief in heel Vlaams-Brabant. Van Malder Studio ontwerpt en bouwt professionele websites voor zelfstandigen en kmo\'s in de Druivenstreek, Leuven en omgeving.',
-        'h1'               => 'Webdesigner in Vlaams-Brabant',
-        'intro'            => 'Van Malder Studio is webdesigner en full stack developer actief in heel Vlaams-Brabant, met de Druivenstreek als uitvalsbasis. Of je nu in Tervuren, Overijse, Hoeilaart, Huldenberg, Bertem, Leuven of een andere gemeente in de provincie gevestigd bent: ik ontwerp en bouw websites die passen bij jouw merk en doelgroep. Geen kant-en-klare thema\'s, maar een doordacht ontwerp van A tot Z — met een technische basis die ook werkt.',
+        'meta_title'       => 'Webdesign in Vlaams-Brabant | Van Malder Studio',
+        'meta_description' => 'Webdesign en webdevelopment voor bedrijven en zelfstandigen in Vlaams-Brabant. Websites, webshops en maatwerk vanuit Tervuren — rechtstreeks met één developer.',
+        'h1'               => 'Webdesign en webdevelopment in Vlaams-Brabant',
+        'intro'            => 'Van Malder Studio ontwerpt en bouwt websites voor bedrijven en zelfstandigen in heel Vlaams-Brabant, vanuit Tervuren. In de Druivenstreek en Leuven spreek ik makkelijk persoonlijk af; in Zaventem, Asse, Aarschot, Tienen of elders in de provincie verloopt de samenwerking vlot digitaal. Het aanbod is overal hetzelfde: een professionele website als basis, en waar het nuttig is een webshop of catalogus, een eigen beheersysteem, integraties of automatisering erachter.',
         'service_type'     => 'website',
         'location'         => 'Vlaams-Brabant',
-        'who_for'          => 'Voor zelfstandigen, vrije beroepen en kmo\'s in Tervuren, Duisburg, Overijse, Hoeilaart, Huldenberg, Bertem, Leuven en heel Vlaams-Brabant.',
+        'who_for'          => 'Voor zelfstandigen, vrije beroepen en kmo\'s in Vlaams-Brabant — van de Druivenstreek en Leuven tot Zaventem, Aarschot en Tienen.',
         'bullets'          => [
-            'Professioneel ontwerp — geen templates, maar maatwerk',
-            'Responsive en mobile-first van de eerste schets af',
-            'Snelle laadtijd en solide technische basis',
-            'SEO-basis inbegrepen in elk ontwerp',
-            'Persoonlijk contact — geen tussenkomst van account managers',
-            'Van eerste ontwerp tot lancering — alles in eigen handen',
+            'Professionele websites — het hoofdaanbod, responsive en met SEO-basis',
+            'Webshops en productcatalogi voor wie online wil tonen of verkopen',
+            'Maatwerk: beheersystemen, klantportalen en slimme aanvraagflows',
+            'Integraties en automatisering met de tools die je al gebruikt',
+            'Onderhoud en lokale SEO na de lancering',
+            'Eén developer voor ontwerp, bouw en techniek — geen tussenpersonen',
         ],
         'steps'            => [
-            ['title' => 'Kennismakingsgesprek', 'body' => 'We bespreken jouw bedrijf, je klanten en je verwachtingen van het ontwerp. Digitaal of ergens in Vlaams-Brabant.'],
-            ['title' => 'Ontwerpsuggestie', 'body' => 'Ik presenteer een eerste richting en we verfijnen samen tot het klopt.'],
-            ['title' => 'Bouw', 'body' => 'De definitieve website wordt gebouwd — met alle gewenste functies en inhoud.'],
-            ['title' => 'Lancering', 'body' => 'Online gaan, gecheckt op alle schermformaten. Daarna bereikbaar voor opvolging.'],
+            ['title' => 'Kennismakingsgesprek', 'body' => 'We bespreken jouw bedrijf, je klanten en je verwachtingen. Digitaal of ergens in Vlaams-Brabant.'],
+            ['title' => 'Voorstel op maat', 'body' => 'Je krijgt een concreet plan met scope, aanpak, prijs en timing. Transparant en zonder kleine lettertjes.'],
+            ['title' => 'Ontwerp en bouw', 'body' => 'Ik ontwerp en bouw de website en hou je op de hoogte. Jij hebt inspraak in elke fase.'],
+            ['title' => 'Lancering en opvolging', 'body' => 'We lanceren samen. Daarna ben ik bereikbaar voor vragen, aanpassingen en onderhoud.'],
         ],
-        'honest_note'      => null,
+        'why_local'        => [
+            ['title' => 'Thuisbasis in Tervuren, actief in de hele provincie', 'body' => 'Geen kantoor in elke stad, wel korte lijnen: in de Druivenstreek en Leuven kom ik langs, verder weg werken we via video. Dat maakt geen verschil in kwaliteit of prijs.'],
+            ['title' => 'Websites eerst, maatwerk als het nodig is', 'body' => 'De meeste klanten hebben vooral een sterke website nodig. Wie meer nodig heeft — een beheeromgeving, een koppeling, een intern tool — krijgt dat van dezelfde developer, zonder tweede leverancier.'],
+            ['title' => 'Ervaring met Laravel en .NET', 'body' => 'Klantenwebsites bouw ik met Laravel; voor bedrijfsapplicaties en integraties werk ik ook met C# en .NET. Zo past de techniek bij het project, niet omgekeerd.'],
+            ['title' => 'Transparante richtprijzen', 'body' => 'Starter vanaf €750, professionele website vanaf €1.250, onderhoud vanaf €50 per maand — dezelfde richtprijzen als op de prijzenpagina. Elk voorstel is op maat en zonder verborgen kosten.'],
+        ],
+        'proof'            => [
+            'heading' => 'Gebouwd voor bedrijven in de regio',
+            'intro'   => 'Drie websites die live staan, ontworpen en ontwikkeld door Van Malder Studio. Ze tonen de drie kanten van het aanbod: een sterke lokale website, een conversiegerichte site en een website met eigen beheersysteem.',
+            'clients' => [
+                'schrijnwerkerij-van-kerkhoven' => 'Schrijnwerkerij: website met projectoverzicht en lokale SEO-structuur.',
+                'dr-sue-liza-eta'               => 'Medische praktijk: website gericht op vertrouwen en online afspraken.',
+                'mastechnics'                   => 'HVAC-bedrijf: meertalige website, slimme aanvraagflow en eigen beheeromgeving.',
+            ],
+        ],
+        'honest_note'      => 'Een website met correcte lokale informatie en een technische SEO-basis legt een solide fundament om gevonden te worden in Vlaams-Brabant. Garanties op specifieke rankings geef ik niet.',
         'faq'              => [
-            ['q' => 'Werk je enkel voor kleine bedrijven?', 'a' => 'Nee — ik werk voor zelfstandigen, vrije beroepen en grotere kmo\'s. Het budget en de scope worden op maat bepaald na een kennismakingsgesprek.'],
-            ['q' => 'Wat kost een website met professioneel webdesign?', 'a' => 'Een starterspakket begint vanaf €750. Prijs hangt af van omvang, gewenste functies en aantal pagina\'s. Na een gesprek maak ik een concreet voorstel.'],
-            ['q' => 'Heb je referentieprojecten?', 'a' => 'Ja, ik toon graag wat ik al gebouwd heb. Neem contact op voor meer info of bekijk de showcase op mijn website.'],
+            ['q' => 'Werk je enkel voor kleine zaken?', 'a' => 'Nee — ik werk voor zelfstandigen, vrije beroepen, kmo\'s en bedrijven met specifieke digitale noden. De schaal van het project bepaalt de aanpak.'],
+            ['q' => 'Moet ik naar Tervuren komen?', 'a' => 'Dat hoeft niet. De meeste trajecten verlopen digitaal, met een kennismakingsgesprek via video. Persoonlijk afspreken in de Druivenstreek, Leuven of elders in Vlaams-Brabant is uiteraard ook mogelijk.'],
+            ['q' => 'Bouw je ook webshops?', 'a' => 'Ja. Van een eenvoudige productcatalogus tot een webshop met winkelmandje, betalingen en bestelopvolging. De scope bepaalt de aanpak en de prijs.'],
+            ['q' => 'Kun je een eigen beheeromgeving of integratie bouwen?', 'a' => 'Ja. Voor Mastechnics bouwde ik een beheeromgeving waarin aanvragen en klanten opgevolgd worden. Koppelingen met een agenda, nieuwsbrief, Google Maps, WhatsApp of een CRM zijn mogelijk; de complexiteit bepaalt de prijs.'],
+            ['q' => 'Wat kost een website met professioneel webdesign?', 'a' => 'Een starterspakket begint vanaf €750, een professionele website vanaf €1.250. De prijs hangt af van omvang, gewenste functies en aantal pagina\'s. Na een gesprek maak ik een concreet voorstel.'],
+            ['q' => 'Heb je referentieprojecten?', 'a' => 'Ja. Bekijk de klantprojecten op deze website: elke site staat live, met een korte toelichting van wat er gebouwd is.'],
         ],
-        'related'          => ['webdesigner-tervuren', 'website-laten-maken-vlaams-brabant', 'website-laten-maken'],
-        'cta_text'         => 'Bespreek je websiteontwerp',
+        'related'          => ['website-laten-maken-leuven', 'website-laten-maken-tervuren', 'website-laten-maken'],
+        'cta_text'         => 'Bespreek je project',
         'noindex'          => false,
+        'sitemap_priority' => '0.9',
     ],
 
 ];
