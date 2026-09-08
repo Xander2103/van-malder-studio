@@ -877,4 +877,41 @@ return [
         'confirmation_brand'    => 'Van Malder Studio',
     ],
 
+    // ── Consentement cookies (Google Consent Mode v2) ─────────────────────────
+    'consent' => [
+        'eyebrow'           => 'Cookies',
+        'title'             => 'Puis-je mesurer l\'utilisation de ce site ?',
+        'body'              => 'Van Malder Studio utilise Google Analytics et Google Ads pour mesurer l\'utilisation du site et améliorer la publicité. Ces cookies ne sont placés qu\'après votre accord. Refuser ne change rien au fonctionnement du site.',
+        'privacy_link'      => 'Plus d\'infos dans la politique de confidentialité.',
+        'accept'            => 'Accepter',
+        'reject'            => 'Refuser',
+        'preferences'       => 'Préférences',
+        'preferences_title' => 'Préférences des cookies',
+        'preferences_body'  => 'Choisissez ce que vous autorisez. Vous pouvez modifier ce choix à tout moment via le lien en bas de chaque page.',
+        'essential_label'   => 'Nécessaires',
+        'essential_desc'    => 'Cookie de session pour le formulaire de contact et cookie qui mémorise votre choix. Toujours actifs.',
+        'analytics_label'   => 'Statistiques',
+        'analytics_desc'    => 'Google Analytics : statistiques anonymes sur les visites et l\'utilisation des pages.',
+        'ads_label'         => 'Publicité',
+        'ads_desc'          => 'Google Ads : mesurer quelles annonces mènent à une demande et adapter la publicité.',
+        'save'              => 'Enregistrer mon choix',
+        'back'              => 'Retour',
+        'reopen'            => 'Préférences des cookies',
+    ],
+
+    // ── Page confidentialité : section cookies & suivi ──────────────────────
+    'privacy_cookies' => [
+        'heading'       => 'Cookies et suivi',
+        'essential'     => 'Ce site utilise des cookies techniquement nécessaires : un cookie de session pour le formulaire de contact (jeton CSRF) et un cookie qui mémorise votre choix en matière de cookies (vms_consent, 6 mois maximum). Ils ne nécessitent pas de consentement.',
+        'google'        => 'Le site utilise également la balise Google pour Google Analytics (statistiques de visite) et Google Ads (mesure des annonces). Ce suivi est désactivé par défaut et n\'est activé qu\'après votre accord dans la bannière cookies — par catégorie, via Google Consent Mode.',
+        'items'         => [
+            'Sans consentement, aucun cookie de statistiques ou de publicité n\'est placé et aucune donnée n\'est partagée pour de la publicité personnalisée.',
+            'Statistiques : données anonymes sur les pages visitées, l\'appareil et l\'origine de la visite.',
+            'Publicité : mesurer si une annonce mène à une demande de contact et adapter les annonces.',
+            'Votre choix est conservé dans le cookie vms_consent, sans données personnelles.',
+        ],
+        'change'        => 'Vous pouvez modifier ou retirer votre choix à tout moment via',
+        'google_policy' => 'Les données collectées avec votre consentement sont traitées par Google LLC selon la politique de confidentialité de Google :',
+    ],
+
 ];

@@ -857,4 +857,41 @@ return [
         'confirmation_brand'    => 'Van Malder Studio',
     ],
 
+    // ── Cookie consent (Google Consent Mode v2) ───────────────────────────────
+    'consent' => [
+        'eyebrow'           => 'Cookies',
+        'title'             => 'May I measure how this website is used?',
+        'body'              => 'Van Malder Studio uses Google Analytics and Google Ads to measure how the site is used and to improve advertising. Those cookies are only set after you agree. Rejecting does not change how the site works.',
+        'privacy_link'      => 'More in the privacy policy.',
+        'accept'            => 'Accept',
+        'reject'            => 'Reject',
+        'preferences'       => 'Preferences',
+        'preferences_title' => 'Cookie preferences',
+        'preferences_body'  => 'Choose what you allow. You can change this at any time via the link at the bottom of every page.',
+        'essential_label'   => 'Essential',
+        'essential_desc'    => 'Session cookie for the contact form and the cookie that remembers your choice. Always active.',
+        'analytics_label'   => 'Analytics',
+        'analytics_desc'    => 'Google Analytics: anonymous statistics about visits and page usage.',
+        'ads_label'         => 'Advertising',
+        'ads_desc'          => 'Google Ads: measuring which ads lead to an enquiry and tailoring ads.',
+        'save'              => 'Save choice',
+        'back'              => 'Back',
+        'reopen'            => 'Cookie preferences',
+    ],
+
+    // ── Privacy page: cookies & tracking section ─────────────────────────────
+    'privacy_cookies' => [
+        'heading'       => 'Cookies and tracking',
+        'essential'     => 'This website uses technically necessary cookies: a session cookie for the contact form (CSRF token) and a cookie that stores your cookie choice (vms_consent, at most 6 months). These require no consent.',
+        'google'        => 'The site also uses the Google tag for Google Analytics (visit statistics) and Google Ads (ad measurement). This tracking is off by default and is only enabled after you agree in the cookie banner — per category, through Google Consent Mode.',
+        'items'         => [
+            'Without consent, no analytics or advertising cookies are set and no data is shared for personalised advertising.',
+            'Analytics: anonymous statistics about pages visited, device and where the visit came from.',
+            'Advertising: measuring whether an ad leads to a contact request, and tailoring ads.',
+            'Your choice is stored in the vms_consent cookie, without personal data.',
+        ],
+        'change'        => 'You can change or withdraw your choice at any time via',
+        'google_policy' => 'Data collected with your consent is processed by Google LLC under Google\'s privacy policy:',
+    ],
+
 ];

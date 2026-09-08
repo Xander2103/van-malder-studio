@@ -841,4 +841,41 @@ return [
         'confirmation_brand'    => 'Van Malder Studio',
     ],
 
+    // ── Cookie consent (Google Consent Mode v2) ───────────────────────────────
+    'consent' => [
+        'eyebrow'           => 'Cookies',
+        'title'             => 'Mag ik meten hoe deze website gebruikt wordt?',
+        'body'              => 'Van Malder Studio gebruikt Google Analytics en Google Ads om het gebruik van de site te meten en advertenties te verbeteren. Die cookies worden pas geplaatst nadat je akkoord gaat. Weigeren verandert niets aan de werking van de site.',
+        'privacy_link'      => 'Meer in de privacyverklaring.',
+        'accept'            => 'Accepteren',
+        'reject'            => 'Weigeren',
+        'preferences'       => 'Voorkeuren',
+        'preferences_title' => 'Cookievoorkeuren',
+        'preferences_body'  => 'Kies zelf wat je toelaat. Je kunt dit later altijd aanpassen via de link onderaan elke pagina.',
+        'essential_label'   => 'Noodzakelijk',
+        'essential_desc'    => 'Sessiecookie voor het contactformulier en het bewaren van je cookiekeuze. Altijd actief.',
+        'analytics_label'   => 'Analytics',
+        'analytics_desc'    => 'Google Analytics: anonieme statistieken over bezoek en gebruik van de pagina\'s.',
+        'ads_label'         => 'Advertenties',
+        'ads_desc'          => 'Google Ads: meten welke advertenties tot een aanvraag leiden en advertenties afstemmen.',
+        'save'              => 'Keuze opslaan',
+        'back'              => 'Terug',
+        'reopen'            => 'Cookievoorkeuren',
+    ],
+
+    // ── Privacy page: cookies & tracking section ─────────────────────────────
+    'privacy_cookies' => [
+        'heading'       => 'Cookies en tracking',
+        'essential'     => 'Deze website gebruikt technisch noodzakelijke cookies: een sessiecookie voor het contactformulier (CSRF-token) en een cookie die je cookiekeuze bewaart (vms_consent, maximaal 6 maanden). Daarvoor is geen toestemming nodig.',
+        'google'        => 'Daarnaast gebruikt de site de Google tag voor Google Analytics (bezoekstatistieken) en Google Ads (meten van advertenties). Deze tracking staat standaard uit en wordt pas ingeschakeld nadat je in de cookiebanner akkoord gaat — per categorie, via Google Consent Mode.',
+        'items'         => [
+            'Zonder toestemming worden geen analytics- of advertentiecookies geplaatst en worden geen gegevens gedeeld voor gepersonaliseerde advertenties.',
+            'Analytics: anonieme statistieken over bezochte pagina\'s, apparaat en herkomst van het bezoek.',
+            'Advertenties: meten of een advertentie tot een contactaanvraag leidt, en afstemmen van advertenties.',
+            'Je keuze wordt in de cookie vms_consent bewaard, zonder persoonsgegevens.',
+        ],
+        'change'        => 'Je kunt je keuze op elk moment aanpassen of intrekken via',
+        'google_policy' => 'Gegevens die met toestemming worden verzameld, worden verwerkt door Google LLC volgens het privacybeleid van Google:',
+    ],
+
 ];

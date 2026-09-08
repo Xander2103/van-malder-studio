@@ -31,6 +31,19 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Google tag (gtag.js) — GA4 / Google Ads
+    |--------------------------------------------------------------------------
+    | Public measurement ID (G-XXXX). Leave empty to disable the tag and the
+    | cookie banner entirely. Consent Mode v2 defaults to denied; see
+    | resources/js/consent.js and the head snippet in layouts/app.blade.php.
+    */
+
+    'google' => [
+        'tag_id' => env('GOOGLE_TAG_ID'),
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Studio Services
     |--------------------------------------------------------------------------
     */

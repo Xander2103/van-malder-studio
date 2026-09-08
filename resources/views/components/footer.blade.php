@@ -79,8 +79,12 @@
         {{-- Bottom bar --}}
         <div class="pt-5 md:pt-6 flex flex-col sm:flex-row justify-between items-center gap-2 text-xs text-slate-600">
             <p>&copy; {{ date('Y') }} {{ config('studio.brand_name') }}. {{ __('site.footer.rights') }}</p>
-            <div class="flex items-center gap-3">
+            <div class="flex flex-wrap justify-center items-center gap-3">
                 <a href="{{ $footerPrivacyHref }}" class="hover:text-slate-400 transition-colors duration-200">{{ __('site.footer.privacy_label') }}</a>
+                @if (trim((string) config('services.google.tag_id', '')) !== '')
+                <span aria-hidden="true">·</span>
+                <button type="button" data-consent-open class="hover:text-slate-400 transition-colors duration-200 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-sm">{{ __('site.consent.reopen') }}</button>
+                @endif
                 <span aria-hidden="true">·</span>
                 <p>{{ config('studio.tagline') }}</p>
             </div>

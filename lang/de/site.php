@@ -877,4 +877,41 @@ return [
         'confirmation_brand'    => 'Van Malder Studio',
     ],
 
+    // ── Cookie-Einwilligung (Google Consent Mode v2) ──────────────────────────
+    'consent' => [
+        'eyebrow'           => 'Cookies',
+        'title'             => 'Darf ich messen, wie diese Website genutzt wird?',
+        'body'              => 'Van Malder Studio nutzt Google Analytics und Google Ads, um die Nutzung der Website zu messen und Werbung zu verbessern. Diese Cookies werden erst nach Ihrer Zustimmung gesetzt. Ablehnen ändert nichts an der Funktion der Website.',
+        'privacy_link'      => 'Mehr in der Datenschutzerklärung.',
+        'accept'            => 'Akzeptieren',
+        'reject'            => 'Ablehnen',
+        'preferences'       => 'Einstellungen',
+        'preferences_title' => 'Cookie-Einstellungen',
+        'preferences_body'  => 'Wählen Sie selbst, was Sie erlauben. Sie können das jederzeit über den Link am Ende jeder Seite ändern.',
+        'essential_label'   => 'Notwendig',
+        'essential_desc'    => 'Sitzungs-Cookie für das Kontaktformular und Cookie, das Ihre Auswahl speichert. Immer aktiv.',
+        'analytics_label'   => 'Statistik',
+        'analytics_desc'    => 'Google Analytics: anonyme Statistiken zu Besuchen und Seitennutzung.',
+        'ads_label'         => 'Werbung',
+        'ads_desc'          => 'Google Ads: messen, welche Anzeigen zu einer Anfrage führen, und Anzeigen anpassen.',
+        'save'              => 'Auswahl speichern',
+        'back'              => 'Zurück',
+        'reopen'            => 'Cookie-Einstellungen',
+    ],
+
+    // ── Datenschutzseite: Abschnitt Cookies & Tracking ──────────────────────
+    'privacy_cookies' => [
+        'heading'       => 'Cookies und Tracking',
+        'essential'     => 'Diese Website verwendet technisch notwendige Cookies: ein Sitzungs-Cookie für das Kontaktformular (CSRF-Token) und ein Cookie, das Ihre Cookie-Auswahl speichert (vms_consent, höchstens 6 Monate). Dafür ist keine Einwilligung nötig.',
+        'google'        => 'Zusätzlich nutzt die Website das Google-Tag für Google Analytics (Besuchsstatistiken) und Google Ads (Anzeigenmessung). Dieses Tracking ist standardmäßig deaktiviert und wird erst nach Ihrer Zustimmung im Cookie-Banner aktiviert — je Kategorie, über Google Consent Mode.',
+        'items'         => [
+            'Ohne Einwilligung werden keine Statistik- oder Werbe-Cookies gesetzt und keine Daten für personalisierte Werbung geteilt.',
+            'Statistik: anonyme Daten zu besuchten Seiten, Gerät und Herkunft des Besuchs.',
+            'Werbung: messen, ob eine Anzeige zu einer Kontaktanfrage führt, und Anzeigen anpassen.',
+            'Ihre Auswahl wird im Cookie vms_consent gespeichert, ohne personenbezogene Daten.',
+        ],
+        'change'        => 'Sie können Ihre Auswahl jederzeit ändern oder widerrufen über',
+        'google_policy' => 'Mit Ihrer Einwilligung erhobene Daten werden von Google LLC gemäß der Datenschutzerklärung von Google verarbeitet:',
+    ],
+
 ];

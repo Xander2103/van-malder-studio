@@ -29,6 +29,9 @@ $pageTitle = $title ?? config('studio.brand_name');
 $pageDescription = $description ?? null;
 $ogImage = asset(config('studio.og_image', 'preview.png'));
 $schemaPageType = $pageType ?? 'WebPage';
+
+// Google tag (GA4 / Ads). Empty → no tag, no consent banner. Configured via GOOGLE_TAG_ID.
+$googleTagId = trim((string) config('services.google.tag_id', ''));
 @endphp
 <!DOCTYPE html>
 <html lang="{{ $locale }}" class="scroll-smooth">
@@ -82,13 +85,13 @@ $schemaPageType = $pageType ?? 'WebPage';
         content="{{ $ogDescription ?? ($pageDescription ?? config('studio.positioning')) }}">
     <meta name="twitter:image" content="{{ $ogImage }}">
 
-    {{-- Favicons --}}
-    <link rel="icon" href="{{ asset('favicon.ico') }}" sizes="any">
-    <link rel="icon" type="image/png" sizes="64x64" href="{{ asset('favicon-64x64.png') }}">
+    {{-- Favicons — /favicon.ico is a multi-size ICO (16/32/48) and the universal fallback;
+         PNG sizes for modern tabs, apple-touch-icon for iOS, manifest carries 192/512 for Android. --}}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-32x32.png') }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon-16x16.png') }}">
-    <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('favicon-192x192.png') }}">
-    <link rel="apple-touch-icon" href="{{ asset('apple-touch-icon.png') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-touch-icon.png') }}">
     <link rel="manifest" href="{{ asset('site.webmanifest') }}">
 
     {{-- Fonts --}}
@@ -98,22 +101,46 @@ $schemaPageType = $pageType ?? 'WebPage';
         href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
 
+    {{-- Google tag with Consent Mode v2.
+         Order matters: dataLayer/gtag → consent default DENIED → restore a saved choice
+         → js/config → load gtag.js (async). Nothing is granted until the visitor decides.
+         The banner UI and the consent update on Accept/Reject live in resources/js/consent.js. --}}
+    @if ($googleTagId)
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('consent', 'default', {
+            ad_storage: 'denied',
+            analytics_storage: 'denied',
+            ad_user_data: 'denied',
+            ad_personalization: 'denied'
+        });
+        gtag('set', 'ads_data_redaction', true);
+        window.vmsConsent = (function () {
+            var m = document.cookie.match(/(?:^|; )vms_consent=([^;]*)/);
+            if (!m) return null;
+            try {
+                var c = JSON.parse(decodeURIComponent(m[1]));
+                if (!c || c.v !== 1) return null;
+                gtag('consent', 'update', {
+                    analytics_storage: c.analytics ? 'granted' : 'denied',
+                    ad_storage: c.ads ? 'granted' : 'denied',
+                    ad_user_data: c.ads ? 'granted' : 'denied',
+                    ad_personalization: c.ads ? 'granted' : 'denied'
+                });
+                return { analytics: !!c.analytics, ads: !!c.ads };
+            } catch (e) { return null; }
+        })();
+        gtag('js', new Date());
+        gtag('config', @json($googleTagId));
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ urlencode($googleTagId) }}"></script>
+    @endif
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     {{-- Structured data — shared entity graph (business, person, website, page, breadcrumb) --}}
     <x-structured-data :title="$pageTitle" :description="$pageDescription" :canonical="$selfCanonical" :pageType="$schemaPageType" :baseName="$isLandingPage ? 'landing' : $baseName" />
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RZMSGS6HLT"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-
-        gtag('config', 'G-RZMSGS6HLT');
-    </script>
 </head>
 
 <body class="bg-stone-50 text-slate-800 antialiased">
@@ -122,6 +149,9 @@ $schemaPageType = $pageType ?? 'WebPage';
         {{ $slot }}
     </main>
     <x-footer />
+    @if ($googleTagId)
+    <x-cookie-consent />
+    @endif
 </body>
 
 </html>

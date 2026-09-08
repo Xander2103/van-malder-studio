@@ -106,12 +106,29 @@
 
             <div class="border-t border-stone-200"></div>
 
+            @php $privacyHasTag = trim((string) config('services.google.tag_id', '')) !== ''; @endphp
             <section aria-labelledby="privacy-cookies">
-                <h2 id="privacy-cookies" class="font-serif text-xl font-medium text-slate-900 mb-3">Cookies en tracking</h2>
-                <p class="leading-relaxed">
-                    Deze website gebruikt geen tracking-cookies, advertentiecookies of analytics van derden.
-                    Er worden enkel technisch noodzakelijke sessiecookies gebruikt voor het correct functioneren van het contactformulier (CSRF-token).
+                <h2 id="privacy-cookies" class="font-serif text-xl font-medium text-slate-900 mb-3">{{ __('site.privacy_cookies.heading') }}</h2>
+                <p class="leading-relaxed">{{ __('site.privacy_cookies.essential') }}</p>
+                @if ($privacyHasTag)
+                <p class="mt-3 leading-relaxed">{{ __('site.privacy_cookies.google') }}</p>
+                <ul class="mt-3 space-y-2 list-none" role="list">
+                    @foreach ((array) __('site.privacy_cookies.items') as $item)
+                    <li class="flex items-start gap-2.5 text-sm">
+                        <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-slate-400 shrink-0" aria-hidden="true"></span>
+                        {{ $item }}
+                    </li>
+                    @endforeach
+                </ul>
+                <p class="mt-4 leading-relaxed">
+                    {{ __('site.privacy_cookies.change') }}
+                    <button type="button" data-consent-open class="text-blue-700 hover:underline cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 rounded-sm">{{ __('site.consent.reopen') }}</button>.
                 </p>
+                <p class="mt-3 text-sm text-slate-500 leading-relaxed">
+                    {{ __('site.privacy_cookies.google_policy') }}
+                    <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" class="text-blue-700 hover:underline">policies.google.com/privacy</a>.
+                </p>
+                @endif
             </section>
 
             <div class="border-t border-stone-200"></div>

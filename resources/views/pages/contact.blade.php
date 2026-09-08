@@ -183,7 +183,8 @@ if (($errors->any() && !$hasQuickErrors) || session('success') || session('mail_
 
                 {{-- Success flash --}}
                 @if(session('quick_success'))
-                <div class="mb-5 rounded-xl bg-green-50 border border-green-200 p-5" role="alert" aria-live="polite">
+                {{-- data-track-event: confirmed server-side success → GA4 "generate_lead" via gtag (consent-gated), see resources/js/consent.js --}}
+                <div class="mb-5 rounded-xl bg-green-50 border border-green-200 p-5" role="alert" aria-live="polite" data-track-event="generate_lead" data-track-lead-type="quick_message">
                     <h3 class="font-serif text-lg font-medium text-green-900">{{ __('site.quick_contact.success_heading') }}</h3>
                     <p class="mt-1.5 text-sm text-green-700 leading-relaxed">{{ __('site.quick_contact.success_body') }}</p>
                 </div>
@@ -318,7 +319,8 @@ if (($errors->any() && !$hasQuickErrors) || session('success') || session('mail_
                 class="focus:outline-none {{ $activeTab !== 'project' ? 'hidden' : '' }}"
             >
                 @if(session('success'))
-                <div class="mb-6 rounded-xl bg-green-50 border border-green-200 p-6" role="alert" aria-live="polite">
+                {{-- data-track-event: confirmed server-side success → GA4 "generate_lead" via gtag (consent-gated), see resources/js/consent.js --}}
+                <div class="mb-6 rounded-xl bg-green-50 border border-green-200 p-6" role="alert" aria-live="polite" data-track-event="generate_lead" data-track-lead-type="project_inquiry">
                     <h3 class="font-serif text-xl font-medium text-green-900">{{ __('site.contact.success_heading') }}</h3>
                     <p class="mt-2 text-sm text-green-700 leading-relaxed">{{ __('site.contact.success_body') }}</p>
                 </div>
